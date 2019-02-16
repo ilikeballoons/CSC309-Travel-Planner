@@ -1,5 +1,7 @@
 .landing {
-
+  min-height: 100vh;
+  background-image: url('../../images/landingPageBg.jpg');
+  background-size: cover;
 }
 
 .signInButtonContainer {

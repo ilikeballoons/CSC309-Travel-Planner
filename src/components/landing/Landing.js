@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchBar from './SearchBar.js'
 import SignInButton from './SignInButton.js'
-import '../css/landing/Landing.css'
+import '../../css/landing/Landing.css'
 
 export default class Landing extends React.Component {
   render () {

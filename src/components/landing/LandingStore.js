@@ -1,5 +1,4 @@
 // Example for this type of file can be found at https://github.com/facebook/flux/blob/master/examples/flux-todomvc/src/data/TodoStore.js
-import Immutable from 'immutable'
 import ActionTypes from '../../ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../../Dispatcher'

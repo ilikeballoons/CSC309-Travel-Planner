@@ -43,7 +43,7 @@ class SigninDialog extends React.Component {
   }
 
   updateState = () => {
-    this.setState(LandingStore.getState())
+    this.setState(LandingStore.getState()) // ?? does this even do anything?
   }
 
   updateEmail = name => event => {

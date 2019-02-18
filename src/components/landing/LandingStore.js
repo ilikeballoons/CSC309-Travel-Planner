@@ -58,12 +58,7 @@ class LandingStore extends EventEmitter {
         this.emit('change')
         break
       }
-
-      case ActionTypes.SIGNIN_DIALOG_SIGNIN_START: {
-        console.log(action.value)
-        break
-      }
-
+      
       default:
     }
   }

@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
 import LandingStore from './LandingStore'
-import * as LandingActions from './LandingActions'
+import LandingActions from './LandingActions'
 
 
 export default class SigninDialog extends React.Component {

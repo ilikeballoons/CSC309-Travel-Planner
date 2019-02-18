@@ -1,42 +1,39 @@
 import dispatcher from '../../Dispatcher'
+import ActionTypes from '../../ActionTypes'
 
-export const LANDING_ACTIONS = {
-  SIGNIN_DIALOG_OPEN: 'landingActions.signinDialogOpen',
-  SIGNIN_DIALOG_CLOSE: 'landingActions.signinDialogClose',
-  SIGNIN_DIALOG_EMAIL_CHANGE: 'landingActions.signinDialogEmailChange',
-  SIGNIN_DIALOG_PASSWORD_CHANGE: 'landingActions.signinDialogPasswordChange',
-  SIGNIN_DIALOG_SIGNIN_START: 'landingActions.signinDialogSigninStart'
+const LandingActions = {
+  signinDialogOpen () {
+    dispatcher.dispatch({
+      type: ActionTypes.SIGNIN_DIALOG_OPEN
+    })
+  },
+
+  signinDialogClose () {
+    dispatcher.dispatch({
+      type: ActionTypes.SIGNIN_DIALOG_CLOSE
+    })
+  },
+
+  signinDialogEmailChange (email) {
+    dispatcher.dispatch({
+      type: ActionTypes.SIGNIN_DIALOG_EMAIL_CHANGE,
+      value: email
+    })
+  },
+
+  signinDialogPasswordChange (password) {
+    dispatcher.dispatch({
+      type: ActionTypes.SIGNIN_DIALOG_PASSWORD_CHANGE,
+      value: password
+    })
+  },
+
+  signinDialogSigninStart (account) {
+    dispatcher.dispatch({
+      type: ActionTypes.SIGNIN_DIALOG_SIGNIN_START,
+      value: account
+    })
+  }
 }
 
-export function signinDialogOpen () {
-  dispatcher.dispatch({
-    type: LANDING_ACTIONS.SIGNIN_DIALOG_OPEN
-  })
-}
-
-export function signinDialogClose () {
-  dispatcher.dispatch({
-    type: LANDING_ACTIONS.SIGNIN_DIALOG_CLOSE
-  })
-}
-
-export function signinDialogEmailChange (email) {
-  dispatcher.dispatch({
-    type: LANDING_ACTIONS.SIGNIN_DIALOG_EMAIL_CHANGE,
-    value: email
-  })
-}
-
-export function signinDialogPasswordChange (password) {
-  dispatcher.dispatch({
-    type: LANDING_ACTIONS.SIGNIN_DIALOG_PASSWORD_CHANGE,
-    value: password
-  })
-}
-
-export function signinDialogSigninStart (account) {
-  dispatcher.dispatch({
-    type: LANDING_ACTIONS.SIGNIN_DIALOG_SIGNIN_START,
-    value: account
-  })
-}
+export default LandingActions

@@ -1,6 +1,6 @@
 // Example for this type of file can be found at https://github.com/facebook/flux/blob/master/examples/flux-todomvc/src/data/TodoStore.js
 import Immutable from 'immutable'
-import * as LandingActions from './LandingActions'
+import ActionTypes from '../../ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../../Dispatcher'
 
@@ -26,14 +26,14 @@ class LandingStore extends EventEmitter {
 
   handleActions (action) {
     switch (action.type) {
-      case LandingActions.LANDING_ACTIONS.SIGNIN_DIALOG_OPEN: {
+      case ActionTypes.SIGNIN_DIALOG_OPEN: {
         console.log('opened')
         this.open = true
         this.emit('storeUpdated')
         break
       }
 
-      case LandingActions.LANDING_ACTIONS.SIGNIN_DIALOG_CLOSE: {
+      case ActionTypes.SIGNIN_DIALOG_CLOSE: {
         console.log('closed')
         this.open = false
         this.email = ''
@@ -42,19 +42,19 @@ class LandingStore extends EventEmitter {
         break
       }
 
-      case LandingActions.LANDING_ACTIONS.SIGNIN_DIALOG_EMAIL_CHANGE: {
+      case ActionTypes.SIGNIN_DIALOG_EMAIL_CHANGE: {
         this.email = action.value
         this.emit('emailChanged')
         break
       }
 
-      case LandingActions.LANDING_ACTIONS.SIGNIN_DIALOG_PASSWORD_CHANGE: {
+      case ActionTypes.SIGNIN_DIALOG_PASSWORD_CHANGE: {
         this.password = action.value
         this.emit('passwordChanged')
         break
       }
 
-      case LandingActions.LANDING_ACTIONS.SIGNIN_DIALOG_SIGNIN_START: {
+      case ActionTypes.SIGNIN_DIALOG_SIGNIN_START: {
         console.log('logging in')
         console.log(action.value)
         break

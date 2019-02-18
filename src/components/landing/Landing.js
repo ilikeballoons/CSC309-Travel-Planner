@@ -3,12 +3,13 @@ import SearchBar from './SearchBar.js'
 import SignInButton from './SignInButton.js'
 import SigninDialog from './SigninDialog.js'
 import '../../css/landing/Landing.css'
-import * as LandingActions from './LandingActions'
+import LandingActions from './LandingActions'
 
 export default class Landing extends React.Component {
   constructor (props) {
     super(props)
     this.state = { open: false }
+    console.log (LandingActions)
   }
 
   onButtonClick () {

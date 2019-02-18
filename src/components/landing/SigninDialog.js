@@ -61,30 +61,39 @@ export default class SigninDialog extends React.Component {
         <DialogTitle id='signinDialogTitle'>Sign In</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send
-            updates occasionally.
+            Please enter your login details below
           </DialogContentText>
-          <TextField
-            value={this.state.email}
-            onChange={this.updateEmail('Email Address')}
-            autoFocus
-            margin='dense'
-            id='email'
-            label='Email Address'
-            type='email'
-            fullWidth
-          />
-          <TextField
-            value={this.state.password}
-            onChange={this.updatePassword('Password')}
-            margin='dense'
-            id='password'
-            label='Password'
-            type='password'
-            fullWidth
-          />
+          <form className='signinForm' >
+            <TextField
+              autoComplete='username email'
+              value={this.state.email}
+              onChange={this.updateEmail('Email Address')}
+              autoFocus
+              margin='dense'
+              id='email'
+              label='Email Address'
+              type='email'
+              fullWidth
+            />
+            <TextField
+              autoComplete='current-password'
+              value={this.state.password}
+              onChange={this.updatePassword('Password')}
+              margin='dense'
+              id='password'
+              label='Password'
+              type='password'
+              fullWidth
+            />
+        </form>
         </DialogContent>
         <DialogActions>
+          <Button onClick={this.createAccount} color='primary'>
+            Create Account
+          </Button>
+          <Button onClick={this.forgotPassword} color='primary'>
+            Forgot Password?
+          </Button>
           <Button onClick={this.props.onClose} color='primary'>
             Cancel
           </Button>

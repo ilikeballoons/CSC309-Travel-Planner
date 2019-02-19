@@ -11,26 +11,18 @@ export default class Landing extends React.Component {
     this.state = { open: false }
   }
 
-  onButtonClick () {
-    LandingActions.signinDialogOpen()
-  }
-
-  onClose () {
-    LandingActions.signinDialogClose()
-  }
-
   render () {
     return (
       <div className='landing'>
         <div className='signInButtonContainer'>
           <SignInButton
-            onClick={() => this.onButtonClick()} />
+            onClick={() => LandingActions.signinDialogOpen()} />
         </div>
         <div className='landingCenterPanel'>
           <h1>Where to?</h1>
           <SearchBar />
         </div>
-        <SigninDialog onClose={() => this.onClose()} />
+        <SigninDialog onClose={() => LandingActions.signinDialogClose()} />
       </div>
     )
   }

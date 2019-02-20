@@ -5,7 +5,8 @@ import Button from '@material-ui/core/Button'
 export default class SignInButton extends React.Component {
   render () {
     return (
-      <Button variant='contained' color='primary' className='signInButton'>
+      <Button variant='contained' color='primary' className='signInButton'
+        onClick={this.props.onClick}>
         Sign In
         {/* <AccountCircleIcon /> */}
       </Button>

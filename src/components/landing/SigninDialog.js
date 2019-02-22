@@ -1,13 +1,15 @@
 import React from 'react'
 
 import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import TextField from '@material-ui/core/TextField'
 
 import LandingStore from './LandingStore'
 import LandingActions from './LandingActions'
@@ -15,19 +17,25 @@ import AppStore from '../AppStore'
 import LoginStates from '../../LoginStates'
 
 const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+
+  avatar: {
+    alignSelf: 'center',
+    marginTop: '16px',
+    backgroundColor: '#E10050'
+  },
+
   content: {
-    padding: 20
+    padding: '0px 20px 20px 20px'
   },
 
   title: {
     textAlign: 'center'
   },
-
-  actions: {
-    display: 'flex',
-    justifyContent: 'column',
-    alignItems: 'flex-start'
-  }
 }
 
 class SigninDialog extends React.Component {
@@ -48,7 +56,6 @@ class SigninDialog extends React.Component {
 
   getNewState = () => {
     const { signin } = LandingStore.getState()
-    console.log (signin)
     return Object.assign({}, signin, AppStore.getState())
   }
 
@@ -77,7 +84,11 @@ class SigninDialog extends React.Component {
     return (
       <Dialog
         open={this.state.open && this.state.loggedInState !== LoginStates.loggedIn}
-        onClose={this.cancel}>
+        onClose={this.cancel}
+        className={this.props.classes.root}>
+        <Avatar className={this.props.classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
         <DialogTitle
           id='signinDialogTitle'
           className={this.props.classes.title}>
@@ -111,7 +122,7 @@ class SigninDialog extends React.Component {
             />
         </form>
         </DialogContent>
-        <DialogActions className={this.props.classes.actions}>
+        <DialogActions>
           <Button onClick={this.forgotPassword} color='primary'>
             Forgot Password?
           </Button>

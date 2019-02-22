@@ -11,8 +11,11 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DateFnsUtils from '@date-io/date-fns'
 import { DatePicker, MuiPickersUtilsProvider  } from 'material-ui-pickers';
 
+import '../../css/landing/CreateAccountDialog.css'
 import LandingStore from './LandingStore'
 import LandingActions from './LandingActions'
+import { findWithAttribute } from '../../Utils'
+import users from '../../Fixtures'
 
 const styles = {
   form: {
@@ -41,11 +44,46 @@ class CreateAccountDialog extends React.Component {
     return { createAccount }
   }
 
-  updateState = () => this.setState(this.getNewState())
+  updateState = () => this.setState(this.getNewState().createAccount)
 
-  handleChange = field => event =>  LandingActions.createAccountChange(event.target.value)
+  handleChange = field => event =>  LandingActions.createAccountChange({ [field]: event.target.value })
 
-  handleDateChange = date => LandingActions.createAccountChange(date)
+  handleDateChange = date => LandingActions.createAccountChange({ birthday: date })
+
+  confirmPassword = () => {
+    return (!this.state.password && !this.state.password2)
+    || this.state.password === this.state.password2
+  }
+
+  confirmUsername = () => {
+    return isNaN(findWithAttribute(users, 'username', this.state.username))
+  }
+
+  validate = () => {
+    return this.state.username
+    && this.state.password
+    && this.state.fullName
+    && this.state.birthday
+    // check if passwords match
+    && this.confirmPassword()
+    // check if user already exists
+    && this.confirmUsername()
+
+  }
+
+  submit = () => {
+    console.log (this.validate())
+    if (this.validate()) {
+      LandingActions.createAccountClose()
+      LandingActions.createAccountSubmit({
+        username: this.state.username,
+        password: this.state.password,
+        fullName: this.state.fullName,
+        birthday: this.state.birthday,
+        privilege: 0 // TODO: This is a magic number need to change
+      })
+    }
+  }
 
   render () {
     return (
@@ -58,47 +96,66 @@ class CreateAccountDialog extends React.Component {
             Fill in your personal details to create an account.
           </DialogContentText>
           <form className={this.props.classes.form}>
+            {!this.confirmUsername() && <span className='red'>Username taken</span>}
             <TextField
               value={this.state.username}
-              onChange={this.handleChange('Username/Email')}
+              onChange={this.handleChange('username')}
               margin='dense'
               id='username'
               label='Username/Email'
               type='text'
               placeholder='Username/Email'
-              fullWidth />
+              fullWidth
+              required />
             <TextField
               value={this.state.fullName}
-              onChange={this.handleChange('Full Name')}
+              onChange={this.handleChange('fullName')}
               margin='dense'
               id='fullName'
               label='Full Name'
               type='text'
               placeholder='Full Name'
-              fullWidth />
+              fullWidth
+              required />
+            {!this.confirmPassword() && <span className='red'>Passwords don't match.</span>}
             <TextField
               value={this.state.password}
-              onChange={this.handleChange('Password')}
+              onChange={this.handleChange('password')}
               margin='dense'
               id='password'
               label='Password'
               type='password'
               placeholder='Password'
-              fullWidth />
-            <TextField
-              value={this.state.password2}
-              onChange={this.handleChange('Password2')}
-              margin='dense'
-              id='password2'
-              label='Confirm your password'
-              type='password'
-              placeholder='Confirm your password'
-              fullWidth />
+              fullWidth
+              required />
+              <TextField
+                value={this.state.password2}
+                onChange={this.handleChange('password2')}
+                margin='dense'
+                id='password2'
+                label='Confirm your password'
+                type='password'
+                placeholder='Confirm your password'
+                fullWidth
+                required />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <DatePicker value={this.state.birthday} onChange={this.handleDateChange} />
+              <DatePicker
+                value={this.state.birthday}
+                onChange={this.handleDateChange}
+                disableFuture
+                label='Date of birth'
+                openTo='year'
+                fullWidth
+                required
+                views={['year', 'month', 'day']}/>
             </MuiPickersUtilsProvider>
           </form>
         </DialogContent>
+        <DialogActions>
+          <Button variant='contained' onClick={this.submit} color='primary'>
+            Submit
+          </Button>
+        </DialogActions>
       </Dialog>
     )
   }

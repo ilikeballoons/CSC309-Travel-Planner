@@ -9,13 +9,15 @@ const users = [
     username: 'user',
     privilege: privileges.user,
     password: 'user',
-    fullName: 'Denny Wiseman'
+    fullName: 'Denny Wiseman',
+    birthday: ''
   },
   {
     username: 'admin',
     privilege: privileges.admin,
     password: 'admin',
-    fullName: 'Charlie Zhang'
+    fullName: 'Charlie Zhang',
+    birthday: ''
   }
 ]
 

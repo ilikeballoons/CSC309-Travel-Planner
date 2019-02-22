@@ -17,7 +17,7 @@ class LandingStore extends EventEmitter {
       username: '',
       password: '',
       password2: '',
-      birthday: '',
+      birthday: null,
       fullName: ''
     }
   }

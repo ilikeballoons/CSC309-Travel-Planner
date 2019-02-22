@@ -100,6 +100,7 @@ class CreateAccountDialog extends React.Component {
             <TextField
               value={this.state.username}
               onChange={this.handleChange('username')}
+              autoComplete='username email'
               margin='dense'
               id='username'
               label='Username/Email'
@@ -121,6 +122,7 @@ class CreateAccountDialog extends React.Component {
             <TextField
               value={this.state.password}
               onChange={this.handleChange('password')}
+              autoComplete='new-password'
               margin='dense'
               id='password'
               label='Password'
@@ -131,6 +133,7 @@ class CreateAccountDialog extends React.Component {
               <TextField
                 value={this.state.password2}
                 onChange={this.handleChange('password2')}
+                autoComplete='new-password'
                 margin='dense'
                 id='password2'
                 label='Confirm your password'
@@ -152,7 +155,11 @@ class CreateAccountDialog extends React.Component {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button variant='contained' onClick={this.submit} color='primary'>
+          <Button
+            variant='contained'
+            onClick={this.submit}
+            disabled={!this.validate()} 
+            color='primary'>
             Submit
           </Button>
         </DialogActions>

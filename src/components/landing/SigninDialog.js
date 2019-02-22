@@ -73,6 +73,8 @@ class SigninDialog extends React.Component {
 
   cancel = () => LandingActions.signinDialogCancel()
 
+  validate = () => this.state.email && this.state.password
+
   doLogin = () => {
     LandingActions.signinDialogSigninStart({
       username: this.state.email,
@@ -123,13 +125,13 @@ class SigninDialog extends React.Component {
         </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.forgotPassword} color='primary'>
+          { /*<Button onClick={this.forgotPassword} color='primary'>
             Forgot Password?
-          </Button>
-          <Button onClick={this.createAccountOpen} color='primary'>
+          </Button>*/}
+          <Button variant='contained' onClick={this.createAccountOpen}>
             Sign Up
           </Button>
-          <Button variant='contained' onClick={this.doLogin} color='primary'>
+          <Button variant='contained' disabled={!this.validate()} onClick={this.doLogin} color='primary'>
             Log In
           </Button>
         </DialogActions>

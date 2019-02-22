@@ -61,6 +61,14 @@ class AppStore extends EventEmitter {
         break
       }
 
+      case ActionTypes.SIGNOUT: {
+        this.loggedInState = LoginStates.noInput
+        this.account = null
+        this.dialogText = 'Please input your user information below.'
+        this.emit('change')
+        break
+      }
+
       default:
     }
   }

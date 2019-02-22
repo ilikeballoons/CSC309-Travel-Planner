@@ -65,6 +65,14 @@ class LandingStore extends EventEmitter {
         break
       }
 
+      case ActionTypes.SIGNOUT: {
+        this.open = false
+        this.email = ''
+        this.password = ''
+        this.emit('change')
+        break
+      }
+
       default:
     }
   }

@@ -45,6 +45,12 @@ const LandingActions = {
     dispatcher.dispatch({
       type: ActionTypes.SIGNIN_DIALOG_SIGNIN_CANCEL
     })
+  },
+
+  signOut () {
+    dispatcher.dispatch({
+      type: ActionTypes.SIGNOUT
+    })
   }
 }
 

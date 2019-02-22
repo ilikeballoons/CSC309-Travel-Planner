@@ -33,6 +33,18 @@ const LandingActions = {
       type: ActionTypes.SIGNIN_DIALOG_SIGNIN_START,
       value: account
     })
+  },
+
+  signinDialogSigninSuccess () {
+    dispatcher.dispatch({
+      type: ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS
+    })
+  },
+
+  signinDialogSigninCancel () {
+    dispatcher.dispatch({
+      type: ActionTypes.SIGNIN_DIALOG_SIGNIN_CANCEL
+    })
   }
 }
 

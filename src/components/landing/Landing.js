@@ -22,7 +22,7 @@ export default class Landing extends React.Component {
           <h1>Where to?</h1>
           <SearchBar />
         </div>
-        <SigninDialog onClose={() => LandingActions.signinDialogClose()} />
+        <SigninDialog />
       </div>
     )
   }

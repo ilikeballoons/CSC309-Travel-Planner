@@ -11,6 +11,8 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 
 import LandingStore from './LandingStore'
 import LandingActions from './LandingActions'
+import AppStore from '../AppStore'
+import LoginStates from '../../LoginStates'
 
 const styles = {
   content: {
@@ -31,20 +33,22 @@ const styles = {
 class SigninDialog extends React.Component {
   constructor (props) {
     super(props)
-    this.state = LandingStore.getState()
+    this.state = this.getNewState()
   }
 
   componentDidMount () {
     LandingStore.on('change', this.updateState)
+    AppStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
     LandingStore.removeListener('change', this.updateState)
+    AppStore.removeListener('change', this.updateState)
   }
 
-  updateState = () => {
-    this.setState(LandingStore.getState()) // ?? does this even do anything?
-  }
+  getNewState = () => Object.assign({}, LandingStore.getState(), AppStore.getState())
+  updateState = () => this.setState(this.getNewState())
+
 
   updateEmail = name => event => {
     LandingActions.signinDialogEmailChange(event.target.value)
@@ -54,19 +58,19 @@ class SigninDialog extends React.Component {
     LandingActions.signinDialogPasswordChange(event.target.value)
   }
 
+
   doLogin = () => {
     LandingActions.signinDialogSigninStart({
-      email: this.state.email,
+      username: this.state.email,
       password: this.state.password
     })
-    this.props.onClose()
   }
 
   render () {
     return (
       <Dialog
-        open={this.state.open}
-        onClose={this.props.onClose}>
+        open={this.state.open && this.state.loggedInState !== LoginStates.loggedIn}
+        onClose={() => LandingActions.signinDialogClose()}>
         <DialogTitle
           id='signinDialogTitle'
           className={this.props.classes.title}>
@@ -74,7 +78,7 @@ class SigninDialog extends React.Component {
         </DialogTitle>
         <DialogContent className={this.props.classes.content}>
           <DialogContentText>
-            Please enter your login details below
+            {this.state.dialogText}
           </DialogContentText>
           <form>
             <TextField

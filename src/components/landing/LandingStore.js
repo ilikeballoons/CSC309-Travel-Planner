@@ -39,7 +39,7 @@ class LandingStore extends EventEmitter {
         break
       }
 
-      case ActionTypes.SIGNIN_DIALOG_CLOSE: {
+      case ActionTypes.SIGNIN_DIALOG_CANCEL: {
         this.open = false
         this.email = ''
         this.password = ''
@@ -58,7 +58,13 @@ class LandingStore extends EventEmitter {
         this.emit('change')
         break
       }
-      
+
+      case ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS: {
+        this.open = false
+        this.emit('change')
+        break
+      }
+
       default:
     }
   }

@@ -14,6 +14,13 @@ const LandingActions = {
     })
   },
 
+  createAccountChange (formData) {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_CHANGE,
+      value: formData
+    })
+  },
+
   createAccountSubmit (account) {
     dispatcher.dispatch({
       type: ActionTypes.CREATE_ACCOUNT_SUBMIT,

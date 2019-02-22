@@ -16,6 +16,7 @@ class LandingStore extends EventEmitter {
       open: false,
       username: '',
       password: '',
+      password2: '',
       birthday: '',
       fullName: ''
     }
@@ -32,12 +33,19 @@ class LandingStore extends EventEmitter {
     switch (action.type) {
       case ActionTypes.CREATE_ACCOUNT_OPEN: {
         this.createAccount.open = true
+        this.signin.open = false
         this.emit('change')
         break
       }
 
       case ActionTypes.CREATE_ACCOUNT_CLOSE: {
         this.createAccount.open = false
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.CREATE_ACCOUNT_CHANGE: {
+        Object.assign(this.createAccount, action.value)
         this.emit('change')
         break
       }

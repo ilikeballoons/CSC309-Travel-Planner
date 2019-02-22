@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
+
 import '../css/App.css'
 import AppStore from './AppStore'
+import LoginStates from '../LoginStates'
 import Landing from './landing/Landing'
 import Admin from './admin/Admin'
-
-const LandingPage = () => (
-  <Landing />
-)
+import UserPage from './userpage/UserPage'
 
 const AdminPage = () => (
   <Admin />
+)
+const Userpage = () => (
+  <UserPage />
 )
 
 class App extends Component {
@@ -31,11 +33,20 @@ class App extends Component {
     this.setState(AppStore.getState())
   }
   render () {
+    const loggedIn = this.state.loggedInState === LoginStates.loggedIn
+    const username = this.state.account && this.state.account.username
     return (
       <div className='App'>
         <Switch>
-          <Route path='/' exact component={LandingPage} />
+          <Route exact path='/' render={() => (
+            loggedIn ? (
+              <Redirect to={`/${username}`} />
+            ) : (
+              <Landing />
+            )
+          )} />
           <Route path='/admin' component={AdminPage} />
+          <Route path={`/${username}`} component={Userpage} />
         </Switch>
       </div>
 

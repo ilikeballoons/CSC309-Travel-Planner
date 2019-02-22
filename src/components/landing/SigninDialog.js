@@ -46,9 +46,13 @@ class SigninDialog extends React.Component {
     AppStore.removeListener('change', this.updateState)
   }
 
-  getNewState = () => Object.assign({}, LandingStore.getState(), AppStore.getState())
-  updateState = () => this.setState(this.getNewState())
+  getNewState = () => {
+    const { signin } = LandingStore.getState()
+    console.log (signin)
+    return Object.assign({}, signin, AppStore.getState())
+  }
 
+  updateState = () => this.setState(this.getNewState())
 
   updateEmail = name => event => {
     LandingActions.signinDialogEmailChange(event.target.value)
@@ -58,6 +62,9 @@ class SigninDialog extends React.Component {
     LandingActions.signinDialogPasswordChange(event.target.value)
   }
 
+  createAccountOpen = () => LandingActions.createAccountOpen()
+
+  cancel = () => LandingActions.signinDialogCancel()
 
   doLogin = () => {
     LandingActions.signinDialogSigninStart({
@@ -70,7 +77,7 @@ class SigninDialog extends React.Component {
     return (
       <Dialog
         open={this.state.open && this.state.loggedInState !== LoginStates.loggedIn}
-        onClose={() => LandingActions.signinDialogClose()}>
+        onClose={this.cancel}>
         <DialogTitle
           id='signinDialogTitle'
           className={this.props.classes.title}>
@@ -108,7 +115,7 @@ class SigninDialog extends React.Component {
           <Button onClick={this.forgotPassword} color='primary'>
             Forgot Password?
           </Button>
-          <Button onClick={this.createAccount} color='primary'>
+          <Button onClick={this.createAccountOpen} color='primary'>
             Sign Up
           </Button>
           <Button variant='contained' onClick={this.doLogin} color='primary'>

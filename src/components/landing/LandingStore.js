@@ -6,69 +6,82 @@ import dispatcher from '../../Dispatcher'
 class LandingStore extends EventEmitter {
   constructor () {
     super()
-    this.open = false
-    this.email = ''
-    this.password = ''
+    this.signin = {
+      open: false,
+      email: '',
+      password: ''
+    }
+
+    this.createAccount = {
+      open: false,
+      username: '',
+      password: '',
+      birthday: '',
+      fullName: ''
+    }
   }
 
   getState () {
     return {
-      open: this.open,
-      email: this.email,
-      password: this.password
+      createAccount: this.createAccount,
+      signin: this.signin
     }
-  }
-
-  getOpenState () {
-    return this.open
-  }
-
-  getEmail () {
-    return this.email
-  }
-
-  getPassword () {
-    return this.password
   }
 
   handleActions (action) {
     switch (action.type) {
+      case ActionTypes.CREATE_ACCOUNT_OPEN: {
+        this.createAccount.open = true
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.CREATE_ACCOUNT_CLOSE: {
+        this.createAccount.open = false
+        this.emit('change')
+        break
+      }
+
       case ActionTypes.SIGNIN_DIALOG_OPEN: {
-        this.open = true
+        this.signin.open = true
         this.emit('change')
         break
       }
 
       case ActionTypes.SIGNIN_DIALOG_CANCEL: {
-        this.open = false
-        this.email = ''
-        this.password = ''
+        this.signin = {
+          open: false,
+          email: '',
+          password: ''
+        }
         this.emit('change')
         break
       }
 
       case ActionTypes.SIGNIN_DIALOG_EMAIL_CHANGE: {
-        this.email = action.value
+        this.signin.email = action.value
         this.emit('change')
         break
       }
 
       case ActionTypes.SIGNIN_DIALOG_PASSWORD_CHANGE: {
-        this.password = action.value
+        this.signin.password = action.value
         this.emit('change')
         break
       }
 
       case ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS: {
-        this.open = false
+        this.signin.open = false
         this.emit('change')
         break
       }
 
       case ActionTypes.SIGNOUT: {
-        this.open = false
-        this.email = ''
-        this.password = ''
+        this.signin = {
+          open: false,
+          email: '',
+          password: ''
+        }
         this.emit('change')
         break
       }

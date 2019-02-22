@@ -2,15 +2,34 @@ import dispatcher from '../../Dispatcher'
 import ActionTypes from '../../ActionTypes'
 
 const LandingActions = {
+  createAccountOpen () {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_OPEN
+    })
+  },
+
+  createAccountClose () {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_CLOSE
+    })
+  },
+
+  createAccountSubmit (account) {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_SUBMIT,
+      value: account
+    })
+  },
+
   signinDialogOpen () {
     dispatcher.dispatch({
       type: ActionTypes.SIGNIN_DIALOG_OPEN
     })
   },
 
-  signinDialogClose () {
+  signinDialogCancel () {
     dispatcher.dispatch({
-      type: ActionTypes.SIGNIN_DIALOG_CLOSE
+      type: ActionTypes.SIGNIN_DIALOG_CANCEL
     })
   },
 
@@ -38,12 +57,6 @@ const LandingActions = {
   signinDialogSigninSuccess () {
     dispatcher.dispatch({
       type: ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS
-    })
-  },
-
-  signinDialogSigninCancel () {
-    dispatcher.dispatch({
-      type: ActionTypes.SIGNIN_DIALOG_SIGNIN_CANCEL
     })
   },
 

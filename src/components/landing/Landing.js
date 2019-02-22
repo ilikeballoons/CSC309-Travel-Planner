@@ -1,15 +1,11 @@
 import React from 'react'
-import SearchBar from './SearchBar.js'
-import SignInButton from './SignInButton.js'
-import SigninDialog from './SigninDialog.js'
+import SearchBar from './SearchBar'
+import SignInButton from './SignInButton'
+import SigninDialog from './SigninDialog'
+import CreateAccountDialog from './CreateAccountDialog'
 import '../../css/landing/Landing.css'
 
 export default class Landing extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = { open: false }
-  }
-
   render () {
     return (
       <div className='landing'>
@@ -21,6 +17,7 @@ export default class Landing extends React.Component {
           <SearchBar />
         </div>
         <SigninDialog />
+        <CreateAccountDialog />
       </div>
     )
   }

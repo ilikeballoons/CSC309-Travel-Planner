@@ -1,50 +1,65 @@
 import React from 'react'
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import TextField from '@material-ui/core/TextField'
 
 import LandingStore from './LandingStore'
 import LandingActions from './LandingActions'
+import AppStore from '../AppStore'
+import LoginStates from '../../LoginStates'
 
 const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+
+  avatar: {
+    alignSelf: 'center',
+    marginTop: '16px',
+    backgroundColor: '#E10050'
+  },
+
   content: {
-    padding: 20
+    padding: '0px 20px 20px 20px'
   },
 
   title: {
     textAlign: 'center'
   },
-
-  actions: {
-    display: 'flex',
-    justifyContent: 'column',
-    alignItems: 'flex-start'
-  }
 }
 
 class SigninDialog extends React.Component {
   constructor (props) {
     super(props)
-    this.state = LandingStore.getState()
+    this.state = this.getNewState()
   }
 
   componentDidMount () {
     LandingStore.on('change', this.updateState)
+    AppStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
     LandingStore.removeListener('change', this.updateState)
+    AppStore.removeListener('change', this.updateState)
   }
 
-  updateState = () => {
-    this.setState(LandingStore.getState()) // ?? does this even do anything?
+  getNewState = () => {
+    const { signin } = LandingStore.getState()
+    return Object.assign({}, signin, AppStore.getState())
   }
+
+  updateState = () => this.setState(this.getNewState())
 
   updateEmail = name => event => {
     LandingActions.signinDialogEmailChange(event.target.value)
@@ -54,19 +69,28 @@ class SigninDialog extends React.Component {
     LandingActions.signinDialogPasswordChange(event.target.value)
   }
 
+  createAccountOpen = () => LandingActions.createAccountOpen()
+
+  cancel = () => LandingActions.signinDialogCancel()
+
+  validate = () => this.state.email && this.state.password
+
   doLogin = () => {
     LandingActions.signinDialogSigninStart({
-      email: this.state.email,
+      username: this.state.email,
       password: this.state.password
     })
-    this.props.onClose()
   }
 
   render () {
     return (
       <Dialog
-        open={this.state.open}
-        onClose={this.props.onClose}>
+        open={this.state.open && this.state.loggedInState !== LoginStates.loggedIn}
+        onClose={this.cancel}
+        className={this.props.classes.root}>
+        <Avatar className={this.props.classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
         <DialogTitle
           id='signinDialogTitle'
           className={this.props.classes.title}>
@@ -74,7 +98,7 @@ class SigninDialog extends React.Component {
         </DialogTitle>
         <DialogContent className={this.props.classes.content}>
           <DialogContentText>
-            Please enter your login details below
+            {this.state.dialogText}
           </DialogContentText>
           <form>
             <TextField
@@ -100,14 +124,14 @@ class SigninDialog extends React.Component {
             />
         </form>
         </DialogContent>
-        <DialogActions className={this.props.classes.actions}>
-          <Button onClick={this.forgotPassword} color='primary'>
+        <DialogActions>
+          { /*<Button onClick={this.forgotPassword} color='primary'>
             Forgot Password?
-          </Button>
-          <Button onClick={this.createAccount} color='primary'>
+          </Button>*/}
+          <Button variant='contained' onClick={this.createAccountOpen}>
             Sign Up
           </Button>
-          <Button variant='contained' onClick={this.doLogin} color='primary'>
+          <Button variant='contained' disabled={!this.validate()} onClick={this.doLogin} color='primary'>
             Log In
           </Button>
         </DialogActions>

@@ -4,6 +4,7 @@ import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import LocalActivity from '@material-ui/icons/LocalActivity'
 import LocalDining from '@material-ui/icons/LocalDining'
 import AccountBalance from '@material-ui/icons/AccountBalance'
@@ -46,6 +47,7 @@ class Preferences extends React.Component {
       <List>
       {Object.entries(preferences).map(([key, value]) => (
         <div key={`${key} div`}>
+          <Divider />
           <ListItem key={`${key}/${value} item`}>
             <FormControlLabel
               control={
@@ -102,6 +104,10 @@ class Preferences extends React.Component {
     const { open } = this.state
     return (
       <div className='root'>
+        <IconButton onClick={this.handleDrawerOpen}>
+          Open Preferences {/* this button looks awful but i'll leave it for now, delete this line if necessary*/}
+          <ChevronRightIcon />
+        </IconButton>
         <Drawer
           variant='persistent'
           anchor='left'

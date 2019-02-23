@@ -36,7 +36,14 @@ class Preferences extends React.Component {
       {Object.entries(preferences).map(([key, value]) => (
         <div key={`${key} div`}>
           <ListItem key={`${key}/${value} item`}>
-            <ListItemText primary={toTitleCase(key)} />
+            <FormControlLabel
+              control={
+                <Switch
+                  onChange={this.handleSwitchChange(key)}
+                  checked={this.getCategoryChecked(key)}
+                  value={key} />
+              }
+              label={toTitleCase(key)} />
           </ListItem>
           <Divider />
           {Object.entries(value).map(([key, value]) => (
@@ -57,11 +64,27 @@ class Preferences extends React.Component {
     )
   }
 
+  getCategoryChecked = (category) => {
+    const { preferences } = this.state
+    return Object.values(preferences[category]).every(value =>(
+      value === true
+    ))
+  }
+
   handleDrawerOpen = () => PreferencesActions.open()
 
   handleDrawerClose = () => PreferencesActions.close()
 
-  handleSwitchChange = name => event => PreferencesActions.change({[name]: event.target.checked})
+  handleSwitchChange = name => event => {
+    const { preferences } = this.state
+    if (Object.keys(preferences).includes(name)) {
+      Object.entries(preferences[name]).forEach(([key, value]) => (
+        PreferencesActions.change({[key]: event.target.checked})
+      ))
+    } else {
+      PreferencesActions.change({[name]: event.target.checked})
+    }
+  }
 
   render () {
     const { open } = this.state

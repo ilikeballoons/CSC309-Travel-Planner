@@ -11,7 +11,6 @@ class PreferencesStore extends EventEmitter {
         historical: false,
         art: false,
         museums: false,
-        nature: false,
         government: false,
         beaches: false,
         shopping: false

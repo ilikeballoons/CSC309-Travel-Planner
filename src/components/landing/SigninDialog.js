@@ -83,9 +83,10 @@ class SigninDialog extends React.Component {
   }
 
   render () {
+    const { open, loggedInState, dialogText, email, password} = this.state
     return (
       <Dialog
-        open={this.state.open && this.state.loggedInState !== LoginStates.loggedIn}
+        open={open && loggedInState !== LoginStates.loggedIn}
         onClose={this.cancel}
         className={this.props.classes.root}>
         <Avatar className={this.props.classes.avatar}>
@@ -98,12 +99,12 @@ class SigninDialog extends React.Component {
         </DialogTitle>
         <DialogContent className={this.props.classes.content}>
           <DialogContentText>
-            {this.state.dialogText}
+            {dialogText}
           </DialogContentText>
           <form>
             <TextField
               autoComplete='username email'
-              value={this.state.email}
+              value={email}
               onChange={this.updateEmail('Email Address')}
               autoFocus
               margin='dense'
@@ -114,7 +115,7 @@ class SigninDialog extends React.Component {
             />
             <TextField
               autoComplete='current-password'
-              value={this.state.password}
+              value={password}
               onChange={this.updatePassword('Password')}
               margin='dense'
               id='password'

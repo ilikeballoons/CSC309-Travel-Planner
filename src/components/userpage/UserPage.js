@@ -1,5 +1,5 @@
 import React from 'react'
-import Preferences from './Preferences'
+import Preferences from './preferences/Preferences'
 import Recommendations from './Recommendations'
 import Itinerary from './Itinerary'
 

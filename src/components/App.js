@@ -39,11 +39,9 @@ class App extends Component {
       <div className='App'>
         <Switch>
           <Route exact path='/' render={() => (
-            loggedIn ? (
-              <Redirect to={`/${username}`} />
-            ) : (
-              <Landing />
-            )
+            loggedIn
+              ? (<Redirect to={`/${username}`} />)
+              : (<Landing />)
           )} />
           <Route path='/admin' component={AdminPage} />
           <Route path={`/${username}`} component={Userpage} />

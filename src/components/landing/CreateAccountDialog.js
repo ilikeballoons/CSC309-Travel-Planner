@@ -72,7 +72,6 @@ class CreateAccountDialog extends React.Component {
   }
 
   submit = () => {
-    console.log (this.validate())
     if (this.validate()) {
       LandingActions.createAccountClose()
       LandingActions.createAccountSubmit({
@@ -158,7 +157,7 @@ class CreateAccountDialog extends React.Component {
           <Button
             variant='contained'
             onClick={this.submit}
-            disabled={!this.validate()} 
+            disabled={!this.validate()}
             color='primary'>
             Submit
           </Button>

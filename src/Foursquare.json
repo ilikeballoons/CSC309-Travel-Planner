@@ -1,4 +1,4 @@
-export const query = {
+{
     "meta": {
         "code": 200,
         "requestId": "5c743e8af594df76b9787ed1"

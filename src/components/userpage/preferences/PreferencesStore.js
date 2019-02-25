@@ -1,48 +1,35 @@
 import ActionTypes from '../../../ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../../../Dispatcher'
+import * as data from '../../../Categories.json'
 
 class PreferencesStore extends EventEmitter {
   constructor () {
     super()
     this.open = true
-    this.preferences = {
-      sightseeing: {
-        historical: false,
-        art: false,
-        museums: false,
-        government: false,
-        beaches: false,
-        shopping: false
-      },
+    const { result, toggled } = this.parseCategories(data.response.categories)
+    this.preferences = result
+    this.toggled = toggled
+  }
 
-      tours: {
-        walking: false,
-        biking: false,
-        driving: false,
-        nature: false,
-        architectural: false,
-        cultural: false
-      },
-
-      food: {
-        restaurants: false,
-        bars: false,
-        breweries: false
-      },
-
-      events: {
-        theatre: false,
-        concerts: false,
-        sports: false
-      }
-    }
+  parseCategories (json) {
+    const result = {}
+    const toggled = {}
+    json.forEach(obj => {
+      result[obj.pluralName] = {}
+      toggled[obj.pluralName] = false
+      obj.categories.forEach(cat => {
+        result[obj.pluralName][cat.pluralName] = false
+      })
+    })
+    return { result, toggled }
   }
 
   getState () {
     return {
       open: this.open,
-      preferences: this.preferences
+      preferences: this.preferences,
+      toggled: this.toggled
     }
   }
 
@@ -73,6 +60,12 @@ class PreferencesStore extends EventEmitter {
       case ActionTypes.PREFERENCES_DRAWER_CHANGE: {
         const key = this.findKey(Object.keys(action.value)[0])
         Object.assign(this.preferences[key], action.value)
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.PREFERENCES_TOGGLE_CATEGORY: {
+        this.toggled[action.value] = !this.toggled[action.value]
         this.emit('change')
         break
       }

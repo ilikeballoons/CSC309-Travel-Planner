@@ -19,6 +19,13 @@ const PreferencesActions = {
       type: ActionTypes.PREFERENCES_DRAWER_CHANGE,
       value: selection
     })
+  },
+
+  toggleCategory (category) {
+    dispatcher.dispatch({
+      type: ActionTypes.PREFERENCES_TOGGLE_CATEGORY,
+      value: category
+    })
   }
 }
 

@@ -69,6 +69,8 @@ class PreferencesStore extends EventEmitter {
         this.emit('change')
         break
       }
+
+      default: { }
     }
   }
 }

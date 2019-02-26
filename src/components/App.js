@@ -8,9 +8,6 @@ import Landing from './landing/Landing'
 import Admin from './admin/Admin'
 import UserPage from './userpage/UserPage'
 
-const LandingPage = () => (
-  <Landing />
-)
 const AdminPage = () => (
   <Admin />
 )

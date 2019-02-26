@@ -22,6 +22,7 @@ class SearchAppBarStore extends EventEmitter {
 
       case ActionTypes.SEARCHBAR_SEARCH: {
         console.log('search!: ', action)
+        // Charlie, add stuff here
         break
       }
     }

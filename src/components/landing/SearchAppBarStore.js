@@ -5,16 +5,23 @@ import dispatcher from '../../Dispatcher'
 class SearchAppBarStore extends EventEmitter {
   constructor () {
     super()
+    this.searchQuery = ''
   }
 
   getState () {
-
+    return { searchQuery: this.searchQuery }
   }
 
   handleActions (action) {
     switch (action.type) {
-      case ActionTypes.ACTIONTYPE: {
+      case ActionTypes.SEARCHBAR_CHANGE: {
+        this.searchQuery = action.value
         this.emit('change')
+        break
+      }
+
+      case ActionTypes.SEARCHBAR_SEARCH: {
+        console.log('search!: ', action)
         break
       }
     }

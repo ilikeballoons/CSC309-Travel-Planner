@@ -15,6 +15,7 @@ import AppStore from '../AppStore'
 
 import SignInButton from './SignInButton'
 import CreateAccountButton from './CreateAccountButton'
+import LandingActions from './LandingActions'
 
 const styles = theme => ({
   root: {
@@ -48,14 +49,15 @@ const styles = theme => ({
       width: 'auto'
     }
   },
+
   searchIcon: {
     width: theme.spacing.unit * 9,
     height: '100%',
     position: 'absolute',
-    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    cursor: 'pointer'
   },
   inputRoot: {
     color: 'inherit',
@@ -81,7 +83,7 @@ class SearchAppBar extends React.Component {
   constructor (props) {
     super(props)
     this.classes = props.classes
-    this.state = {}
+    this.state = {searchQuery: '' }
   }
 
   componentDidMount () {
@@ -93,12 +95,21 @@ class SearchAppBar extends React.Component {
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
     AppStore.removeListener('change', this.updateState)
+  }
 
+  handleChange = event => {
+    LandingActions.searchbarChange(event.target.value)
+  }
+
+  handleSubmit = event => {
+    if ((event.keyCode && event.keyCode === 13) || event.type === 'click') {
+      LandingActions.searchbarSearch(this.state.searchQuery)
+    }
   }
 
   updateState = () => {
-    const { loggedInState} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState())
-    this.setState({loggedInState})
+    const { loggedInState, searchQuery} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState())
+    this.setState({ loggedInState, searchQuery })
   }
 
   render () {
@@ -108,7 +119,9 @@ class SearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
-            <IconButton className={classes.menuButton} color='inherit'>
+            <IconButton
+              className={classes.menuButton}
+              color='inherit'>
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant='h6' color='inherit' noWrap>
@@ -116,11 +129,17 @@ class SearchAppBar extends React.Component {
             </Typography>
             <div className={classes.grow} />
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
+              <div className={classes.searchIcon}
+                onClick={(e) => this.handleSubmit(e)} >
+                <IconButton
+                  component={() => <SearchIcon />}
+                  />
               </div>
               <InputBase
                 placeholder='Where to?'
+                value={this.state.searchQuery}
+                onChange={(e) => this.handleChange(e)}
+                onKeyDown={(e) => this.handleSubmit(e)}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
@@ -128,7 +147,7 @@ class SearchAppBar extends React.Component {
               />
             </div>
             <div className={classes.grow} />
-            {!loggedInState && (<div className='registerButtonContainer'>
+            {!(loggedInState === 'loggedIn') && (<div className='registerButtonContainer'>
               <CreateAccountButton />
             </div>)}
             <div className='signInButtonContainer'>

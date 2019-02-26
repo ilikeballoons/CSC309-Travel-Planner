@@ -28,6 +28,20 @@ const LandingActions = {
     })
   },
 
+  searchbarChange (query) {
+    dispatcher.dispatch({
+      type: ActionTypes.SEARCHBAR_CHANGE,
+      value: query
+    })
+  },
+
+  searchbarSearch (query) {
+    dispatcher.dispatch({
+      type: ActionTypes.SEARCHBAR_SEARCH,
+      value: query
+    })
+  },
+
   signinDialogOpen () {
     dispatcher.dispatch({
       type: ActionTypes.SIGNIN_DIALOG_OPEN

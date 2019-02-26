@@ -38,7 +38,7 @@ class LandingStore extends EventEmitter {
         break
       }
 
-      case ActionTypes.CREATE_ACCOUNT_CLOSE: {
+      case ActionTypes.CREATE_ACCOUNT_CANCEL: {
         this.createAccount.open = false
         this.emit('change')
         break

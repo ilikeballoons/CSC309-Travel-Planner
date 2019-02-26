@@ -10,7 +10,7 @@ const LandingActions = {
 
   createAccountClose () {
     dispatcher.dispatch({
-      type: ActionTypes.CREATE_ACCOUNT_CLOSE
+      type: ActionTypes.CREATE_ACCOUNT_CANCEL
     })
   },
 

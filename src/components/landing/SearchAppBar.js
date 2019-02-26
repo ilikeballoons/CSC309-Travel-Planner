@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import PublicOutlined from '@material-ui/icons/PublicOutlined'
 
 
 import SearchAppBarStore from './SearchAppBarStore'
@@ -115,7 +116,8 @@ class SearchAppBar extends React.Component {
   }
 
   toggleDrawer = () => {
-    this.state.open ? PreferencesActions.close() : PreferencesActions.open()
+    const { open, loggedInState } = this.state
+    loggedInState === 'loggedIn'&& (open ? PreferencesActions.close() : PreferencesActions.open())
   }
 
 
@@ -127,16 +129,23 @@ class SearchAppBar extends React.Component {
   render () {
     const { classes } = this
     const { loggedInState, open } = this.state
+    const isLoggedIn = loggedInState === 'loggedIn'
     return (
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
-            <IconButton
+            {isLoggedIn ?
+              <IconButton
               onClick={this.toggleDrawer}
               className={classes.menuButton}
               color='inherit'>
               {open ? <ChevronLeftIcon /> : <MenuIcon />}
             </IconButton>
+              : <IconButton
+                className={classes.menuButton}
+                color='inherit'>
+                <PublicOutlined />
+            </IconButton>}
             <Typography className={classes.title} variant='h6' color='inherit' noWrap>
               Trip Planner
             </Typography>

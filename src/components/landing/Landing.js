@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchBar from './SearchBar'
 import SearchAppBar from './SearchAppBar'
 import SigninDialog from './SigninDialog'
 import CreateAccountDialog from './CreateAccountDialog'
@@ -10,10 +9,7 @@ export default class Landing extends React.Component {
     return (
       <div className='landing'>
         <SearchAppBar />
-        <div className='landingCenterPanel'>
-          <h1>Where to?</h1>
-          <SearchBar />
-        </div>
+        <div className='landingCenterPanel' />
         <SigninDialog />
         <CreateAccountDialog />
       </div>

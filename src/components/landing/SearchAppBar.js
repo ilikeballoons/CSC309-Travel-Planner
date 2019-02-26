@@ -10,12 +10,13 @@ import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 
 import SearchAppBarStore from './SearchAppBarStore'
+import AppStore from '../AppStore'
+
 
 import SignInButton from './SignInButton'
-
+import CreateAccountButton from './CreateAccountButton'
 
 const styles = theme => ({
-
   root: {
     width: '100%'
   },
@@ -75,26 +76,34 @@ const styles = theme => ({
     }
   }
 })
+
 class SearchAppBar extends React.Component {
   constructor (props) {
     super(props)
-    const { classes } = props
-    this.classes = classes
-    this.state = SearchAppBarStore.getState()
+    this.classes = props.classes
+    this.state = {}
   }
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
+    AppStore.on('change', this.updateState)
+
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
+    AppStore.removeListener('change', this.updateState)
+
   }
 
-  updateState = () => this.setState(SearchAppBarStore.getState())
+  updateState = () => {
+    const { loggedInState} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState())
+    this.setState({loggedInState})
+  }
 
   render () {
     const { classes } = this
+    const { loggedInState } = this.state
     return (
       <div className={classes.root}>
         <AppBar position='static'>
@@ -111,7 +120,7 @@ class SearchAppBar extends React.Component {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder='Search…'
+                placeholder='Where to?'
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
@@ -119,7 +128,9 @@ class SearchAppBar extends React.Component {
               />
             </div>
             <div className={classes.grow} />
-
+            {!loggedInState && (<div className='registerButtonContainer'>
+              <CreateAccountButton />
+            </div>)}
             <div className='signInButtonContainer'>
               <SignInButton />
             </div>

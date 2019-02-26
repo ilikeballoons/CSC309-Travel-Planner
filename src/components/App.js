@@ -35,20 +35,18 @@ class App extends Component {
   updateState = () => {
     this.setState(AppStore.getState())
   }
-  /*
-  <Route exact path='/' render={() => (
-    loggedIn
-      ? (<Redirect to={`/${username}`} />)
-      : (<Landing />)
-  )} />
-  */
+
   render () {
     const loggedIn = this.state.loggedInState === LoginStates.loggedIn
     const username = this.state.account && this.state.account.username
     return (
       <div className='App'>
         <Switch>
-          <Route exact path='/' component={LandingPage} />
+          <Route exact path='/' render={() => (
+            loggedIn
+              ? (<Redirect to={`/${username}`} />)
+              : (<Landing />)
+          )} />
           <Route path='/admin' component={AdminPage} />
           <Route path={`/${username}`} component={Userpage} />
         </Switch>

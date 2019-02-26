@@ -1,4 +1,5 @@
 import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
 
 import IconButton from '@material-ui/core/IconButton'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
@@ -26,6 +27,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+// import '../../../css/userpage/Preferences.css'
 import PreferencesStore from './PreferencesStore'
 import PreferencesActions from './PreferencesActions'
 import { toTitleCase } from '../../../Utils'
@@ -42,6 +44,12 @@ const icons = {
   'Shops & Services': <ShoppingCart />,
   'Travel & Transport': <Map />
 }
+
+const styles = theme => ({
+  drawerPaper: {
+    zIndex: '1 !important'
+  }
+})
 
 class Preferences extends React.Component {
   constructor () {
@@ -111,10 +119,6 @@ class Preferences extends React.Component {
     ))
   }
 
-  handleDrawerOpen = () => PreferencesActions.open()
-
-  handleDrawerClose = () => PreferencesActions.close()
-
   handleToggleClick = key => PreferencesActions.toggleCategory(key)
 
   handleSwitchChange = name => event => {
@@ -132,19 +136,13 @@ class Preferences extends React.Component {
     const { open } = this.state
     return (
       <div className='root'>
-        <IconButton onClick={this.handleDrawerOpen}>
-          Open Preferences {/* this button looks awful but i'll leave it for now, delete this line if necessary*/}
-          <ChevronRightIcon />
-        </IconButton>
         <Drawer
           variant='persistent'
           anchor='left'
-          open={open} >
-          <div>
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
+          open={open}
+          classes={{
+            paper: 'drawerPaper'
+          }}>
           {this.getDrawerContent()}
         </Drawer>
       </div>
@@ -152,4 +150,4 @@ class Preferences extends React.Component {
   }
 }
 
-export default Preferences
+export default withStyles(styles)(Preferences)

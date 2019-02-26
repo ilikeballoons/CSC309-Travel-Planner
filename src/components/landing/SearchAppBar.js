@@ -8,18 +8,23 @@ import { fade } from '@material-ui/core/styles/colorManipulator'
 import { withStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+
 
 import SearchAppBarStore from './SearchAppBarStore'
+import PreferencesStore from '../userpage/preferences/PreferencesStore'
 import AppStore from '../AppStore'
 
 
 import SignInButton from './SignInButton'
 import CreateAccountButton from './CreateAccountButton'
 import LandingActions from './LandingActions'
+import PreferencesActions from '../userpage/preferences/PreferencesActions'
 
 const styles = theme => ({
   root: {
-    width: '100%'
+    width: '100%',
+    zIndex: 1300
   },
   grow: {
     flexGrow: 1
@@ -83,17 +88,19 @@ class SearchAppBar extends React.Component {
   constructor (props) {
     super(props)
     this.classes = props.classes
-    this.state = {searchQuery: '' }
+    this.state = Object.assign({}, AppStore.getState(), PreferencesStore.getState().open, SearchAppBarStore.getState())
   }
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
+    PreferencesStore.on('change', this.updateState)
     AppStore.on('change', this.updateState)
 
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
+    PreferencesStore.removeListener('change', this.updateState)
     AppStore.removeListener('change', this.updateState)
   }
 
@@ -107,22 +114,28 @@ class SearchAppBar extends React.Component {
     }
   }
 
+  toggleDrawer = () => {
+    this.state.open ? PreferencesActions.close() : PreferencesActions.open()
+  }
+
+
   updateState = () => {
-    const { loggedInState, searchQuery} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState())
-    this.setState({ loggedInState, searchQuery })
+    const { loggedInState, searchQuery, open} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState(), PreferencesStore.getState())
+    this.setState({ loggedInState, searchQuery, open })
   }
 
   render () {
     const { classes } = this
-    const { loggedInState } = this.state
+    const { loggedInState, open } = this.state
     return (
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
             <IconButton
+              onClick={this.toggleDrawer}
               className={classes.menuButton}
               color='inherit'>
-              <MenuIcon />
+              {open ? <ChevronLeftIcon /> : <MenuIcon />}
             </IconButton>
             <Typography className={classes.title} variant='h6' color='inherit' noWrap>
               Trip Planner

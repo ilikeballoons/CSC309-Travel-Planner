@@ -6,7 +6,7 @@ import * as data from '../../../Categories.json'
 class PreferencesStore extends EventEmitter {
   constructor () {
     super()
-    this.open = true
+    this.open = false
     const { result, toggled } = this.parseCategories(data.response.categories)
     this.preferences = result
     this.toggled = toggled

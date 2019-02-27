@@ -21,4 +21,26 @@ const users = [
   }
 ]
 
-export default users
+// For now, pricing will be from 1-3 dollar signs
+const recommendations = [
+  {
+    title: 'Art Gallery of Ontario',
+    category: 'Arts & Entertainment',
+    subcategory: 'Art Galleries',
+    opens: '0900',
+    closes: '2000',
+    price: 2,
+    image: 'ago.jpg'
+  },
+  {
+    title: 'PKEW @Horseshoe Tavern',
+    category: 'Events',
+    subcategory: 'Other Events',
+    opens: '2000',
+    closes: '0100',
+    price: 1,
+    image: 'pkew.jpg'
+  }
+]
+
+export { users, recommendations }

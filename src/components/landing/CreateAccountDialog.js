@@ -15,7 +15,7 @@ import '../../css/landing/CreateAccountDialog.css'
 import LandingStore from './LandingStore'
 import LandingActions from './LandingActions'
 import { findWithAttribute } from '../../Utils'
-import users from '../../Fixtures'
+import { users } from '../../Fixtures'
 
 const styles = {
   form: {

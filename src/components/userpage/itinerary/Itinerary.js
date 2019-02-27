@@ -3,7 +3,10 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
+import { recommendations } from  '../../../Fixtures'
 import ItineraryStore from './ItineraryStore'
+import ItineraryEvent from './ItineraryEvent'
+
 class Itinerary extends React.Component {
   constructor () {
     super()
@@ -28,6 +31,7 @@ class Itinerary extends React.Component {
           <Typography variant='h5' component='h3'>
             Itinerary
           </Typography>
+          {recommendations.map(rec => <ItineraryEvent data={rec} />)}
         </Paper>
       </div>
     )

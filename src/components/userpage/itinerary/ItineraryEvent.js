@@ -1,15 +1,12 @@
 import React from 'react'
 
 import { withStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
+import GridListTile from '@material-ui/core/GridListTile'
+import GridListTileBar from '@material-ui/core/GridListTileBar'
+import IconButton from '@material-ui/core/IconButton'
+import InfoIcon from '@material-ui/icons/Info'
 
-const IMAGE_DIR = '../../images/'
+const IMAGE_DIR = process.env.PUBLIC_URL + '/res/'
 
 const toHHMM = function (string) {
   let hours = string.slice(0, 2)
@@ -18,39 +15,31 @@ const toHHMM = function (string) {
 }
 
 const styles = {
-  card: {
-    maxWidth: 345
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)'
   },
-
-  media: {
-    height: 140
+  image: {
+    maxWidth: 240,
+    maxHeight: 180
   }
 }
 
 class ItineraryEvent extends React.Component {
   render () {
+    const { classes, data } = this.props
     return (
-      <Card className='card'>
-        <CardActionArea>
-          <CardMedia className='media'
-            component='img'
-            alt={this.props.data.title}
-            height='140'
-            image={IMAGE_DIR + this.props.data.image}
-            title={this.props.data.title}
-          />
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='h2'>
-              {this.props.data.title}
-            </Typography>
-            <Typography component='p'>
-              Opens at: {toHHMM(this.props.data.opens)}. <br />
-              Closes at: {toHHMM(this.props.data.closes)}. <br />
-            Cost: {<span className='red'>{'$'.repeat(this.props.data.price)}</span>}.
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <GridListTile key={data.title}>
+        <img src={IMAGE_DIR + data.image} alt={data.title} className={classes.image} />
+        <GridListTileBar
+          title={data.title}
+          subtitle={<span>{data.address}</span>}
+          actionIcon={
+            <IconButton className={classes.icon}>
+              <InfoIcon />
+            </IconButton>
+          }
+        />
+      </GridListTile>
     )
   }
 }

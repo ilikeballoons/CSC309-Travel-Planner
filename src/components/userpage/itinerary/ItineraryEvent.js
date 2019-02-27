@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { DragSource } from 'react-dnd'
 import { withStyles } from '@material-ui/core/styles'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
@@ -24,24 +24,40 @@ const styles = {
   }
 }
 
+const itineraryEventSource = {
+  beginDrag(props) {
+    return { eventId: props.data.title }
+  }
+}
+
+function collect (connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
 class ItineraryEvent extends React.Component {
   render () {
     const { classes, data } = this.props
-    return (
-      <GridListTile key={data.title}>
-        <img src={IMAGE_DIR + data.image} alt={data.title} className={classes.image} />
-        <GridListTileBar
-          title={data.title}
-          subtitle={<span>{data.address}</span>}
-          actionIcon={
-            <IconButton className={classes.icon}>
-              <InfoIcon />
-            </IconButton>
-          }
-        />
-      </GridListTile>
+    const { connectDragSource, isDragging } = this.props
+    return connectDragSource(
+      <div>
+        <GridListTile key={data.title} style={{ opacity: isDragging ? 0.1 : 1 }}>
+          <img src={IMAGE_DIR + data.image} alt={data.title} className={classes.image} />
+          <GridListTileBar
+            title={data.title}
+            subtitle={<span>{data.address}</span>}
+            actionIcon={
+              <IconButton className={classes.icon}>
+                <InfoIcon />
+              </IconButton>
+            }
+          />
+        </GridListTile>
+      </div>
     )
   }
 }
 
-export default withStyles(styles)(ItineraryEvent)
+export default DragSource('inventoryEvent', itineraryEventSource, collect)(withStyles(styles)(ItineraryEvent))

@@ -1,4 +1,6 @@
 import React from 'react'
+import { DragDropContextProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 import Paper from '@material-ui/core/Paper'
 import GridList from '@material-ui/core/GridList';
@@ -43,9 +45,6 @@ class Itinerary extends React.Component {
 
   getDayComponent = () => {
 
-    for (let i = 0; i < 24; i++) {
-
-    }
   }
 
   updateState = () => this.setState(ItineraryStore.getState())
@@ -54,14 +53,16 @@ class Itinerary extends React.Component {
   render () {
     const { classes } = this.props
     return (
-      <div className={classes.root}>
-        <GridList cellHeight={180} className={classes.gridList}>
-          <GridListTile key='Subheader' cols={2} className={classes.subheader}>
-            <ListSubheader component='div'>Itinerary</ListSubheader>
-          </GridListTile>
-          {recommendations.map(rec => <ItineraryEvent data={rec} />)}
-        </GridList>
-      </div>
+      <DragDropContextProvider backend={HTML5Backend}>
+        <div className={classes.root}>
+          <GridList cellHeight={180} className={classes.gridList}>
+            <GridListTile key='Subheader' cols={2} className={classes.subheader}>
+              <ListSubheader component='div'>Itinerary</ListSubheader>
+            </GridListTile>
+            {recommendations.map(rec => <ItineraryEvent data={rec} />)}
+          </GridList>
+        </div>
+      </DragDropContextProvider>
     )
   }
 }

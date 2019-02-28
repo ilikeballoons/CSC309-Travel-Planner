@@ -1,12 +1,11 @@
 import React from 'react'
+import shortid from 'shortid'
+
+import GridList from '@material-ui/core/GridList'
+import { withStyles } from '@material-ui/core/styles'
 
 import { recommendations } from '../../Fixtures'
 import ItineraryEvent from './itinerary/ItineraryEvent'
-
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
-import ListSubheader from '@material-ui/core/ListSubheader'
-import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
@@ -24,7 +23,7 @@ const styles = theme => ({
 class Recommendations extends React.Component {
   render () {
     const { classes } = this.props
-    const events = recommendations.map(rec => (<ItineraryEvent data={rec} key={rec.title} />))
+    const events = recommendations.map(rec => (<ItineraryEvent data={rec}  key={shortid.generate()} />))
     console.log(events)
     return (
       <div className={classes.root}>

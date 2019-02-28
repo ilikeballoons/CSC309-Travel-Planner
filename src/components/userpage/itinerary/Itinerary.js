@@ -1,18 +1,12 @@
 import React from 'react'
 
-import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import ListSubheader from '@material-ui/core/ListSubheader'
 import Divider from '@material-ui/core/Divider'
-import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
-
-import { recommendations } from  '../../../Fixtures'
 import ItineraryStore from './ItineraryStore'
-import ItineraryEvent from './ItineraryEvent'
 import Hour from './Hour'
 
 const styles = {
@@ -47,10 +41,8 @@ class Itinerary extends React.Component {
   updateState = () => this.setState(ItineraryStore.getState())
 
   getHourComponents = () => {
-    const { classes } = this.props
     const hours = Array.from(Array(24).keys())
-
-    return hours.map(hour => <Hour time={hour} />)
+    return hours.map(hour => <div key={hour}><Hour time={hour} /><Divider /></div>)
   }
 
   render () {

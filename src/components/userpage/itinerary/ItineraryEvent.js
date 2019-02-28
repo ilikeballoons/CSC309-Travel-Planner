@@ -43,7 +43,7 @@ class ItineraryEvent extends React.Component {
     const { connectDragSource, isDragging } = this.props
     return connectDragSource(
       <div className={classes.root} style={{ opacity: isDragging ? 0.1 : 1 }}>
-        <GridListTile key={data.title}>
+        <GridListTile>
           <img src={IMAGE_DIR + data.image} alt={data.title} className={classes.image} />
           <GridListTileBar
             title={data.title}

@@ -10,16 +10,14 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    width: 500,
-    height: 450
+    maxHeight: 1000,
+    width: 'auto'
   },
-  subheader: {
-    height: 'auto'
+  gridList: {
+    width: 500,
+    transform: 'translateZ(0)',
+    overflow: 'auto'
   }
 })
 
@@ -30,10 +28,11 @@ class Recommendations extends React.Component {
     console.log(events)
     return (
       <div className={classes.root}>
-        <GridList cellHeight={180}>
-          <GridListTile key='Subheader' cols={2} className={classes.subheader}>
-            <ListSubheader component='div'>Recommendations</ListSubheader>
-          </GridListTile>
+        <GridList
+          cols={2}
+          cellHeight={200}
+          className={classes.gridList}
+          spacing={1}>
           {events}
         </GridList>
       </div>

@@ -9,6 +9,11 @@ import InfoIcon from '@material-ui/icons/Info'
 const IMAGE_DIR = process.env.PUBLIC_URL + '/res/'
 
 const styles = {
+  titleBar: {
+   background:
+     'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+     'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+ },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)'
   },
@@ -39,12 +44,15 @@ class ItineraryEvent extends React.Component {
           <img src={IMAGE_DIR + data.image} alt={data.title} className={classes.image} />
           <GridListTileBar
             title={data.title}
+            titlePosition='top'
             subtitle={<span>{data.address}</span>}
             actionIcon={
               <IconButton className={classes.icon}>
                 <InfoIcon />
               </IconButton>
             }
+            actionPosition='left'
+            className={classes.titleBar}
           />
         </GridListTile>
       </div>

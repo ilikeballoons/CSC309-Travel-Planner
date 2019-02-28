@@ -42,6 +42,66 @@ const recommendations = [
     closes: '0100',
     price: 1,
     image: 'pkew.jpg'
+  },
+  {
+    title: 'Art Gallery of Ontario',
+    category: 'Arts & Entertainment',
+    subcategory: 'Art Galleries',
+    address: '317 Dundas St W',
+    opens: '0900',
+    closes: '2000',
+    price: 2,
+    image: 'ago.jpg'
+  },
+  {
+    title: 'PKEW @Horseshoe Tavern',
+    category: 'Events',
+    subcategory: 'Other Events',
+    address: '370 Queen St W',
+    opens: '2000',
+    closes: '0100',
+    price: 1,
+    image: 'pkew.jpg'
+  },
+  {
+    title: 'Art Gallery of Ontario',
+    category: 'Arts & Entertainment',
+    subcategory: 'Art Galleries',
+    address: '317 Dundas St W',
+    opens: '0900',
+    closes: '2000',
+    price: 2,
+    image: 'ago.jpg'
+  },
+  {
+    title: 'PKEW @Horseshoe Tavern',
+    category: 'Events',
+    subcategory: 'Other Events',
+    address: '370 Queen St W',
+    opens: '2000',
+    closes: '0100',
+    price: 1,
+    image: 'pkew.jpg'
+  },
+  {
+    title: 'Art Gallery of Ontario',
+    category: 'Arts & Entertainment',
+    subcategory: 'Art Galleries',
+    address: '317 Dundas St W',
+    opens: '0900',
+    closes: '2000',
+    price: 2,
+    image: 'ago.jpg'
+  },
+  {
+    title: 'PKEW @Horseshoe Tavern',
+    category: 'Events',
+    subcategory: 'Other Events',
+    address: '370 Queen St W',
+    opens: '2000',
+    closes: '0100',
+    price: 1,
+    image: 'pkew.jpg'
   }
 ]
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { DropTarget } from 'react-dnd'
+import { withStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
 import Typography from '@material-ui/core/Typography'
 
@@ -10,6 +11,12 @@ const hourTarget = {
   }
 }
 
+const styles = theme => ({
+  isOver: {
+    backgroundColor: theme.palette.primary.dark
+  }
+})
+
 const collect = (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver()
@@ -17,13 +24,13 @@ const collect = (connect, monitor) => ({
 
 class Hour extends React.Component {
   render () {
-    const { time, connectDropTarget } = this.props
+    const { time, connectDropTarget, isOver, classes } = this.props
     const getHourString = (time) => {
       if (time.length === 1) return `0${time}:00`
       return `${time}:00`
     }
     return connectDropTarget(
-      <div>
+      <div className={isOver ? classes.isOver : undefined}>
         <ListItem key={`${time}`}>
           <Typography variant='h4' gutterBottom>{getHourString(time)}</Typography>
         </ListItem>
@@ -32,4 +39,4 @@ class Hour extends React.Component {
   }
 }
 
-export default DropTarget('itineraryEvent', hourTarget, collect)(Hour)
+export default DropTarget('itineraryEvent', hourTarget, collect)(withStyles(styles)(Hour))

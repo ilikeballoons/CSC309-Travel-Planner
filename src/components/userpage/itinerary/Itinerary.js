@@ -3,10 +3,11 @@ import { DragDropContextProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
 import Paper from '@material-ui/core/Paper'
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -18,10 +19,13 @@ import ItineraryEvent from './ItineraryEvent'
 const styles = {
   root: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexWrap: 'noWrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: 'white,'
+    backgroundColor: 'white'
+  },
+  hour: {
+    width: 400
   },
   gridList: {
     width: 500,
@@ -43,8 +47,18 @@ class Itinerary extends React.Component {
     ItineraryStore.removeListener('change', this.updateState)
   }
 
-  getDayComponent = () => {
-
+  getHourComponents = () => {
+    const { classes } = this.props
+    const hours = Array.from(Array(24).keys())
+    const getHourString = (hour) => {
+      if (hour.length === 1) return `0${hour}:00`
+      return `${hour}:00`
+    }
+    return hours.map(hour => (
+      <ListItem key={hour} className={classes.hour}>
+        <Typography variant='h4' gutterBottom>{getHourString(hour)}</Typography>
+      </ListItem>
+    ))
   }
 
   updateState = () => this.setState(ItineraryStore.getState())
@@ -54,14 +68,14 @@ class Itinerary extends React.Component {
     const { classes } = this.props
     return (
       <DragDropContextProvider backend={HTML5Backend}>
-        <div className={classes.root}>
-          <GridList cellHeight={180} className={classes.gridList}>
-            <GridListTile key='Subheader' cols={2} className={classes.subheader}>
-              <ListSubheader component='div'>Itinerary</ListSubheader>
-            </GridListTile>
-            {recommendations.map(rec => <ItineraryEvent data={rec} />)}
-          </GridList>
-        </div>
+          <div >
+            <List className={classes.root}>
+              <ListItem>
+                <ListItemText primary='Itinerary' />
+              </ListItem>
+              {this.getHourComponents()}
+            </List>
+          </div>
       </DragDropContextProvider>
     )
   }

@@ -12,8 +12,8 @@ export default class UserPage extends React.Component {
       <div className='userpage'>
         <SearchAppBar />
         <div>
-          <Preferences />
           <Recommendations />
+          <Preferences />
           <Itinerary />
         </div>
       </div>

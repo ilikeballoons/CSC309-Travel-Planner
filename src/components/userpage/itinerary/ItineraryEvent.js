@@ -25,7 +25,7 @@ const styles = {
 }
 
 const itineraryEventSource = {
-  beginDrag(props) {
+  beginDrag (props) {
     return { eventId: props.data.title }
   }
 }
@@ -43,7 +43,7 @@ class ItineraryEvent extends React.Component {
     const { connectDragSource, isDragging } = this.props
     return connectDragSource(
       <div>
-        <GridListTile key={data.title} style={{ opacity: isDragging ? 0.1 : 1 }}>
+        <GridListTile style={{ opacity: isDragging ? 0.1 : 1 }}>
           <img src={IMAGE_DIR + data.image} alt={data.title} className={classes.image} />
           <GridListTileBar
             title={data.title}

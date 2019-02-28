@@ -9,11 +9,14 @@ import InfoIcon from '@material-ui/icons/Info'
 const IMAGE_DIR = process.env.PUBLIC_URL + '/res/'
 
 const styles = {
+  root: {
+    cursor: 'move'
+  },
   titleBar: {
-   background:
+    background:
      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-     'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
- },
+     'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
+  },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)'
   },
@@ -39,8 +42,8 @@ class ItineraryEvent extends React.Component {
     const { classes, data } = this.props
     const { connectDragSource, isDragging } = this.props
     return connectDragSource(
-      <div>
-        <GridListTile key={data.title} style={{ opacity: isDragging ? 0.1 : 1 }}>
+      <div className={classes.root} style={{ opacity: isDragging ? 0.1 : 1 }}>
+        <GridListTile key={data.title}>
           <img src={IMAGE_DIR + data.image} alt={data.title} className={classes.image} />
           <GridListTileBar
             title={data.title}
@@ -60,4 +63,4 @@ class ItineraryEvent extends React.Component {
   }
 }
 
-export default DragSource('inventoryEvent', itineraryEventSource, collect)(withStyles(styles)(ItineraryEvent))
+export default DragSource('itineraryEvent', itineraryEventSource, collect)(withStyles(styles)(ItineraryEvent))

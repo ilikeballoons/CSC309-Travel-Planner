@@ -1,4 +1,5 @@
 import React from 'react'
+import { findDOMNode } from 'react-dom' // to fix: https://github.com/react-dnd/react-dnd/issues/347
 import { DragSource } from 'react-dnd'
 import { withStyles } from '@material-ui/core/styles'
 import GridListTile from '@material-ui/core/GridListTile'
@@ -6,10 +7,9 @@ import GridListTileBar from '@material-ui/core/GridListTileBar'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/Info'
 
-const IMAGE_DIR = process.env.PUBLIC_URL + '/res/'
-
-const styles = {
+const styles = theme => ({
   root: {
+    borderRadius: theme.shape.borderRadius,
     cursor: 'move'
   },
   titleBar: {
@@ -21,10 +21,10 @@ const styles = {
     color: 'rgba(255, 255, 255, 0.54)'
   },
   image: {
-    maxWidth: 240,
+    maxWidth: 270,
     maxHeight: 180
   }
-}
+})
 
 const itineraryEventSource = {
   beginDrag (props) {
@@ -41,24 +41,25 @@ class ItineraryEvent extends React.Component {
   render () {
     const { classes, data } = this.props
     const { connectDragSource, isDragging } = this.props
-    return connectDragSource(
-      <div className={classes.root} style={{ opacity: isDragging ? 0.1 : 1 }}>
-        <GridListTile>
-          <img src={IMAGE_DIR + data.image} alt={data.title} className={classes.image} />
-          <GridListTileBar
-            title={data.title}
-            titlePosition='top'
-            subtitle={<span>{data.address}</span>}
-            actionIcon={
-              <IconButton className={classes.icon}>
-                <InfoIcon />
-              </IconButton>
-            }
-            actionPosition='left'
-            className={classes.titleBar}
-          />
-        </GridListTile>
-      </div>
+    return (
+      <GridListTile
+        className={classes.root}
+        style={{ opacity: isDragging ? 0.1 : 1 }}
+        ref={instance => connectDragSource(findDOMNode(instance))}>
+        <img src={data.image} alt={data.title} className={classes.image} />
+        <GridListTileBar
+          title={data.title}
+          titlePosition='top'
+          subtitle={<span>{data.address}</span>}
+          actionIcon={
+            <IconButton className={classes.icon}>
+              <InfoIcon />
+            </IconButton>
+          }
+          actionPosition='left'
+          className={classes.titleBar}
+        />
+      </GridListTile>
     )
   }
 }

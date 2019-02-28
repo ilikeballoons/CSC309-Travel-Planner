@@ -13,7 +13,7 @@ const styles = theme => ({
   userpage: {
     display: 'flex',
     justifyContent: 'flex-end',
-    padding: 20
+    padding: 20,
   }
 })
 

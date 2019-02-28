@@ -1,3 +1,5 @@
+import ago from './images/ago.jpg'
+import band from './images/pkew.jpg'
 // this is a js file containing all of the hardcoded data which will come from the server in phase 2
 const privileges = {
   admin: 1,
@@ -31,7 +33,7 @@ const recommendations = [
     opens: '0900',
     closes: '2000',
     price: 2,
-    image: 'ago.jpg'
+    image: ago
   },
   {
     title: 'PKEW @Horseshoe Tavern',
@@ -41,7 +43,7 @@ const recommendations = [
     opens: '2000',
     closes: '0100',
     price: 1,
-    image: 'pkew.jpg'
+    image: band
   },
   {
     title: 'Art Gallery of Ontario',
@@ -51,7 +53,7 @@ const recommendations = [
     opens: '0900',
     closes: '2000',
     price: 2,
-    image: 'ago.jpg'
+    image: ago
   },
   {
     title: 'PKEW @Horseshoe Tavern',
@@ -61,7 +63,7 @@ const recommendations = [
     opens: '2000',
     closes: '0100',
     price: 1,
-    image: 'pkew.jpg'
+    image: band
   },
   {
     title: 'Art Gallery of Ontario',
@@ -71,7 +73,7 @@ const recommendations = [
     opens: '0900',
     closes: '2000',
     price: 2,
-    image: 'ago.jpg'
+    image: ago
   },
   {
     title: 'PKEW @Horseshoe Tavern',
@@ -81,7 +83,7 @@ const recommendations = [
     opens: '2000',
     closes: '0100',
     price: 1,
-    image: 'pkew.jpg'
+    image: band
   },
   {
     title: 'Art Gallery of Ontario',
@@ -91,7 +93,7 @@ const recommendations = [
     opens: '0900',
     closes: '2000',
     price: 2,
-    image: 'ago.jpg'
+    image: ago
   },
   {
     title: 'PKEW @Horseshoe Tavern',
@@ -101,7 +103,7 @@ const recommendations = [
     opens: '2000',
     closes: '0100',
     price: 1,
-    image: 'pkew.jpg'
+    image: band
   }
 ]
 

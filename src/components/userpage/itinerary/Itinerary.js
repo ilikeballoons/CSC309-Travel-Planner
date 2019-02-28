@@ -9,20 +9,16 @@ import { withStyles } from '@material-ui/core/styles'
 import ItineraryStore from './ItineraryStore'
 import Hour from './Hour'
 
-const styles = {
+const styles = theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'noWrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: 'white',
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+    marginLeft: 20,
+    maxHeight: 835,
     width: 500
-  },
-  text: {
-    color: 'primary'
   }
-}
+})
 
 class Itinerary extends React.Component {
   constructor () {
@@ -41,8 +37,14 @@ class Itinerary extends React.Component {
   updateState = () => this.setState(ItineraryStore.getState())
 
   getHourComponents = () => {
+    const { classes } = this.props
     const hours = Array.from(Array(24).keys())
-    return hours.map(hour => <div key={hour}><Hour time={hour} /><Divider /></div>)
+    return hours.map(hour => (
+      <div key={hour}>
+        <Hour time={hour}/>
+        <Divider />
+      </div>)
+    )
   }
 
   render () {
@@ -51,7 +53,8 @@ class Itinerary extends React.Component {
       <div className={classes.root}>
         <List>
           <ListItem>
-            <ListItemText primary='Itinerary' />
+            <ListItemText primary='Itinerary'
+              primaryTypographyProps={{ color: 'primary', variant: 'h3' }}/>
           </ListItem>
           {this.getHourComponents()}
         </List>

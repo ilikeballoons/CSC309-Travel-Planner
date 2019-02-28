@@ -9,12 +9,18 @@ import ItineraryEvent from './itinerary/ItineraryEvent'
 
 const styles = theme => ({
   root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflowY: 'scroll',
+    overflowX: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    maxHeight: 1000,
-    width: 'auto'
+    borderRadius: theme.shape.borderRadius,
+    maxHeight: 835,
   },
   gridList: {
-    width: 500,
+    width: 540,
+    //height: 450,
     transform: 'translateZ(0)',
     overflow: 'auto'
   }
@@ -23,16 +29,14 @@ const styles = theme => ({
 class Recommendations extends React.Component {
   render () {
     const { classes } = this.props
-    const events = recommendations.map(rec => (<ItineraryEvent data={rec}  key={shortid.generate()} />))
-    console.log(events)
     return (
       <div className={classes.root}>
         <GridList
           cols={2}
-          cellHeight={200}
+          cellHeight={180}
           className={classes.gridList}
-          spacing={1}>
-          {events}
+          spacing={10}>
+          {recommendations.map(rec => (<ItineraryEvent data={rec} key={shortid.generate()} />))}
         </GridList>
       </div>
     )

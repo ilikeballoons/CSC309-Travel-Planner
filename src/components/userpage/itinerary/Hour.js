@@ -13,7 +13,7 @@ const hourTarget = {
 
 const styles = theme => ({
   isOver: {
-    backgroundColor: theme.palette.primary.dark
+    backgroundColor: theme.palette.primary.light
   }
 })
 

@@ -28,7 +28,7 @@ const styles = theme => ({
 
 const recommendationSource = {
   beginDrag (props) {
-    return { eventId: props.data.title }
+    return props.data
   }
 }
 

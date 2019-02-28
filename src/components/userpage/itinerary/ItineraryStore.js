@@ -5,18 +5,24 @@ import dispatcher from '../../../Dispatcher'
 class ItineraryStore extends EventEmitter {
   constructor () {
     super()
-    // something else
+    this.events = []
   }
 
   getState () {
     return {
-
+      events: this.events
     }
   }
 
   handleActions (action) {
     switch (action.type) {
+      case ActionTypes.ITINERARY_EVENT_ADD: {
+        this.events.push(action.value)
+        this.emit('change')
+        break
+      }
 
+      default:
     }
   }
 }

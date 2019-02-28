@@ -36,12 +36,18 @@ class Itinerary extends React.Component {
 
   updateState = () => this.setState(ItineraryStore.getState())
 
+  getHourEvent = (hour) => {
+    const { events } = this.state
+    return events.filter(e => e.hour === hour)
+  }
+
   getHourComponents = () => {
     const { classes } = this.props
+    const { events } = this.state
     const hours = Array.from(Array(24).keys())
     return hours.map(hour => (
       <div key={hour}>
-        <Hour time={hour}/>
+        <Hour time={hour} data={this.getHourEvent(hour)}/>
         <Divider />
       </div>)
     )

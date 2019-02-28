@@ -4,10 +4,10 @@ import { withStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
 import Typography from '@material-ui/core/Typography'
 import UserActions from '../UserActions'
+import ItineraryEvent from './ItineraryEvent'
 
 const hourTarget = {
   drop (props, monitor) {
-    console.log(monitor.getItem())
     UserActions.addEvent({ data: monitor.getItem(), hour: props.time })
   }
 }
@@ -25,7 +25,7 @@ const collect = (connect, monitor) => ({
 
 class Hour extends React.Component {
   render () {
-    const { time, connectDropTarget, isOver, classes, event } = this.props
+    const { time, connectDropTarget, isOver, classes, data } = this.props
     const getHourString = (time) => {
       if (time.length === 1) return `0${time}:00`
       return `${time}:00`
@@ -34,6 +34,7 @@ class Hour extends React.Component {
       <div className={isOver ? classes.isOver : undefined}>
         <ListItem key={`${time}`}>
           <Typography variant='h4' gutterBottom>{getHourString(time)}</Typography>
+          {data && <ItineraryEvent data={data.data} />}
         </ListItem>
       </div>
     )

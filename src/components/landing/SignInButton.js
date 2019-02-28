@@ -8,7 +8,7 @@ import LandingActions from './LandingActions'
 export default class SignInButton extends React.Component {
   constructor () {
     super()
-    this.state = { buttonText: 'Sign in' }
+    this.state = { buttonText: this.getButtonText(AppStore.getState().loggedInState)}
   }
 
   componentDidMount () {

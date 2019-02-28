@@ -36,10 +36,7 @@ class Itinerary extends React.Component {
 
   updateState = () => this.setState(ItineraryStore.getState())
 
-  getHourEvent = (hour) => {
-    const { events } = this.state
-    return events.filter(e => e.hour === hour)
-  }
+  getHourEvent = (hour) => this.state.events.filter(e => e.hour === hour)[0]
 
   getHourComponents = () => {
     const { classes } = this.props

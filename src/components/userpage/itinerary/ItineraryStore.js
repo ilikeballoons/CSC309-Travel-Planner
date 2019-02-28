@@ -1,6 +1,7 @@
 import ActionTypes from '../../../ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../../../Dispatcher'
+import { findWithAttribute } from '../../../Utils'
 
 class ItineraryStore extends EventEmitter {
   constructor () {
@@ -17,7 +18,10 @@ class ItineraryStore extends EventEmitter {
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.ITINERARY_EVENT_ADD: {
-        this.events.push(action.value)
+        const existingEventIndex = findWithAttribute(this.events, 'hour', action.value.hour)
+        !isNaN(existingEventIndex)
+          ? this.events[existingEventIndex] = action.value
+          : this.events.push(action.value)
         this.emit('change')
         break
       }

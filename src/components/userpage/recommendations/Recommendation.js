@@ -26,7 +26,7 @@ const styles = theme => ({
   }
 })
 
-const itineraryEventSource = {
+const recommendationSource = {
   beginDrag (props) {
     return { eventId: props.data.title }
   }
@@ -37,7 +37,7 @@ const collect = (connect, monitor) => ({
   isDragging: monitor.isDragging()
 })
 
-class ItineraryEvent extends React.Component {
+class Recommendation extends React.Component {
   render () {
     const { classes, data } = this.props
     const { connectDragSource, isDragging } = this.props
@@ -64,4 +64,4 @@ class ItineraryEvent extends React.Component {
   }
 }
 
-export default DragSource('itineraryEvent', itineraryEventSource, collect)(withStyles(styles)(ItineraryEvent))
+export default DragSource('recommendation', recommendationSource, collect)(withStyles(styles)(Recommendation))

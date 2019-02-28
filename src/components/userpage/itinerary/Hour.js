@@ -39,4 +39,4 @@ class Hour extends React.Component {
   }
 }
 
-export default DropTarget('itineraryEvent', hourTarget, collect)(withStyles(styles)(Hour))
+export default DropTarget('recommendation', hourTarget, collect)(withStyles(styles)(Hour))

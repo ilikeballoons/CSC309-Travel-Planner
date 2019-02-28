@@ -4,8 +4,8 @@ import shortid from 'shortid'
 import GridList from '@material-ui/core/GridList'
 import { withStyles } from '@material-ui/core/styles'
 
-import { recommendations } from '../../Fixtures'
-import ItineraryEvent from './itinerary/ItineraryEvent'
+import { recommendations } from '../../../Fixtures'
+import Recommendation from './Recommendation'
 
 const styles = theme => ({
   root: {
@@ -36,7 +36,7 @@ class Recommendations extends React.Component {
           cellHeight={180}
           className={classes.gridList}
           spacing={10}>
-          {recommendations.map(rec => (<ItineraryEvent data={rec} key={shortid.generate()} />))}
+          {recommendations.map(rec => (<Recommendation data={rec} key={shortid.generate()} />))}
         </GridList>
       </div>
     )

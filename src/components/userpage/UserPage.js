@@ -5,7 +5,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import '../../css/userpage/UserPage.css'
 
 import Preferences from './preferences/Preferences'
-import Recommendations from './Recommendations'
+import Recommendations from './recommendations/Recommendations'
 import Itinerary from './itinerary/Itinerary'
 import SearchAppBar from '../landing/SearchAppBar'
 

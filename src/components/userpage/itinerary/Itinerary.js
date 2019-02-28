@@ -1,6 +1,4 @@
 import React from 'react'
-import { DragDropContextProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
 
 import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List';
@@ -19,17 +17,15 @@ import ItineraryEvent from './ItineraryEvent'
 const styles = {
   root: {
     display: 'flex',
+    flexDirection: 'column',
     flexWrap: 'noWrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    width: 500
   },
-  hour: {
-    width: 400
-  },
-  gridList: {
-    width: 500,
-    height: 450
+  text: {
+    color: 'primary'
   }
 }
 
@@ -47,6 +43,8 @@ class Itinerary extends React.Component {
     ItineraryStore.removeListener('change', this.updateState)
   }
 
+  updateState = () => this.setState(ItineraryStore.getState())
+
   getHourComponents = () => {
     const { classes } = this.props
     const hours = Array.from(Array(24).keys())
@@ -55,28 +53,23 @@ class Itinerary extends React.Component {
       return `${hour}:00`
     }
     return hours.map(hour => (
-      <ListItem key={hour} className={classes.hour}>
+      <ListItem key={`${hour}`} className={classes.hour}>
         <Typography variant='h4' gutterBottom>{getHourString(hour)}</Typography>
       </ListItem>
     ))
   }
 
-  updateState = () => this.setState(ItineraryStore.getState())
-
-
   render () {
     const { classes } = this.props
     return (
-      <DragDropContextProvider backend={HTML5Backend}>
-          <div >
-            <List className={classes.root}>
-              <ListItem>
-                <ListItemText primary='Itinerary' />
-              </ListItem>
-              {this.getHourComponents()}
-            </List>
-          </div>
-      </DragDropContextProvider>
+      <div className={classes.root}>
+        <List>
+          <ListItem>
+            <ListItemText primary='Itinerary' />
+          </ListItem>
+          {this.getHourComponents()}
+        </List>
+      </div>
     )
   }
 }

@@ -1,56 +1,40 @@
 import React from 'react'
+
 import { recommendations } from '../../Fixtures'
 import ItineraryEvent from './itinerary/ItineraryEvent'
-import ItineraryStore from './itinerary/ItineraryStore'
 
-
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Typography from '@material-ui/core/Typography'
+import GridList from '@material-ui/core/GridList'
+import GridListTile from '@material-ui/core/GridListTile'
+import ListSubheader from '@material-ui/core/ListSubheader'
 import { withStyles } from '@material-ui/core/styles'
 
-
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: 'white,'
-  },
-  gridList: {
+    backgroundColor: theme.palette.background.paper,
     width: 500,
     height: 450
+  },
+  subheader: {
+    height: 'auto'
   }
-}
+})
 
 class Recommendations extends React.Component {
-  constructor () {
-    super()
-    this.state = ItineraryStore.getState()
-  }
-
-  componentDidMount () {
-    ItineraryStore.on('change', this.updateState)
-  }
-
-  componentWillUnmount () {
-    ItineraryStore.removeListener('change', this.updateState)
-  }
-
-  updateState = () => this.setState(ItineraryStore.getState())
-
   render () {
     const { classes } = this.props
+    const events = recommendations.map(rec => (<ItineraryEvent data={rec} key={rec.title} />))
+    console.log(events)
     return (
       <div className={classes.root}>
-        <GridList cellHeight={180} className={classes.gridList}>
+        <GridList cellHeight={180}>
           <GridListTile key='Subheader' cols={2} className={classes.subheader}>
-            <ListSubheader component='div'>Itinerary</ListSubheader>
+            <ListSubheader component='div'>Recommendations</ListSubheader>
           </GridListTile>
-          {recommendations.map(rec => <ItineraryEvent data={rec} key={rec.title} />)}
+          {events}
         </GridList>
       </div>
     )

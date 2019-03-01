@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { DragDropContextProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 import '../css/App.css'
 import AppStore from './AppStore'
@@ -37,18 +39,19 @@ class App extends Component {
     const loggedIn = this.state.loggedInState === LoginStates.loggedIn
     const username = this.state.account && this.state.account.username
     return (
-      <div className='App'>
-        <Switch>
-          <Route exact path='/' render={() => (
-            loggedIn
-              ? (<Redirect to={`/${username}`} />)
-              : (<Landing />)
-          )} />
-          <Route path='/admin' component={AdminPage} />
-          <Route path={`/${username}`} component={Userpage} />
-        </Switch>
-      </div>
-
+      <DragDropContextProvider backend={HTML5Backend}>
+        <div className='App'>
+          <Switch>
+            <Route exact path='/' render={() => (
+              loggedIn
+                ? (<Redirect to={`/${username}`} />)
+                : (<Landing />)
+            )} />
+            <Route path='/admin' component={AdminPage} />
+            <Route path={`/${username}`} component={Userpage} />
+          </Switch>
+        </div>
+      </DragDropContextProvider>
     )
   }
 }

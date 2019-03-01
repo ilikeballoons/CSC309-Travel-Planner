@@ -7,7 +7,7 @@ class PreferencesStore extends EventEmitter {
   constructor () {
     super()
     this.open = false
-    const { result, toggled } = this.parseCategories(data.response.categories)
+    const { result, toggled } = this.parseCategories(data.categories)
     this.preferences = result
     this.toggled = toggled
   }

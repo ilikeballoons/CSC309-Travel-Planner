@@ -2,16 +2,6 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import IconButton from '@material-ui/core/IconButton'
-import LocalActivity from '@material-ui/icons/LocalActivity'
-import LocalDining from '@material-ui/icons/LocalDining'
-import AccountBalance from '@material-ui/icons/AccountBalance'
-import Palette from '@material-ui/icons/Palette'
-import Brightness3 from '@material-ui/icons/Brightness3'
-import NaturePeople from '@material-ui/icons/NaturePeople'
-import Home from '@material-ui/icons/Home'
-import Map from '@material-ui/icons/Map'
-import Business from '@material-ui/icons/Business'
-import ShoppingCart from '@material-ui/icons/ShoppingCart'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -24,23 +14,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-// import '../../../css/userpage/Preferences.css'
 import PreferencesStore from './PreferencesStore'
 import PreferencesActions from './PreferencesActions'
 import { toTitleCase } from '../../../Utils'
-
-const icons = {
-  'Arts & Entertainment': <Palette />,
-  'Colleges & Universities': <AccountBalance />,
-  'Events': <LocalActivity />,
-  'Food': <LocalDining />,
-  'Nightlife Spots': <Brightness3 />,
-  'Outdoors & Recreation': <NaturePeople />,
-  'Professional & Other Places': <Business />,
-  'Residences': <Home />,
-  'Shops & Services': <ShoppingCart />,
-  'Travel & Transport': <Map />
-}
+import Icons from '../../../Icons'
 
 const styles = theme => ({
   drawerPaper: {
@@ -85,7 +62,7 @@ class Preferences extends React.Component {
                   value={key} />
               }
               label={toTitleCase(key)} />
-              {icons[key]}
+            {Icons[key]}
           </ListItem>
           <Collapse in={this.state.toggled[key]}  timeout='auto' unmountOnExit>
             <List component='div' disablePadding>

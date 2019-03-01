@@ -6,8 +6,8 @@ import * as data from '../../../Categories.json'
 class PreferencesStore extends EventEmitter {
   constructor () {
     super()
-    this.open = true
-    const { result, toggled } = this.parseCategories(data.response.categories)
+    this.open = false
+    const { result, toggled } = this.parseCategories(data.categories)
     this.preferences = result
     this.toggled = toggled
   }
@@ -69,6 +69,8 @@ class PreferencesStore extends EventEmitter {
         this.emit('change')
         break
       }
+
+      default: { }
     }
   }
 }

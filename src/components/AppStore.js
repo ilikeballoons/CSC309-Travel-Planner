@@ -2,7 +2,7 @@ import ActionTypes from '../ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../Dispatcher'
 
-import users from '../Fixtures'
+import { users } from '../Fixtures'
 import { findWithAttribute } from '../Utils'
 import LoginStates from '../LoginStates'
 

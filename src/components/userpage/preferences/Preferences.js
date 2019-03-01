@@ -1,18 +1,7 @@
 import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
 
 import IconButton from '@material-ui/core/IconButton'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import LocalActivity from '@material-ui/icons/LocalActivity'
-import LocalDining from '@material-ui/icons/LocalDining'
-import AccountBalance from '@material-ui/icons/AccountBalance'
-import Palette from '@material-ui/icons/Palette'
-import Brightness3 from '@material-ui/icons/Brightness3'
-import NaturePeople from '@material-ui/icons/NaturePeople'
-import Home from '@material-ui/icons/Home'
-import Map from '@material-ui/icons/Map'
-import Business from '@material-ui/icons/Business'
-import ShoppingCart from '@material-ui/icons/ShoppingCart'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -22,26 +11,19 @@ import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
 import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import PreferencesStore from './PreferencesStore'
 import PreferencesActions from './PreferencesActions'
 import { toTitleCase } from '../../../Utils'
+import Icons from '../../../Icons'
 
-const icons = {
-  'Arts & Entertainment': <Palette />,
-  'Colleges & Universities': <AccountBalance />,
-  'Events': <LocalActivity />,
-  'Food': <LocalDining />,
-  'Nightlife Spots': <Brightness3 />,
-  'Outdoors & Recreation': <NaturePeople />,
-  'Professional & Other Places': <Business />,
-  'Residences': <Home />,
-  'Shops & Services': <ShoppingCart />,
-  'Travel & Transport': <Map />
-}
+const styles = theme => ({
+  drawerPaper: {
+    zIndex: '1 !important'
+  }
+})
 
 class Preferences extends React.Component {
   constructor () {
@@ -80,7 +62,7 @@ class Preferences extends React.Component {
                   value={key} />
               }
               label={toTitleCase(key)} />
-              {icons[key]}
+            {Icons[key]}
           </ListItem>
           <Collapse in={this.state.toggled[key]}  timeout='auto' unmountOnExit>
             <List component='div' disablePadding>
@@ -111,10 +93,6 @@ class Preferences extends React.Component {
     ))
   }
 
-  handleDrawerOpen = () => PreferencesActions.open()
-
-  handleDrawerClose = () => PreferencesActions.close()
-
   handleToggleClick = key => PreferencesActions.toggleCategory(key)
 
   handleSwitchChange = name => event => {
@@ -132,19 +110,13 @@ class Preferences extends React.Component {
     const { open } = this.state
     return (
       <div className='root'>
-        <IconButton onClick={this.handleDrawerOpen}>
-          Open Preferences {/* this button looks awful but i'll leave it for now, delete this line if necessary*/}
-          <ChevronRightIcon />
-        </IconButton>
         <Drawer
           variant='persistent'
           anchor='left'
-          open={open} >
-          <div>
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
+          open={open}
+          classes={{
+            paper: 'drawerPaper'
+          }}>
           {this.getDrawerContent()}
         </Drawer>
       </div>
@@ -152,4 +124,4 @@ class Preferences extends React.Component {
   }
 }
 
-export default Preferences
+export default withStyles(styles)(Preferences)

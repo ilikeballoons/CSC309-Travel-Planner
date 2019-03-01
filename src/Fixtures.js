@@ -75,7 +75,7 @@ const recommendations = [
   {
     title: 'CN Tower',
     category: 'Professional & Other Places',
-    subcategory: 'Building',
+    subcategory: 'Buildings',
     address: '301 Front St West',
     opens: '0900',
     closes: '2230',
@@ -85,7 +85,7 @@ const recommendations = [
   {
     title: 'Ripleys Aquarium of Canada',
     category: 'Arts & Entertainment',
-    subcategory: 'Aquarium',
+    subcategory: 'Aquariums',
     address: '288 Bremner Blvd',
     opens: '0900',
     closes: '2300',
@@ -95,7 +95,7 @@ const recommendations = [
   {
     title: 'Hashimoto Restaurant',
     category: 'Food',
-    subcategory: 'Japanese Restaurant',
+    subcategory: 'Japanese Restaurants',
     address: '6 Garamond Ct',
     opens: '1800',
     closes: '2300',

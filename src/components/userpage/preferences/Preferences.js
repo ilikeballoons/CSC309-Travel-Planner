@@ -109,7 +109,7 @@ class Preferences extends React.Component {
   render () {
     const { open } = this.state
     return (
-      <div className='root'>
+      <div>
         <Drawer
           variant='persistent'
           anchor='left'

@@ -89,4 +89,5 @@ class Recommendation extends React.Component {
   }
 }
 
-export default DragSource('recommendation', recommendationSource, collect)(withStyles(styles)(Recommendation))
+const StyledRecommendation = withStyles(styles)(Recommendation)
+export default DragSource('recommendation', recommendationSource, collect)(StyledRecommendation)

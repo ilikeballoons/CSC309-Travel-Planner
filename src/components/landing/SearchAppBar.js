@@ -74,14 +74,7 @@ const styles = theme => ({
     paddingRight: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
     paddingLeft: theme.spacing.unit * 10,
-    transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: 600,
-      '&:focus': {
-        width: 1000
-      }
-    }
   }
 })
 
@@ -128,6 +121,7 @@ class SearchAppBar extends React.Component {
 
   render () {
     const { classes } = this
+    const { page } = this.props
     const { loggedInState, open } = this.state
     const isLoggedIn = loggedInState === 'loggedIn'
     return (
@@ -149,7 +143,8 @@ class SearchAppBar extends React.Component {
             <Typography className={classes.title} variant='h6' color='inherit' noWrap>
               Trip Planner
             </Typography>
-            <div className={classes.grow} />
+            {page !== 'landing' ? 
+            <div className={classes.grow}>
             <div className={classes.search}>
               <div className={classes.searchIcon}
                 onClick={(e) => this.handleSubmit(e)} >
@@ -168,7 +163,9 @@ class SearchAppBar extends React.Component {
                 }}
               />
             </div>
-            <div className={classes.grow} />
+            </div>
+            : <div className={classes.grow} />
+          }
             {!(loggedInState === 'loggedIn') && (<div className='registerButtonContainer'>
               <CreateAccountButton />
             </div>)}

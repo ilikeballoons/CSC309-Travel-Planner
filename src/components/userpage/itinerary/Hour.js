@@ -1,4 +1,5 @@
 import React from 'react'
+import shortid from 'shortid'
 import { DropTarget } from 'react-dnd'
 import { withStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
@@ -8,7 +9,13 @@ import ItineraryEvent from './ItineraryEvent'
 
 const hourTarget = {
   drop (props, monitor) {
-    UserActions.addEvent({ data: monitor.getItem(), hour: props.time })
+    console.log(monitor.getItem());
+    UserActions.addEvent({
+      data: monitor.getItem(),
+      hour: props.time,
+      id: shortid.generate(),
+      open: false
+    })
   }
 }
 
@@ -34,7 +41,7 @@ class Hour extends React.Component {
       <div className={isOver ? classes.isOver : undefined}>
         <ListItem key={`${time}`}>
           <Typography variant='h4' gutterBottom>{getHourString(time)}</Typography>
-          {data && <ItineraryEvent data={data.data} />}
+          {data && <ItineraryEvent data={data.data} id={data.id}/>}
         </ListItem>
       </div>
     )

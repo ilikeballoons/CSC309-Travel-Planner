@@ -18,14 +18,28 @@ class ItineraryStore extends EventEmitter {
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.ITINERARY_EVENT_ADD: {
-        const existingEventIndex = findWithAttribute(this.events, 'hour', action.value.hour)
-        !isNaN(existingEventIndex)
+        console.log(action.value);
+        const existingEventIndex = findWithAttribute(this.events, 'id', action.value.id)
+        !isNaN(existingEventIndex) // only allow one event per 'hour'
           ? this.events[existingEventIndex] = action.value
           : this.events.push(action.value)
         this.emit('change')
         break
       }
 
+      case ActionTypes.ITINERARY_EVENT_INFO_OPEN: {
+        const existingEventIndex = findWithAttribute(this.events, 'id', action.value)
+        this.events[existingEventIndex].open = true
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.ITINERARY_EVENT_INFO_CLOSE: {
+        const existingEventIndex = findWithAttribute(this.events, 'id', action.value)
+        this.events[existingEventIndex].open = false
+        this.emit('change')
+        break
+      }
       default:
     }
   }

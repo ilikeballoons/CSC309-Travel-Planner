@@ -59,17 +59,17 @@ const recommendations = [
     address: '40 St George St',
     opens: '0000',
     closes: '0000',
-    price: 1,
+    price: 0,
     image: bahen
   },
   {
-    title: 'Northrop Frye McDonalds',
+    title: 'Northrop Frye',
     category: 'Colleges & Universities',
     subcategory: 'College Academic Buildings',
     address: 'Building 515, 73 Queens Park Crescent East',
     opens: '0000',
     closes: '0000',
-    price: 1,
+    price: 0,
     image: northropfryehall
   },
   {

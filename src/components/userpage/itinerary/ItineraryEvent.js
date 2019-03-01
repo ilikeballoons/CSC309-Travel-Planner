@@ -11,14 +11,25 @@ import { findWithAttribute } from '../../../Utils'
 import UserActions from '../UserActions'
 import ItineraryStore from './ItineraryStore'
 import ItineraryEventInfo from './ItineraryEventInfo'
+import Icons from '../../../Icons'
 
 const styles = theme => ({
   root: {
     border: `1px solid ${theme.palette.primary.main}`,
-    borderRadius: theme.shape.borderRadius
+    borderRadius: theme.shape.borderRadius,
+    maxWidth: 425,
+    marginLeft: 10
+
+  },
+  title: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: 298
   },
   icon: {
-    color: theme.palette.primary.light
+    color: theme.palette.primary.light,
+    padding: '10px 5px 10px 5px'
   },
   typography: {
     margin: theme.spacing.unit * 2
@@ -69,8 +80,8 @@ class ItineraryEvent extends React.Component {
     return (
       <div className={classes.root}>
         <Button variant='text' color='primary'>
-          <LocalActivity />
-          {data.title}
+          {Icons[data.category]}
+          <span className={classes.title}>{data.title}</span>
         </Button>
         <IconButton
           className={classes.icon}

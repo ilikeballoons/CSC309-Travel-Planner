@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { DragDropContextProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
 
 import '../css/App.css'
 import AppStore from './AppStore'
@@ -9,6 +7,7 @@ import LoginStates from '../LoginStates'
 import Landing from './landing/Landing'
 import Admin from './admin/Admin'
 import UserPage from './userpage/UserPage'
+import WithDragDropContext from './WithDragDropContext'
 
 const AdminPage = () => (
   <Admin />
@@ -39,7 +38,6 @@ class App extends Component {
     const loggedIn = this.state.loggedInState === LoginStates.loggedIn
     const username = this.state.account && this.state.account.username
     return (
-      <DragDropContextProvider backend={HTML5Backend}>
         <div className='App'>
           <Switch>
             <Route exact path='/' render={() => (
@@ -51,9 +49,8 @@ class App extends Component {
             <Route path={`/${username}`} component={Userpage} />
           </Switch>
         </div>
-      </DragDropContextProvider>
     )
   }
 }
 
-export default App
+export default WithDragDropContext(App)

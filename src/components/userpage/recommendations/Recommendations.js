@@ -19,10 +19,11 @@ const styles = theme => ({
     maxHeight: 835,
   },
   gridList: {
-    width: 540,
+    width: 450,
     //height: 450,
     transform: 'translateZ(0)',
-    overflow: 'auto'
+    overflow: 'auto',
+    backgroundColor: '#E3F2FD',
   }
 })
 
@@ -32,8 +33,8 @@ class Recommendations extends React.Component {
     return (
       <div className={classes.root}>
         <GridList
-          cols={2}
-          cellHeight={180}
+          cols={1}
+          cellHeight={359}
           className={classes.gridList}
           spacing={10}>
           {recommendations.map(rec => (<Recommendation data={rec} key={shortid.generate()} />))}

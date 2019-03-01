@@ -20,14 +20,12 @@ const UserActions = {
     })
   },
   infoOpen (info) {
-    console.log(info);
     dispatcher.dispatch({
       type: ActionTypes.ITINERARY_EVENT_INFO_OPEN,
       value: info
     })
   },
   infoClose (info) {
-    console.log(info);
     dispatcher.dispatch({
       type: ActionTypes.ITINERARY_EVENT_INFO_CLOSE,
       value: info

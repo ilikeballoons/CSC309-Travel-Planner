@@ -9,12 +9,11 @@ import ItineraryEvent from './ItineraryEvent'
 
 const hourTarget = {
   drop (props, monitor) {
-    console.log(monitor.getItem());
     UserActions.addEvent({
       data: monitor.getItem(),
       hour: props.time,
       id: shortid.generate(),
-      open: false
+      open: false // delete
     })
   }
 }
@@ -41,7 +40,7 @@ class Hour extends React.Component {
       <div className={isOver ? classes.isOver : undefined}>
         <ListItem key={`${time}`}>
           <Typography variant='h4' gutterBottom>{getHourString(time)}</Typography>
-          {data && <ItineraryEvent data={data.data} id={data.id}/>}
+          {data && <ItineraryEvent data={data.data} id={data.id} />}
         </ListItem>
       </div>
     )

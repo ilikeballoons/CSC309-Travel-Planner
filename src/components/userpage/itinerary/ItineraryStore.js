@@ -15,10 +15,11 @@ class ItineraryStore extends EventEmitter {
     }
   }
 
+  // get state of a particular event () {}
+
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.ITINERARY_EVENT_ADD: {
-        console.log(action.value);
         const existingEventIndex = findWithAttribute(this.events, 'id', action.value.id)
         !isNaN(existingEventIndex) // only allow one event per 'hour'
           ? this.events[existingEventIndex] = action.value
@@ -28,15 +29,15 @@ class ItineraryStore extends EventEmitter {
       }
 
       case ActionTypes.ITINERARY_EVENT_INFO_OPEN: {
-        const existingEventIndex = findWithAttribute(this.events, 'id', action.value)
-        this.events[existingEventIndex].open = true
+        const existingEventIndex = findWithAttribute(this.events, 'id', action.value.id)
+        this.events[existingEventIndex].anchorEl = action.value.anchorEl
         this.emit('change')
         break
       }
 
       case ActionTypes.ITINERARY_EVENT_INFO_CLOSE: {
-        const existingEventIndex = findWithAttribute(this.events, 'id', action.value)
-        this.events[existingEventIndex].open = false
+        const existingEventIndex = findWithAttribute(this.events, 'id', action.value.id)
+        this.events[existingEventIndex].anchorEl = null
         this.emit('change')
         break
       }

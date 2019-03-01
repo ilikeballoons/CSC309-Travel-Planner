@@ -27,7 +27,7 @@ const styles = theme => ({
 class ItineraryEvent extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { open: false}
+    this.state = { anchorEl: null }
   }
 
   componentDidMount () {
@@ -39,36 +39,31 @@ class ItineraryEvent extends React.Component {
   }
 
   updateState = () => {
-    this.setState({ open: this.getOpenState()})
+    this.setState({ anchorEl: this.getAnchorEl()})
   }
 
-  getOpenState = () => {
+  getAnchorEl = () => {
     const { id } = this.props
     const eventIndex = findWithAttribute(ItineraryStore.getState().events, 'id', id)
     if(!isNaN(eventIndex)) {
-      const openState = ItineraryStore.getState().events[eventIndex].open
-      console.log(openState);
-      return openState
+      const anchorEl = ItineraryStore.getState().events[eventIndex].anchorEl
+      return anchorEl
     }
   }
 
-  handleClick = () => UserActions.infoOpen(this.props.id)
-  handleClose = () => UserActions.infoClose(this.props.id)
+  handleClick = (e) => UserActions.infoOpen({
+    anchorEl: e.currentTarget,
+    id: this.props.id
+  })
+  handleClose = () => UserActions.infoClose({
+    anchorEl: null,
+    id: this.props.id
+  })
 
   render () {
     const { data, classes, id } = this.props
-    const { open } = this.state
-
-    const iconButton =
-      <IconButton
-      className={classes.icon}
-      aria-owns={open ? id : undefined}
-      aria-haspopup='true'
-      onClick={this.handleClick}
-      >
-        <InfoIcon />
-      </IconButton>
-
+    const { anchorEl } = this.state
+    const open = Boolean(anchorEl)
 
     return (
       <div className={classes.root}>
@@ -76,11 +71,18 @@ class ItineraryEvent extends React.Component {
           <LocalActivity />
           {data.title}
         </Button>
-        {iconButton}
+        <IconButton
+          className={classes.icon}
+          aria-owns={open ? id : undefined}
+          aria-haspopup='true'
+          onClick={this.handleClick}
+          >
+          <InfoIcon />
+        </IconButton>
         <Popover
           id={id}
           open={open}
-          anchorEl={iconButton}
+          anchorEl={anchorEl}
           onClose={this.handleClose}
           anchorOrigin={{
             vertical: 'bottom',

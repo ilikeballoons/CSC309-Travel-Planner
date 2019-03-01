@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { recommendations } from '../../../Fixtures'
 import Recommendation from './Recommendation'
+import PreferencesStore from '../preferences/PreferencesStore'
 
 const styles = theme => ({
   root: {
@@ -28,6 +29,36 @@ const styles = theme => ({
 })
 
 class Recommendations extends React.Component {
+  constructor () {
+    super()
+    this.state = {}
+  }
+
+  componentDidMount () {
+    PreferencesStore.on('change', this.updateState)
+  }
+
+  componentWillUnmount () {
+    PreferencesStore.removeListener('change', this.updateState)
+  }
+
+  updateState = () => {
+    const { preferences } = PreferencesStore.getState()
+    console.log(preferences);
+    this.setState({ preferences: preferences })
+  }
+
+  filterRecommendations () { // note: not really flux-y
+    const { preferences } = this.state
+    if (!preferences) {
+      return recommendations
+    }
+    console.log(preferences);
+    return recommendations.filter(rec => {
+      return preferences[rec.category][rec.subcategory]
+    })
+    // if the rec's category in preferences is true
+  }
   render () {
     const { classes } = this.props
     return (
@@ -37,7 +68,7 @@ class Recommendations extends React.Component {
           cellHeight={359}
           className={classes.gridList}
           spacing={10}>
-          {recommendations.map(rec => (<Recommendation data={rec} key={shortid.generate()} />))}
+          {this.filterRecommendations().map(rec => (<Recommendation data={rec} key={shortid.generate()} />))}
         </GridList>
       </div>
     )

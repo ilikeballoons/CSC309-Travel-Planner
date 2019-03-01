@@ -28,6 +28,13 @@ class ItineraryStore extends EventEmitter {
         break
       }
 
+      case ActionTypes.ITINERARY_EVENT_REMOVE: {
+        const existingEventIndex = findWithAttribute(this.events, 'id', action.value)
+        !isNaN(existingEventIndex) && this.events.splice(existingEventIndex, 1)
+        this.emit('change')
+        break
+      }
+
       case ActionTypes.ITINERARY_EVENT_INFO_OPEN: {
         const existingEventIndex = findWithAttribute(this.events, 'id', action.value.id)
         this.events[existingEventIndex].anchorEl = action.value.anchorEl

@@ -10,6 +10,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import { findWithAttribute } from '../../../Utils'
 import UserActions from '../UserActions'
 import ItineraryStore from './ItineraryStore'
+import ItineraryEventInfo from './ItineraryEventInfo'
 
 const styles = theme => ({
   root: {
@@ -93,7 +94,7 @@ class ItineraryEvent extends React.Component {
             horizontal: 'center'
           }}
         >
-          <Typography className={classes.typography}>Content</Typography>
+          <ItineraryEventInfo data={data} id={id} />
         </Popover>
       </div>
     )
@@ -101,4 +102,3 @@ class ItineraryEvent extends React.Component {
 }
 
 export default withStyles(styles)(ItineraryEvent)
-  // info icon displays popup with address, price, and photo?

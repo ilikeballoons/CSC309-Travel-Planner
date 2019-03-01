@@ -13,10 +13,10 @@ const UserActions = {
       value: event
     })
   },
-  removeEvent (event) {
+  removeEvent (id) {
     dispatcher.dispatch({
       type: ActionTypes.ITINERARY_EVENT_REMOVE,
-      value: event
+      value: id
     })
   },
   infoOpen (info) {

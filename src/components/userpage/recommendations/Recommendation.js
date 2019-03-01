@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/Info'
 
+import UserActions from '../UserActions'
+
 const styles = theme => ({
   root: {
     borderRadius: theme.shape.borderRadius,
@@ -53,9 +55,14 @@ const collect = (connect, monitor) => ({
 })
 
 class Recommendation extends React.Component {
+  handleClick = () => UserActions.removeRecommendation(this.props.id)
+	
   render () {
     const { classes, data } = this.props
     const { connectDragSource, isDragging } = this.props
+    const { category, address, price, opens, closes } = data
+    const hours = opens === closes ? 'Open 24 hours' : `Open from ${opens} until ${closes}`
+    const cost = price > 0 ? '$'.repeat(price) : 'Free'
     return (
       <Card 
         className={classes.root}
@@ -68,7 +75,7 @@ class Recommendation extends React.Component {
             </IconButton>
           }
           title={data.title}
-          subheader={data.opens + "  -->  " + data.closes}
+          subheader={hours}
         />
         <CardMedia
           className={classes.image}
@@ -78,10 +85,14 @@ class Recommendation extends React.Component {
         <div className={classes.columns}>
           <CardContent>
             {data.address} <br/>
-            {data.price}
+            {cost}
           </CardContent>
           <CardActions>
-            <Button className={classes.ignoreButton}>IGNORE</Button>
+            <Button
+              className={classes.ignoreButton}
+              onClick={this.handleClick}>
+              IGNORE
+            </Button>
           </CardActions>
         </div>
       </Card>

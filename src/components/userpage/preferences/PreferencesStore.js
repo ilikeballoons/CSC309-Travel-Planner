@@ -19,7 +19,7 @@ class PreferencesStore extends EventEmitter {
       result[obj.pluralName] = {}
       toggled[obj.pluralName] = false
       obj.categories.forEach(cat => {
-        result[obj.pluralName][cat.pluralName] = false
+        result[obj.pluralName][cat.pluralName] = true
       })
     })
     return { result, toggled }

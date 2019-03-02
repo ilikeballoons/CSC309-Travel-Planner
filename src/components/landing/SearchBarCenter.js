@@ -1,5 +1,4 @@
 import React from 'react'
-import Input from '@material-ui/core/Input'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -13,10 +12,6 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  input: {
-    width: '100%',
-    margin: theme.spacing.unit,
-  }
 });
 
 class Inputs extends React.Component {

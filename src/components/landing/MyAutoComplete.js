@@ -13,8 +13,8 @@ import cities from 'cities.json';
 const suggestions = cities.map(
   suggestion => (
     {
-      value: suggestion.name + ', ' + suggestion.country,
-      label: suggestion.name + ', ' + suggestion.country,
+      value: `${suggestion.name}, ${suggestion.country}`,
+      label: `${suggestion.name}, ${suggestion.country}`,
     }
   )
 )

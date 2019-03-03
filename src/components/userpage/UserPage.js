@@ -9,8 +9,12 @@ import SearchAppBar from '../appbar/SearchAppBar'
 const styles = theme => ({
   userpage: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     padding: 20
+  },
+  hidden: {
+    alignSelf: 'flex-start',
+    width: 0
   }
 })
 
@@ -21,9 +25,9 @@ class UserPage extends React.Component {
       <div>
         <SearchAppBar />
         <div className={classes.userpage}>
+          <Preferences className={classes.hidden} />
           <Recommendations />
           <Itinerary />
-          <Preferences />
         </div>
       </div>
     )

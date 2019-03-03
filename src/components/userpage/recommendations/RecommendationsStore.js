@@ -1,8 +1,8 @@
-import ActionTypes from '../../../ActionTypes'
+import ActionTypes from '../../../utils/ActionTypes'
 import { EventEmitter } from 'events'
-import dispatcher from '../../../Dispatcher'
-import { findWithAttribute } from '../../../Utils'
-import { recommendations } from '../../../Fixtures'
+import dispatcher from '../../../utils/Dispatcher'
+import { findWithAttribute } from '../../../utils/Utils'
+import { recommendations } from '../../../utils/Fixtures'
 
 class RecommendationsStore extends EventEmitter {
   constructor () {

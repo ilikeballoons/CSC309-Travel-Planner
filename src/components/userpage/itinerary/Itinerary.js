@@ -13,10 +13,14 @@ const styles = theme => ({
   root: {
     overflowY: 'scroll',
     overflowX: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    padding: '0 25px',
     marginLeft: 20,
     maxHeight: 835,
     width: 500
+  },
+  list: {
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius
   }
 })
 
@@ -52,7 +56,7 @@ class Itinerary extends React.Component {
     const { classes } = this.props
     return (
       <div className={classes.root}>
-        <List>
+        <List className={classes.list}>
           <ListItem>
             <ListItemText primary='Itinerary'
               primaryTypographyProps={{ color: 'primary', variant: 'h3' }}/>

@@ -19,6 +19,12 @@ const UserActions = {
       value: id
     })
   },
+  removeRecommendation (id) {
+    dispatcher.dispatch({
+      type: ActionTypes.RECOMMENDATION_REMOVE,
+      value: id
+    })
+  },
   infoOpen (info) {
     dispatcher.dispatch({
       type: ActionTypes.ITINERARY_EVENT_INFO_OPEN,

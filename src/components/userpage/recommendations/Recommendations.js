@@ -4,9 +4,10 @@ import shortid from 'shortid'
 import GridList from '@material-ui/core/GridList'
 import { withStyles } from '@material-ui/core/styles'
 
-import { recommendations } from '../../../utils/Fixtures'
 import Recommendation from './Recommendation'
+import RecommendationsStore from './RecommendationsStore'
 import PreferencesStore from '../preferences/PreferencesStore'
+
 
 const styles = theme => ({
   root: {
@@ -15,9 +16,9 @@ const styles = theme => ({
     justifyContent: 'space-around',
     overflowY: 'scroll',
     overflowX: 'hidden',
-    backgroundColor: theme.palette.background.paper,
     borderRadius: theme.shape.borderRadius,
-    maxHeight: 835
+    maxHeight: 835,
+    padding: '0 25px'
   },
   gridList: {
     width: 450,
@@ -35,23 +36,27 @@ class Recommendations extends React.Component {
 
   componentDidMount () {
     PreferencesStore.on('change', this.updateState)
+    RecommendationsStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
     PreferencesStore.removeListener('change', this.updateState)
+    RecommendationsStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
-    const { preferences } = PreferencesStore.getState()
-    this.setState({ preferences: preferences })
+    const { recommendations } = RecommendationsStore.getState()
+    this.setState({ recommendations: recommendations })
   }
 
   filterRecommendations () { // note: not really flux-y
     const { preferences } = this.state
-    if (!preferences) return recommendations
-    return recommendations.filter(rec => preferences[rec.category][rec.subcategory])
+    if (!preferences) return RecommendationsStore.getState().recommendations
+    return RecommendationsStore.getState().recommendations.filter(rec => (
+      preferences[rec.category][rec.subcategory]
+    ))
   }
-  
+
   render () {
     const { classes } = this.props
     return (

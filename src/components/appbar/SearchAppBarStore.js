@@ -8,7 +8,7 @@ class SearchAppBarStore extends EventEmitter {
     this.searchQuery = ''
     this.signin = {
       open: false,
-      email: '',
+      username: '',
       password: ''
     }
     this.createAccount = {
@@ -67,7 +67,7 @@ class SearchAppBarStore extends EventEmitter {
       case ActionTypes.SIGNIN_DIALOG_CANCEL: {
         this.signin = {
           open: false,
-          email: '',
+          username: '',
           password: ''
         }
         this.emit('change')
@@ -75,7 +75,7 @@ class SearchAppBarStore extends EventEmitter {
       }
 
       case ActionTypes.SIGNIN_DIALOG_EMAIL_CHANGE: {
-        this.signin.email = action.value
+        this.signin.username = action.value
         this.emit('change')
         break
       }
@@ -95,7 +95,7 @@ class SearchAppBarStore extends EventEmitter {
       case ActionTypes.SIGNOUT: {
         this.signin = {
           open: false,
-          email: '',
+          username: '',
           password: ''
         }
         this.emit('change')

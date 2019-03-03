@@ -60,13 +60,9 @@ class SigninDialog extends React.Component {
     this.setState(AppStore.getState())
   }
 
-  updateUsername = name => event => {
-    SearchAppBarActions.signinDialogEmailChange(event.target.value)
-  }
-  //
-  updatePassword = name => event => {
-    SearchAppBarActions.signinDialogPasswordChange(event.target.value)
-  }
+  updateUsername = name => event => SearchAppBarActions.signinDialogEmailChange(event.target.value)
+
+  updatePassword = name => event => SearchAppBarActions.signinDialogPasswordChange(event.target.value)
 
   handleKeyDown = event => event.keyCode === 13 && this.doLogin()
 

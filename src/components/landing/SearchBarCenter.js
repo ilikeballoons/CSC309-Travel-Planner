@@ -3,7 +3,12 @@ import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import MyAutoComplete from './MyAutoComplete'
-
+// TODO: working on the search button
+import LandingActions from './LandingActions'
+import SignInButton from './SignInButton'
+import SigninDialog from './SigninDialog' 
+import IconButton from '@material-ui/core/IconButton'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 const styles = theme => ({
   root : {
     width: '100%',
@@ -17,11 +22,7 @@ const styles = theme => ({
 class Inputs extends React.Component {
     
     handleSubmit = event => {
-        // if ((event.keyCode && event.keyCode === 13) || event.type === 'click') {
-        //     LandingActions.searchbarSearch(this.state.searchQuery)
-        // }
-        // TODO: redirect to the user page
-        console.log("search button clicked")
+        LandingActions.signinDialogOpen()
     }
 
     render () {

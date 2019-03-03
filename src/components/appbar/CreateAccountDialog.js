@@ -59,7 +59,6 @@ class CreateAccountDialog extends React.Component {
     && this.confirmValidPassword()
     && this.confirmPasswordMatch()
     && this.confirmValidBirthday()
-
   }
 
   submit = () => {
@@ -147,6 +146,7 @@ class CreateAccountDialog extends React.Component {
                 openTo='year'
                 fullWidth
                 required
+                format='dd/MM/yyyy'
                 views={['year', 'month', 'day']}/>
             </MuiPickersUtilsProvider>
           </form>

@@ -6,7 +6,7 @@ import LoginStates from '../utils/LoginStates'
 import Landing from './landing/Landing'
 import Admin from './admin/Admin'
 import UserPage from './userpage/UserPage'
-import WithDragDropContext from './WithDragDropContext'
+import WithDragDropContext from '../utils/WithDragDropContext'
 
 const AdminPage = () => (
   <Admin />
@@ -43,7 +43,9 @@ class App extends Component {
                 : (<Landing />)
             )} />
             <Route path='/admin' component={AdminPage} />
-            <Route path={`/${username}`} component={Userpage} />
+            username
+            ? (<Route path={`/${username}`} component={Userpage} />)
+            : (<Redirect to={'/'} />)
           </Switch>
         </div>
     )

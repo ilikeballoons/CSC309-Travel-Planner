@@ -4,8 +4,8 @@ import shortid from 'shortid'
 import GridList from '@material-ui/core/GridList'
 import { withStyles } from '@material-ui/core/styles'
 
-import { recommendations } from '../../../Fixtures'
 import Recommendation from './Recommendation'
+import RecommendationsStore from './RecommendationsStore'
 import PreferencesStore from '../preferences/PreferencesStore'
 
 const styles = theme => ({
@@ -36,25 +36,31 @@ class Recommendations extends React.Component {
 
   componentDidMount () {
     PreferencesStore.on('change', this.updateState)
+    RecommendationsStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
     PreferencesStore.removeListener('change', this.updateState)
+    RecommendationsStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
     const { preferences } = PreferencesStore.getState()
     console.log(preferences);
     this.setState({ preferences: preferences })
+    
+    const { recommendations } = RecommendationsStore.getState()
+    console.log(recommendations);
+    this.setState({ recommendations: recommendations })
   }
 
   filterRecommendations () { // note: not really flux-y
     const { preferences } = this.state
     if (!preferences) {
-      return recommendations
+      return RecommendationsStore.getState().recommendations
     }
     console.log(preferences);
-    return recommendations.filter(rec => {
+    return RecommendationsStore.getState().recommendations.filter(rec => {
       return preferences[rec.category][rec.subcategory]
     })
     // if the rec's category in preferences is true

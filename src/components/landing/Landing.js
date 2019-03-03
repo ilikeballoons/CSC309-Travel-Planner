@@ -2,17 +2,46 @@ import React from 'react'
 import SearchAppBar from './SearchAppBar'
 import SigninDialog from './SigninDialog'
 import CreateAccountDialog from './CreateAccountDialog'
-import '../../css/landing/Landing.css'
+import SearchBarCenter from './SearchBarCenter'
+import { withStyles } from '@material-ui/core/styles';
+import landingPageBg from '../../images/landingPageBg.jpg';
 
-export default class Landing extends React.Component {
+const styles = theme => ({
+  landing: {
+    minHeight: '100vh',
+    backgroundImage: `url('${landingPageBg}')`,
+    backgroundSize: 'cover',
+  },
+  
+  signInButtonContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    padding: 8,
+  },
+  
+  landingCenterPanel: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 200,
+  }
+})
+
+
+class Landing extends React.Component {
   render () {
+    const { classes } = this.props
     return (
-      <div className='landing'>
+      <div className={classes.landing}>
         <SearchAppBar page="landing"/>
-        <div className='landingCenterPanel' />
+        <div className={classes.landingCenterPanel}>
         <SigninDialog />
         <CreateAccountDialog />
+        <SearchBarCenter />
+        </div>
       </div>
     )
   }
 }
+
+export default withStyles(styles)(Landing);

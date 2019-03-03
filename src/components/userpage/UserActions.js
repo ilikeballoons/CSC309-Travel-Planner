@@ -7,12 +7,6 @@ const UserActions = {
       type: ActionTypes.ITINERARY_CLEAR
     })
   },
-  removeRecommendation (id) {
-    dispatcher.dispatch({
-      type: ActionTypes.RECOMMENDATION_REMOVE,
-      value: id
-    })
-  },
   addEvent (event) {
     dispatcher.dispatch({
       type: ActionTypes.ITINERARY_EVENT_ADD,

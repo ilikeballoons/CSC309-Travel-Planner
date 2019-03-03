@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import IntegrationReactSelect from './IntegrationReactSelect'
+import MyAutoComplete from './MyAutoComplete'
 
 const styles = theme => ({
   root : {
@@ -41,7 +41,7 @@ class Inputs extends React.Component {
                     />
                 </div>
                 <div className={classes.container}>
-                        <IntegrationReactSelect />
+                        <MyAutoComplete />
                 </div>
                 <div className={classes.container}>
                     <Button variant="contained" color="primary" className={classes.button} onClick={(e) => this.handleSubmit(e)}>

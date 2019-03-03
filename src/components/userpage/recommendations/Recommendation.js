@@ -41,7 +41,8 @@ const styles = theme => ({
   },
   ignoreButton: {
     size: 'small',
-    marginRight: 25
+    marginRight: 25,
+    color: theme.palette.secondary.main
   },
   columns: {
   	 display: 'flex',
@@ -61,11 +62,11 @@ const collect = (connect, monitor) => ({
 })
 
 class Recommendation extends React.Component {
-  handleClick = () => UserActions.removeRecommendation(this.props.id)
+  handleClick = () => UserActions.removeRecommendation(this.props.data.id)
 
   render () {
     const { classes, data } = this.props
-    const { title, category, address, price, opens, closes, image } = data
+    const { title, address, price, opens, closes, image } = data
     const hours = opens === closes ? 'Open 24 hours' : `Open from ${opens} until ${closes}`
     const cost = price > 0 ? '$'.repeat(price) : 'Free'
 

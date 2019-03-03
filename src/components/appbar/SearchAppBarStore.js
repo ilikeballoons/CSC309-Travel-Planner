@@ -113,7 +113,7 @@ class SearchAppBarStore extends EventEmitter {
         // Charlie, add stuff here
         break
       }
-      default: { }
+      default:
     }
   }
 }

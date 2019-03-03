@@ -70,7 +70,7 @@ class PreferencesStore extends EventEmitter {
         break
       }
 
-      default: { }
+      default:
     }
   }
 }

@@ -66,7 +66,11 @@ class Recommendations extends React.Component {
           cellHeight={359}
           className={classes.gridList}
           spacing={10}>
-          {this.filterRecommendations().map(rec => (<Recommendation data={rec} key={shortid.generate()} />))}
+          {this.filterRecommendations().map(rec => {
+            const short = shortid.generate()
+            rec.id = short
+            return (<Recommendation data={rec} key={short} />)
+          })}
         </GridList>
       </div>
     )

@@ -3,15 +3,13 @@ import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Popover from '@material-ui/core/Popover'
-import Typography from '@material-ui/core/Typography'
-import LocalActivity from '@material-ui/icons/LocalActivity'
 import InfoIcon from '@material-ui/icons/Info'
 
-import { findWithAttribute } from '../../../Utils'
+import { findWithAttribute } from '../../../utils/Utils'
 import UserActions from '../UserActions'
 import ItineraryStore from './ItineraryStore'
 import ItineraryEventInfo from './ItineraryEventInfo'
-import Icons from '../../../Icons'
+import Icons from '../../../utils/Icons'
 
 const styles = theme => ({
   root: {

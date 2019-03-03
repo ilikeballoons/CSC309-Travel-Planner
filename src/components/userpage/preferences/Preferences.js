@@ -1,10 +1,9 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
 
+import { withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-
 import Drawer from '@material-ui/core/Drawer'
 import Collapse from '@material-ui/core/Collapse'
 import List from '@material-ui/core/List'
@@ -16,12 +15,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import PreferencesStore from './PreferencesStore'
 import PreferencesActions from './PreferencesActions'
-import { toTitleCase } from '../../../Utils'
-import Icons from '../../../Icons'
+import { toTitleCase } from '../../../utils/Utils'
+import Icons from '../../../utils/Icons'
 
 const styles = theme => ({
   drawerPaper: {
-    zIndex: '1 !important'
+    marginTop: 64
   }
 })
 
@@ -47,7 +46,6 @@ class Preferences extends React.Component {
       <List>
       {Object.entries(preferences).map(([key, value]) => (
         <div key={`${key} div`}>
-          <Divider />
           <ListItem key={`${key}/${value} item`}>
             <ListItemIcon>
               <IconButton onClick={() => this.handleToggleClick(key)}>
@@ -80,6 +78,7 @@ class Preferences extends React.Component {
               ))}
             </List>
           </Collapse>
+          <Divider />
         </div>
       ))}
       </List>
@@ -108,18 +107,18 @@ class Preferences extends React.Component {
 
   render () {
     const { open } = this.state
+    const { classes } = this.props
     return (
-      <div>
-        <Drawer
-          variant='persistent'
-          anchor='left'
-          open={open}
-          classes={{
-            paper: 'drawerPaper'
-          }}>
-          {this.getDrawerContent()}
-        </Drawer>
-      </div>
+      <Drawer
+        variant='persistent'
+        anchor='left'
+        className={classes.root}
+        open={open}
+        classes={{
+          paper: classes.drawerPaper
+        }}>
+        {this.getDrawerContent()}
+      </Drawer>
     )
   }
 }

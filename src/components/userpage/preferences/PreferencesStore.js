@@ -1,7 +1,7 @@
-import ActionTypes from '../../../ActionTypes'
+import ActionTypes from '../../../utils/ActionTypes'
 import { EventEmitter } from 'events'
-import dispatcher from '../../../Dispatcher'
-import * as data from '../../../Categories.json'
+import dispatcher from '../../../utils/Dispatcher'
+import * as data from '../../../utils/Categories.json'
 
 class PreferencesStore extends EventEmitter {
   constructor () {
@@ -57,7 +57,7 @@ class PreferencesStore extends EventEmitter {
         break
       }
 
-      case ActionTypes.PREFERENCES_DRAWER_CHANGE: {
+      case ActionTypes.PREFERENCES_CHANGE: {
         const key = this.findKey(Object.keys(action.value)[0])
         Object.assign(this.preferences[key], action.value)
         this.emit('change')

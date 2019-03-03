@@ -1,21 +1,18 @@
-import React from 'react';
-import deburr from 'lodash/deburr';
-import Autosuggest from 'react-autosuggest';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
-import cities from 'cities.json';
+import React from 'react'
+import deburr from 'lodash/deburr'
+import Autosuggest from 'react-autosuggest'
+import match from 'autosuggest-highlight/match'
+import parse from 'autosuggest-highlight/parse'
+import TextField from '@material-ui/core/TextField'
+import Paper from '@material-ui/core/Paper'
+import MenuItem from '@material-ui/core/MenuItem'
+import { withStyles } from '@material-ui/core/styles'
+import cities from 'cities.json'
 
-const suggestions = cities.map(
-  suggestion => (
-    {
+const suggestions = cities.map( suggestion => ({
       value: `${suggestion.name}, ${suggestion.country}`,
-      label: `${suggestion.name}, ${suggestion.country}`,
-    }
-  )
+      label: `${suggestion.name}, ${suggestion.country}`
+  })
 )
 
 const renderInputComponent = (inputProps) => {
@@ -31,116 +28,112 @@ const renderInputComponent = (inputProps) => {
         },
         classes: {
           input: classes.input,
-        },
+        }
       }}
       {...other}
     />
-  );
+  )
 }
 
 const renderSuggestion = (suggestion, { query, isHighlighted }) => {
   if (query.length >= 3) {
-      const matches = match(suggestion.label, query);
-      const parts = parse(suggestion.label, matches);
-      
-      return (
-          <MenuItem selected={isHighlighted} component="div">
+    const matches = match(suggestion.label, query);
+    const parts = parse(suggestion.label, matches);
+
+    return (
+    <MenuItem selected={isHighlighted} component="div">
       <div>
         {parts.map((part, index) =>
           part.highlight ? (
-              <span key={String(index)} style={{ fontWeight: 500 }}>
+            <span key={String(index)} style={{ fontWeight: 500 }}>
               {part.text}
             </span>
           ) : (
-              <strong key={String(index)} style={{ fontWeight: 300 }}>
+            <strong key={String(index)} style={{ fontWeight: 300 }}>
               {part.text}
             </strong>
-          ),
+          )
           )}
       </div>
     </MenuItem>
-    );
+    )
   }
 }
 
 const getSuggestions = (value) => {
-    const inputValue = deburr(value.trim()).toLowerCase();
-    const inputLength = inputValue.length;
-    let count = 0;
-    
-    return inputLength === 0
-    ? []
-    : suggestions.filter(suggestion => {
-        const keep =
-          count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
+  const inputValue = deburr(value.trim()).toLowerCase()
+  const inputLength = inputValue.length
+  let count = 0
 
-        if (keep) {
-          count += 1;
-        }
-
-        return keep;
-      });
+  return inputLength === 0
+  ? []
+  : suggestions.filter(suggestion => {
+      const keep = count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue
+      keep && count++
+      return keep
+  })
 }
 
-const getSuggestionValue = (suggestion) => {
-  return suggestion.label;
-}
+const getSuggestionValue = (suggestion) => suggestion.label
 
 const styles = theme => ({
   root: {
     height: 43,
-    flexGrow: 1,
+    flexGrow: 1
   },
   container: {
-    position: 'relative',
+    position: 'relative'
   },
   suggestionsContainerOpen: {
     position: 'absolute',
     zIndex: 1,
     marginTop: theme.spacing.unit,
     left: 0,
-    right: 0,
+    right: 0
   },
   suggestion: {
-    display: 'block',
+    display: 'block'
   },
   suggestionsList: {
     margin: 0,
     padding: 0,
-    listStyleType: 'none',
+    listStyleType: 'none'
   },
   divider: {
-    height: theme.spacing.unit * 2,
-  },
-});
+    height: theme.spacing.unit * 2
+  }
+})
 
-class IntegrationAutosuggest extends React.Component {
-  state = {
-    single: '',
-    popper: '',
-    suggestions: [],
-  };
+class AutoComplete extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      single: '',
+      popper: '',
+      suggestions: []
+    }
+  }
 
   handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(value),
-    });
-  };
+      suggestions: getSuggestions(value)
+    })
+  }
 
   handleSuggestionsClearRequested = () => {
     this.setState({
-      suggestions: [],
-    });
-  };
+      suggestions: []
+    })
+  }
 
   handleChange = name => (event, { newValue }) => {
     this.setState({
-      [name]: newValue,
-    });
-  };
+      [name]: newValue
+    })
+  }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     const autosuggestProps = {
       renderInputComponent,
@@ -148,8 +141,8 @@ class IntegrationAutosuggest extends React.Component {
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       getSuggestionValue,
-      renderSuggestion,
-    };
+      renderSuggestion
+    }
 
     return (
       <div className={classes.root}>
@@ -159,7 +152,7 @@ class IntegrationAutosuggest extends React.Component {
             classes,
             placeholder: 'Which city do you want to visit?',
             value: this.state.single,
-            onChange: this.handleChange('single'),
+            onChange: this.handleChange('single')
           }}
           theme={{
             container: classes.container,
@@ -174,8 +167,8 @@ class IntegrationAutosuggest extends React.Component {
           )}
         />
       </div>
-    );
+    )
   }
 }
 
-export default withStyles(styles)(IntegrationAutosuggest);
+export default withStyles(styles)(AutoComplete);

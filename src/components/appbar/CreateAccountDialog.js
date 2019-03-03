@@ -11,70 +11,62 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DateFnsUtils from '@date-io/date-fns'
 import { DatePicker, MuiPickersUtilsProvider  } from 'material-ui-pickers';
 
-import '../../css/landing/CreateAccountDialog.css'
-import LandingStore from './LandingStore'
-import LandingActions from './LandingActions'
-import { findWithAttribute } from '../../Utils'
-import { users } from '../../Fixtures'
+import SearchAppBarStore from './SearchAppBarStore'
+import SearchAppBarActions from './SearchAppBarActions'
+import { findWithAttribute } from '../../utils/Utils'
+import { users } from '../../utils/Fixtures'
 
 const styles = {
   form: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  red: {
+    color: 'red'
   }
 }
 
 class CreateAccountDialog extends React.Component {
   constructor (props) {
     super(props)
-    this.state = this.getNewState()
+    this.state = {}
+    Object.assign(this.state, SearchAppBarStore.getState().createAccount)
   }
 
   componentDidMount () {
-    LandingStore.on('change', this.updateState)
+    SearchAppBarStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
-    LandingStore.removeListener('change', this.updateState)
+    SearchAppBarStore.removeListener('change', this.updateState)
   }
 
-  getNewState = () => {
-    const { createAccount } = LandingStore.getState()
-    return { createAccount }
-  }
-
-  updateState = () => this.setState(this.getNewState().createAccount)
-
-  handleChange = field => event =>  LandingActions.createAccountChange({ [field]: event.target.value })
-
-  handleDateChange = date => LandingActions.createAccountChange({ birthday: date })
-
-  confirmPassword = () => {
-    return (!this.state.password && !this.state.password2)
-    || this.state.password === this.state.password2
-  }
-
-  confirmUsername = () => {
-    return isNaN(findWithAttribute(users, 'username', this.state.username))
-  }
+  updateState = () => this.setState(SearchAppBarStore.getState().createAccount)
+  handleChange = field => event =>  SearchAppBarActions.createAccountChange({ [field]: event.target.value })
+  handleDateChange = date => SearchAppBarActions.createAccountChange({ birthday: date })
+  confirmValidPassword = () => this.state.password.length >= 6
+  confirmPasswordMatch = () => this.state.password === this.state.password2
+  confirmValidUsername = () => this.state.username.length >= 4
+  confirmValidFullname = () => this.state.fullName.length >= 4
+  confirmUsername = () => isNaN(findWithAttribute(users, 'username', this.state.username))
+  confirmValidBirthday = () => this.state.birthday
 
   validate = () => {
-    return this.state.username
-    && this.state.password
-    && this.state.fullName
-    && this.state.birthday
-    // check if passwords match
-    && this.confirmPassword()
-    // check if user already exists
+    return this.confirmValidUsername()
     && this.confirmUsername()
+    && this.confirmValidFullname()
+    && this.confirmValidPassword()
+    && this.confirmPasswordMatch()
+    && this.confirmValidBirthday()
 
   }
 
   submit = () => {
+    SearchAppBarActions.clickSubmit()
     if (this.validate()) {
-      LandingActions.createAccountClose()
-      LandingActions.createAccountSubmit({
+      SearchAppBarActions.createAccountClose()
+      SearchAppBarActions.createAccountSubmit({
         username: this.state.username,
         password: this.state.password,
         fullName: this.state.fullName,
@@ -85,17 +77,20 @@ class CreateAccountDialog extends React.Component {
   }
 
   render () {
+    const { hasClickedSubmit, open } = this.state
+    const { classes } = this.props
     return (
       <Dialog
-        open={this.state.createAccount.open}
-        onClose={() => LandingActions.createAccountClose()}>
+        open={open}
+        onClose={() => SearchAppBarActions.createAccountClose()}>
         <DialogTitle>Create an account</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Fill in your personal details to create an account.
           </DialogContentText>
           <form className={this.props.classes.form}>
-            {!this.confirmUsername() && <span className='red'>Username taken</span>}
+            {hasClickedSubmit && !this.confirmUsername() && <span className={classes.red}>Username taken</span>}
+            {hasClickedSubmit && !this.confirmValidUsername() && <span className={classes.red}>Usernames must be at least 4 characters.</span>}
             <TextField
               value={this.state.username}
               onChange={this.handleChange('username')}
@@ -107,6 +102,7 @@ class CreateAccountDialog extends React.Component {
               placeholder='Username/Email'
               fullWidth
               required />
+            {hasClickedSubmit && !this.confirmValidFullname() && <span className={classes.red}>Full Names must be at least 4 characters.</span>}
             <TextField
               value={this.state.fullName}
               onChange={this.handleChange('fullName')}
@@ -117,7 +113,8 @@ class CreateAccountDialog extends React.Component {
               placeholder='Full Name'
               fullWidth
               required />
-            {!this.confirmPassword() && <span className='red'>Passwords don't match.</span>}
+            {hasClickedSubmit && !this.confirmValidPassword() && <span className={classes.red}>Passwords must be at least 6 characters.</span>}
+            {hasClickedSubmit && !this.confirmPasswordMatch() && <span className={classes.red}>Passwords don't match.</span>}
             <TextField
               value={this.state.password}
               onChange={this.handleChange('password')}
@@ -129,17 +126,18 @@ class CreateAccountDialog extends React.Component {
               placeholder='Password'
               fullWidth
               required />
-              <TextField
-                value={this.state.password2}
-                onChange={this.handleChange('password2')}
-                autoComplete='new-password'
-                margin='dense'
-                id='password2'
-                label='Confirm your password'
-                type='password'
-                placeholder='Confirm your password'
-                fullWidth
-                required />
+            <TextField
+              value={this.state.password2}
+              onChange={this.handleChange('password2')}
+              autoComplete='new-password'
+              margin='dense'
+              id='password2'
+              label='Confirm your password'
+              type='password'
+              placeholder='Confirm your password'
+              fullWidth
+              required />
+            {hasClickedSubmit && !this.confirmValidBirthday() && <span className={classes.red}>Please input your birthday.</span>}
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <DatePicker
                 value={this.state.birthday}
@@ -157,7 +155,6 @@ class CreateAccountDialog extends React.Component {
           <Button
             variant='contained'
             onClick={this.submit}
-            disabled={!this.validate()}
             color='primary'>
             Submit
           </Button>

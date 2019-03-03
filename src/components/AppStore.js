@@ -1,10 +1,10 @@
-import ActionTypes from '../ActionTypes'
+import ActionTypes from '../utils/ActionTypes'
 import { EventEmitter } from 'events'
-import dispatcher from '../Dispatcher'
+import dispatcher from '../utils/Dispatcher'
 
-import { users } from '../Fixtures'
-import { findWithAttribute } from '../Utils'
-import LoginStates from '../LoginStates'
+import { users } from '../utils/Fixtures'
+import { findWithAttribute } from '../utils/Utils'
+import LoginStates from '../utils/LoginStates'
 
 class AppStore extends EventEmitter {
   constructor () {

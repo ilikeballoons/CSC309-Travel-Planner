@@ -1,7 +1,13 @@
-import dispatcher from '../../Dispatcher'
-import ActionTypes from '../../ActionTypes'
+import dispatcher from '../../utils/Dispatcher'
+import ActionTypes from '../../utils/ActionTypes'
 
-const LandingActions = {
+const SearchAppBarActions = {
+  clickSubmit () {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_CLICK_SUBMIT
+    })
+  },
+  
   createAccountOpen () {
     dispatcher.dispatch({
       type: ActionTypes.CREATE_ACCOUNT_OPEN
@@ -88,4 +94,4 @@ const LandingActions = {
   }
 }
 
-export default LandingActions
+export default SearchAppBarActions

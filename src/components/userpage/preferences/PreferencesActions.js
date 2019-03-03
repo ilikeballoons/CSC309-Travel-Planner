@@ -1,5 +1,5 @@
-import dispatcher from '../../../Dispatcher'
-import ActionTypes from '../../../ActionTypes'
+import dispatcher from '../../../utils/Dispatcher'
+import ActionTypes from '../../../utils/ActionTypes'
 
 const PreferencesActions = {
   open () {
@@ -16,7 +16,7 @@ const PreferencesActions = {
 
   change (selection) {
     dispatcher.dispatch({
-      type: ActionTypes.PREFERENCES_DRAWER_CHANGE,
+      type: ActionTypes.PREFERENCES_CHANGE,
       value: selection
     })
   },

@@ -1,11 +1,11 @@
-import ago from './images/ago.jpg'
-import band from './images/pkew.jpg'
-import northropfryehall from './images/northropfryehall.jpg'
-import cntower from './images/cntower.jpg'
-import bahen from './images/bahen.jpg'
-import ripleysaquarium from './images/ripleysaquarium.jpg'
-import steves from './images/steves.jpg'
-import hashimoto from './images/hashimoto.jpg'
+import ago from '../images/ago.jpg'
+import band from '../images/pkew.jpg'
+import northropfryehall from '../images/northropfryehall.jpg'
+import cntower from '../images/cntower.jpg'
+import bahen from '../images/bahen.jpg'
+import ripleysaquarium from '../images/ripleysaquarium.jpg'
+import steves from '../images/steves.jpg'
+import hashimoto from '../images/hashimoto.jpg'
 
 // this is a js file containing all of the hardcoded data which will come from the server in phase 2
 const privileges = {

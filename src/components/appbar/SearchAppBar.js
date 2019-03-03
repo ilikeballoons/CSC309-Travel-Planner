@@ -11,15 +11,12 @@ import SearchIcon from '@material-ui/icons/Search'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import PublicOutlined from '@material-ui/icons/PublicOutlined'
 
-
 import SearchAppBarStore from './SearchAppBarStore'
 import PreferencesStore from '../userpage/preferences/PreferencesStore'
 import AppStore from '../AppStore'
-
-
 import SignInButton from './SignInButton'
 import CreateAccountButton from './CreateAccountButton'
-import LandingActions from './LandingActions'
+import SearchAppBarActions from './SearchAppBarActions'
 import PreferencesActions from '../userpage/preferences/PreferencesActions'
 
 const styles = theme => ({
@@ -36,6 +33,7 @@ const styles = theme => ({
   },
   title: {
     display: 'none',
+    width: 185,
     [theme.breakpoints.up('sm')]: {
       display: 'block'
     }
@@ -75,6 +73,11 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit,
     paddingLeft: theme.spacing.unit * 10,
     width: '100%',
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: 185
   }
 })
 
@@ -99,12 +102,12 @@ class SearchAppBar extends React.Component {
   }
 
   handleChange = event => {
-    LandingActions.searchbarChange(event.target.value)
+    SearchAppBarActions.searchbarChange(event.target.value) // TODO
   }
 
   handleSubmit = event => {
     if ((event.keyCode && event.keyCode === 13) || event.type === 'click') {
-      LandingActions.searchbarSearch(this.state.searchQuery)
+      SearchAppBarActions.searchbarSearch(this.state.searchQuery)
     }
   }
 
@@ -120,7 +123,7 @@ class SearchAppBar extends React.Component {
   }
 
   render () {
-    const { classes } = this
+    const { classes } = this.props
     const { page } = this.props
     const { loggedInState, open } = this.state
     const isLoggedIn = loggedInState === 'loggedIn'
@@ -143,7 +146,7 @@ class SearchAppBar extends React.Component {
             <Typography className={classes.title} variant='h6' color='inherit' noWrap>
               Trip Planner
             </Typography>
-            {page !== 'landing' ? 
+            {page !== 'landing' ?
             <div className={classes.grow}>
             <div className={classes.search}>
               <div className={classes.searchIcon}
@@ -166,10 +169,9 @@ class SearchAppBar extends React.Component {
             </div>
             : <div className={classes.grow} />
           }
-            {!(loggedInState === 'loggedIn') && (<div className='registerButtonContainer'>
-              <CreateAccountButton />
-            </div>)}
-            <div className='signInButtonContainer'>
+            <div className={classes.buttonContainer}>
+              {!(loggedInState === 'loggedIn') && <CreateAccountButton />}
+              <div className={classes.grow} />
               <SignInButton />
             </div>
           </Toolbar>

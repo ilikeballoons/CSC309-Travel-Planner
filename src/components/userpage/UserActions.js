@@ -1,5 +1,5 @@
-import dispatcher from '../../Dispatcher'
-import ActionTypes from '../../ActionTypes'
+import dispatcher from '../../utils/Dispatcher'
+import ActionTypes from '../../utils/ActionTypes'
 
 const UserActions = {
   clear () {

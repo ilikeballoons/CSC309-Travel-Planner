@@ -11,10 +11,10 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import TextField from '@material-ui/core/TextField'
 
-import LandingStore from './LandingStore'
-import LandingActions from './LandingActions'
+import SearchAppBarStore from './SearchAppBarStore'
+import SearchAppBarActions from './SearchAppBarActions'
 import AppStore from '../AppStore'
-import LoginStates from '../../LoginStates'
+import LoginStates from '../../utils/LoginStates'
 
 const styles = {
   root: {
@@ -41,49 +41,50 @@ const styles = {
 class SigninDialog extends React.Component {
   constructor (props) {
     super(props)
-    this.state = this.getNewState()
+    const { signin } = SearchAppBarStore.getState()
+    this.state = signin
   }
 
   componentDidMount () {
-    LandingStore.on('change', this.updateState)
+    SearchAppBarStore.on('change', this.updateState)
     AppStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
-    LandingStore.removeListener('change', this.updateState)
+    SearchAppBarStore.removeListener('change', this.updateState)
     AppStore.removeListener('change', this.updateState)
   }
 
-  getNewState = () => {
-    const { signin } = LandingStore.getState()
-    return Object.assign({}, signin, AppStore.getState())
+  updateState = () => {
+    this.setState(SearchAppBarStore.getState().signin)
+    this.setState(AppStore.getState())
   }
 
-  updateState = () => this.setState(this.getNewState())
-
-  updateEmail = name => event => {
-    LandingActions.signinDialogEmailChange(event.target.value)
+  updateUsername = name => event => {
+    SearchAppBarActions.signinDialogEmailChange(event.target.value)
   }
   //
   updatePassword = name => event => {
-    LandingActions.signinDialogPasswordChange(event.target.value)
+    SearchAppBarActions.signinDialogPasswordChange(event.target.value)
   }
 
-  createAccountOpen = () => LandingActions.createAccountOpen()
+  handleKeyDown = event => event.keyCode === 13 && this.doLogin()
 
-  cancel = () => LandingActions.signinDialogCancel()
+  createAccountOpen = () => SearchAppBarActions.createAccountOpen()
 
-  validate = () => this.state.email && this.state.password
+  cancel = () => SearchAppBarActions.signinDialogCancel()
+
+  validate = () => this.state.username && this.state.password
 
   doLogin = () => {
-    LandingActions.signinDialogSigninStart({
-      username: this.state.email,
+    SearchAppBarActions.signinDialogSigninStart({
+      username: this.state.username,
       password: this.state.password
     })
   }
 
   render () {
-    const { open, loggedInState, dialogText, email, password} = this.state
+    const { open, loggedInState, dialogText, username, password} = this.state
     return (
       <Dialog
         open={open && loggedInState !== LoginStates.loggedIn}
@@ -103,20 +104,21 @@ class SigninDialog extends React.Component {
           </DialogContentText>
           <form>
             <TextField
-              autoComplete='username email'
-              value={email}
-              onChange={this.updateEmail('Email Address')}
+              autoComplete='username username'
+              value={username}
+              onChange={this.updateUsername('Username')}
               autoFocus
               margin='dense'
-              id='email'
-              label='Email Address'
-              type='email'
+              id='username'
+              label='Username'
+              type='username'
               fullWidth
             />
             <TextField
               autoComplete='current-password'
               value={password}
               onChange={this.updatePassword('Password')}
+              onKeyDown={this.handleKeyDown}
               margin='dense'
               id='password'
               label='Password'

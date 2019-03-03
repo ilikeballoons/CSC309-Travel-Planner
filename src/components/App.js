@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
-import '../css/App.css'
 import AppStore from './AppStore'
-import LoginStates from '../LoginStates'
+import LoginStates from '../utils/LoginStates'
 import Landing from './landing/Landing'
 import Admin from './admin/Admin'
 import UserPage from './userpage/UserPage'
@@ -30,15 +29,13 @@ class App extends Component {
     AppStore.removeListener('change', this.updateState)
   }
 
-  updateState = () => {
-    this.setState(AppStore.getState())
-  }
+  updateState = () => this.setState(AppStore.getState())
 
   render () {
     const loggedIn = this.state.loggedInState === LoginStates.loggedIn
     const username = this.state.account && this.state.account.username
     return (
-        <div className='App'>
+        <div className='App' style={{'minHeight': '100vh'}}>
           <Switch>
             <Route exact path='/' render={() => (
               loggedIn

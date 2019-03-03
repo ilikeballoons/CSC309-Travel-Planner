@@ -1,11 +1,10 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import '../../css/userpage/UserPage.css'
 
 import Preferences from './preferences/Preferences'
 import Recommendations from './recommendations/Recommendations'
 import Itinerary from './itinerary/Itinerary'
-import SearchAppBar from '../landing/SearchAppBar'
+import SearchAppBar from '../appbar/SearchAppBar'
 
 const styles = theme => ({
   userpage: {

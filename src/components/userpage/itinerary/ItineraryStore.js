@@ -1,7 +1,7 @@
-import ActionTypes from '../../../ActionTypes'
+import ActionTypes from '../../../utils/ActionTypes'
 import { EventEmitter } from 'events'
-import dispatcher from '../../../Dispatcher'
-import { findWithAttribute } from '../../../Utils'
+import dispatcher from '../../../utils/Dispatcher'
+import { findWithAttribute } from '../../../utils/Utils'
 
 class ItineraryStore extends EventEmitter {
   constructor () {

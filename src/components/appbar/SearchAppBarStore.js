@@ -1,29 +1,30 @@
-// Example for this type of file can be found at https://github.com/facebook/flux/blob/master/examples/flux-todomvc/src/data/TodoStore.js
-import ActionTypes from '../../ActionTypes'
+import ActionTypes from '../../utils/ActionTypes'
 import { EventEmitter } from 'events'
-import dispatcher from '../../Dispatcher'
+import dispatcher from '../../utils/Dispatcher'
 
-class LandingStore extends EventEmitter {
+class SearchAppBarStore extends EventEmitter {
   constructor () {
     super()
+    this.searchQuery = ''
     this.signin = {
       open: false,
       email: '',
       password: ''
     }
-
     this.createAccount = {
       open: false,
       username: '',
       password: '',
       password2: '',
       birthday: null,
-      fullName: ''
+      fullName: '',
+      hasClickedSubmit: false
     }
   }
 
   getState () {
     return {
+      searchQuery: this.searchQuery,
       createAccount: this.createAccount,
       signin: this.signin
     }
@@ -40,12 +41,19 @@ class LandingStore extends EventEmitter {
 
       case ActionTypes.CREATE_ACCOUNT_CANCEL: {
         this.createAccount.open = false
+        this.createAccount.hasClickedSubmit = false
         this.emit('change')
         break
       }
 
       case ActionTypes.CREATE_ACCOUNT_CHANGE: {
         Object.assign(this.createAccount, action.value)
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.CREATE_ACCOUNT_CLICK_SUBMIT: {
+        this.createAccount.hasClickedSubmit = true
         this.emit('change')
         break
       }
@@ -94,11 +102,22 @@ class LandingStore extends EventEmitter {
         break
       }
 
-      default:
+      case ActionTypes.SEARCHBAR_CHANGE: {
+        this.searchQuery = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.SEARCHBAR_SEARCH: {
+        console.log('search!: ', action)
+        // Charlie, add stuff here
+        break
+      }
+      default: { }
     }
   }
 }
 
-const landingStore = new LandingStore()
-dispatcher.register(landingStore.handleActions.bind(landingStore))
-export default landingStore
+const searchappbarStore = new SearchAppBarStore()
+dispatcher.register(searchappbarStore.handleActions.bind(searchappbarStore))
+export default searchappbarStore

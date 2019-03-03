@@ -39,7 +39,6 @@ class Itinerary extends React.Component {
   getHourEvent = (hour) => this.state.events.filter(e => e.hour === hour)[0]
 
   getHourComponents = () => {
-    const { classes } = this.props
     const hours = Array.from(Array(24).keys())
     return hours.map(hour => (
       <div key={hour}>

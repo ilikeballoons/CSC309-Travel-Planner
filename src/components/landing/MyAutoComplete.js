@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
@@ -19,7 +18,7 @@ const suggestions = cities.map(
   )
 )
 
-function renderInputComponent(inputProps) {
+const renderInputComponent = (inputProps) => {
   const { classes, inputRef = () => {}, ref, ...other } = inputProps;
 
   return (
@@ -39,7 +38,7 @@ function renderInputComponent(inputProps) {
   );
 }
 
-function renderSuggestion(suggestion, { query, isHighlighted }) {
+const renderSuggestion = (suggestion, { query, isHighlighted }) => {
   if (query.length >= 3) {
       const matches = match(suggestion.label, query);
       const parts = parse(suggestion.label, matches);
@@ -64,7 +63,7 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   }
 }
 
-function getSuggestions(value) {
+const getSuggestions = (value) => {
     const inputValue = deburr(value.trim()).toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
@@ -83,7 +82,7 @@ function getSuggestions(value) {
       });
 }
 
-function getSuggestionValue(suggestion) {
+const getSuggestionValue = (suggestion) => {
   return suggestion.label;
 }
 
@@ -158,7 +157,7 @@ class IntegrationAutosuggest extends React.Component {
           {...autosuggestProps}
           inputProps={{
             classes,
-            placeholder: 'Which City You Want to Visit?',
+            placeholder: 'Which city do you want to visit?',
             value: this.state.single,
             onChange: this.handleChange('single'),
           }}
@@ -178,9 +177,5 @@ class IntegrationAutosuggest extends React.Component {
     );
   }
 }
-
-IntegrationAutosuggest.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(IntegrationAutosuggest);

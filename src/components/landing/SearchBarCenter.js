@@ -21,15 +21,6 @@ class SearchBarCenter extends React.Component {
     SearchAppBarActions.signinDialogOpen()
   }
 
-  handleSubmit = event => {
-    // if ((event.keyCode && event.keyCode === 13) || event.type === 'click') {
-    //     SearchAppBarActions.searchbarSearch(this.state.searchQuery)
-    // }
-    // TODO: redirect to the user page
-    console.log("search button clicked")
-    SearchAppBarActions.searchbarSearch(event.target.value)
-  }
-
   render () {
     const { classes } = this.props
     return (

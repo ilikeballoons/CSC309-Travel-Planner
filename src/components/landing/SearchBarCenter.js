@@ -23,7 +23,8 @@ const styles = theme => ({
 class SearchBarCenter extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { searchQuery: '' }
+    this.state = { searchQuery: '', travelDate: new Date() }
+
   }
 
   componentDidMount () {
@@ -35,42 +36,31 @@ class SearchBarCenter extends React.Component {
   }
 
   updateState = () => {
-    const { searchQuery } = SearchAppBarStore.getState()
-    this.setState({ searchQuery }) // possible error
+    const { searchQuery, travelDate } = SearchAppBarStore.getState()
+    this.setState({ searchQuery, travelDate }) // possible error
   }
 
   handleChange = event => SearchAppBarActions.searchbarChange(event.target.value)
-  handleDateChange = date => SearchAppBarActions
+  handleDateChange = date => SearchAppBarActions.landingSearchbarDateChange(date)
   handleSubmit = event => SearchAppBarActions.signinDialogOpen()
-
   render () {
     const { classes } = this.props
-    const { searchQuery } = this.state
+    const { searchQuery, travelDate } = this.state
+
     return (
       <div className={classes.root}>
         <div className={classes.container}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
-              value={this.state.birthday}
+              value={travelDate}
               onChange={this.handleDateChange}
               disableFuture
-              label='Date of birth'
+              label='Travel Dates'
               openTo='year'
               fullWidth
-              required
               format='dd/MM/yyyy'
               views={['year', 'month', 'day']}/>
           </MuiPickersUtilsProvider>
-        {/*  <TextField
-            id="date"
-            label="Date of Trip"
-            type="date"
-            defaultValue="2018-03-01"
-            className={classes.textField}
-            InputLabelProps={{
-            shrink: true,
-            }}
-          /> */}
         </div>
         <div className={classes.container}>
           <MyAutoComplete />

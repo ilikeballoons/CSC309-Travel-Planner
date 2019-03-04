@@ -7,7 +7,7 @@ const SearchAppBarActions = {
       type: ActionTypes.CREATE_ACCOUNT_CLICK_SUBMIT
     })
   },
-  
+
   createAccountOpen () {
     dispatcher.dispatch({
       type: ActionTypes.CREATE_ACCOUNT_OPEN
@@ -31,6 +31,13 @@ const SearchAppBarActions = {
     dispatcher.dispatch({
       type: ActionTypes.CREATE_ACCOUNT_SUBMIT,
       value: account
+    })
+  },
+
+  landingSearchbarDateChange (date) {
+    dispatcher.dispatch({
+      type: ActionTypes.TRAVEL_DATE_CHANGE,
+      value: date
     })
   },
 

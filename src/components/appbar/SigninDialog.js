@@ -60,9 +60,9 @@ class SigninDialog extends React.Component {
     this.setState(AppStore.getState())
   }
 
-  updateUsername = name => event => SearchAppBarActions.signinDialogEmailChange(event.target.value)
+  updateUsername = event => SearchAppBarActions.signinDialogEmailChange(event.target.value)
 
-  updatePassword = name => event => SearchAppBarActions.signinDialogPasswordChange(event.target.value)
+  updatePassword = event => SearchAppBarActions.signinDialogPasswordChange(event.target.value)
 
   handleKeyDown = event => event.keyCode === 13 && this.doLogin()
 
@@ -102,7 +102,7 @@ class SigninDialog extends React.Component {
             <TextField
               autoComplete='username username'
               value={username}
-              onChange={this.updateUsername('Username')}
+              onChange={this.updateUsername}
               autoFocus
               margin='dense'
               id='username'
@@ -113,7 +113,7 @@ class SigninDialog extends React.Component {
             <TextField
               autoComplete='current-password'
               value={password}
-              onChange={this.updatePassword('Password')}
+              onChange={this.updatePassword}
               onKeyDown={this.handleKeyDown}
               margin='dense'
               id='password'

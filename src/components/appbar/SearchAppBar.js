@@ -102,7 +102,7 @@ class SearchAppBar extends React.Component {
   }
 
   handleChange = event => {
-    SearchAppBarActions.searchbarChange(event.target.value) // TODO
+    SearchAppBarActions.searchbarChange(event.target.value)
   }
 
   handleSubmit = event => {
@@ -115,7 +115,6 @@ class SearchAppBar extends React.Component {
     const { open, loggedInState } = this.state
     loggedInState === 'loggedIn'&& (open ? PreferencesActions.close() : PreferencesActions.open())
   }
-
 
   updateState = () => {
     const { loggedInState, searchQuery, open} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState(), PreferencesStore.getState())

@@ -46,7 +46,8 @@ class Recommendations extends React.Component {
 
   updateState = () => {
     const { recommendations } = RecommendationsStore.getState()
-    this.setState({ recommendations: recommendations })
+    const { preferences } = PreferencesStore.getState()
+    this.setState({ recommendations, preferences })
   }
 
   filterRecommendations () { // note: not really flux-y

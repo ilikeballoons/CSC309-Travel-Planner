@@ -8,9 +8,6 @@ import Admin from './admin/Admin'
 import UserPage from './userpage/UserPage'
 import WithDragDropContext from '../utils/WithDragDropContext'
 
-const AdminPage = () => (
-  <Admin />
-)
 const Userpage = () => (
   <UserPage />
 )
@@ -34,6 +31,7 @@ class App extends Component {
   render () {
     const loggedIn = this.state.loggedInState === LoginStates.loggedIn
     const username = this.state.account && this.state.account.username
+    const admin = username === 'admin' && loggedIn
     return (
         <div className='App' style={{'minHeight': '100vh'}}>
           <Switch>
@@ -42,7 +40,11 @@ class App extends Component {
                 ? (<Redirect to={`/${username}`} />)
                 : (<Landing />)
             )} />
-            <Route path='/admin' component={AdminPage} />
+          <Route path='/admin' render={() => (
+              admin
+              ? (<Admin />)
+              : (<Redirect to={'/'} />)
+          )} />
             username
             ? (<Route path={`/${username}`} component={Userpage} />)
             : (<Redirect to={'/'} />)

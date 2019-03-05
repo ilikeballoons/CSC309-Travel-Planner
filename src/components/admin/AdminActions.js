@@ -74,7 +74,7 @@ const AdminActions = {
 
   userSearch (query) {
     dispatcher.dispatch({
-      type: ActionTypes.USER_SEARCH,
+      type: ActionTypes.USERSEARCH_SEARCH,
       value: query
     })
   },

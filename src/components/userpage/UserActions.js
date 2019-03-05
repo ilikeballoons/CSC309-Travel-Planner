@@ -19,6 +19,12 @@ const UserActions = {
       value: id
     })
   },
+  addRecommendation (event) {
+    dispatcher.dispatch({
+      type: ActionTypes.RECOMMENDATION_ADD,
+      value: event
+    })
+  },
   removeRecommendation (id) {
     dispatcher.dispatch({
       type: ActionTypes.RECOMMENDATION_REMOVE,

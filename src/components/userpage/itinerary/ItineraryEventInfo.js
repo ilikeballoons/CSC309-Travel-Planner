@@ -20,7 +20,8 @@ const styles = theme => ({
   }
 })
 class ItineraryEventInfo extends React.Component {
-  handleClick = () => UserActions.removeEvent(this.props.id)
+  handleClick = () => (UserActions.removeEvent(this.props.id),
+  							  UserActions.addRecommendation(this.props.data))
 
   render () {
     const { classes, data } = this.props

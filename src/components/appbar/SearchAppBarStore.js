@@ -120,6 +120,12 @@ class SearchAppBarStore extends EventEmitter {
         this.emit('change')
         break
       }
+
+      case ActionTypes.TRAVEL_DATE_CHANGE: {
+        this.travelDate = action.value
+        this.emit('change')
+        break
+      }
       default:
     }
   }

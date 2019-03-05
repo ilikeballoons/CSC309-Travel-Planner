@@ -14,6 +14,7 @@ const hourTarget = {
       hour: props.time,
       id: data.id
     })
+    UserActions.removeRecommendation(data.id)
   }
 }
 

@@ -2,8 +2,7 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
-import { DatePicker, MuiPickersUtilsProvider  } from 'material-ui-pickers';
-
+import { DatePicker, MuiPickersUtilsProvider  } from 'material-ui-pickers'
 
 import AutoComplete from '../appbar/AutoComplete'
 import SearchAppBarActions from '../appbar/SearchAppBarActions'
@@ -23,7 +22,6 @@ class SearchBarCenter extends React.Component {
   constructor (props) {
     super(props)
     this.state = { travelDate: new Date() }
-
   }
 
   componentDidMount () {
@@ -53,7 +51,7 @@ class SearchBarCenter extends React.Component {
               value={travelDate}
               onChange={this.handleDateChange}
               disableFuture
-              label='Travel Dates'
+              label='Travel Date'
               openTo='year'
               fullWidth
               format='dd/MM/yyyy'

@@ -37,9 +37,6 @@ const styles = theme => ({
     padding: 0,
     listStyleType: 'none'
   },
-  divider: {
-    height: theme.spacing.unit * 2
-  },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -80,6 +77,7 @@ const suggestions = cities.map( suggestion => ({
 
 const renderInputComponent = (inputProps) => {
   const { classes, value, handleSubmit, ...other } = inputProps;
+  console.log(inputProps);
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -88,7 +86,6 @@ const renderInputComponent = (inputProps) => {
       <InputBase
         fullWidth
         value={value}
-        onKeyDown={handleSubmit}
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput
@@ -199,8 +196,7 @@ class AutoComplete extends React.Component {
 
   render() {
     const { classes, page } = this.props
-
-    const autosuggestProps = {
+    const autosuggestProps = { // built in props for the autosuggest component
       renderInputComponent,
       suggestions: this.state.suggestions,
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
@@ -222,7 +218,7 @@ class AutoComplete extends React.Component {
             placeholder: 'Which city do you want to visit?',
             value: this.state.searchQuery,
             onChange: this.handleChange,
-            handleSubmit: this.handleSubmit,
+            onKeyDown: this.handleSubmit,
             page
           }}
           theme={{

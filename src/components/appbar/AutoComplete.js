@@ -12,8 +12,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { withStyles } from '@material-ui/core/styles'
 import cities from 'cities.json'
 
-import SearchAppBarActions from '../appbar/SearchAppBarActions'
-import SearchAppBarStore from '../appbar/SearchAppBarStore'
+import SearchAppBarActions from './SearchAppBarActions'
+import SearchAppBarStore from './SearchAppBarStore'
 
 const styles = theme => ({
   root: {
@@ -77,7 +77,6 @@ const suggestions = cities.map( suggestion => ({
 
 const renderInputComponent = (inputProps) => {
   const { classes, value, handleSubmit, ...other } = inputProps;
-  console.log(inputProps);
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>

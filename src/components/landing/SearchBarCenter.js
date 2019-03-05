@@ -6,7 +6,7 @@ import DateFnsUtils from '@date-io/date-fns'
 import { DatePicker, MuiPickersUtilsProvider  } from 'material-ui-pickers';
 
 
-import AutoComplete from './AutoComplete'
+import AutoComplete from '../appbar/AutoComplete'
 import SearchAppBarActions from '../appbar/SearchAppBarActions'
 import SearchAppBarStore from '../appbar/SearchAppBarStore'
 

@@ -18,7 +18,7 @@ import SearchAppBarActions from './SearchAppBarActions'
 import PreferencesActions from '../userpage/preferences/PreferencesActions'
 import SignInButton from './SignInButton'
 import CreateAccountButton from './CreateAccountButton'
-import AutoComplete from '../landing/AutoComplete'
+import AutoComplete from './AutoComplete'
 
 const styles = theme => ({
   root: {

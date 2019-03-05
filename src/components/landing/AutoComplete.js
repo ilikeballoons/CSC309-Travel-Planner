@@ -100,10 +100,8 @@ const renderInputComponent = (inputProps) => {
 }
 
 const renderSuggestion = (suggestion, { query, isHighlighted }) => {
-  console.log('103');
   const matches = match(suggestion.label, query);
   const parts = parse(suggestion.label, matches);
-  console.log('106');
 
   return (
   <MenuItem selected={isHighlighted} component='div'>
@@ -139,15 +137,15 @@ const getSuggestions = (value) => {
 }
 
 const getSuggestionValue = (suggestion) => {
-  console.log('143');
   return suggestion.label
 }
 
 class AutoComplete extends React.Component {
   constructor () {
     super()
+    const { searchQuery } = SearchAppBarStore.getState()
     this.state = {
-      searchQuery: '',
+      searchQuery: searchQuery,
       suggestions: []
     }
   }
@@ -192,7 +190,6 @@ class AutoComplete extends React.Component {
   }
 
   handleSubmit = event => {
-    console.log(this.props);
     if ((event.keyCode && event.keyCode === 13) || event.type === 'click') {
       this.props.page === 'landing'
       ? SearchAppBarActions.signinDialogOpen()
@@ -211,6 +208,7 @@ class AutoComplete extends React.Component {
       onSuggestionSelected: this.onSuggestionSelected,
       onSuggestionHighlighted: this.onSuggestionHighlighted,
       shouldRenderSuggestions: this.shouldRenderSuggestions,
+      focusInputOnSuggestionClick: false,
       getSuggestionValue,
       renderSuggestion
     }

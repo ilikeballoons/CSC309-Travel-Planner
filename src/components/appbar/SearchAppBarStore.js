@@ -111,8 +111,7 @@ class SearchAppBarStore extends EventEmitter {
       }
 
       case ActionTypes.SEARCHBAR_SEARCH: {
-        console.log('search!: ', action)
-        // Charlie, add stuff here
+        console.log('search! This will call an API in phase 2 ', action)
         break
       }
 

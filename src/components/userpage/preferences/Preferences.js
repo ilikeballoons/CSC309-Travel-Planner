@@ -20,7 +20,8 @@ import Icons from '../../../utils/Icons'
 
 const styles = theme => ({
   drawerPaper: {
-    marginTop: 64
+    position: 'absolute',
+    top: 64
   }
 })
 

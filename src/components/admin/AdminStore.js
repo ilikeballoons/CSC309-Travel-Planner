@@ -61,11 +61,6 @@ class AdminStore extends EventEmitter {
 
       case ActionTypes.ADMIN_CHANGE_PW_CLICK_SUBMIT: {
         this.changePW.submit = true
-        this.emit('change')
-        break
-      }
-
-      case ActionTypes.ADMIN_CHANGE_PW_CLICK_SUBMIT: {
         this.changePW = action.value
         this.emit('change')
         break

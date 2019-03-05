@@ -34,6 +34,13 @@ const SearchAppBarActions = {
     })
   },
 
+  landingSearchbarDateChange (date) {
+    dispatcher.dispatch({
+      type: ActionTypes.TRAVEL_DATE_CHANGE,
+      value: date
+    })
+  },
+
   searchbarChange (query) {
     dispatcher.dispatch({
       type: ActionTypes.SEARCHBAR_CHANGE,

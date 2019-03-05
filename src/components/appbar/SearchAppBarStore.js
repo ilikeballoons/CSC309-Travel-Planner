@@ -6,6 +6,7 @@ class SearchAppBarStore extends EventEmitter {
   constructor () {
     super()
     this.searchQuery = ''
+    this.travelDate = new Date()
     this.signin = {
       open: false,
       username: '',
@@ -26,7 +27,8 @@ class SearchAppBarStore extends EventEmitter {
     return {
       searchQuery: this.searchQuery,
       createAccount: this.createAccount,
-      signin: this.signin
+      signin: this.signin,
+      travelDate: this.travelDate
     }
   }
 
@@ -109,8 +111,13 @@ class SearchAppBarStore extends EventEmitter {
       }
 
       case ActionTypes.SEARCHBAR_SEARCH: {
-        console.log('search!: ', action)
-        // Charlie, add stuff here
+        console.log('search! This will call an API in phase 2 ', action)
+        break
+      }
+
+      case ActionTypes.TRAVEL_DATE_CHANGE: {
+        this.travelDate = action.value
+        this.emit('change')
         break
       }
       default:

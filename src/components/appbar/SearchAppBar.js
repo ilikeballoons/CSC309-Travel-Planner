@@ -14,10 +14,11 @@ import PublicOutlined from '@material-ui/icons/PublicOutlined'
 import SearchAppBarStore from './SearchAppBarStore'
 import PreferencesStore from '../userpage/preferences/PreferencesStore'
 import AppStore from '../AppStore'
-import SignInButton from './SignInButton'
-import CreateAccountButton from './CreateAccountButton'
 import SearchAppBarActions from './SearchAppBarActions'
 import PreferencesActions from '../userpage/preferences/PreferencesActions'
+import SignInButton from './SignInButton'
+import CreateAccountButton from './CreateAccountButton'
+import AutoComplete from './AutoComplete'
 
 const styles = theme => ({
   root: {
@@ -102,7 +103,7 @@ class SearchAppBar extends React.Component {
   }
 
   handleChange = event => {
-    SearchAppBarActions.searchbarChange(event.target.value) // TODO
+    SearchAppBarActions.searchbarChange(event.target.value)
   }
 
   handleSubmit = event => {
@@ -115,7 +116,6 @@ class SearchAppBar extends React.Component {
     const { open, loggedInState } = this.state
     loggedInState === 'loggedIn'&& (open ? PreferencesActions.close() : PreferencesActions.open())
   }
-
 
   updateState = () => {
     const { loggedInState, searchQuery, open} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState(), PreferencesStore.getState())
@@ -148,24 +148,7 @@ class SearchAppBar extends React.Component {
             </Typography>
             {page !== 'landing' ?
             <div className={classes.grow}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}
-                onClick={(e) => this.handleSubmit(e)} >
-                <IconButton
-                  component={() => <SearchIcon />}
-                  />
-              </div>
-              <InputBase
-                placeholder='Where to?'
-                value={this.state.searchQuery}
-                onChange={(e) => this.handleChange(e)}
-                onKeyDown={(e) => this.handleSubmit(e)}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-              />
-            </div>
+              <AutoComplete page='userpage'/>
             </div>
             : <div className={classes.grow} />
           }

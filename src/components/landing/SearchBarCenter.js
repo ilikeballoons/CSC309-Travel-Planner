@@ -6,7 +6,7 @@ import DateFnsUtils from '@date-io/date-fns'
 import { DatePicker, MuiPickersUtilsProvider  } from 'material-ui-pickers';
 
 
-import MyAutoComplete from './AutoComplete'
+import AutoComplete from './AutoComplete'
 import SearchAppBarActions from '../appbar/SearchAppBarActions'
 import SearchAppBarStore from '../appbar/SearchAppBarStore'
 
@@ -23,7 +23,7 @@ const styles = theme => ({
 class SearchBarCenter extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { searchQuery: '', travelDate: new Date() }
+    this.state = { travelDate: new Date() }
 
   }
 
@@ -36,16 +36,15 @@ class SearchBarCenter extends React.Component {
   }
 
   updateState = () => {
-    const { searchQuery, travelDate } = SearchAppBarStore.getState()
-    this.setState({ searchQuery, travelDate }) // possible error
+    const { travelDate } = SearchAppBarStore.getState()
+    this.setState({ travelDate })
   }
 
-  handleChange = event => SearchAppBarActions.searchbarChange(event.target.value)
   handleDateChange = date => SearchAppBarActions.landingSearchbarDateChange(date)
   handleSubmit = event => SearchAppBarActions.signinDialogOpen()
   render () {
     const { classes } = this.props
-    const { searchQuery, travelDate } = this.state
+    const { travelDate } = this.state
 
     return (
       <div className={classes.root}>
@@ -63,7 +62,7 @@ class SearchBarCenter extends React.Component {
           </MuiPickersUtilsProvider>
         </div>
         <div className={classes.container}>
-          <MyAutoComplete />
+          <AutoComplete page='landing' />
         </div>
         <div className={classes.container}>
           <Button variant="contained" color="primary" className={classes.button} onClick={(e) => this.handleSubmit(e)}>

@@ -35,4 +35,5 @@ FEATURES - ADMIN:
 - Can see any user's specific details on the right panel
 - Can edit any user's specific details by clicking on the Edit User Information button, editing, then save
 - Can reset/change any user's password by clicking the Reset Password button
-- Can open the dialogue to delete a user by clicking on "DELETE USER" button on the bottom right corner
+- Can open the dialog to delete a user
+- Can sign out to return to the landing page

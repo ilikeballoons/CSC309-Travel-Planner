@@ -6,6 +6,7 @@ import PasswordDialog from './PasswordDialog.js'
 import DeleteDialog from './DeleteDialog.js'
 import Paper from '@material-ui/core/Paper'
 import Divider from '@material-ui/core/Divider'
+import SearchAppBar from '../appbar/SearchAppBar'
 import { withStyles } from '@material-ui/core/styles'
 import landingPageBg from '../../images/landingPageBg.jpg'
 
@@ -15,6 +16,7 @@ const styles = theme => ({
     backgroundImage: `url('${landingPageBg}')`,
     backgroundSize: 'cover',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center'
   },
   adminViewPaper: {
@@ -22,8 +24,8 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     width: '90vw',
-    height: '90vh',
-    maxHeight: '90vh'
+    height: '80vh',
+    maxHeight: '80vh'
   },
   adminListView: {
     height: '100%',
@@ -38,6 +40,7 @@ class Admin extends React.Component {
     const { classes } = this.props
     return (
       <div className={classes.admin}>
+        <SearchAppBar page='admin' />
         <Paper className={classes.adminViewPaper}>
           <div className={classes.adminListView}>
             <UsersSearch />

@@ -129,13 +129,13 @@ class SearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
-            {isLoggedIn ?
+            {isLoggedIn && page !== 'admin'?
               <IconButton
-              onClick={this.toggleDrawer}
-              className={classes.menuButton}
-              color='inherit'>
-              {open ? <ChevronLeftIcon /> : <MenuIcon />}
-            </IconButton>
+                onClick={this.toggleDrawer}
+                className={classes.menuButton}
+                color='inherit'>
+                {open ? <ChevronLeftIcon /> : <MenuIcon />}
+              </IconButton>
               : <IconButton
                 className={classes.menuButton}
                 color='inherit'>
@@ -144,12 +144,12 @@ class SearchAppBar extends React.Component {
             <Typography className={classes.title} variant='h6' color='inherit' noWrap>
               Trip Planner
             </Typography>
-            {page !== 'landing' ?
-            <div className={classes.grow}>
-              <AutoComplete page='userpage'/>
-            </div>
-            : <div className={classes.grow} />
-          }
+            {page !== 'admin' &&  page !== 'landing' ?
+              <div className={classes.grow}>
+                <AutoComplete page='userpage'/>
+              </div>
+              : <div className={classes.grow} />
+            }
             <div className={classes.buttonContainer}>
               {!(loggedInState === 'loggedIn') && <CreateAccountButton />}
               <div className={classes.grow} />

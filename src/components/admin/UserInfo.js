@@ -7,6 +7,7 @@ import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 
 import AdminStore from './AdminStore'
 import AdminActions from './AdminActions'
+import { currencies } from '../../utils/Fixtures.js'
 
 const styles = theme => ({
   infoLayout: {
@@ -22,32 +23,7 @@ const styles = theme => ({
   }
 })
 
-const currencies = [
-  {
-    value: '',
-    label: ''
-  },
-  {
-    value: 'USD',
-    label: '$'
-  },
-  {
-    value: 'CAD',
-    label: '$'
-  },
-  {
-    value: 'EUR',
-    label: '€'
-  },
-  {
-    value: 'BTC',
-    label: '฿'
-  },
-  {
-    value: 'JPY',
-    label: '¥'
-  }
-]
+
 
 class UserInfo extends React.Component {
   constructor () {

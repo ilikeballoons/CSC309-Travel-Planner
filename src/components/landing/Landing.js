@@ -1,9 +1,10 @@
 import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+
 import SearchAppBar from '../appbar/SearchAppBar'
 import SigninDialog from '../appbar/SigninDialog'
 import CreateAccountDialog from '../appbar/CreateAccountDialog'
 import SearchBarCenter from './SearchBarCenter'
-import { withStyles } from '@material-ui/core/styles'
 import landingPageBg from '../../images/landingPageBg.jpg'
 
 const styles = theme => ({

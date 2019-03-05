@@ -16,7 +16,7 @@ import SearchAppBarActions from './SearchAppBarActions'
 import AppStore from '../AppStore'
 import LoginStates from '../../utils/LoginStates'
 
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -26,7 +26,7 @@ const styles = {
   avatar: {
     alignSelf: 'center',
     marginTop: '16px',
-    backgroundColor: '#E10050'
+    backgroundColor: theme.palette.secondary.main
   },
 
   content: {
@@ -35,8 +35,8 @@ const styles = {
 
   title: {
     textAlign: 'center'
-  },
-}
+  }
+})
 
 class SigninDialog extends React.Component {
   constructor (props) {
@@ -85,7 +85,11 @@ class SigninDialog extends React.Component {
       <Dialog
         open={open && loggedInState !== LoginStates.loggedIn}
         onClose={this.cancel}
-        className={this.props.classes.root}>
+        className={this.props.classes.root}
+        TransitionProps={{
+          in: open,
+          timeout: 500
+        }}>
         <Avatar className={this.props.classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>

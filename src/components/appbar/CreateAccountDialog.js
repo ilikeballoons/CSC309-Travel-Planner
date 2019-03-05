@@ -81,7 +81,11 @@ class CreateAccountDialog extends React.Component {
     return (
       <Dialog
         open={open}
-        onClose={() => SearchAppBarActions.createAccountClose()}>
+        onClose={() => SearchAppBarActions.createAccountClose()}
+        TransitionProps={{
+          in: open,
+          timeout: 500
+        }}>
         <DialogTitle>Create an account</DialogTitle>
         <DialogContent>
           <DialogContentText>

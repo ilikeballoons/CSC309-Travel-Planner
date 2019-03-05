@@ -1,13 +1,14 @@
 import React from 'react'
-import UsersList from './UsersList.js'
-import UsersSearch from './UsersSearch.js'
-import UserPanel from './UserPanel.js'
-import PasswordDialog from './PasswordDialog.js'
-import DeleteDialog from './DeleteDialog.js'
 import Paper from '@material-ui/core/Paper'
 import Divider from '@material-ui/core/Divider'
 import SearchAppBar from '../appbar/SearchAppBar'
 import { withStyles } from '@material-ui/core/styles'
+
+import DeleteDialog from './DeleteDialog.js'
+import PasswordDialog from './PasswordDialog.js'
+import UsersList from './UsersList.js'
+import UserPanel from './UserPanel.js'
+import UsersSearch from './UsersSearch.js'
 import landingPageBg from '../../images/landingPageBg.jpg'
 
 const styles = theme => ({

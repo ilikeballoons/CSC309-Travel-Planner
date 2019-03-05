@@ -1,6 +1,7 @@
-import ActionTypes from '../../../utils/ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../../../utils/Dispatcher'
+
+import ActionTypes from '../../../utils/ActionTypes'
 import { findWithAttribute } from '../../../utils/Utils'
 
 class ItineraryStore extends EventEmitter {
@@ -46,6 +47,7 @@ class ItineraryStore extends EventEmitter {
         this.emit('change')
         break
       }
+
       default:
     }
   }

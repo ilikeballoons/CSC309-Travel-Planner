@@ -1,7 +1,7 @@
-import ActionTypes from '../utils/ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../utils/Dispatcher'
 
+import ActionTypes from '../utils/ActionTypes'
 import { users } from '../utils/Fixtures'
 import { findWithAttribute } from '../utils/Utils'
 import LoginStates from '../utils/LoginStates'
@@ -20,10 +20,6 @@ class AppStore extends EventEmitter {
       loggedInState: this.loggedInState,
       dialogText: this.dialogText
     }
-  }
-
-  createAccount (account) {
-    users.push(account)
   }
 
   authorize (account) {
@@ -48,7 +44,7 @@ class AppStore extends EventEmitter {
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.CREATE_ACCOUNT_SUBMIT: {
-        this.createAccount(action.value)
+        users.push(action.value)
         this.emit('change')
         break
       }

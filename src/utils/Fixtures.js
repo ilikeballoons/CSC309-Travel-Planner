@@ -114,4 +114,31 @@ const recommendations = [
   }
 ]
 
-export { users, recommendations }
+const currencies = [
+  {
+    value: '',
+    label: ''
+  },
+  {
+    value: 'USD',
+    label: '$'
+  },
+  {
+    value: 'CAD',
+    label: '$'
+  },
+  {
+    value: 'EUR',
+    label: '€'
+  },
+  {
+    value: 'BTC',
+    label: '฿'
+  },
+  {
+    value: 'JPY',
+    label: '¥'
+  }
+]
+
+export { users, recommendations, currencies }

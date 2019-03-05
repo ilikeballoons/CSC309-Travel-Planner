@@ -1,6 +1,7 @@
-import ActionTypes from '../../utils/ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../../utils/Dispatcher'
+
+import ActionTypes from '../../utils/ActionTypes'
 
 class SearchAppBarStore extends EventEmitter {
   constructor () {

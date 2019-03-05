@@ -65,20 +65,6 @@ const AdminActions = {
     })
   },
 
-  userSearchChange (query) {
-    dispatcher.dispatch({
-      type: ActionTypes.USERSEARCH_CHANGE,
-      value: query
-    })
-  },
-
-  userSearch (query) {
-    dispatcher.dispatch({
-      type: ActionTypes.USERSEARCH_SEARCH,
-      value: query
-    })
-  },
-
   editModeOn () {
     dispatcher.dispatch({
       type: ActionTypes.ADMIN_EDIT_USER_ON
@@ -122,6 +108,20 @@ const AdminActions = {
     dispatcher.dispatch({
       type: ActionTypes.ADMIN_EDIT_USER_MISC,
       value: misc
+    })
+  },
+
+  userSearchChange (query) {
+    dispatcher.dispatch({
+      type: ActionTypes.USERSEARCH_CHANGE,
+      value: query
+    })
+  },
+
+  userSearch (query) {
+    dispatcher.dispatch({
+      type: ActionTypes.USERSEARCH_SEARCH,
+      value: query
     })
   }
 }

@@ -1,6 +1,7 @@
-import ActionTypes from '../../../utils/ActionTypes'
 import { EventEmitter } from 'events'
 import dispatcher from '../../../utils/Dispatcher'
+
+import ActionTypes from '../../../utils/ActionTypes'
 import * as data from '../../../utils/Categories.json'
 
 class PreferencesStore extends EventEmitter {
@@ -10,6 +11,14 @@ class PreferencesStore extends EventEmitter {
     const { result, toggled } = this.parseCategories(data.categories)
     this.preferences = result
     this.toggled = toggled
+  }
+
+  getState () {
+    return {
+      open: this.open,
+      preferences: this.preferences,
+      toggled: this.toggled
+    }
   }
 
   parseCategories (json) {
@@ -23,14 +32,6 @@ class PreferencesStore extends EventEmitter {
       })
     })
     return { result, toggled }
-  }
-
-  getState () {
-    return {
-      open: this.open,
-      preferences: this.preferences,
-      toggled: this.toggled
-    }
   }
 
   findKey (key) {

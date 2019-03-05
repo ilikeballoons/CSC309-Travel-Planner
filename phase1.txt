@@ -1,0 +1,22 @@
+SETUP/RUNNING:
+
+1) Clone the repo
+2) Run "npm install" to get necessary packages
+3) Run "npm start" to build and open the app
+4) Login with either user/user or admin/admin
+
+///////////////////////////////////////////////
+
+FEATURES - USER:
+
+- (username user, password user)
+- Can create an account and sign in
+- Can open the left drawer to filter which types of recommendations to view
+- Can drag recommendation cards to the itinerary to schedule events
+- Can remove events from the itinerary, returning them to the bottom of the recommendations list
+- Can sign out to return to the landing page
+
+FEATURES - ADMIN:
+
+- (username admin, password admin)
+- //TODO

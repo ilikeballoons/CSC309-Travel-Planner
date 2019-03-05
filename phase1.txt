@@ -1,25 +1,38 @@
-SETUP/RUNNING:
+SETUP instructions and CREDENTIALS:
 
-1) Clone the repo
-2) Run "npm install" to get necessary packages
-3) Run "npm start" to build and open the app
-4) Login with either user/user or admin/admin
+1) Clone the project repo
+2) In a terminal, cd to the team38 folder
+2) In a terminal, run "npm install" to get necessary packages
+3) In a terminal, run "npm start" to build and open the app
+[NOTE: if a browser window doesn't automatically open up, please copy the URL in the terminal and paste to a new browser window]
+
+USER CREDENTIAL:
+Username: user
+Password: user
+
+ADMIN CREDENTIAL:
+Username: admin
+Password: admin
 
 ///////////////////////////////////////////////
+FEATURES - LANDING:
+- We implemented the REGISTER and SIGNIN buttons on the top right corner
+- When you click on REGISTER button, a window will pop up. You can create your own credential, and use the new credential created to sign in and it will direct you to the user page.
+- When you click on SIGNIN button, a window will pop up. You can sign in using user/admin's credential, and it will direct you to the user/admin page accordingly.
+- You can pick the travel date and input the city that you want to visit. We implemented the feature in the search bar so that it will generate a list of locations that match the city's name
+after typing in three characters. You can either select one location from the list then hit enter or click on the SEARCH button. This will open up a sign in dialogue and redirect you to the user/admin
+page depending on the credentials.
 
-FEATURES - USER:
-
-- (username user, password user)
-- Can create an account and sign in
-- Can open the left drawer to filter which types of recommendations to view
-- Can drag recommendation cards to the itinerary to schedule events
-- Can remove events from the itinerary, returning them to the bottom of the recommendations list
-- Can sign out to return to the landing page
+FEATURES - USER PAGE:
+- The search result in the landing page will be displayed in the search bar on top of the user page. You can also type in a new city in the search bar. 
+- Click on SIGN OUT button on the top right corner will log a user out and redirect to the landing page
+- Can open the left drawer to filter which types of recommendations to view by clicking on the "three bar" icon on the top left corner.
+A user can close the drawer by clicking on the "<" button on the top left corner.
+- Can drag recommendation cards to the itinerary to schedule events, this behaviour will add the event to the schedule and remove the card on the recommendation list
+- Can remove events from the itinerary by clicking on the "i" button first and click on "remove". This will remove the event from itenerary and return the removed item to the bottom of the recommendations list.
 
 FEATURES - ADMIN:
-
-- (username admin, password admin)
 - Can see any user's specific details on the right panel
 - Can edit any user's specific details by clicking on the Edit User Information button, editing, then save
 - Can reset/change any user's password by clicking the Reset Password button
-- Can open the dialog to delete a user
+- Can open the dialogue to delete a user by clicking on "DELETE USER" button on the bottom right corner

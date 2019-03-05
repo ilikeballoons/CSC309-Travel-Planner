@@ -7,7 +7,7 @@ const SearchAppBarActions = {
       type: ActionTypes.CREATE_ACCOUNT_CLICK_SUBMIT
     })
   },
-  
+
   createAccountOpen () {
     dispatcher.dispatch({
       type: ActionTypes.CREATE_ACCOUNT_OPEN

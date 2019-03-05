@@ -1,10 +1,11 @@
 import React from 'react'
+import AdminView from './AdminView.js'
 
 export default class Admin extends React.Component {
   render () {
     return (
-      <div>
-        <h1>Admin</h1>
+      <div className='admin'>
+        <AdminView />
       </div>
     )
   }

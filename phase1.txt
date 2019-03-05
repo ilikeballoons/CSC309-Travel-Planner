@@ -19,4 +19,7 @@ FEATURES - USER:
 FEATURES - ADMIN:
 
 - (username admin, password admin)
-- //TODO
+- Can see any user's specific details on the right panel
+- Can edit any user's specific details by clicking on the Edit User Information button, editing, then save
+- Can reset/change any user's password by clicking the Reset Password button
+- Can open the dialog to delete a user

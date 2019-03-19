@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import PublicOutlined from '@material-ui/icons/PublicOutlined'
+import AccountBox from '@material-ui/icons/AccountBox'
 
 import SearchAppBarStore from './SearchAppBarStore'
 import PreferencesStore from '../userpage/preferences/PreferencesStore'
@@ -16,6 +17,7 @@ import SearchAppBarActions from './SearchAppBarActions'
 import PreferencesActions from '../userpage/preferences/PreferencesActions'
 import SignInButton from './SignInButton'
 import CreateAccountButton from './CreateAccountButton'
+import UserProfileButton from './UserProfileButton'
 import AutoComplete from './AutoComplete'
 
 const styles = theme => ({
@@ -52,7 +54,6 @@ const styles = theme => ({
       width: 'auto'
     }
   },
-
   searchIcon: {
     width: theme.spacing.unit * 9,
     height: '100%',
@@ -121,8 +122,7 @@ class SearchAppBar extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
-    const { page } = this.props
+    const { classes, page } = this.props
     const { loggedInState, open } = this.state
     const isLoggedIn = loggedInState === 'loggedIn'
     return (
@@ -151,7 +151,10 @@ class SearchAppBar extends React.Component {
               : <div className={classes.grow} />
             }
             <div className={classes.buttonContainer}>
-              {!(loggedInState === 'loggedIn') && <CreateAccountButton />}
+              <div className={classes.grow} />
+              {isLoggedIn
+                ? <UserProfileButton />
+                : <CreateAccountButton />}
               <div className={classes.grow} />
               <SignInButton />
             </div>

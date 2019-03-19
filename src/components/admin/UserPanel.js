@@ -22,7 +22,7 @@ const styles = theme => ({
     height: '20%',
     padding: 20
   },
-  userAvater: {
+  userAvatar: {
     width: 100,
     height: 100,
     margin: 'auto 0'
@@ -61,7 +61,7 @@ class UserPanel extends React.Component {
 
   updateState = () => {
     const { editModeOn } = AdminStore.getState().editUser
-    this.setState({ editModeOn}) 
+    this.setState({ editModeOn})
   }
 
   render () {
@@ -74,7 +74,7 @@ class UserPanel extends React.Component {
         <div className={classes.userHeader}>
           <Avatar alt='kyle_quinlivan'
             src={require('../../images/avatar/kyle_quinlivan.png')}
-            className={classes.userAvater}
+            className={classes.userAvatar}
           />
           <div className={classes.userHeaderText}>
             <Typography variant='h5' gutterBottom>

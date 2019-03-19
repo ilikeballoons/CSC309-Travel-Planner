@@ -19,13 +19,13 @@ const users = [
     privilege: privileges.user,
     password: 'user',
     fullName: 'Denny Wiseman',
-    birthday: ''
+    birthday: Date.now()
   },
   {
     username: 'admin',
     privilege: privileges.admin,
     password: 'admin',
-    fullName: 'Charlie Zhang',
+    fullName: 'Grace Deng',
     birthday: ''
   }
 ]

@@ -9,12 +9,10 @@ const styles = theme => ({
 })
 
 class UserProfileButton extends React.Component {
-  openUserProfile = () => SearchAppBarActions.openUserProfile()
-
   render () {
     return (
       <IconButton
-        onClick={this.openUserProfile}
+        onClick={() => SearchAppBarActions.userProfileOpen()}
         className={this.props.classes.userProfileButton}
         color='inherit'>
         <AccountBox />

@@ -10,6 +10,7 @@ class AppStore extends EventEmitter {
   constructor () {
     super()
     this.account = null
+    this.user = null
     this.loggedInState = LoginStates.noInput
     this.dialogText = 'Please input your user information below.'
   }
@@ -17,6 +18,7 @@ class AppStore extends EventEmitter {
   getState () {
     return {
       account: this.account,
+      user: this.user,
       loggedInState: this.loggedInState,
       dialogText: this.dialogText
     }
@@ -30,6 +32,7 @@ class AppStore extends EventEmitter {
         result.account = account
         result.loggedInState = LoginStates.loggedIn
         result.dialogText = 'Logged in!'
+        result.user = users[index]
       } else {
         result.loggedInState = LoginStates.incorrectPassword
         result.dialogText = 'Incorrect password. Did you forget your password?'

@@ -98,6 +98,18 @@ const SearchAppBarActions = {
     dispatcher.dispatch({
       type: ActionTypes.SIGNOUT
     })
+  },
+
+  userProfileOpen () {
+    dispatcher.dispatch({
+      type: ActionTypes.APPBAR_USER_PROFILE_OPEN
+    })
+  },
+
+  userProfileClose () {
+    dispatcher.dispatch({
+      type: ActionTypes.APPBAR_USER_PROFILE_CLOSE
+    })
   }
 }
 

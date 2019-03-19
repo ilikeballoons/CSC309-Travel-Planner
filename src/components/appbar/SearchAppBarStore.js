@@ -22,6 +22,9 @@ class SearchAppBarStore extends EventEmitter {
       fullName: '',
       hasClickedSubmit: false
     }
+    this.userProfile = {
+      open: false
+    }
   }
 
   getState () {
@@ -29,7 +32,8 @@ class SearchAppBarStore extends EventEmitter {
       searchQuery: this.searchQuery,
       createAccount: this.createAccount,
       signin: this.signin,
-      travelDate: this.travelDate
+      travelDate: this.travelDate,
+      userProfile: this.userProfile
     }
   }
 
@@ -118,6 +122,17 @@ class SearchAppBarStore extends EventEmitter {
 
       case ActionTypes.TRAVEL_DATE_CHANGE: {
         this.travelDate = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.APPBAR_USER_PROFILE_OPEN: {
+        this.userProfile.open = true
+        this.emit('change')
+        break
+      }
+      case ActionTypes.APPBAR_USER_PROFILE_CLOSE: {
+        this.userProfile.open = false
         this.emit('change')
         break
       }

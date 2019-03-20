@@ -74,8 +74,18 @@ class AppStore extends EventEmitter {
 
       case ActionTypes.USERPROFILE_EDIT: {
         const key = Object.keys(action.value)[0]
-        console.log('key: ' + key)
         this.user[key] = action.value[key]
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_DELETE_ACCOUNT: {
+        const index = findWithAttribute(users, 'username', this.user.username)
+        this.user = null
+        this.account = null
+        this.loggedInState = LoginStates.noInput
+        this.dialogText = 'Please input your user information below.'
+        users.splice(index, 1)
         this.emit('change')
         break
       }

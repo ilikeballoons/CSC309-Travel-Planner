@@ -3,7 +3,6 @@ import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import TextField from '@material-ui/core/TextField'
-import MenuItem from '@material-ui/core/MenuItem'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import { format } from 'date-fns'
@@ -13,7 +12,6 @@ import ResetPWButton from './ResetPWButton'
 import DeleteAccountButton from './DeleteAccountButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
 import AppStore from '../../AppStore'
-import SearchAppBarActions from '../../appbar/SearchAppBarActions'
 import UserProfileActions from './UserProfileActions'
 import UserProfileStore from './UserProfileStore'
 import SearchAppBar from '../../appbar/SearchAppBar'
@@ -77,7 +75,7 @@ class UserProfile extends React.Component {
 
   render () {
     const { classes } = this.props
-    const { user, deleteDialogOpen } = this.state
+    const { user } = this.state
 
     return (
       <div className={classes.root}>

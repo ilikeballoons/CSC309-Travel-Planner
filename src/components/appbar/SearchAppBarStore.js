@@ -131,8 +131,19 @@ class SearchAppBarStore extends EventEmitter {
         this.emit('change')
         break
       }
+
       case ActionTypes.APPBAR_USER_PROFILE_CLOSE: {
         this.userProfile.open = false
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_DELETE_ACCOUNT: {
+        this.signin = {
+          open: false,
+          username: '',
+          password: ''
+        }
         this.emit('change')
         break
       }

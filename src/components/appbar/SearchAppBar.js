@@ -8,7 +8,6 @@ import { withStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import PublicOutlined from '@material-ui/icons/PublicOutlined'
-import AccountBox from '@material-ui/icons/AccountBox'
 import { Redirect } from 'react-router-dom'
 
 import SearchAppBarStore from './SearchAppBarStore'

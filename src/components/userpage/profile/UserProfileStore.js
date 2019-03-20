@@ -22,6 +22,8 @@ class UserProfileStore extends EventEmitter {
         this.emit('change')
         break
       }
+
+      default:
     }
   }
 }

@@ -9,10 +9,6 @@ import UserPage from './userpage/UserPage'
 import UserProfile from './userpage/profile/UserProfile'
 import WithDragDropContext from '../utils/WithDragDropContext'
 
-const Userpage = () => (
-  <UserPage />
-)
-
 class App extends Component {
   constructor (props) {
     super(props)

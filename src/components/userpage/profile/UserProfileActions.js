@@ -41,6 +41,14 @@ const UserProfileActions = {
     dispatcher.dispatch({
       type: ActionTypes.USERPROFILE_TOGGLE_DELETE_ACCOUNT_DIALOG
     })
+  },
+
+  deleteAccount () { // TODO: this will be an object id, but for now it just deletes whatever user is logged in
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_DELETE_ACCOUNT
+      // type: ActionTypes.USERPROFILE_DELETE_ACCOUNT,
+      // value: objectId
+    })
   }
 }
 

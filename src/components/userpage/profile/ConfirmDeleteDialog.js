@@ -82,7 +82,7 @@ class ConfirmDeleteDialog extends React.Component {
           <Button variant='contained' color='default' onClick={() => UserProfileActions.toggleDeleteAccountDialog()}>
             Cancel
           </Button>
-          <Button variant='contained' color='secondary' onClick={this.doLogin}>
+          <Button variant='contained' color='secondary' onClick={() => UserProfileActions.deleteAccount()}>
             Delete Account
           </Button>
         </DialogActions>

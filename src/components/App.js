@@ -6,6 +6,7 @@ import LoginStates from '../utils/LoginStates'
 import Landing from './landing/Landing'
 import Admin from './admin/Admin'
 import UserPage from './userpage/UserPage'
+import UserProfile from './userpage/profile/UserProfile'
 import WithDragDropContext from '../utils/WithDragDropContext'
 
 const Userpage = () => (
@@ -36,18 +37,18 @@ class App extends Component {
         <div className='App' style={{'minHeight': '100vh'}}>
           <Switch>
             <Route exact path='/' render={() => (
-              loggedIn
-                ? (<Redirect to={`/${username}`} />)
-                : (<Landing />)
+              !loggedIn
+              ? (<Landing />)
+              : (<Redirect to={`/${username}`} />)
             )} />
-          <Route path='/admin' render={() => (
+            {!loggedIn && <Redirect to={'/'} />}
+            <Route path='/admin' render={() => (
               admin
               ? (<Admin />)
               : (<Redirect to={'/'} />)
-          )} />
-            username
-            ? (<Route path={`/${username}`} component={Userpage} />)
-            : (<Redirect to={'/'} />)
+            )} />
+            <Route exact path={`/${username}`} component={() => <UserPage />} />
+            <Route path={`/${username}/profile`} render={() => <UserProfile />} />
           </Switch>
         </div>
     )

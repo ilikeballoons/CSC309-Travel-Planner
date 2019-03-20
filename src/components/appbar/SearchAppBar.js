@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import PublicOutlined from '@material-ui/icons/PublicOutlined'
 import AccountBox from '@material-ui/icons/AccountBox'
+import { Redirect } from 'react-router-dom'
 
 import SearchAppBarStore from './SearchAppBarStore'
 import PreferencesStore from '../userpage/preferences/PreferencesStore'
@@ -117,14 +118,15 @@ class SearchAppBar extends React.Component {
   }
 
   updateState = () => {
-    const { loggedInState, searchQuery, open} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState(), PreferencesStore.getState())
-    this.setState({ loggedInState, searchQuery, open })
+    const { loggedInState, searchQuery, open, user} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState(), PreferencesStore.getState())
+    this.setState({ loggedInState, searchQuery, open, user })
   }
 
   render () {
     const { classes, page } = this.props
-    const { loggedInState, open } = this.state
+    const { loggedInState, open, user, userProfile } = this.state
     const isLoggedIn = loggedInState === 'loggedIn'
+    if (userProfile.open) return <Redirect to={`/${user.username}/profile`} push />
     return (
       <div className={classes.root}>
         <AppBar position='static'>

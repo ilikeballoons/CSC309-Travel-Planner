@@ -72,6 +72,14 @@ class AppStore extends EventEmitter {
         break
       }
 
+      case ActionTypes.USERPROFILE_EDIT: {
+        const key = Object.keys(action.value)[0]
+        console.log('key: ' + key)
+        this.user[key] = action.value[key]
+        this.emit('change')
+        break
+      }
+
       default:
     }
   }

@@ -19,6 +19,7 @@ const users = [
     privilege: privileges.user,
     password: 'user',
     fullName: 'Denny Wiseman',
+    location: 'Toronto, ON',
     birthday: Date.now(),
     description: 'This is a description. I am awesome.'
   },
@@ -27,6 +28,7 @@ const users = [
     privilege: privileges.admin,
     password: 'admin',
     fullName: 'Grace Deng',
+    location: 'Toronto, ON',
     birthday: Date.now(),
     description: 'This is a description. I am awesome.'
 

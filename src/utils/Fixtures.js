@@ -19,14 +19,17 @@ const users = [
     privilege: privileges.user,
     password: 'user',
     fullName: 'Denny Wiseman',
-    birthday: Date.now()
+    birthday: Date.now(),
+    description: 'This is a description. I am awesome.'
   },
   {
     username: 'admin',
     privilege: privileges.admin,
     password: 'admin',
     fullName: 'Grace Deng',
-    birthday: ''
+    birthday: Date.now(),
+    description: 'This is a description. I am awesome.'
+
   }
 ]
 

@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import DateFnsUtils from '@date-io/date-fns'
+import { format } from 'date-fns'
 import { withStyles } from '@material-ui/core/styles'
 
 import ResetPWButton from './ResetPWButton'
@@ -15,12 +16,27 @@ import SearchAppBar from '../../appbar/SearchAppBar'
 // import { currencies } from './../../../utils/Fixtures.js'
 
 const styles = theme => ({
+  header: {
+    display: 'flex',
+    height: '20%',
+    padding: 20
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    margin: 'auto 0'
+  },
+  headerText: {
+    padding: [[0, 20]],
+    margin: 'auto 0'
+  },
+
   body: {
     display: 'flex',
     flexDirection: 'column',
     margin: 10,
     overflow: 'auto'
-  }
+  },
 })
 class UserProfile extends React.Component {
   constructor () {
@@ -52,7 +68,10 @@ class UserProfile extends React.Component {
       <div className={classes.root}>
         <SearchAppBar page='userProfile'/>
         <div className={classes.header}>
-          {/* <Avatar alt='profile picture' className={classes.avatar} /> */}
+          <Avatar alt='profile_pic'
+            src={require('../../../images/avatar/kyle_quinlivan.png')}
+            className={classes.avatar}
+          />
           <div className={classes.headerText}>
             <Typography variant='h5' gutterBottom>
               {`${user.fullName}`}
@@ -61,7 +80,7 @@ class UserProfile extends React.Component {
               {`@${user.username}`}
             </Typography>
             <Typography variant='subtitle1'>
-              <ResetPWButton />
+              {`Birthday: ${format(user.birthday, 'MMMM do yyyy')}`}
             </Typography>
           </div>
         </div>
@@ -82,6 +101,7 @@ class UserProfile extends React.Component {
                 className={classes.textField}
               />
             </MuiPickersUtilsProvider>
+            <ResetPWButton />
           </div>
         </div>
       </div>

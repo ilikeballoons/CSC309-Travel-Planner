@@ -5,6 +5,8 @@ import ActionTypes from '../../../utils/ActionTypes'
 import { findWithAttribute } from '../../../utils/Utils'
 // import { recommendations } from '../../../utils/Fixtures'
 import { foursquare } from '../../../utils/Utils'
+import * as data from '../../../utils/Categories.json'
+
 
 
 class RecommendationsStore extends EventEmitter {
@@ -48,6 +50,36 @@ class RecommendationsStore extends EventEmitter {
     })
   }
 
+  /*
+    Since venue API only gives lowest level category, and there are way too many
+    of those to use comfortably in our preferences sidebar, we need to find the
+    2nd level category of each venue.
+  */
+  getVenueParentCategory = (venue) => {
+    // Get the venues primary category
+    const primary = venue.categories.filter(cat => cat.primary)[0]
+    console.log(data.categories.length);
+    const target = this.searchCategory(primary, data)
+    console.log(primary, target);
+    return target
+  }
+
+  // Returns a category object which is the parent of the given category from the array of categories 'categories'
+  searchCategory = (query, target) => {
+    if (target.categories.length === 0) { // category is a leaf
+      // console.log(target);
+      if (query === target.name) {
+        console.log(target)
+        return target
+      }
+    }
+    else {
+      target.categories.forEach((subcategory) => { // category is an interior node
+        return this.searchCategory(query, subcategory)
+      })
+    }
+  }
+
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.RECOMMENDATION_ADD: {
@@ -71,8 +103,9 @@ class RecommendationsStore extends EventEmitter {
           )))
           .then(detailedVenues => {
             const formattedVenues = detailedVenues.map(venue => ({
-                title: venue.name,
-                address: venue.location.address,
+                title: venue.name || 'Name Not Found',
+                address: venue.location.address || 'Address Not Found',
+                category: this.getVenueParentCategory(venue),
                 price: (venue.price && venue.price.tier) || 0,
                 // description: venue.description
                 opens: (venue.hours && venue.hours.timeframes.filter(frame => frame.includesToday)[0].open[0].renderedTime.split('–')[0]) || '0000', // vomit

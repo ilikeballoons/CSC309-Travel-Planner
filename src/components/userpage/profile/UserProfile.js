@@ -11,9 +11,11 @@ import { withStyles } from '@material-ui/core/styles'
 
 import ResetPWButton from './ResetPWButton'
 import DeleteAccountButton from './DeleteAccountButton'
+import ConfirmDeleteDialog from './ConfirmDeleteDialog'
 import AppStore from '../../AppStore'
 import SearchAppBarActions from '../../appbar/SearchAppBarActions'
 import UserProfileActions from './UserProfileActions'
+import UserProfileStore from './UserProfileStore'
 import SearchAppBar from '../../appbar/SearchAppBar'
 // import { currencies } from './../../../utils/Fixtures.js'
 
@@ -51,23 +53,31 @@ class UserProfile extends React.Component {
   constructor () {
     super()
     this.state = {
-      user: AppStore.getState().user
+      user: AppStore.getState().user,
+      deleteDialogOpen: UserProfileStore.getState().deleteDialogOpen
     }
   }
 
   componentDidMount () {
     AppStore.on('change', this.updateState)
+    UserProfileStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
     AppStore.removeListener('change', this.updateState)
+    UserProfileStore.removeListener('change', this.updateState)
   }
 
-  updateState = () => { this.setState(AppStore.getState().user) }
+  updateState = () => {
+    this.setState({
+      user: AppStore.getState().user,
+      deleteDialogOpen: UserProfileStore.getState().deleteDialogOpen
+    })
+  }
 
   render () {
     const { classes } = this.props
-    const { user } = this.state
+    const { user, deleteDialogOpen } = this.state
 
     return (
       <div className={classes.root}>
@@ -169,6 +179,7 @@ class UserProfile extends React.Component {
             <ResetPWButton />
           </div>
         </div>
+        <ConfirmDeleteDialog />
       </div>
     )
   }

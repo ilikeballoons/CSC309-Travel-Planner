@@ -35,6 +35,12 @@ const UserProfileActions = {
       type: ActionTypes.USERPROFILE_EDIT,
       value: { profilePicture }
     })
+  },
+
+  toggleDeleteAccountDialog () {
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_TOGGLE_DELETE_ACCOUNT_DIALOG
+    })
   }
 }
 

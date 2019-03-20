@@ -7,6 +7,17 @@ import { findWithAttribute } from '../../../utils/Utils'
 import { foursquare } from '../../../utils/Utils'
 import * as data from '../../../utils/Categories.json'
 
+import * as RecommendationsJSON from '../../../utils/JSON/Recommendations.json'
+import * as one from '../../../utils/JSON/4ad4c05ef964a520daf620e3.json'
+import * as two from '../../../utils/JSON/4ad4c062f964a520fbf720e3.json'
+import * as three from '../../../utils/JSON/4df796f1aeb7da11e1a974d4.json'
+import * as four from '../../../utils/JSON/4f7891c7e4b0b9643b73e08d.json'
+import * as five from '../../../utils/JSON/5c92a36e6a60715348931bf7.json'
+import * as six from '../../../utils/JSON/57e0745a498ea809dbf75f68.json'
+import * as seven from '../../../utils/JSON/5321f4d9e4b07946702e6e08.json'
+import * as eight from '../../../utils/JSON/56437cac498e5a88165d13ce.json'
+import * as nine from '../../../utils/JSON/529612de11d2ab526191ccc9.json'
+import * as ten from '../../../utils/JSON/5753753b498eeb535c53aed5.json'
 
 
 class RecommendationsStore extends EventEmitter {
@@ -23,6 +34,17 @@ class RecommendationsStore extends EventEmitter {
     }
   }
 
+  getRecommendationsFromTestFile = () => {
+    return new Promise((resolve, reject) => {
+      resolve(JSON.parse(RecommendationsJSON))
+    })
+  }
+
+  getVenueDetailsFromTestFiles = (venueId) => {
+
+  }
+
+  // You can do this 99500 times per day.
   getRecommendationsFromFoursquare = () => {
     // TODO: maybe add something here to get the user's location
     const url = `https://api.foursquare.com/v2/venues/explore?client_id=${foursquare.client_id}&client_secret=${foursquare.client_secret}&v=20190320&limit=10&near=Toronto, ON&price=1,2,3,4`
@@ -38,6 +60,7 @@ class RecommendationsStore extends EventEmitter {
     })
   }
 
+  // THIS IS A PREMIUM CALL. YOU CAN ONLY DO 50 PER DAY!!!!!
   getVenueDetailsFromFoursquare = (venueId) => {
     const url = `https://api.foursquare.com/v2/venues/${venueId}/?client_id=${foursquare.client_id}&client_secret=${foursquare.client_secret}&v=20190320`
     return new Promise((resolve, reject) => {

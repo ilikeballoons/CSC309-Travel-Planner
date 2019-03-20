@@ -1,0 +1,571 @@
+{
+  "id": "5753753b498eeb535c53aed5",
+  "name": "The Greater Good Bar",
+  "contact": {
+    "phone": "6473482339",
+    "formattedPhone": "(647) 348-2339",
+    "facebook": "513184968865050",
+    "facebookName": "The Greater Good Bar"
+  },
+  "location": {
+    "address": "229 Geary St",
+    "crossStreet": "at Dufferin St",
+    "lat": 43.669409,
+    "lng": -79.439267,
+    "labeledLatLngs": [
+      {
+        "label": "display",
+        "lat": 43.669409,
+        "lng": -79.439267
+      }
+    ],
+    "postalCode": "M6H 2C1",
+    "cc": "CA",
+    "city": "Toronto",
+    "state": "ON",
+    "country": "Canada",
+    "formattedAddress": [
+      "229 Geary St (at Dufferin St)",
+      "Toronto ON M6H 2C1",
+      "Canada"
+    ]
+  },
+  "canonicalUrl": "https://foursquare.com/v/the-greater-good-bar/5753753b498eeb535c53aed5",
+  "categories": [
+    {
+      "id": "4bf58dd8d48988d116941735",
+      "name": "Bar",
+      "pluralName": "Bars",
+      "shortName": "Bar",
+      "icon": {
+        "prefix": "https://ss3.4sqi.net/img/categories_v2/nightlife/pub_",
+        "suffix": ".png"
+      },
+      "primary": true
+    }
+  ],
+  "verified": false,
+  "stats": {
+    "tipCount": 7
+  },
+  "url": "http://thegreatergoodbar.com",
+  "price": {
+    "tier": 2,
+    "message": "Moderate",
+    "currency": "$"
+  },
+  "likes": {
+    "count": 41,
+    "groups": [
+      {
+        "type": "others",
+        "count": 41,
+        "items": []
+      }
+    ],
+    "summary": "41 Likes"
+  },
+  "dislike": false,
+  "ok": false,
+  "rating": 9.4,
+  "ratingColor": "00B551",
+  "ratingSignals": 48,
+  "allowMenuUrlEdit": true,
+  "beenHere": {
+    "count": 0,
+    "unconfirmedCount": 0,
+    "marked": false,
+    "lastCheckinExpiredAt": 0
+  },
+  "specials": {
+    "count": 0,
+    "items": []
+  },
+  "photos": {
+    "count": 42,
+    "groups": [
+      {
+        "type": "checkin",
+        "name": "Friends' check-in photos",
+        "count": 0,
+        "items": []
+      },
+      {
+        "type": "venue",
+        "name": "Venue photos",
+        "count": 42,
+        "items": [
+          {
+            "id": "58cee194951e7d532b421a89",
+            "createdAt": 1489953172,
+            "source": {
+              "name": "Foursquare for iOS",
+              "url": "https://foursquare.com/download/#/iphone"
+            },
+            "prefix": "https://fastly.4sqi.net/img/general/",
+            "suffix": "/61949_DnxhPZgwasnb9DP0vaeVea0LV2tI-rJJz5Q-NLFBe3o.jpg",
+            "width": 1920,
+            "height": 1440,
+            "user": {
+              "id": "61949",
+              "firstName": "Ashleigh",
+              "lastName": "Gardner",
+              "gender": "female",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/61949_HP9XKy9V_ojX0w21Pp_miaiLevs162zFaTkcbPCOzRklgZeCXQn0gy4d_jyu6jsbXDRXqgz89.jpg"
+              }
+            },
+            "visibility": "public"
+          }
+        ]
+      }
+    ],
+    "summary": "0 photos"
+  },
+  "reasons": {
+    "count": 1,
+    "items": [
+      {
+        "summary": "Lots of people like this place",
+        "type": "general",
+        "reasonName": "rawLikesReason"
+      }
+    ]
+  },
+  "hereNow": {
+    "count": 0,
+    "summary": "Nobody here",
+    "groups": []
+  },
+  "createdAt": 1465087291,
+  "tips": {
+    "count": 7,
+    "groups": [
+      {
+        "type": "others",
+        "name": "All tips",
+        "count": 7,
+        "items": [
+          {
+            "id": "5856a0e11e1de5512866c6fe",
+            "createdAt": 1482072289,
+            "text": "Great tap selection + North of Brooklyn Pizza will never disappoint (try the Kale and Bacon pizza)",
+            "type": "user",
+            "canonicalUrl": "https://foursquare.com/item/5856a0e11e1de5512866c6fe",
+            "likes": {
+              "count": 1,
+              "groups": [
+                {
+                  "type": "others",
+                  "count": 1,
+                  "items": [
+                    {
+                      "id": "44800013",
+                      "firstName": "Ryan",
+                      "lastName": "Neufeld",
+                      "gender": "male",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/44800013_Zhzez9EM_EZjYcHmNYPbHpbbnOA26fq0BNRdcMYfwDHV0VCsAGBYCsZ2FBxWx98VmVgQtlvUA.jpg"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "summary": "1 like"
+            },
+            "logView": true,
+            "agreeCount": 3,
+            "disagreeCount": 0,
+            "lastVoteText": "Upvoted 1 week ago",
+            "lastUpvoteTimestamp": 1552189843,
+            "todo": {
+              "count": 0
+            },
+            "user": {
+              "id": "381864427",
+              "firstName": "Martin",
+              "lastName": "Laws",
+              "gender": "male",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/381864427-1LK5J0MPML5DPOO2.jpg"
+              }
+            },
+            "authorInteractionType": "liked"
+          }
+        ]
+      }
+    ]
+  },
+  "shortUrl": "http://4sq.com/1r7Cmmn",
+  "timeZone": "America/Toronto",
+  "listed": {
+    "count": 80,
+    "groups": [
+      {
+        "type": "others",
+        "name": "Lists from other people",
+        "count": 80,
+        "items": [
+          {
+            "id": "553a8ff4498ef7364a91c3a2",
+            "name": "Toronto",
+            "description": "",
+            "type": "others",
+            "user": {
+              "id": "6622657",
+              "firstName": "Ryan",
+              "gender": "male",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/KX4IBWMCTM5LSSA3.jpg"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/burgerplex1/list/toronto",
+            "canonicalUrl": "https://foursquare.com/burgerplex1/list/toronto",
+            "createdAt": 1429901300,
+            "updatedAt": 1536811844,
+            "photo": {
+              "id": "52c9b1ae498ece9a3e1bd848",
+              "createdAt": 1388949934,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/4586462_uptS9xcS9zUli5DjNE8fHkrr43vh8dcDfCmb3Oq7W90.jpg",
+              "width": 640,
+              "height": 640,
+              "user": {
+                "id": "4586462",
+                "firstName": "Rhiann",
+                "lastName": "Conyers",
+                "gender": "female",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/31ZVIG2I003PWQHZ.jpg"
+                }
+              },
+              "visibility": "public"
+            },
+            "followers": {
+              "count": 2
+            },
+            "listItems": {
+              "count": 190,
+              "items": [
+                {
+                  "id": "v5753753b498eeb535c53aed5",
+                  "createdAt": 1511753189
+                }
+              ]
+            }
+          },
+          {
+            "id": "4f183798e4b0333427a63f9c",
+            "name": "Toronto",
+            "description": "",
+            "type": "others",
+            "user": {
+              "id": "1988380",
+              "firstName": "Hkling",
+              "gender": "female",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/1988380-LO3HCQPH4ZP2EXAT.jpg"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/user/1988380/list/toronto",
+            "canonicalUrl": "https://foursquare.com/user/1988380/list/toronto",
+            "createdAt": 1326987160,
+            "updatedAt": 1549919459,
+            "photo": {
+              "id": "528c664911d2932b228fba7a",
+              "createdAt": 1384932937,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/11859261_yYcVCvF8wBTAiny-lejUhvhobLPZo1NpeDQvwDc7gSU.jpg",
+              "width": 853,
+              "height": 720,
+              "user": {
+                "id": "11859261",
+                "firstName": "Val",
+                "gender": "female",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/2VUOZYFRV110A5MJ.jpg"
+                }
+              },
+              "visibility": "public"
+            },
+            "followers": {
+              "count": 12
+            },
+            "listItems": {
+              "count": 181,
+              "items": [
+                {
+                  "id": "v5753753b498eeb535c53aed5",
+                  "createdAt": 1497902737
+                }
+              ]
+            }
+          },
+          {
+            "id": "5ad17ea81b0ea50720d11171",
+            "name": "🇨🇦 (Toronto • Bars)",
+            "description": "",
+            "type": "others",
+            "user": {
+              "id": "396427744",
+              "firstName": "Rachel",
+              "lastName": "Cheng",
+              "gender": "female",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/396427744_RZjrb2x9_yrdYkE9WTcNE2GEsIWhjskBExYjQo0hRUnNVsmcmGkxwJkZoBpHIpRyiy5DS5Z6q.jpg"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/ahraycho/list/-toronto--bars",
+            "canonicalUrl": "https://foursquare.com/ahraycho/list/-toronto--bars",
+            "createdAt": 1523678888,
+            "updatedAt": 1552831637,
+            "followers": {
+              "count": 1
+            },
+            "listItems": {
+              "count": 62,
+              "items": [
+                {
+                  "id": "v5753753b498eeb535c53aed5",
+                  "createdAt": 1523679046
+                }
+              ]
+            }
+          },
+          {
+            "id": "5780f252498ef15a98df8156",
+            "name": "T.O Curated By Phil J",
+            "description": "",
+            "type": "others",
+            "user": {
+              "id": "2097870",
+              "firstName": "Philippe",
+              "lastName": "Jean",
+              "gender": "male",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/2097870_ZE3uaYOc_MCZxTtU0rUxLPiWMw98uq481R4vtBguPQ1esqzJuLfpcHFQP1I9_jFabzDuwqHCi.jpg"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/philippe_pj/list/to-curated-by-phil-j",
+            "canonicalUrl": "https://foursquare.com/philippe_pj/list/to-curated-by-phil-j",
+            "createdAt": 1468068434,
+            "updatedAt": 1549919462,
+            "followers": {
+              "count": 8
+            },
+            "listItems": {
+              "count": 77,
+              "items": [
+                {
+                  "id": "v5753753b498eeb535c53aed5",
+                  "createdAt": 1494715650
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "hours": {
+    "status": "Closed until 5:00 PM",
+    "richStatus": {
+      "entities": [],
+      "text": "Closed until 5:00 PM"
+    },
+    "isOpen": false,
+    "isLocalHoliday": false,
+    "dayData": [],
+    "timeframes": [
+      {
+        "days": "Mon–Sun",
+        "includesToday": true,
+        "open": [
+          {
+            "renderedTime": "5:00 PM–2:00 AM"
+          }
+        ],
+        "segments": []
+      }
+    ]
+  },
+  "popular": {
+    "isOpen": false,
+    "isLocalHoliday": false,
+    "timeframes": [
+      {
+        "days": "Today",
+        "includesToday": true,
+        "open": [
+          {
+            "renderedTime": "5:00 PM–1:00 AM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Thu",
+        "open": [
+          {
+            "renderedTime": "5:00 PM–Midnight"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Fri",
+        "open": [
+          {
+            "renderedTime": "5:00 PM–1:00 AM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Sat",
+        "open": [
+          {
+            "renderedTime": "3:00 PM–2:00 AM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Sun",
+        "open": [
+          {
+            "renderedTime": "3:00 PM–11:00 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Mon",
+        "open": [
+          {
+            "renderedTime": "6:00 PM–Midnight"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Tue",
+        "open": [
+          {
+            "renderedTime": "7:00 PM–Midnight"
+          }
+        ],
+        "segments": []
+      }
+    ]
+  },
+  "pageUpdates": {
+    "count": 0,
+    "items": []
+  },
+  "inbox": {
+    "count": 0,
+    "items": []
+  },
+  "attributes": {
+    "groups": [
+      {
+        "type": "price",
+        "name": "Price",
+        "summary": "$$",
+        "count": 1,
+        "items": [
+          {
+            "displayName": "Price",
+            "displayValue": "$$",
+            "priceTier": 2
+          }
+        ]
+      },
+      {
+        "type": "payments",
+        "name": "Credit Cards",
+        "summary": "Credit Cards",
+        "count": 5,
+        "items": [
+          {
+            "displayName": "Credit Cards",
+            "displayValue": "Yes"
+          }
+        ]
+      },
+      {
+        "type": "outdoorSeating",
+        "name": "Outdoor Seating",
+        "count": 1,
+        "items": [
+          {
+            "displayName": "Outdoor Seating",
+            "displayValue": "No"
+          }
+        ]
+      },
+      {
+        "type": "drinks",
+        "name": "Drinks",
+        "summary": "Beer & Full Bar",
+        "count": 5,
+        "items": [
+          {
+            "displayName": "Beer",
+            "displayValue": "Beer"
+          },
+          {
+            "displayName": "Full Bar",
+            "displayValue": "Full Bar"
+          }
+        ]
+      }
+    ]
+  },
+  "bestPhoto": {
+    "id": "58cee194951e7d532b421a89",
+    "createdAt": 1489953172,
+    "source": {
+      "name": "Foursquare for iOS",
+      "url": "https://foursquare.com/download/#/iphone"
+    },
+    "prefix": "https://fastly.4sqi.net/img/general/",
+    "suffix": "/61949_DnxhPZgwasnb9DP0vaeVea0LV2tI-rJJz5Q-NLFBe3o.jpg",
+    "width": 1920,
+    "height": 1440,
+    "visibility": "public"
+  },
+  "colors": {
+    "highlightColor": {
+      "photoId": "58cee194951e7d532b421a89",
+      "value": -15200240
+    },
+    "highlightTextColor": {
+      "photoId": "58cee194951e7d532b421a89",
+      "value": -1
+    },
+    "algoVersion": 3
+  }
+}

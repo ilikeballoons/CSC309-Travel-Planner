@@ -1,0 +1,778 @@
+{
+  "id": "4f7891c7e4b0b9643b73e08d",
+  "name": "Bellwoods Brewery",
+  "contact": {
+    "phone": "4165354586",
+    "formattedPhone": "(416) 535-4586",
+    "twitter": "bellwoodsbeer",
+    "instagram": "bellwoodsbeer",
+    "facebook": "114582535293202",
+    "facebookUsername": "BellwoodsBrewery",
+    "facebookName": "Bellwoods Brewery"
+  },
+  "location": {
+    "address": "124 Ossington Ave",
+    "crossStreet": "at Argyle St",
+    "lat": 43.647097254598236,
+    "lng": -79.41995537873463,
+    "labeledLatLngs": [
+      {
+        "label": "display",
+        "lat": 43.647097254598236,
+        "lng": -79.41995537873463
+      }
+    ],
+    "postalCode": "M6J 2Z5",
+    "cc": "CA",
+    "city": "Toronto",
+    "state": "ON",
+    "country": "Canada",
+    "formattedAddress": [
+      "124 Ossington Ave (at Argyle St)",
+      "Toronto ON M6J 2Z5",
+      "Canada"
+    ]
+  },
+  "canonicalUrl": "https://foursquare.com/v/bellwoods-brewery/4f7891c7e4b0b9643b73e08d",
+  "categories": [
+    {
+      "id": "50327c8591d4c4b30a586d5d",
+      "name": "Brewery",
+      "pluralName": "Breweries",
+      "shortName": "Brewery",
+      "icon": {
+        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/brewery_",
+        "suffix": ".png"
+      },
+      "primary": true
+    },
+    {
+      "id": "56aa371ce4b08b9a8d57356c",
+      "name": "Beer Bar",
+      "pluralName": "Beer Bars",
+      "shortName": "Beer Bar",
+      "icon": {
+        "prefix": "https://ss3.4sqi.net/img/categories_v2/nightlife/pub_",
+        "suffix": ".png"
+      }
+    }
+  ],
+  "verified": false,
+  "stats": {
+    "tipCount": 115
+  },
+  "url": "http://bellwoodsbrewery.com",
+  "price": {
+    "tier": 3,
+    "message": "Expensive",
+    "currency": "$"
+  },
+  "likes": {
+    "count": 479,
+    "groups": [
+      {
+        "type": "others",
+        "count": 479,
+        "items": []
+      }
+    ],
+    "summary": "479 Likes"
+  },
+  "dislike": false,
+  "ok": false,
+  "rating": 9.4,
+  "ratingColor": "00B551",
+  "ratingSignals": 601,
+  "menu": {
+    "type": "Menu",
+    "label": "Menu",
+    "anchor": "View Menu",
+    "url": "http://bellwoodsbrewery.com/food/",
+    "mobileUrl": "http://bellwoodsbrewery.com/food/",
+    "externalUrl": "http://bellwoodsbrewery.com/food/"
+  },
+  "allowMenuUrlEdit": true,
+  "beenHere": {
+    "count": 0,
+    "unconfirmedCount": 0,
+    "marked": false,
+    "lastCheckinExpiredAt": 0
+  },
+  "specials": {
+    "count": 0,
+    "items": []
+  },
+  "photos": {
+    "count": 1063,
+    "groups": [
+      {
+        "type": "checkin",
+        "name": "Friends' check-in photos",
+        "count": 0,
+        "items": []
+      },
+      {
+        "type": "venue",
+        "name": "Venue photos",
+        "count": 1063,
+        "items": [
+          {
+            "id": "51d05963498e0a9f1c2e0753",
+            "createdAt": 1372608867,
+            "source": {
+              "name": "Untappd",
+              "url": "https://untappd.com"
+            },
+            "prefix": "https://fastly.4sqi.net/img/general/",
+            "suffix": "/7633948_COf1LSQuzFne2wk4AsB42Q_e9U4jpGniBQ_dVSPQKU8",
+            "width": 640,
+            "height": 640,
+            "user": {
+              "id": "7633948",
+              "firstName": "Chris",
+              "lastName": "Conway",
+              "gender": "male",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/HPUCLANYQ4FVGYTJ.png"
+              }
+            },
+            "visibility": "public"
+          }
+        ]
+      }
+    ],
+    "summary": "0 photos"
+  },
+  "reasons": {
+    "count": 1,
+    "items": [
+      {
+        "summary": "Lots of people like this place",
+        "type": "general",
+        "reasonName": "rawLikesReason"
+      }
+    ]
+  },
+  "hereNow": {
+    "count": 0,
+    "summary": "Nobody here",
+    "groups": []
+  },
+  "createdAt": 1333301703,
+  "tips": {
+    "count": 115,
+    "groups": [
+      {
+        "type": "others",
+        "name": "All tips",
+        "count": 115,
+        "items": [
+          {
+            "id": "4f88c712e4b0e6f347f2ee4e",
+            "createdAt": 1334363922,
+            "text": "Come for the Toil and Trouble Dubbel, then have a Witchshark IIPA, and never leave. Closest thing to Dieu du Ciel in the city!",
+            "type": "user",
+            "canonicalUrl": "https://foursquare.com/item/4f88c712e4b0e6f347f2ee4e",
+            "likes": {
+              "count": 4,
+              "groups": [
+                {
+                  "type": "others",
+                  "count": 4,
+                  "items": [
+                    {
+                      "id": "505977",
+                      "firstName": "Kyle",
+                      "lastName": "F",
+                      "gender": "male",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/4DQGT0DC4VLUYTJ2.jpg"
+                      }
+                    },
+                    {
+                      "id": "6133451",
+                      "firstName": "fronx",
+                      "gender": "none",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/6133451-3QE5XNFBKTTJGSAR.jpg"
+                      }
+                    },
+                    {
+                      "id": "12058050",
+                      "firstName": "JLawrence",
+                      "gender": "male",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/M2GXQTZGABXZYYSA.jpg"
+                      }
+                    },
+                    {
+                      "id": "438592",
+                      "firstName": "Reinaldo",
+                      "lastName": "Calcaño",
+                      "gender": "male",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/JBCPGK2UAUL52JTL.jpg"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "summary": "4 likes"
+            },
+            "logView": true,
+            "agreeCount": 4,
+            "disagreeCount": 0,
+            "todo": {
+              "count": 1
+            },
+            "user": {
+              "id": "16048591",
+              "firstName": "Sara",
+              "lastName": "Vee",
+              "gender": "female",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/16048591-DKJGFNDTU0F44CI4.jpg"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "shortUrl": "http://4sq.com/Hy1ARW",
+  "timeZone": "America/Toronto",
+  "listed": {
+    "count": 642,
+    "groups": [
+      {
+        "type": "others",
+        "name": "Lists from other people",
+        "count": 642,
+        "items": [
+          {
+            "id": "58f67a60eb645b091dda7a88",
+            "name": "Travel Guide to Toronto",
+            "description": "",
+            "type": "others",
+            "user": {
+              "id": "23438729",
+              "firstName": "Foursquare City Guide",
+              "gender": "none",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/23438729-TODURDIUDUMY4JF5.png"
+              },
+              "type": "page"
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/foursquare/list/travel-guide-to-toronto",
+            "canonicalUrl": "https://foursquare.com/foursquare/list/travel-guide-to-toronto",
+            "createdAt": 1492548192,
+            "updatedAt": 1501875858,
+            "photo": {
+              "id": "4fb7b8abe4b059d97a396b34",
+              "createdAt": 1337440427,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/f_6UEZ_lcC1umak34XAwqlqbx5_O8xt2y7QrxyfO0Kk.jpg",
+              "width": 720,
+              "height": 540,
+              "user": {
+                "id": "21559731",
+                "firstName": "Irena",
+                "lastName": "Grokha",
+                "gender": "female",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/YUEPFXCL5SI2HHUH.jpg"
+                }
+              },
+              "visibility": "public"
+            },
+            "logView": true,
+            "followers": {
+              "count": 101
+            },
+            "listItems": {
+              "count": 33,
+              "items": [
+                {
+                  "id": "t575c6eee498e394d63b9184f",
+                  "createdAt": 1492552537,
+                  "photo": {
+                    "id": "51c78679498e94fd086d8f56",
+                    "createdAt": 1372030585,
+                    "prefix": "https://igx.4sqi.net/img/general/",
+                    "suffix": "/417368_PR6gVxGGpWnzc8CBo30snBhPjbs_YDsx6f4JCRzACjg.jpg",
+                    "width": 960,
+                    "height": 543,
+                    "user": {
+                      "id": "417368",
+                      "firstName": "Daniel",
+                      "lastName": "Devlin",
+                      "gender": "male",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/417368-HUL0QRX3FFSX0ZYS.jpg"
+                      }
+                    },
+                    "visibility": "public"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "4e49e5b31fc7a73d0db3e526",
+            "name": "Toronto's Best Specialty Beer Bars",
+            "description": "The best places in Toronto to get great beers, whether they be imported from Europe, or craft brews from around Toronto or Ontario.",
+            "type": "others",
+            "user": {
+              "id": "2735478",
+              "firstName": "Ryan",
+              "lastName": "Bradley",
+              "gender": "male",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/URSEXUGKN04XTXCT.jpg"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/rbradley90/list/torontos-best-specialty-beer-bars",
+            "canonicalUrl": "https://foursquare.com/rbradley90/list/torontos-best-specialty-beer-bars",
+            "createdAt": 1313465779,
+            "updatedAt": 1498356009,
+            "photo": {
+              "id": "4f568dcde4b0d7df87d4d360",
+              "createdAt": 1331072461,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/uL0PMpFRoeILFNPkg0ENOUtgOUdP8Yomjmc1W_C3-m4.jpg",
+              "width": 540,
+              "height": 540,
+              "user": {
+                "id": "1314394",
+                "firstName": "Lori",
+                "lastName": "Newton",
+                "gender": "female",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/R45FCGOCJIJOZWEH.png"
+                }
+              },
+              "visibility": "public"
+            },
+            "followers": {
+              "count": 30
+            },
+            "listItems": {
+              "count": 24,
+              "items": [
+                {
+                  "id": "v4f7891c7e4b0b9643b73e08d",
+                  "createdAt": 1336156329
+                }
+              ]
+            }
+          },
+          {
+            "id": "4f8ca54ce4b04a16decbf7e0",
+            "name": "Toronto's Best Patios",
+            "description": "A list of bars and restaurants with amazing patios.",
+            "type": "others",
+            "user": {
+              "id": "63742",
+              "firstName": "Daryl",
+              "lastName": "F.",
+              "gender": "male",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/63742_1259161914772.jpg"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/darylfritz/list/torontos-best-patios",
+            "canonicalUrl": "https://foursquare.com/darylfritz/list/torontos-best-patios",
+            "createdAt": 1334617420,
+            "updatedAt": 1396240947,
+            "photo": {
+              "id": "4f775737e4b055c7609145d1",
+              "createdAt": 1333221175,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/eRXZEgwtMc_4jKU3KUp2Ia5z-S2CKcvmXcMlBKl6cFw.jpg",
+              "width": 540,
+              "height": 720,
+              "user": {
+                "id": "19582852",
+                "firstName": "Ashley",
+                "lastName": "Carnegie",
+                "gender": "female",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/K0IMPFJVMXB3DXP5.jpg"
+                }
+              },
+              "visibility": "public"
+            },
+            "followers": {
+              "count": 36
+            },
+            "listItems": {
+              "count": 45,
+              "items": [
+                {
+                  "id": "v4f7891c7e4b0b9643b73e08d",
+                  "createdAt": 1339427400,
+                  "photo": {
+                    "id": "4fd51593e4b02bec73585552",
+                    "createdAt": 1339364755,
+                    "prefix": "https://fastly.4sqi.net/img/general/",
+                    "suffix": "/C1vP3-qym3VPTZjt3e3J2Qkm6gJGK5w5KpRdUdiZYVg.jpg",
+                    "width": 612,
+                    "height": 612,
+                    "user": {
+                      "id": "275807",
+                      "firstName": "Cher",
+                      "lastName": "W",
+                      "gender": "female",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/KRSF4X3VUEL135CI.jpg"
+                      }
+                    },
+                    "visibility": "public"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "4e4ec1ba52b1e893ad515b59",
+            "name": "D.C. City Guide",
+            "description": "For more on what D.C. has to offer, check out the official AskMen D.C. City Guide:\nhttp://www.askmen.com/washington_dc/",
+            "entities": [
+              {
+                "indices": [
+                  83,
+                  119
+                ],
+                "type": "url",
+                "object": {
+                  "url": "http://www.askmen.com/washington_dc/"
+                }
+              }
+            ],
+            "type": "others",
+            "user": {
+              "id": "311503",
+              "firstName": "AskMen",
+              "gender": "none",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/W12HFINBWKQZJ15Z.jpg"
+              },
+              "type": "page"
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/askmen/list/dc-city-guide",
+            "canonicalUrl": "https://foursquare.com/askmen/list/dc-city-guide",
+            "createdAt": 1313784250,
+            "updatedAt": 1376996775,
+            "photo": {
+              "id": "4ea5cccb7beb476c71911a05",
+              "createdAt": 1319488715,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/1DDJK0F2KE1J1AOXBFWETNOWN1TH2P2P0DOFM1DDKDASEELA.jpg",
+              "width": 220,
+              "height": 220,
+              "user": {
+                "id": "311503",
+                "firstName": "AskMen",
+                "gender": "none",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/W12HFINBWKQZJ15Z.jpg"
+                },
+                "type": "page"
+              },
+              "visibility": "public"
+            },
+            "logView": true,
+            "followers": {
+              "count": 1395
+            },
+            "listItems": {
+              "count": 125,
+              "items": [
+                {
+                  "id": "v4f7891c7e4b0b9643b73e08d",
+                  "createdAt": 1334931298
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "hours": {
+    "status": "Closed until 5:00 PM",
+    "richStatus": {
+      "entities": [],
+      "text": "Closed until 5:00 PM"
+    },
+    "isOpen": false,
+    "isLocalHoliday": false,
+    "dayData": [],
+    "timeframes": [
+      {
+        "days": "Mon–Wed",
+        "includesToday": true,
+        "open": [
+          {
+            "renderedTime": "5:00 PM–Midnight"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Thu–Fri",
+        "open": [
+          {
+            "renderedTime": "5:00 PM–1:00 AM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Sat",
+        "open": [
+          {
+            "renderedTime": "2:00 PM–1:00 AM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Sun",
+        "open": [
+          {
+            "renderedTime": "2:00 PM–Midnight"
+          }
+        ],
+        "segments": []
+      }
+    ]
+  },
+  "popular": {
+    "isOpen": false,
+    "isLocalHoliday": false,
+    "timeframes": [
+      {
+        "days": "Today",
+        "includesToday": true,
+        "open": [
+          {
+            "renderedTime": "5:00 PM–11:00 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Thu",
+        "open": [
+          {
+            "renderedTime": "5:00 PM–Midnight"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Fri",
+        "open": [
+          {
+            "renderedTime": "2:00 PM–1:00 AM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Sat",
+        "open": [
+          {
+            "renderedTime": "Noon–1:00 AM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Sun",
+        "open": [
+          {
+            "renderedTime": "Noon–10:00 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Mon",
+        "open": [
+          {
+            "renderedTime": "5:00 PM–11:00 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Tue",
+        "open": [
+          {
+            "renderedTime": "5:00 PM–10:00 PM"
+          }
+        ],
+        "segments": []
+      }
+    ]
+  },
+  "pageUpdates": {
+    "count": 0,
+    "items": []
+  },
+  "inbox": {
+    "count": 0,
+    "items": []
+  },
+  "attributes": {
+    "groups": [
+      {
+        "type": "price",
+        "name": "Price",
+        "summary": "$$$",
+        "count": 1,
+        "items": [
+          {
+            "displayName": "Price",
+            "displayValue": "$$$",
+            "priceTier": 3
+          }
+        ]
+      },
+      {
+        "type": "payments",
+        "name": "Credit Cards",
+        "summary": "Credit Cards",
+        "count": 5,
+        "items": [
+          {
+            "displayName": "Credit Cards",
+            "displayValue": "Yes (incl. Visa & MasterCard)"
+          }
+        ]
+      },
+      {
+        "type": "outdoorSeating",
+        "name": "Outdoor Seating",
+        "summary": "Outdoor Seating",
+        "count": 1,
+        "items": [
+          {
+            "displayName": "Outdoor Seating",
+            "displayValue": "Yes"
+          }
+        ]
+      },
+      {
+        "type": "music",
+        "name": "Music",
+        "summary": "Live Music",
+        "count": 3,
+        "items": [
+          {
+            "displayName": "Live Music",
+            "displayValue": "Live Music"
+          }
+        ]
+      },
+      {
+        "type": "wifi",
+        "name": "Wi-Fi",
+        "summary": "Free Wi-Fi",
+        "count": 1,
+        "items": [
+          {
+            "displayName": "Wi-Fi",
+            "displayValue": "Free"
+          }
+        ]
+      },
+      {
+        "type": "serves",
+        "name": "Menus",
+        "summary": "Lunch & Dinner",
+        "count": 8,
+        "items": [
+          {
+            "displayName": "Lunch",
+            "displayValue": "Lunch"
+          },
+          {
+            "displayName": "Dinner",
+            "displayValue": "Dinner"
+          }
+        ]
+      },
+      {
+        "type": "drinks",
+        "name": "Drinks",
+        "summary": "Beer & Full Bar",
+        "count": 5,
+        "items": [
+          {
+            "displayName": "Beer",
+            "displayValue": "Beer"
+          },
+          {
+            "displayName": "Full Bar",
+            "displayValue": "Full Bar"
+          }
+        ]
+      }
+    ]
+  },
+  "bestPhoto": {
+    "id": "51d05963498e0a9f1c2e0753",
+    "createdAt": 1372608867,
+    "source": {
+      "name": "Untappd",
+      "url": "https://untappd.com"
+    },
+    "prefix": "https://fastly.4sqi.net/img/general/",
+    "suffix": "/7633948_COf1LSQuzFne2wk4AsB42Q_e9U4jpGniBQ_dVSPQKU8",
+    "width": 640,
+    "height": 640,
+    "visibility": "public"
+  },
+  "colors": {
+    "highlightColor": {
+      "photoId": "51d05963498e0a9f1c2e0753",
+      "value": -2037528
+    },
+    "highlightTextColor": {
+      "photoId": "51d05963498e0a9f1c2e0753",
+      "value": -16777216
+    },
+    "algoVersion": 3
+  }
+}

@@ -1,0 +1,638 @@
+{
+    "meta": {
+        "code": 200,
+        "requestId": "5c92a30b9fb6b73b70e2e252"
+    },
+    "response": {
+        "suggestedFilters": {
+            "header": "Tap to show:",
+            "filters": [
+                {
+                    "name": "Open now",
+                    "key": "openNow"
+                }
+            ]
+        },
+        "geocode": {
+            "what": "",
+            "where": "toronto on",
+            "center": {
+                "lat": 43.70011,
+                "lng": -79.4163
+            },
+            "displayString": "Toronto, ON, Canada",
+            "cc": "CA",
+            "geometry": {
+                "bounds": {
+                    "ne": {
+                        "lat": 43.855547992182615,
+                        "lng": -79.1040939249301
+                    },
+                    "sw": {
+                        "lat": 43.58464308210616,
+                        "lng": -79.64745469478004
+                    }
+                }
+            },
+            "slug": "toronto",
+            "longId": "72057594044095801"
+        },
+        "headerLocation": "Toronto",
+        "headerFullLocation": "Toronto",
+        "headerLocationGranularity": "city",
+        "totalResults": 147,
+        "suggestedBounds": {
+            "ne": {
+                "lat": 43.67079186856613,
+                "lng": -79.35014621400977
+            },
+            "sw": {
+                "lat": 43.64036876011143,
+                "lng": -79.44351084695192
+            }
+        },
+        "groups": [
+            {
+                "type": "Recommended Places",
+                "name": "recommended",
+                "items": [
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "4df796f1aeb7da11e1a974d4",
+                            "name": "SOMA chocolatemaker",
+                            "location": {
+                                "address": "443 King St. W",
+                                "lat": 43.64532829235515,
+                                "lng": -79.39571438648944,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.64532829235515,
+                                        "lng": -79.39571438648944
+                                    }
+                                ],
+                                "postalCode": "M5V 1K4",
+                                "cc": "CA",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "443 King St. W",
+                                    "Toronto ON M5V 1K4",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d1d0941735",
+                                    "name": "Dessert Shop",
+                                    "pluralName": "Dessert Shops",
+                                    "shortName": "Desserts",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/dessert_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-4df796f1aeb7da11e1a974d4-0"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "4ad4c05ef964a520cbf620e3",
+                            "name": "Steam Whistle Brewing",
+                            "location": {
+                                "address": "255 Bremner Blvd.",
+                                "crossStreet": "btwn Rees St. & Simcoe St.",
+                                "lat": 43.641751628677554,
+                                "lng": -79.38708862583252,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.641751628677554,
+                                        "lng": -79.38708862583252
+                                    }
+                                ],
+                                "postalCode": "M5V 3M9",
+                                "cc": "CA",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "255 Bremner Blvd. (btwn Rees St. & Simcoe St.)",
+                                    "Toronto ON M5V 3M9",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "50327c8591d4c4b30a586d5d",
+                                    "name": "Brewery",
+                                    "pluralName": "Breweries",
+                                    "shortName": "Brewery",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/brewery_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            },
+                            "venuePage": {
+                                "id": "33864025"
+                            }
+                        },
+                        "referralId": "e-0-4ad4c05ef964a520cbf620e3-1"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "4f7891c7e4b0b9643b73e08d",
+                            "name": "Bellwoods Brewery",
+                            "location": {
+                                "address": "124 Ossington Ave",
+                                "crossStreet": "at Argyle St",
+                                "lat": 43.647097254598236,
+                                "lng": -79.41995537873463,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.647097254598236,
+                                        "lng": -79.41995537873463
+                                    }
+                                ],
+                                "postalCode": "M6J 2Z5",
+                                "cc": "CA",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "124 Ossington Ave (at Argyle St)",
+                                    "Toronto ON M6J 2Z5",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "50327c8591d4c4b30a586d5d",
+                                    "name": "Brewery",
+                                    "pluralName": "Breweries",
+                                    "shortName": "Brewery",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/brewery_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-4f7891c7e4b0b9643b73e08d-2"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "4ad4c062f964a520fbf720e3",
+                            "name": "St. Lawrence Market (South Building)",
+                            "location": {
+                                "address": "93 Front St E",
+                                "crossStreet": "at Lower Jarvis St",
+                                "lat": 43.64874320223593,
+                                "lng": -79.37159697627527,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.64874320223593,
+                                        "lng": -79.37159697627527
+                                    }
+                                ],
+                                "postalCode": "M5E 1C3",
+                                "cc": "CA",
+                                "neighborhood": "St. Lawrence",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "93 Front St E (at Lower Jarvis St)",
+                                    "Toronto ON M5E 1C3",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d1fa941735",
+                                    "name": "Farmers Market",
+                                    "pluralName": "Farmers Markets",
+                                    "shortName": "Farmer's Market",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/food_farmersmarket_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-4ad4c062f964a520fbf720e3-3"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "4ad4c05ef964a520daf620e3",
+                            "name": "Art Gallery of Ontario",
+                            "location": {
+                                "address": "317 Dundas St W",
+                                "crossStreet": "at Beverley St",
+                                "lat": 43.654002860337386,
+                                "lng": -79.39292172707437,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.654002860337386,
+                                        "lng": -79.39292172707437
+                                    }
+                                ],
+                                "postalCode": "M5T 1G4",
+                                "cc": "CA",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "317 Dundas St W (at Beverley St)",
+                                    "Toronto ON M5T 1G4",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d1e2931735",
+                                    "name": "Art Gallery",
+                                    "pluralName": "Art Galleries",
+                                    "shortName": "Art Gallery",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/artgallery_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            },
+                            "venuePage": {
+                                "id": "33853777"
+                            }
+                        },
+                        "referralId": "e-0-4ad4c05ef964a520daf620e3-4"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "5753753b498eeb535c53aed5",
+                            "name": "The Greater Good Bar",
+                            "location": {
+                                "address": "229 Geary St",
+                                "crossStreet": "at Dufferin St",
+                                "lat": 43.669409,
+                                "lng": -79.439267,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.669409,
+                                        "lng": -79.439267
+                                    }
+                                ],
+                                "postalCode": "M6H 2C1",
+                                "cc": "CA",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "229 Geary St (at Dufferin St)",
+                                    "Toronto ON M6H 2C1",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d116941735",
+                                    "name": "Bar",
+                                    "pluralName": "Bars",
+                                    "shortName": "Bar",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/nightlife/pub_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-5753753b498eeb535c53aed5-5"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "5321f4d9e4b07946702e6e08",
+                            "name": "Byblos Toronto",
+                            "location": {
+                                "address": "11 Duncan St. 1st Floor",
+                                "lat": 43.647615054171766,
+                                "lng": -79.3883810317138,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.647615054171766,
+                                        "lng": -79.3883810317138
+                                    }
+                                ],
+                                "postalCode": "M5V 3M2",
+                                "cc": "CA",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "11 Duncan St. 1st Floor",
+                                    "Toronto ON M5V 3M2",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d1c0941735",
+                                    "name": "Mediterranean Restaurant",
+                                    "pluralName": "Mediterranean Restaurants",
+                                    "shortName": "Mediterranean",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/mediterranean_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-5321f4d9e4b07946702e6e08-6"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "529612de11d2ab526191ccc9",
+                            "name": "Pai",
+                            "location": {
+                                "address": "18 Duncan St",
+                                "crossStreet": "Adelaide and Duncan",
+                                "lat": 43.64792310735613,
+                                "lng": -79.38857932631602,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.64792310735613,
+                                        "lng": -79.38857932631602
+                                    }
+                                ],
+                                "postalCode": "M5H 3G6",
+                                "cc": "CA",
+                                "neighborhood": "Entertainment District",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "18 Duncan St (Adelaide and Duncan)",
+                                    "Toronto ON M5H 3G6",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d149941735",
+                                    "name": "Thai Restaurant",
+                                    "pluralName": "Thai Restaurants",
+                                    "shortName": "Thai",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/thai_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-529612de11d2ab526191ccc9-7"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "56437cac498e5a88165d13ce",
+                            "name": "Porchetta & Co",
+                            "location": {
+                                "address": "545 King St W",
+                                "lat": 43.64466404008139,
+                                "lng": -79.39881259826922,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.64466404008139,
+                                        "lng": -79.39881259826922
+                                    }
+                                ],
+                                "postalCode": "M5V 1M1",
+                                "cc": "CA",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "545 King St W",
+                                    "Toronto ON M5V 1M1",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d1c5941735",
+                                    "name": "Sandwich Place",
+                                    "pluralName": "Sandwich Places",
+                                    "shortName": "Sandwiches",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/deli_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-56437cac498e5a88165d13ce-8"
+                    },
+                    {
+                        "reasons": {
+                            "count": 0,
+                            "items": [
+                                {
+                                    "summary": "This spot is popular",
+                                    "type": "general",
+                                    "reasonName": "globalInteractionReason"
+                                }
+                            ]
+                        },
+                        "venue": {
+                            "id": "57e0745a498ea809dbf75f68",
+                            "name": "Souk Tabule",
+                            "location": {
+                                "address": "494 Front St E",
+                                "crossStreet": "at Bayview",
+                                "lat": 43.65375556880743,
+                                "lng": -79.35439006096168,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 43.65375556880743,
+                                        "lng": -79.35439006096168
+                                    }
+                                ],
+                                "cc": "CA",
+                                "neighborhood": "Canary District",
+                                "city": "Toronto",
+                                "state": "ON",
+                                "country": "Canada",
+                                "formattedAddress": [
+                                    "494 Front St E (at Bayview)",
+                                    "Toronto ON",
+                                    "Canada"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d1c0941735",
+                                    "name": "Mediterranean Restaurant",
+                                    "pluralName": "Mediterranean Restaurants",
+                                    "shortName": "Mediterranean",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/mediterranean_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "photos": {
+                                "count": 0,
+                                "groups": []
+                            }
+                        },
+                        "referralId": "e-0-57e0745a498ea809dbf75f68-9"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,664 @@
+{
+  "id": "4ad4c05ef964a520daf620e3",
+  "name": "Art Gallery of Ontario",
+  "contact": {
+    "phone": "4169796648",
+    "formattedPhone": "(416) 979-6648",
+    "twitter": "agotoronto",
+    "instagram": "agotoronto",
+    "facebook": "7834249143",
+    "facebookUsername": "AGOToronto",
+    "facebookName": "AGO - Art Gallery of Ontario"
+  },
+  "location": {
+    "address": "317 Dundas St W",
+    "crossStreet": "at Beverley St",
+    "lat": 43.654002860337386,
+    "lng": -79.39292172707437,
+    "labeledLatLngs": [
+      {
+        "label": "display",
+        "lat": 43.654002860337386,
+        "lng": -79.39292172707437
+      }
+    ],
+    "postalCode": "M5T 1G4",
+    "cc": "CA",
+    "city": "Toronto",
+    "state": "ON",
+    "country": "Canada",
+    "formattedAddress": [
+      "317 Dundas St W (at Beverley St)",
+      "Toronto ON M5T 1G4",
+      "Canada"
+    ]
+  },
+  "canonicalUrl": "https://foursquare.com/v/art-gallery-of-ontario/4ad4c05ef964a520daf620e3",
+  "categories": [
+    {
+      "id": "4bf58dd8d48988d1e2931735",
+      "name": "Art Gallery",
+      "pluralName": "Art Galleries",
+      "shortName": "Art Gallery",
+      "icon": {
+        "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/artgallery_",
+        "suffix": ".png"
+      },
+      "primary": true
+    },
+    {
+      "id": "4bf58dd8d48988d18f941735",
+      "name": "Art Museum",
+      "pluralName": "Art Museums",
+      "shortName": "Art Museum",
+      "icon": {
+        "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/museum_art_",
+        "suffix": ".png"
+      }
+    }
+  ],
+  "verified": true,
+  "stats": {
+    "tipCount": 208
+  },
+  "url": "http://www.ago.net",
+  "hasMenu": true,
+  "likes": {
+    "count": 1289,
+    "groups": [
+      {
+        "type": "others",
+        "count": 1289,
+        "items": []
+      }
+    ],
+    "summary": "1289 Likes"
+  },
+  "dislike": false,
+  "ok": false,
+  "rating": 9.4,
+  "ratingColor": "00B551",
+  "ratingSignals": 1553,
+  "menu": {
+    "type": "Prices",
+    "label": "Prices",
+    "anchor": "View Prices",
+    "url": "https://foursquare.com/v/art-gallery-of-ontario/4ad4c05ef964a520daf620e3/menu",
+    "mobileUrl": "https://foursquare.com/v/4ad4c05ef964a520daf620e3/device_menu"
+  },
+  "allowMenuUrlEdit": true,
+  "beenHere": {
+    "count": 0,
+    "unconfirmedCount": 0,
+    "marked": false,
+    "lastCheckinExpiredAt": 0
+  },
+  "specials": {
+    "count": 0,
+    "items": []
+  },
+  "photos": {
+    "count": 2322,
+    "groups": [
+      {
+        "type": "checkin",
+        "name": "Friends' check-in photos",
+        "count": 0,
+        "items": []
+      },
+      {
+        "type": "venue",
+        "name": "Venue photos",
+        "count": 2322,
+        "items": [
+          {
+            "id": "50d7524de4b0275bdb0c3bc1",
+            "createdAt": 1356288589,
+            "source": {
+              "name": "Foursquare for iOS",
+              "url": "https://foursquare.com/download/#/iphone"
+            },
+            "prefix": "https://fastly.4sqi.net/img/general/",
+            "suffix": "/2950888_L0JW2fEdxoFie0kKrZW38TkB-iEaqdv4m2Qf7g5EHSo.jpg",
+            "width": 540,
+            "height": 720,
+            "user": {
+              "id": "2950888",
+              "firstName": "Wine & Food",
+              "lastName": "Travel",
+              "gender": "female",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/W0CRX3G0XE3T5U0L.jpg"
+              }
+            },
+            "visibility": "public"
+          }
+        ]
+      }
+    ],
+    "summary": "0 photos"
+  },
+  "venuePage": {
+    "id": "33853777"
+  },
+  "reasons": {
+    "count": 1,
+    "items": [
+      {
+        "summary": "Lots of people like this place",
+        "type": "general",
+        "reasonName": "rawLikesReason"
+      }
+    ]
+  },
+  "description": "We're the Art Gallery of Ontario - Bringing people and art together and boldy declaring that ART MATTERS!",
+  "storeId": "",
+  "page": {
+    "user": {
+      "id": "33853777",
+      "firstName": "Art Gallery of Ontario",
+      "gender": "none",
+      "photo": {
+        "prefix": "https://fastly.4sqi.net/img/user/",
+        "suffix": "/33853777-FLEIA22QDGN2VBLT.gif"
+      },
+      "type": "venuePage",
+      "venue": {
+        "id": "4ad4c05ef964a520daf620e3"
+      },
+      "tips": {
+        "count": 5
+      },
+      "lists": {
+        "groups": [
+          {
+            "type": "created",
+            "count": 2,
+            "items": []
+          }
+        ]
+      },
+      "homeCity": "Toronto, ON",
+      "bio": "",
+      "contact": {}
+    }
+  },
+  "hereNow": {
+    "count": 0,
+    "summary": "Nobody here",
+    "groups": []
+  },
+  "createdAt": 1255456862,
+  "tips": {
+    "count": 208,
+    "groups": [
+      {
+        "type": "others",
+        "name": "All tips",
+        "count": 208,
+        "items": [
+          {
+            "id": "4f05d2189adf79d87398ecf8",
+            "createdAt": 1325781528,
+            "text": "Did you know that the AGO's spiral staircase, designed by Frank Gehry, is purposefully narrow so that people could bump into each other and fall in love. Ahhh!",
+            "type": "user",
+            "canonicalUrl": "https://foursquare.com/item/4f05d2189adf79d87398ecf8",
+            "likes": {
+              "count": 25,
+              "groups": [
+                {
+                  "type": "others",
+                  "count": 25,
+                  "items": []
+                }
+              ],
+              "summary": "25 likes"
+            },
+            "logView": true,
+            "editedAt": 1372872636,
+            "agreeCount": 33,
+            "disagreeCount": 0,
+            "lastVoteText": "Upvoted 2 weeks ago",
+            "lastUpvoteTimestamp": 1551803642,
+            "todo": {
+              "count": 1
+            },
+            "user": {
+              "id": "13980167",
+              "firstName": "Art Gallery of Ontario",
+              "gender": "none",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/13980167-31YTZ5T0LC4GBK33.gif"
+              },
+              "type": "page"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "shortUrl": "http://4sq.com/5qXajd",
+  "timeZone": "America/Toronto",
+  "listed": {
+    "count": 816,
+    "groups": [
+      {
+        "type": "others",
+        "name": "Lists from other people",
+        "count": 816,
+        "items": [
+          {
+            "id": "4ee5e760722e08826104a20c",
+            "name": "Toronto, Canada",
+            "description": "",
+            "type": "others",
+            "user": {
+              "id": "5381506",
+              "firstName": "Rafal",
+              "lastName": "Wieczorek",
+              "gender": "male",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/X4QSQFE4NNLNGHTZ.jpg"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/mycognitive/list/toronto-canada",
+            "canonicalUrl": "https://foursquare.com/mycognitive/list/toronto-canada",
+            "createdAt": 1323689824,
+            "updatedAt": 1395807773,
+            "photo": {
+              "id": "4e41d744a8092520554ea170",
+              "createdAt": 1312937796,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/PEN3YPP3ACRXTVKUYWEZMDM5L2JFJWMZWZ151UZH2TPYVKOH.jpg",
+              "width": 720,
+              "height": 537,
+              "user": {
+                "id": "5080210",
+                "firstName": "Ryan",
+                "lastName": "Caligiuri",
+                "gender": "male",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/5080210-VXYYWMKS5FZMBRWR.jpg"
+                }
+              },
+              "visibility": "public"
+            },
+            "followers": {
+              "count": 123
+            },
+            "listItems": {
+              "count": 114,
+              "items": [
+                {
+                  "id": "v4ad4c05ef964a520daf620e3",
+                  "createdAt": 1323689939
+                },
+                {
+                  "id": "t4e4c2b326284776ee11efaf0",
+                  "createdAt": 1323690137
+                }
+              ]
+            }
+          },
+          {
+            "id": "5009afade4b05322f0de85ca",
+            "name": "T+L's Guide to Stylish Toronto",
+            "description": "Thanks to an infusion of fashion-forward shops and nightlife, inventive restaurants, and top-tier design, Canada's largest city has ganed a new found swagger. Here are our picks. http://tandl.me/aHE",
+            "entities": [
+              {
+                "indices": [
+                  179,
+                  198
+                ],
+                "type": "url",
+                "object": {
+                  "url": "http://tandl.me/aHE"
+                }
+              }
+            ],
+            "type": "others",
+            "user": {
+              "id": "5339676",
+              "firstName": "Travel + Leisure",
+              "gender": "none",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/3MAPUHGXHTC3MWHJ.jpg"
+              },
+              "type": "page"
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/travelleisure/list/tls-guide-to-stylish-toronto",
+            "canonicalUrl": "https://foursquare.com/travelleisure/list/tls-guide-to-stylish-toronto",
+            "createdAt": 1342812077,
+            "updatedAt": 1343250580,
+            "logView": true,
+            "followers": {
+              "count": 146
+            },
+            "listItems": {
+              "count": 18,
+              "items": [
+                {
+                  "id": "t5009b77ee4b053e656f9e11f",
+                  "createdAt": 1342812672
+                }
+              ]
+            }
+          },
+          {
+            "id": "4ed0599fbe7b9eecdff445e3",
+            "name": "Best Children's Entertainment",
+            "description": "Open List >>> Add your fav children's venue(s) from around the globe to this Best Children's Entertainment list by MyTunez.biz",
+            "type": "others",
+            "user": {
+              "id": "1608507",
+              "firstName": "MyTunez.biz",
+              "lastName": ":: Personalized Children's Gifts",
+              "gender": "none",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/RZFEFLRJ2VAIJKAA.png"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": true,
+            "url": "/mytunez/list/best-childrens-entertainment",
+            "canonicalUrl": "https://foursquare.com/mytunez/list/best-childrens-entertainment",
+            "createdAt": 1322277279,
+            "updatedAt": 1539064735,
+            "photo": {
+              "id": "4f4703c7e4b0186351808c18",
+              "createdAt": 1330054087,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/8aJ20LApScvYOaE1Y3YqhvNumhquukusV24K8Iua_qo.jpg",
+              "width": 540,
+              "height": 720,
+              "user": {
+                "id": "9274847",
+                "firstName": "いがため",
+                "gender": "male",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/9274847_BpGozkGM_pY90rTq8ERCjNsPhN6nWgIkSALIruseWYpGWaYCX4gDiun6ynSpK3zeOVzDBeVHX.jpg"
+                }
+              },
+              "visibility": "public"
+            },
+            "followers": {
+              "count": 218
+            },
+            "listItems": {
+              "count": 51,
+              "items": [
+                {
+                  "id": "v4ad4c05ef964a520daf620e3",
+                  "createdAt": 1330227423,
+                  "photo": {
+                    "id": "4f458370e4b0cc9b7ffd7466",
+                    "createdAt": 1329955696,
+                    "prefix": "https://fastly.4sqi.net/img/general/",
+                    "suffix": "/OERuZDu-dIhqlmyKHcudDewnAwaNqNTkfSaydk2-nFI.jpg",
+                    "width": 720,
+                    "height": 540,
+                    "user": {
+                      "id": "14261408",
+                      "firstName": "Catherine",
+                      "lastName": "Slocum",
+                      "gender": "female",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/5RDYMP0C5FBEGXXO.jpg"
+                      }
+                    },
+                    "visibility": "public"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "4f6c998be4b0ca47b01b42ac",
+            "name": "Toronto City Guide #4sqCities",
+            "description": "A collection of tourist attractions and nightlife locales.",
+            "type": "others",
+            "user": {
+              "id": "4171468",
+              "firstName": "Eric",
+              "gender": "male",
+              "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/JL4QWHGVX0KPYW1J.jpg"
+              }
+            },
+            "editable": false,
+            "public": true,
+            "collaborative": false,
+            "url": "/blackstaffer/list/toronto-city-guide-4sqcities",
+            "canonicalUrl": "https://foursquare.com/blackstaffer/list/toronto-city-guide-4sqcities",
+            "createdAt": 1332517259,
+            "updatedAt": 1383004561,
+            "photo": {
+              "id": "4e6a4a0ec65b5bef2852b784",
+              "createdAt": 1315588622,
+              "prefix": "https://fastly.4sqi.net/img/general/",
+              "suffix": "/N3BN5IU4ZSRUBGLB054XT3NLZAMKC0YQME1QJTUOBNVFT5GP.jpg",
+              "width": 720,
+              "height": 537,
+              "user": {
+                "id": "7697236",
+                "firstName": "Whisky Jean",
+                "gender": "male",
+                "photo": {
+                  "prefix": "https://fastly.4sqi.net/img/user/",
+                  "suffix": "/05JIGWW1MI12OK0P.jpg"
+                }
+              },
+              "visibility": "public"
+            },
+            "followers": {
+              "count": 121
+            },
+            "listItems": {
+              "count": 61,
+              "items": [
+                {
+                  "id": "t4e6f3cef922ec4cbd8dc3c1b",
+                  "createdAt": 1332517299,
+                  "photo": {
+                    "id": "4f25b652e4b0d10db1c7af35",
+                    "createdAt": 1327871570,
+                    "prefix": "https://fastly.4sqi.net/img/general/",
+                    "suffix": "/X542ADE2NIUCF3VR1DYWQIF33050LRCSSXUAIBAGGLV4ZQMV.jpg",
+                    "width": 540,
+                    "height": 720,
+                    "user": {
+                      "id": "523049",
+                      "firstName": "MuseumNerd",
+                      "gender": "female",
+                      "photo": {
+                        "prefix": "https://fastly.4sqi.net/img/user/",
+                        "suffix": "/NKTP1R5WZ5LXFN0Z.jpg"
+                      }
+                    },
+                    "visibility": "public"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "hours": {
+    "status": "Open until 8:30 PM",
+    "richStatus": {
+      "entities": [],
+      "text": "Open until 8:30 PM"
+    },
+    "isOpen": true,
+    "isLocalHoliday": false,
+    "dayData": [],
+    "timeframes": [
+      {
+        "days": "Tue, Thu–Sun",
+        "open": [
+          {
+            "renderedTime": "10:00 AM–5:30 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Wed",
+        "includesToday": true,
+        "open": [
+          {
+            "renderedTime": "10:00 AM–8:30 PM"
+          }
+        ],
+        "segments": []
+      }
+    ]
+  },
+  "popular": {
+    "status": "Likely open",
+    "richStatus": {
+      "entities": [],
+      "text": "Likely open"
+    },
+    "isOpen": true,
+    "isLocalHoliday": false,
+    "timeframes": [
+      {
+        "days": "Today",
+        "includesToday": true,
+        "open": [
+          {
+            "renderedTime": "11:00 AM–9:00 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Thu",
+        "open": [
+          {
+            "renderedTime": "11:00 AM–4:00 PM"
+          },
+          {
+            "renderedTime": "7:00 PM–10:00 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Fri",
+        "open": [
+          {
+            "renderedTime": "10:00 AM–8:00 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Sat–Sun",
+        "open": [
+          {
+            "renderedTime": "10:00 AM–6:00 PM"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Mon",
+        "open": [
+          {
+            "renderedTime": "None"
+          }
+        ],
+        "segments": []
+      },
+      {
+        "days": "Tue",
+        "open": [
+          {
+            "renderedTime": "11:00 AM–4:00 PM"
+          }
+        ],
+        "segments": []
+      }
+    ]
+  },
+  "pageUpdates": {
+    "count": 0,
+    "items": []
+  },
+  "inbox": {
+    "count": 0,
+    "items": []
+  },
+  "attributes": {
+    "groups": [
+      {
+        "type": "payments",
+        "name": "Credit Cards",
+        "summary": "Credit Cards",
+        "count": 5,
+        "items": [
+          {
+            "displayName": "Credit Cards",
+            "displayValue": "Yes (incl. American Express)"
+          }
+        ]
+      },
+      {
+        "type": "wifi",
+        "name": "Wi-Fi",
+        "summary": "Free Wi-Fi",
+        "count": 1,
+        "items": [
+          {
+            "displayName": "Wi-Fi",
+            "displayValue": "Free"
+          }
+        ]
+      }
+    ]
+  },
+  "bestPhoto": {
+    "id": "50d7524de4b0275bdb0c3bc1",
+    "createdAt": 1356288589,
+    "source": {
+      "name": "Foursquare for iOS",
+      "url": "https://foursquare.com/download/#/iphone"
+    },
+    "prefix": "https://fastly.4sqi.net/img/general/",
+    "suffix": "/2950888_L0JW2fEdxoFie0kKrZW38TkB-iEaqdv4m2Qf7g5EHSo.jpg",
+    "width": 540,
+    "height": 720,
+    "visibility": "public"
+  },
+  "colors": {
+    "highlightColor": {
+      "photoId": "50d7524de4b0275bdb0c3bc1",
+      "value": -11003904
+    },
+    "highlightTextColor": {
+      "photoId": "50d7524de4b0275bdb0c3bc1",
+      "value": -1
+    },
+    "algoVersion": 3
+  }
+}

@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles'
 import ResetPWButton from './ResetPWButton'
 import AppStore from '../../AppStore'
 import SearchAppBarActions from '../../appbar/SearchAppBarActions'
+import SearchAppBar from '../../appbar/SearchAppBar'
 // import { currencies } from './../../../utils/Fixtures.js'
 
 const styles = theme => ({
@@ -24,7 +25,7 @@ const styles = theme => ({
 class UserProfile extends React.Component {
   constructor () {
     super()
-    SearchAppBarActions.userProfileClose()
+    //SearchAppBarActions.userProfileClose()
     this.state = {
       user: AppStore.getState().user
     }
@@ -49,6 +50,7 @@ class UserProfile extends React.Component {
 
     return (
       <div className={classes.root}>
+        <SearchAppBar page='userProfile'/>
         <div className={classes.header}>
           {/* <Avatar alt='profile picture' className={classes.avatar} /> */}
           <div className={classes.headerText}>

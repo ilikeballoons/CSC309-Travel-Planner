@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles'
 import ResetPWButton from './ResetPWButton'
 import DeleteAccountButton from './DeleteAccountButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
+import ProfilePictureDialog from './ProfilePictureDialog'
 import AppStore from '../../AppStore'
 import UserProfileActions from './UserProfileActions'
 import UserProfileStore from './UserProfileStore'
@@ -62,11 +63,9 @@ const styles = theme => ({
 class UserProfile extends React.Component {
   constructor () {
     super()
-    const { deleteDialogOpen, showEditProfilePictureButton } = UserProfileStore.getState()
     this.state = {
       user: AppStore.getState().user,
-      deleteDialogOpen,
-      showEditProfilePictureButton
+      ...UserProfileStore.getState()
     }
   }
 
@@ -81,18 +80,15 @@ class UserProfile extends React.Component {
   }
 
   updateState = () => {
-    const { deleteDialogOpen, showEditProfilePictureButton } = UserProfileStore.getState()
     this.setState({
       user: AppStore.getState().user,
-      deleteDialogOpen,
-      showEditProfilePictureButton
+      ...UserProfileStore.getState()
     })
   }
 
   render () {
     const { classes } = this.props
-    const { user, showEditProfilePictureButton } = this.state
-    console.log(showEditProfilePictureButton);
+    const { user, showEditProfilePictureButton, showProfilePictureDialog, deleteDialogOpen } = this.state
 
     return (
       <div className={classes.root}>
@@ -106,7 +102,11 @@ class UserProfile extends React.Component {
               onMouseLeave={() => UserProfileActions.toggleEditProfilePictureButton()}
             >
             </Avatar>
-              {showEditProfilePictureButton && <IconButton className={classes.editButton} color='secondary'>
+              {showEditProfilePictureButton &&
+              <IconButton
+                className={classes.editButton}
+                color='secondary'
+                onClick={() => UserProfileActions.toggleEditProfilePictureDialog()}>
                 <EditIcon />
               </IconButton>}
           </div>
@@ -202,7 +202,8 @@ class UserProfile extends React.Component {
             <ResetPWButton />
           </div>
         </div>
-        <ConfirmDeleteDialog />
+        <ConfirmDeleteDialog open={deleteDialogOpen}/>
+        <ProfilePictureDialog open={showProfilePictureDialog} picture={user.profilePicture} />
       </div>
     )
   }

@@ -56,18 +56,17 @@ class Recommendations extends React.Component {
   }
 
   filterRecommendations () {
-    const { preferences } = this.state
+    const { preferences, recommendations } = this.state
     if (!preferences) return RecommendationsStore.getState().recommendations
-    return RecommendationsStore.getState().recommendations.filter(rec => (
-      preferences[rec.category][rec.subcategory]
-    ))
+    console.log(recommendations);
+    return recommendations.filter(rec => preferences[rec.category])//[rec.subcategory])
   }
 
 
 
   render () {
     const { classes } = this.props
-    const { loading, recommendations } = this.state
+    const { loading } = this.state
 
     return loading
     ? <h5>Loading...</h5>
@@ -77,7 +76,7 @@ class Recommendations extends React.Component {
           cellHeight={359}
           className={classes.gridList}
           spacing={10}>
-          {recommendations.map((venue) => {
+          {this.filterRecommendations().map((venue) => {
             const short = shortid.generate()
             venue.id = short
             return <Recommendation data={venue} key={short} />

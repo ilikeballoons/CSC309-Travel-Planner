@@ -5,7 +5,7 @@ import dispatcher from '../../../utils/Dispatcher'
 import ActionTypes from '../../../utils/ActionTypes'
 import { findWithAttribute } from '../../../utils/Utils'
 // import { recommendations } from '../../../utils/Fixtures'
-import { foursquare } from '../../../utils/Utils'
+// import { foursquare } from '../../../utils/Utils'
 import groupedCategories from '../../../utils/GroupedCategories'
 import venues from '../../../utils/JSON/MegaVenue'
 

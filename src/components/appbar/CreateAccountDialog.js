@@ -15,6 +15,7 @@ import SearchAppBarStore from './SearchAppBarStore'
 import SearchAppBarActions from './SearchAppBarActions'
 import { findWithAttribute } from '../../utils/Utils'
 import { users } from '../../utils/Fixtures'
+import defaultProfilePicture from './../../images/defaultProfilePicture.png'
 
 const styles = {
   form: {
@@ -70,6 +71,7 @@ class CreateAccountDialog extends React.Component {
         password: this.state.password,
         fullName: this.state.fullName,
         birthday: this.state.birthday,
+        profilePicture: defaultProfilePicture,
         privilege: 0 // TODO: This is a magic number need to change
       })
     }

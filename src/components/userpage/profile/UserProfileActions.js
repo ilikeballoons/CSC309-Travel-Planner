@@ -37,6 +37,12 @@ const UserProfileActions = {
     })
   },
 
+  toggleEditProfilePictureButton () {
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_TOGGLE_EDIT_PROFILE_PICTURE_BUTTON
+    })
+  },
+
   toggleDeleteAccountDialog () {
     dispatcher.dispatch({
       type: ActionTypes.USERPROFILE_TOGGLE_DELETE_ACCOUNT_DIALOG

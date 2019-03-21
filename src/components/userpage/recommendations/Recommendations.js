@@ -58,8 +58,7 @@ class Recommendations extends React.Component {
   filterRecommendations () {
     const { preferences, recommendations } = this.state
     if (!preferences) return RecommendationsStore.getState().recommendations
-    console.log(recommendations);
-    return recommendations.filter(rec => preferences[rec.category])//[rec.subcategory])
+    return recommendations.filter(rec => preferences[rec.category.category][rec.category.subcategory])
   }
 
 

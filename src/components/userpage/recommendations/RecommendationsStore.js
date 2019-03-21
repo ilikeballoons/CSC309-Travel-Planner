@@ -6,7 +6,7 @@ import ActionTypes from '../../../utils/ActionTypes'
 import { findWithAttribute } from '../../../utils/Utils'
 // import { recommendations } from '../../../utils/Fixtures'
 import { foursquare } from '../../../utils/Utils'
-import * as data from '../../../utils/Categories.json'
+import groupedCategories from '../../../utils/GroupedCategories'
 import venues from '../../../utils/JSON/MegaVenue'
 
 
@@ -77,7 +77,7 @@ class RecommendationsStore extends EventEmitter {
   getVenueParentCategory = (venue) => {
     // Get the venues primary category
     const primary = venue.categories.filter(cat => cat.primary)[0]
-    return this.searchCategories(primary, {categories: data.categories})
+    return this.searchCategories(primary, {categories: groupedCategories})
   }
 
   searchCategories = (query, data) => {
@@ -86,21 +86,12 @@ class RecommendationsStore extends EventEmitter {
       return acc
     }, [])
     const pathKeys = path[0]
-    return data[pathKeys[0]][pathKeys[1]].name
+    return {
+      category: data[pathKeys[0]][pathKeys[1]].pluralName,
+      subcategory: data[pathKeys[0]][pathKeys[1]][pathKeys[2]][pathKeys[3]].pluralName
+      }
     }
 
-  // // Returns a category object which is the parent of the given category from the array of categories 'categories'
-  // searchCategory = (query, target) => {
-  //   if (query.name === target.name) { // category is a leaf
-  //       console.log(target);
-  //       return target
-  //   }
-  //   else { // category is an interior node
-  //     target.categories.forEach((subcategory) => {
-  //       return this.searchCategory(query, subcategory)
-  //     })
-  //   }
-  // }
 
   handleActions (action) {
     switch (action.type) {

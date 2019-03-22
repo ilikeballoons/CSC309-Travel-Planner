@@ -67,8 +67,8 @@ class Recommendation extends React.Component {
   render () {
     const { classes, data } = this.props
     const { title, address, price, opens, closes, image } = data
-    const hours = opens === closes ? 'Open 24 hours' : `Open from ${opens} until ${closes}`
-    const cost = price > 0 ? '$'.repeat(price) : 'Free'
+    const hours = opens === closes ? 'Business hours not found.' : `Open from ${opens} until ${closes}`
+    const cost = price > 0 ? '$'.repeat(price) : 'Price not found.'
 
     const { connectDragSource, isDragging } = this.props
     return (

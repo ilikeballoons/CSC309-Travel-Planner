@@ -2,13 +2,13 @@ import { EventEmitter } from 'events'
 import dispatcher from '../../../utils/Dispatcher'
 
 import ActionTypes from '../../../utils/ActionTypes'
-import * as data from '../../../utils/Categories.json'
+import groupedCategories from '../../../utils/GroupedCategories'
 
 class PreferencesStore extends EventEmitter {
   constructor () {
     super()
     this.open = false
-    const { result, toggled } = this.parseCategories(data.categories)
+    const { result, toggled } = this.parseCategories(groupedCategories)
     this.preferences = result
     this.toggled = toggled
   }

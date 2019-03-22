@@ -11,4 +11,11 @@ function toTitleCase (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-export { findWithAttribute, toTitleCase }
+const foursquare = {
+  // client_id: 'GWDIYONQJRVOUVASBYK0PIVV3CTKQRKS0YZFKDLRFC0IMWYJ',
+  // client_secret: 'QE33JSW5PAOPEYN53WQMX1IMOUPMF3SOSYAXWMIAT0MKGCKG'
+  client_id: 'PJ0VL1ZUL2THICUNZE4HEC5R1WN5UATZGFKFTVD1KXQRT0BZ',
+  client_secret: 'VGCF3ZIC2UVIHDRVMI5EWYMKGHWNTTIE4GDBDT2KQDASRBMQ'
+}
+
+export { findWithAttribute, toTitleCase, foursquare }

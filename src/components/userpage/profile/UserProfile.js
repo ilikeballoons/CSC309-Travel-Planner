@@ -1,6 +1,8 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import EditIcon from '@material-ui/icons/Edit'
 import Divider from '@material-ui/core/Divider'
 import TextField from '@material-ui/core/TextField'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
@@ -11,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles'
 import ResetPWButton from './ResetPWButton'
 import DeleteAccountButton from './DeleteAccountButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
+import ProfilePictureDialog from './ProfilePictureDialog'
 import AppStore from '../../AppStore'
 import UserProfileActions from './UserProfileActions'
 import UserProfileStore from './UserProfileStore'
@@ -22,6 +25,10 @@ const styles = theme => ({
     display: 'flex',
     height: '20%',
     padding: 20
+  },
+  avatarContainer: {
+    display: 'flex',
+    position: 'relative'
   },
   avatar: {
     width: 100,
@@ -46,13 +53,19 @@ const styles = theme => ({
     bottom: 0,
     right: 0
   },
+  editButton: {
+    margin: theme.spacing.unit,
+    position: 'absolute',
+    top: '57%',
+    left: '57%'
+  }
 })
 class UserProfile extends React.Component {
   constructor () {
     super()
     this.state = {
       user: AppStore.getState().user,
-      deleteDialogOpen: UserProfileStore.getState().deleteDialogOpen
+      ...UserProfileStore.getState()
     }
   }
 
@@ -69,22 +82,34 @@ class UserProfile extends React.Component {
   updateState = () => {
     this.setState({
       user: AppStore.getState().user,
-      deleteDialogOpen: UserProfileStore.getState().deleteDialogOpen
+      ...UserProfileStore.getState()
     })
   }
 
   render () {
     const { classes } = this.props
-    const { user } = this.state
+    const { user, showEditProfilePictureButton, showProfilePictureDialog, deleteDialogOpen } = this.state
 
     return (
       <div className={classes.root}>
         <SearchAppBar page='userProfile'/>
         <div className={classes.header}>
-          <Avatar alt='profile_pic'
-            src={require('../../../images/avatar/kyle_quinlivan.png')}
-            className={classes.avatar}
-          />
+          <div className={classes.avatarContainer}>
+            <Avatar alt='profile_pic'
+              src={user.profilePicture}
+              className={classes.avatar}
+              onMouseEnter={() => UserProfileActions.toggleEditProfilePictureButton()}
+              onMouseLeave={() => UserProfileActions.toggleEditProfilePictureButton()}
+            >
+            </Avatar>
+              {showEditProfilePictureButton &&
+              <IconButton
+                className={classes.editButton}
+                color='secondary'
+                onClick={() => UserProfileActions.toggleEditProfilePictureDialog()}>
+                <EditIcon />
+              </IconButton>}
+          </div>
           <div className={classes.headerText}>
             <Typography variant='h5'>
               {`${user.fullName}`}
@@ -177,7 +202,8 @@ class UserProfile extends React.Component {
             <ResetPWButton />
           </div>
         </div>
-        <ConfirmDeleteDialog />
+        <ConfirmDeleteDialog open={deleteDialogOpen}/>
+        <ProfilePictureDialog open={showProfilePictureDialog} picture={user.profilePicture} />
       </div>
     )
   }

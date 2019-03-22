@@ -31,9 +31,22 @@ const UserProfileActions = {
   },
 
   editProfilePicture (profilePicture) { // not implemented currently
+    console.log(profilePicture); // TODO: save the picture to DB
     dispatcher.dispatch({
       type: ActionTypes.USERPROFILE_EDIT,
       value: { profilePicture }
+    })
+  },
+
+  toggleEditProfilePictureButton () {
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_TOGGLE_EDIT_PROFILE_PICTURE_BUTTON
+    })
+  },
+
+  toggleEditProfilePictureDialog () {
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_TOGGLE_PROFILE_PICTURE_DIALOG
     })
   },
 

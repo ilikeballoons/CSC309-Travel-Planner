@@ -9,7 +9,6 @@ import LoginStates from '../utils/LoginStates'
 class AppStore extends EventEmitter {
   constructor () {
     super()
-    this.account = null
     this.user = null
     this.loggedInState = LoginStates.noInput
     this.dialogText = 'Please input your user information below.'
@@ -17,19 +16,17 @@ class AppStore extends EventEmitter {
 
   getState () {
     return {
-      account: this.account,
       user: this.user,
       loggedInState: this.loggedInState,
       dialogText: this.dialogText
     }
   }
 
-  authorize (account) {
-    const index = findWithAttribute(users, 'username', account.username)
+  authorize (credentials) {
+    const index = findWithAttribute(users, 'username', credentials.username)
     const result = {}
     if (!isNaN(index)) {
-      if (users[index].password === account.password) {
-        result.account = account
+      if (users[index].password === credentials.password) {
         result.loggedInState = LoginStates.loggedIn
         result.dialogText = 'Logged in!'
         result.user = users[index]
@@ -66,7 +63,7 @@ class AppStore extends EventEmitter {
 
       case ActionTypes.SIGNOUT: {
         this.loggedInState = LoginStates.noInput
-        this.account = null
+        this.user = null
         this.dialogText = 'Please input your user information below.'
         this.emit('change')
         break
@@ -82,7 +79,6 @@ class AppStore extends EventEmitter {
       case ActionTypes.USERPROFILE_DELETE_ACCOUNT: {
         const index = findWithAttribute(users, 'username', this.user.username)
         this.user = null
-        this.account = null
         this.loggedInState = LoginStates.noInput
         this.dialogText = 'Please input your user information below.'
         users.splice(index, 1)

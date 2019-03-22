@@ -81,10 +81,10 @@ const SearchAppBarActions = {
     })
   },
 
-  signinDialogSigninStart (account) {
+  signinDialogSigninStart (credentials) {
     dispatcher.dispatch({
       type: ActionTypes.SIGNIN_DIALOG_SIGNIN_START,
-      value: account
+      value: credentials
     })
   },
 

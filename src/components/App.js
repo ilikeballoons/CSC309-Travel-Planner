@@ -12,7 +12,7 @@ import WithDragDropContext from '../utils/WithDragDropContext'
 class App extends Component {
   constructor (props) {
     super(props)
-    this.state = { account: null }
+    this.state = { user: null }
   }
 
   componentDidMount () {
@@ -27,7 +27,7 @@ class App extends Component {
 
   render () {
     const loggedIn = this.state.loggedInState === LoginStates.loggedIn
-    const username = this.state.account && this.state.account.username
+    const username = this.state.user && this.state.user.username
     const admin = username === 'admin' && loggedIn
     return (
         <div className='App' style={{'minHeight': '100vh'}}>

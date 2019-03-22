@@ -81,10 +81,10 @@ const SearchAppBarActions = {
     })
   },
 
-  signinDialogSigninStart (account) {
+  signinDialogSigninStart (credentials) {
     dispatcher.dispatch({
       type: ActionTypes.SIGNIN_DIALOG_SIGNIN_START,
-      value: account
+      value: credentials
     })
   },
 
@@ -97,6 +97,18 @@ const SearchAppBarActions = {
   signOut () {
     dispatcher.dispatch({
       type: ActionTypes.SIGNOUT
+    })
+  },
+
+  userProfileOpen () {
+    dispatcher.dispatch({
+      type: ActionTypes.APPBAR_USER_PROFILE_OPEN
+    })
+  },
+
+  userProfileClose () {
+    dispatcher.dispatch({
+      type: ActionTypes.APPBAR_USER_PROFILE_CLOSE
     })
   }
 }

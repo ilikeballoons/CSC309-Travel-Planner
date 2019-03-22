@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import PublicOutlined from '@material-ui/icons/PublicOutlined'
+import { Redirect } from 'react-router-dom'
 
 import SearchAppBarStore from './SearchAppBarStore'
 import PreferencesStore from '../userpage/preferences/PreferencesStore'
@@ -16,6 +17,8 @@ import SearchAppBarActions from './SearchAppBarActions'
 import PreferencesActions from '../userpage/preferences/PreferencesActions'
 import SignInButton from './SignInButton'
 import CreateAccountButton from './CreateAccountButton'
+import UserProfileButton from './UserProfileButton'
+import ItineraryButton from './ItineraryButton'
 import AutoComplete from './AutoComplete'
 
 const styles = theme => ({
@@ -52,7 +55,6 @@ const styles = theme => ({
       width: 'auto'
     }
   },
-
   searchIcon: {
     width: theme.spacing.unit * 9,
     height: '100%',
@@ -116,20 +118,21 @@ class SearchAppBar extends React.Component {
   }
 
   updateState = () => {
-    const { loggedInState, searchQuery, open} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState(), PreferencesStore.getState())
-    this.setState({ loggedInState, searchQuery, open })
+    const { loggedInState, searchQuery, open, user} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState(), PreferencesStore.getState())
+    this.setState({ loggedInState, searchQuery, open, user })
   }
 
   render () {
-    const { classes } = this.props
-    const { page } = this.props
-    const { loggedInState, open } = this.state
+    const { classes, page } = this.props
+    const { loggedInState, open, user, userProfile } = this.state
     const isLoggedIn = loggedInState === 'loggedIn'
+    if (page === 'userPage' && userProfile.open) return <Redirect to={`/${user.username}/profile`} push />
+    if (page === 'userProfile' && !userProfile.open) return <Redirect to={`/${user.username}`} push />
     return (
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
-            {isLoggedIn && page !== 'admin'?
+            {isLoggedIn && page === 'userPage' ?
               <IconButton
                 onClick={this.toggleDrawer}
                 className={classes.menuButton}
@@ -144,14 +147,19 @@ class SearchAppBar extends React.Component {
             <Typography className={classes.title} variant='h6' color='inherit' noWrap>
               Trip Planner
             </Typography>
-            {page !== 'admin' &&  page !== 'landing' ?
-              <div className={classes.grow}>
-                <AutoComplete page='userpage'/>
-              </div>
+            {page === 'userPage'
+              ? <div className={classes.grow}>
+                  <AutoComplete page='userpage'/>
+                </div>
               : <div className={classes.grow} />
             }
             <div className={classes.buttonContainer}>
-              {!(loggedInState === 'loggedIn') && <CreateAccountButton />}
+              <div className={classes.grow} />
+              {isLoggedIn
+                ? page === 'userProfile'
+                  ? <ItineraryButton />
+                  : <UserProfileButton />
+                : <CreateAccountButton />}
               <div className={classes.grow} />
               <SignInButton />
             </div>

@@ -6,16 +6,13 @@ import LoginStates from '../utils/LoginStates'
 import Landing from './landing/Landing'
 import Admin from './admin/Admin'
 import UserPage from './userpage/UserPage'
+import UserProfile from './userpage/profile/UserProfile'
 import WithDragDropContext from '../utils/WithDragDropContext'
-
-const Userpage = () => (
-  <UserPage />
-)
 
 class App extends Component {
   constructor (props) {
     super(props)
-    this.state = { account: null }
+    this.state = { user: null }
   }
 
   componentDidMount () {
@@ -30,24 +27,24 @@ class App extends Component {
 
   render () {
     const loggedIn = this.state.loggedInState === LoginStates.loggedIn
-    const username = this.state.account && this.state.account.username
+    const username = this.state.user && this.state.user.username
     const admin = username === 'admin' && loggedIn
     return (
         <div className='App' style={{'minHeight': '100vh'}}>
           <Switch>
             <Route exact path='/' render={() => (
-              loggedIn
-                ? (<Redirect to={`/${username}`} />)
-                : (<Landing />)
+              !loggedIn
+              ? (<Landing />)
+              : (<Redirect to={`/${username}`} />)
             )} />
-          <Route path='/admin' render={() => (
+            {!loggedIn && <Redirect to={'/'} />}
+            <Route path='/admin' render={() => (
               admin
               ? (<Admin />)
               : (<Redirect to={'/'} />)
-          )} />
-            username
-            ? (<Route path={`/${username}`} component={Userpage} />)
-            : (<Redirect to={'/'} />)
+            )} />
+            <Route exact path={`/${username}`} component={() => <UserPage />} />
+            <Route path={`/${username}/profile`} render={() => <UserProfile />} />
           </Switch>
         </div>
     )

@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem'
 import Typography from '@material-ui/core/Typography'
 import UserActions from '../UserActions'
 import ItineraryEvent from './ItineraryEvent'
+import ItineraryStore from './ItineraryStore'
 
 const hourTarget = {
   drop (props, monitor) {
@@ -14,6 +15,14 @@ const hourTarget = {
       hour: props.time,
       id: data.id
     })
+
+    // Adds a replaced event back to Recommendations from Itinerary
+    const {existingEvent} = ItineraryStore.getState()
+    if (existingEvent) {
+      UserActions.addRecommendation(existingEvent)
+    }
+    
+    // Removes the event being dropped from Recommendations
     UserActions.removeRecommendation(data.id)
   }
 }

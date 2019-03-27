@@ -1,5 +1,7 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
+import { postUser } from '../../utils/ServerMethods'
+
 
 const SearchAppBarActions = {
   clickSubmit () {
@@ -28,10 +30,28 @@ const SearchAppBarActions = {
   },
 
   createAccountSubmit (account) {
-    dispatcher.dispatch({
-      type: ActionTypes.CREATE_ACCOUNT_SUBMIT,
-      value: account
-    })
+    postUser(account)
+      .then((res) => {
+        if (res === 201) {
+          // TODO: can login the user here
+          dispatcher.dispatch({
+            type: ActionTypes.CREATE_ACCOUNT_CANCEL
+          })
+        }
+      })
+      .catch((error) => {
+        if (error === 409) {
+          dispatcher.dispatch({
+            type: ActionTypes.CREATE_ACCOUNT_DUPLICATE_ACCOUNT
+          })
+        }
+      })
+
+    //   })
+    // dispatcher.dispatch({
+    //   type: ActionTypes.CREATE_ACCOUNT_SUBMIT,
+    //   value: account
+    // })
   },
 
   landingSearchbarDateChange (date) {

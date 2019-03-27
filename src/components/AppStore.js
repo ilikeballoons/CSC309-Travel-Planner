@@ -44,8 +44,7 @@ class AppStore extends EventEmitter {
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.CREATE_ACCOUNT_SUBMIT: {
-        users.push(action.value)
-        this.emit('change')
+
         break
       }
 

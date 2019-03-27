@@ -2,7 +2,6 @@ import { EventEmitter } from 'events'
 import dispatcher from '../../utils/Dispatcher'
 
 import ActionTypes from '../../utils/ActionTypes'
-
 class SearchAppBarStore extends EventEmitter {
   constructor () {
     super()
@@ -20,7 +19,8 @@ class SearchAppBarStore extends EventEmitter {
       password2: '',
       birthday: null,
       fullName: '',
-      hasClickedSubmit: false
+      hasClickedSubmit: false,
+      duplicate: false
     }
     this.userProfile = {
       open: false
@@ -47,8 +47,16 @@ class SearchAppBarStore extends EventEmitter {
       }
 
       case ActionTypes.CREATE_ACCOUNT_CANCEL: {
-        this.createAccount.open = false
-        this.createAccount.hasClickedSubmit = false
+        this.createAccount = {
+          open: false,
+          username: '',
+          password: '',
+          password2: '',
+          birthday: null,
+          fullName: '',
+          hasClickedSubmit: false,
+          duplicate: false
+        }
         this.emit('change')
         break
       }
@@ -61,6 +69,13 @@ class SearchAppBarStore extends EventEmitter {
 
       case ActionTypes.CREATE_ACCOUNT_CLICK_SUBMIT: {
         this.createAccount.hasClickedSubmit = true
+        this.createAccount.duplicate = false
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.CREATE_ACCOUNT_DUPLICATE_ACCOUNT: {
+        this.createAccount.duplicate = true
         this.emit('change')
         break
       }

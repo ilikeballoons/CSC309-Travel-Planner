@@ -62,5 +62,14 @@ UserSchema.pre('save', function (next) {
   next()
 })
 
+UserSchema.pre('save', function (next) {
+  const user = this
+  return User.findOne({ username: user.username })
+    .then((user) => {
+      if (!user) next()
+      next(Error(`User ${user.username} already exists.`))
+    })
+})
+
 const User = mongoose.model('User', UserSchema)
 module.exports = { User }

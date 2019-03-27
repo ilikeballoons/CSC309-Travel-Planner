@@ -1,5 +1,5 @@
 const express = require('express')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 const { mongoose } = require('./Mongoose')
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -45,8 +45,11 @@ app.post('/users', (req, res) => {
   const { username, password, privilege, fullName, birthday, location, description } = req.body
   const user = new User({ username, password, privilege, fullName, birthday, location, description })
   user.save()
-    .then((result) => res.send(result))
-    .catch((error) => res.status(500).send(error))
+    .then((result) => res.status(201).send(result))
+    .catch((error) => {
+      if (error.message === `User ${user.username} already exists.`) res.status(409).send()
+      else res.status(500).send(error)
+    })
 })
 
 // get all users

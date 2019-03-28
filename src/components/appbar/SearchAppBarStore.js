@@ -26,7 +26,8 @@ class SearchAppBarStore extends EventEmitter {
       birthday: null,
       fullName: '',
       hasClickedSubmit: false,
-      duplicate: false
+      duplicate: false,
+      snackbarOpen: false
     }
     this.userProfile = {
       open: false
@@ -62,7 +63,8 @@ class SearchAppBarStore extends EventEmitter {
           birthday: null,
           fullName: '',
           hasClickedSubmit: false,
-          duplicate: false
+          duplicate: false,
+          snackbarOpen: this.createAccount.snackbarOpen
         }
         this.emit('change')
         break
@@ -83,6 +85,12 @@ class SearchAppBarStore extends EventEmitter {
 
       case ActionTypes.CREATE_ACCOUNT_DUPLICATE_ACCOUNT: {
         this.createAccount.duplicate = true
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.CREATE_ACCOUNT_CONFIRM_TOGGLE: {
+        this.createAccount.snackbarOpen = action.value
         this.emit('change')
         break
       }

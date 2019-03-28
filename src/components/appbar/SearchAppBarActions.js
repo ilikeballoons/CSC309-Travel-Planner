@@ -2,11 +2,17 @@ import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
 import { postUser, login, logout } from '../../utils/ServerMethods'
 
-
 const SearchAppBarActions = {
   clickSubmit () {
     dispatcher.dispatch({
       type: ActionTypes.CREATE_ACCOUNT_CLICK_SUBMIT
+    })
+  },
+
+  snackbarToggle (value) {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_CONFIRM_TOGGLE,
+      value
     })
   },
 
@@ -34,6 +40,7 @@ const SearchAppBarActions = {
       .then((res) => {
         if (res === 201) {
           // TODO: can login the user here
+          this.snackbarToggle(true)
           dispatcher.dispatch({
             type: ActionTypes.CREATE_ACCOUNT_CANCEL
           })

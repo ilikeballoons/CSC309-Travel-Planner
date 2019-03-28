@@ -17,6 +17,7 @@ import PreferencesActions from '../userpage/preferences/PreferencesActions'
 import SignInButton from './SignInButton'
 import CreateAccountButton from './CreateAccountButton'
 import UserProfileButton from './UserProfileButton'
+import ConfirmAccountCreateSnackbar from './ConfirmAccountCreateSnackbar'
 import ItineraryButton from './ItineraryButton'
 import AutoComplete from './AutoComplete'
 import LoginStates from '../../utils/LoginStates'
@@ -116,13 +117,14 @@ class SearchAppBar extends React.Component {
   }
 
   updateState = () => {
-    const { login, searchQuery, open} = Object.assign({}, SearchAppBarStore.getState(), PreferencesStore.getState())
-    this.setState({ login, searchQuery, open })
+    const { login, searchQuery, open, createAccount } = Object.assign({}, SearchAppBarStore.getState(), PreferencesStore.getState())
+    const { snackbarOpen } = createAccount
+    this.setState({ login, searchQuery, open, snackbarOpen })
   }
 
   render () {
     const { classes, page } = this.props
-    const { login, open, userProfile } = this.state
+    const { login, open, userProfile, snackbarOpen } = this.state
     const { username, loggedInState } = login
     const isLoggedIn = loggedInState === LoginStates.loggedIn
     if (page === 'userPage' && userProfile.open) return <Redirect to={`/${username}/profile`} push />
@@ -164,6 +166,7 @@ class SearchAppBar extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
+        <ConfirmAccountCreateSnackbar open={snackbarOpen} />
       </div>
     )
   }

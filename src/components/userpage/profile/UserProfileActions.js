@@ -57,6 +57,13 @@ const UserProfileActions = {
     })
   },
 
+  closeSnackbar () {
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_CHANGES_SUBMITTED,
+      value: false
+    })
+  },
+
   deleteAccount () { // TODO: this will be an object id, but for now it just deletes whatever user is logged in
     dispatcher.dispatch({
       type: ActionTypes.USERPROFILE_DELETE_ACCOUNT
@@ -67,12 +74,14 @@ const UserProfileActions = {
 
   submit (user) {
     patchUser(user)
-    .then((res) =>{
-      console.log (res)
-      // Can be various error codes based on invalid input in the fields, or a success
-    })
-    .catch((error) => console.log(error))
-
+      .then((res) => {
+        dispatcher.dispatch({
+          type: ActionTypes.USERPROFILE_CHANGES_SUBMITTED,
+          value: true
+        })
+      })
+      .catch((error) => console.log(error))
+    // Can be various error codes based on invalid input in the fields, or a success
   }
 }
 

@@ -9,6 +9,7 @@ class UserProfileStore extends EventEmitter {
     this.deleteDialogOpen = false
     this.showEditProfilePictureButton = false
     this.showProfilePictureDialog = false
+    this.snackbarOpen = false
     this.user = null
     this.newUser = null
   }
@@ -16,6 +17,7 @@ class UserProfileStore extends EventEmitter {
   getState () {
     return {
       deleteDialogOpen: this.deleteDialogOpen,
+      snackbarOpen: this.snackbarOpen,
       showEditProfilePictureButton: this.showEditProfilePictureButton,
       showProfilePictureDialog: this.showProfilePictureDialog,
       user: this.newUser
@@ -30,7 +32,7 @@ class UserProfileStore extends EventEmitter {
         this.emit('change')
         break
       }
-      
+
       case ActionTypes.USERPROFILE_TOGGLE_DELETE_ACCOUNT_DIALOG: {
         this.deleteDialogOpen = !this.deleteDialogOpen
         this.emit('change')
@@ -45,6 +47,12 @@ class UserProfileStore extends EventEmitter {
 
       case ActionTypes.USERPROFILE_TOGGLE_PROFILE_PICTURE_DIALOG: {
         this.showProfilePictureDialog = !this.showProfilePictureDialog
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_CHANGES_SUBMITTED: {
+        this.snackbarOpen = action.value
         this.emit('change')
         break
       }

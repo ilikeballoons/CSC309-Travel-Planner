@@ -15,6 +15,7 @@ import DeleteAccountButton from './DeleteAccountButton'
 import SubmitButton from './SubmitButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
 import ProfilePictureDialog from './ProfilePictureDialog'
+import ConfirmSnackbar from './ConfirmSnackbar'
 import UserProfileActions from './UserProfileActions'
 import UserProfileStore from './UserProfileStore'
 import SearchAppBar from '../../appbar/SearchAppBar'
@@ -80,7 +81,7 @@ class UserProfile extends React.Component {
 
   render () {
     const { classes } = this.props
-    const { user, showEditProfilePictureButton, showProfilePictureDialog, deleteDialogOpen } = this.state
+    const { user, showEditProfilePictureButton, showProfilePictureDialog, deleteDialogOpen, snackbarOpen } = this.state
 
     return (
       <div className={classes.root}>
@@ -197,6 +198,7 @@ class UserProfile extends React.Component {
         </div>
         <ConfirmDeleteDialog open={deleteDialogOpen}/>
         <ProfilePictureDialog open={showProfilePictureDialog} picture={user.profilePicture} />
+        <ConfirmSnackbar open={snackbarOpen} />
       </div>
     )
   }

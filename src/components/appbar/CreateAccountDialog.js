@@ -13,8 +13,6 @@ import { DatePicker, MuiPickersUtilsProvider  } from 'material-ui-pickers';
 
 import SearchAppBarStore from './SearchAppBarStore'
 import SearchAppBarActions from './SearchAppBarActions'
-import { findWithAttribute } from '../../utils/Utils'
-import { users } from '../../utils/Fixtures'
 import defaultProfilePicture from './../../images/defaultProfilePicture.png'
 
 const styles = {

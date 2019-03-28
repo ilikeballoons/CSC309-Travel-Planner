@@ -28,7 +28,7 @@ class App extends Component {
 
   render () {
     const { username, loggedInState, privilege } = this.state
-    const loggedIn = this.state.loggedInState === LoginStates.loggedIn
+    const loggedIn = loggedInState === LoginStates.loggedIn
     const admin = privilege === 1
     return (
         <div className='App' style={{'minHeight': '100vh'}}>

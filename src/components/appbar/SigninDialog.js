@@ -13,7 +13,6 @@ import TextField from '@material-ui/core/TextField'
 
 import SearchAppBarStore from './SearchAppBarStore'
 import SearchAppBarActions from './SearchAppBarActions'
-import AppStore from '../AppStore'
 import LoginStates from '../../utils/LoginStates'
 
 const styles = theme => ({
@@ -47,12 +46,10 @@ class SigninDialog extends React.Component {
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
-    // AppStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
-    // AppStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {

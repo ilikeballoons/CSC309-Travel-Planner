@@ -5,7 +5,6 @@ import GridList from '@material-ui/core/GridList'
 import { withStyles } from '@material-ui/core/styles'
 
 import Recommendation from './Recommendation'
-import RecommendationsActions from './RecommendationsActions'
 import RecommendationsStore from './RecommendationsStore'
 import PreferencesStore from '../preferences/PreferencesStore'
 
@@ -32,11 +31,7 @@ const styles = theme => ({
 class Recommendations extends React.Component {
   constructor () {
     super()
-    this.state = {
-      loading: true,
-      recommendations: []
-    }
-    RecommendationsActions.startLoad()
+    this.state = RecommendationsStore.getState()
   }
 
   componentDidMount () {
@@ -65,7 +60,7 @@ class Recommendations extends React.Component {
 
   render () {
     const { classes } = this.props
-    const { loading } = this.state
+    const { loading=false } = this.state
 
     return loading
     ? <h5>Loading...</h5>

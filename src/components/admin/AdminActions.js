@@ -117,10 +117,10 @@ const AdminActions = {
     })
   },
 
-  changeUserDisplayed (username) {
+  changeUserDisplayed (user) {
     dispatcher.dispatch({
       type: ActionTypes.ADMIN_CHANGE_USER_DISPLAYED,
-      value: username
+      value: user
     })
   },
 

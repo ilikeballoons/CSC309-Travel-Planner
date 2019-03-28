@@ -50,7 +50,7 @@ class UsersList extends React.Component {
         <List dense>
           {allUsers.map(user => (
             <ListItem key={user.username} button
-              onClick={() => AdminActions.changeUserDisplayed(user.username)}>
+              onClick={() => AdminActions.changeUserDisplayed(user)}>
               <ListItemAvatar>
                 <Avatar
                   src={user.profilePicture}

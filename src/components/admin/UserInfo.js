@@ -28,9 +28,9 @@ const styles = theme => ({
 class UserInfo extends React.Component {
   constructor () {
     super()
-    const { editUser, editModeOn } = AdminStore.getState()
+    const { currentUser, editModeOn } = AdminStore.getState()
     this.state = {
-      editUser,
+      currentUser,
       editModeOn
     }
   }
@@ -44,8 +44,8 @@ class UserInfo extends React.Component {
   }
 
   updateState = () => {
-    const { editUser, editModeOn } = AdminStore.getState()
-    this.setState({editUser, editModeOn})
+    const { currentUser, editModeOn } = AdminStore.getState()
+    this.setState({currentUser, editModeOn})
   }
 
   updateBirthday = date => AdminActions.editUserBirthday(date)
@@ -55,8 +55,8 @@ class UserInfo extends React.Component {
 
   render () {
     const { classes } = this.props
-    const { editUser, editModeOn } = this.state
-    const { birthday, location, currency, misc } = editUser
+    const { currentUser, editModeOn } = this.state
+    const { birthday, location, currency, description } = currentUser
     return (
       <div className={classes.infoLayout}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -107,7 +107,7 @@ class UserInfo extends React.Component {
           disabled={!editModeOn}
           multiline
           label='Miscellaneous'
-          value={misc}
+          value={description}
           className={classes.textField}
           margin='normal'
           onChange={this.updateMisc}

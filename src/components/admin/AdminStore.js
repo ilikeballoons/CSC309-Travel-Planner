@@ -1,12 +1,12 @@
 import { EventEmitter } from 'events'
 import dispatcher from '../../utils/Dispatcher'
-
 import ActionTypes from '../../utils/ActionTypes'
 
 class AdminStore extends EventEmitter {
   constructor () {
     super()
     this.userQuery = ''
+    this.allUsers = []
     this.userDisplayed = '@kquinlivan'
     this.changePW = {
       open: false,
@@ -31,14 +31,23 @@ class AdminStore extends EventEmitter {
     }
   }
 
-  getState = () => {
+  getState () {
     return {
+      allUsers: this.allUsers,
       userQuery: this.userQuery,
       userDisplayed: this.userDisplayed,
       changePW: this.changePW,
       editUser: this.editUser,
       deleteUser: this.deleteUser
     }
+  }
+
+  getUsersFromFile () {
+    return new Promise((resolve, reject) => {
+      const fixture = require('../../utils/Fixtures.js')
+      this.allUsers = fixture.users
+      resolve()
+    })
   }
 
   handleActions (action) {
@@ -140,6 +149,16 @@ class AdminStore extends EventEmitter {
           delete: true
         }
         this.emit('change')
+        break
+      }
+
+      case ActionTypes.ADMIN_USER_LOAD: {
+        this.getUsersFromFile().then((result) => {
+          // console.log('Loaded User')
+          this.emit('change')
+        }).catch((err) => {
+          console.log(err)
+        })
         break
       }
 

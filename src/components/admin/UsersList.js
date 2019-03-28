@@ -6,6 +6,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import { withStyles } from '@material-ui/core/styles'
 
+import AdminStore from './AdminStore.js'
+import AdminActions from './AdminActions.js'
+
 const styles = theme => ({
   usersList: {
     overflow: 'auto',
@@ -17,16 +20,38 @@ const styles = theme => ({
 })
 
 class UsersList extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      allUsers : []
+    }
+    AdminActions.startLoad()
+  }
+
+  componentDidMount () {
+    AdminStore.on('change', this.updateState)
+  }
+
+  componentWillUnmount () {
+    AdminStore.removeListener('change', this.updateState)
+  }
+
+  updateState = () => {
+    const { allUsers } = AdminStore.getState()
+    this.setState({ allUsers })
+    console.log(this.state.allUsers)
+  }
+
   render () {
     const { classes } = this.props
+    const { allUsers } = this.state
     return (
       <div className={classes.usersList}>
         <List dense>
-          {[...Array(17).keys()].map(value => (
-            <ListItem key={value} button>
+          {allUsers.map(user => (
+            <ListItem key={user.username} button>
               <ListItemAvatar>
                 <Avatar
-                  alt={`Avatar n°${value + 1}`}
                   src={require('../../images/avatar/avatar.png')}
                 />
               </ListItemAvatar>

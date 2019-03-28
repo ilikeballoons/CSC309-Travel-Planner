@@ -8,6 +8,12 @@ const UserActions = {
       value: event
     })
   },
+  
+  startLoad () {
+    dispatcher.dispatch({
+      type: ActionTypes.RECOMMENDATIONS_LOAD
+    })
+  },
 
   addRecommendation (event) {
     dispatcher.dispatch({

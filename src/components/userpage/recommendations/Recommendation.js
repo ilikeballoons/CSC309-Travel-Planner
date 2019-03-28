@@ -65,7 +65,8 @@ const collect = (connect, monitor) => ({
 
 class Recommendation extends React.Component {
 constructor () {
- this.state = { expanded: false }
+  super()
+  this.state = { expanded: false }
 }
 
   toggleInfo = () => this.setState(state => ({expanded: !state.expanded}))

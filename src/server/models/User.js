@@ -39,7 +39,7 @@ const UserSchema = new mongoose.Schema({
   // }
 })
 
-UserSchema.statics.findByUsernamePassword = function ({ username, password }) {
+UserSchema.statics.findByUsernamePassword = function (username, password) {
   const User = this
   return User.findOne({ username })
     .then((user) => {

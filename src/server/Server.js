@@ -27,14 +27,14 @@ const sessionChecker = (req, res, next) => req.session.user ? next() : next() //
 const authenticate = (req, res, next) => {
   if (req.session.user) {
     User.findById(req.session.user)
-    .then((user) => {
-      if(!user) return Promise.reject()
-      req.user = user
-      next()
-    })
-    .catch((error) => {
-      // do something
-    })
+      .then((user) => {
+        if (!user) return Promise.reject()
+        req.user = user
+        next()
+      })
+      .catch((error) => {
+        // do something
+      })
   } else {
     User.findById(req.body.username)
   }

@@ -1,6 +1,6 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
-import { postUser } from '../../utils/ServerMethods'
+import { postUser, login, logout } from '../../utils/ServerMethods'
 
 
 const SearchAppBarActions = {
@@ -102,10 +102,30 @@ const SearchAppBarActions = {
   },
 
   signinDialogSigninStart (credentials) {
-    dispatcher.dispatch({
-      type: ActionTypes.SIGNIN_DIALOG_SIGNIN_START,
-      value: credentials
-    })
+    login(credentials)
+      .then((res) => {
+        let type, value
+        console.log (res)
+        switch (res.status) {
+          case 200: {
+            type = ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS
+            value = { username: res.username, privilege: res.privilege }
+            break
+          }
+          case 404: {
+            type = ActionTypes.SIGNIN_DIALOG_USERNAME_NOT_FOUND
+            break
+          }
+          case 403: {
+            type = ActionTypes.SIGNIN_DIALOG_INVALID_PASSWORD
+            break
+          }
+          default: {
+            console.log('internal server error' + res.status)
+          }
+        }
+        dispatcher.dispatch({ type, value })
+      })
   },
 
   signinDialogSigninSuccess () {
@@ -115,9 +135,11 @@ const SearchAppBarActions = {
   },
 
   signOut () {
-    dispatcher.dispatch({
-      type: ActionTypes.SIGNOUT
-    })
+    logout()
+      .then((res) => dispatcher.dispatch({
+        type: ActionTypes.SIGNOUT
+      }))
+      .catch((err) => console.log ('internal server error'))
   },
 
   userProfileOpen () {

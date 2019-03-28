@@ -41,23 +41,23 @@ const styles = theme => ({
 class SigninDialog extends React.Component {
   constructor (props) {
     super(props)
-    const { signin } = SearchAppBarStore.getState()
-    this.state = signin
+    const { signin, login } = SearchAppBarStore.getState()
+    this.state = { signin, login }
   }
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
-    AppStore.on('change', this.updateState)
+    // AppStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
-    AppStore.removeListener('change', this.updateState)
+    // AppStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
-    this.setState(SearchAppBarStore.getState().signin)
-    this.setState(AppStore.getState())
+    const { signin, login } = SearchAppBarStore.getState()
+    this.setState({ signin, login })
   }
 
   updateUsername = event => SearchAppBarActions.signinDialogEmailChange(event.target.value)
@@ -70,17 +70,18 @@ class SigninDialog extends React.Component {
 
   cancel = () => SearchAppBarActions.signinDialogCancel()
 
-  validate = () => this.state.username && this.state.password
+  validate = () => this.state.signin.username && this.state.signin.password
 
   doLogin = () => {
     SearchAppBarActions.signinDialogSigninStart({
-      username: this.state.username,
-      password: this.state.password
+      username: this.state.signin.username,
+      password: this.state.signin.password
     })
   }
 
   render () {
-    const { open, loggedInState, dialogText, username, password} = this.state
+    const { loggedInState } = this.state.login
+    const { open, dialogText, username, password } = this.state.signin
     return (
       <Dialog
         open={open && loggedInState !== LoginStates.loggedIn}

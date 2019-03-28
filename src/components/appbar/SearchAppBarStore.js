@@ -1,16 +1,22 @@
 import { EventEmitter } from 'events'
 import dispatcher from '../../utils/Dispatcher'
-
+import LoginStates from '../../utils/LoginStates'
 import ActionTypes from '../../utils/ActionTypes'
+
 class SearchAppBarStore extends EventEmitter {
   constructor () {
     super()
     this.searchQuery = ''
     this.travelDate = new Date()
+    this.login = {
+      loggedInState: LoginStates.noInput,
+      privilege: 0
+    }
     this.signin = {
       open: false,
       username: '',
-      password: ''
+      password: '',
+      dialogText: ''
     }
     this.createAccount = {
       open: false,
@@ -33,7 +39,8 @@ class SearchAppBarStore extends EventEmitter {
       createAccount: this.createAccount,
       signin: this.signin,
       travelDate: this.travelDate,
-      userProfile: this.userProfile
+      userProfile: this.userProfile,
+      login: this.login
     }
   }
 
@@ -90,8 +97,10 @@ class SearchAppBarStore extends EventEmitter {
         this.signin = {
           open: false,
           username: '',
-          password: ''
+          password: '',
+          dialogText: ''
         }
+        this.login.loggedInState = LoginStates.noInput
         this.emit('change')
         break
       }
@@ -110,6 +119,26 @@ class SearchAppBarStore extends EventEmitter {
 
       case ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS: {
         this.signin.open = false
+        this.signin.dialogText = 'Logged in!'
+        this.login = {
+          loggedInState: LoginStates.loggedIn,
+          username: action.value.username,
+          privilege: action.value.privilege
+        }
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.SIGNIN_DIALOG_USERNAME_NOT_FOUND: {
+        this.login.loggedInState = LoginStates.usernameNotFound
+        this.signin.dialogText = 'Username not found.'
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.SIGNIN_DIALOG_INVALID_PASSWORD: {
+        this.login.loggedInState = LoginStates.incorrectPassword
+        this.signin.dialogText = 'Incorrect password. Did you forget your password?'
         this.emit('change')
         break
       }
@@ -118,8 +147,10 @@ class SearchAppBarStore extends EventEmitter {
         this.signin = {
           open: false,
           username: '',
-          password: ''
+          password: '',
+          dialogText: 'Please input your user information below.'
         }
+        this.login.loggedInState = LoginStates.noInput
         this.emit('change')
         break
       }
@@ -157,8 +188,10 @@ class SearchAppBarStore extends EventEmitter {
         this.signin = {
           open: false,
           username: '',
-          password: ''
+          password: '',
+          dialogText: ''
         }
+        this.login.loggedInState = LoginStates.noInput
         this.emit('change')
         break
       }

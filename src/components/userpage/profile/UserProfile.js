@@ -87,7 +87,7 @@ class UserProfile extends React.Component {
         <div className={classes.header}>
           <div className={classes.avatarContainer}>
             <Avatar alt='profile_pic'
-              src={user.profilePicture}
+              src={user.profilePicture ? user.profilePicture : require('../../../images/avatar/avatar.png')}
               className={classes.avatar}
               onMouseEnter={() => UserProfileActions.toggleEditProfilePictureButton()}
               onMouseLeave={() => UserProfileActions.toggleEditProfilePictureButton()}

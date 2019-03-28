@@ -31,12 +31,11 @@ const UserSchema = new mongoose.Schema({
   },
   description: {
     type: String
+  },
+  profilePicture: {
+    contentType: String,
+    data: Buffer
   }
-  // },
-  // profilePicture: {
-  //   contentType: String,
-  //   data: Buffer
-  // }
 })
 
 UserSchema.statics.findByUsernamePassword = function (username, password) {

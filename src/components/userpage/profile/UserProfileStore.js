@@ -10,6 +10,7 @@ class UserProfileStore extends EventEmitter {
     this.showEditProfilePictureButton = false
     this.showProfilePictureDialog = false
     this.user = null
+    this.newUser = null
   }
 
   getState () {
@@ -17,12 +18,19 @@ class UserProfileStore extends EventEmitter {
       deleteDialogOpen: this.deleteDialogOpen,
       showEditProfilePictureButton: this.showEditProfilePictureButton,
       showProfilePictureDialog: this.showProfilePictureDialog,
-      user: this.user
+      user: this.newUser
     }
   }
 
   handleActions (action) {
     switch (action.type) {
+      case ActionTypes.USERPROFILE_EDIT: {
+        const key = Object.keys(action.value)[0]
+        this.newUser[key] = action.value[key]
+        this.emit('change')
+        break
+      }
+      
       case ActionTypes.USERPROFILE_TOGGLE_DELETE_ACCOUNT_DIALOG: {
         this.deleteDialogOpen = !this.deleteDialogOpen
         this.emit('change')
@@ -52,6 +60,7 @@ class UserProfileStore extends EventEmitter {
           username
           // profilePicture
         }
+        this.newUser = this.user
         this.emit('change')
         break
       }

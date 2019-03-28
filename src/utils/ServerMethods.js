@@ -1,6 +1,6 @@
 const postUser = (user) => {
   return fetch ('/users', {
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(user),
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -15,10 +15,23 @@ const getUser = (user) => {
     .then((res) => res)
 }
 
+const patchUser = (user) => {
+  return fetch('/users', {
+    method: 'PATCH',
+    body: JSON.stringify(user),
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((res) => res.json()) // TODO: improve
+    .then((res) => res)
+}
+
 const login = (user) => {
   // console.log(user);
   return fetch(`/users/login`, {
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(user),
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -37,4 +50,4 @@ const logout = () => {
     .then((res) => res.status)
 }
 
-export { postUser, getUser, login, logout }
+export { postUser, getUser, login, logout, patchUser }

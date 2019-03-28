@@ -1,5 +1,6 @@
 import dispatcher from '../../../utils/Dispatcher'
 import ActionTypes from '../../../utils/ActionTypes'
+import { patchUser } from '../../../utils/ServerMethods'
 
 const UserProfileActions = {
   editBirthday (birthday) {
@@ -62,6 +63,16 @@ const UserProfileActions = {
       // type: ActionTypes.USERPROFILE_DELETE_ACCOUNT,
       // value: objectId
     })
+  },
+
+  submit (user) {
+    patchUser(user)
+    .then((res) =>{
+      console.log (res)
+      // Can be various error codes based on invalid input in the fields, or a success
+    })
+    .catch((error) => console.log(error))
+
   }
 }
 

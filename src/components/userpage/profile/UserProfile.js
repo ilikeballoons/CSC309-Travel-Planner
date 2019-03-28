@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import ResetPWButton from './ResetPWButton'
 import DeleteAccountButton from './DeleteAccountButton'
+import SubmitButton from './SubmitButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
 import ProfilePictureDialog from './ProfilePictureDialog'
 import UserProfileActions from './UserProfileActions'
@@ -191,6 +192,7 @@ class UserProfile extends React.Component {
           <div className={classes.actions}>
             <DeleteAccountButton />
             <ResetPWButton />
+            <SubmitButton user={user} />
           </div>
         </div>
         <ConfirmDeleteDialog open={deleteDialogOpen}/>

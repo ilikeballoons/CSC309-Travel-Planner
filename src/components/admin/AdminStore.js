@@ -62,6 +62,14 @@ class AdminStore extends EventEmitter {
     })
   }
 
+  filterUsers (query) {
+    return new Promise((resolve, reject) => {
+      const fixture = require('../../utils/Fixtures.js')
+      this.allUsers = fixture.filterUsers(query)
+      resolve()
+    })
+  }
+
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.ADMIN_CHANGE_PW_OPEN: {
@@ -152,6 +160,7 @@ class AdminStore extends EventEmitter {
 
       case ActionTypes.ADMIN_DELETE_DIALOG_CANCEL: {
         this.deleteUser.open = false
+        this.deleteUser.delete = false
         this.emit('change')
         break
       }
@@ -183,6 +192,13 @@ class AdminStore extends EventEmitter {
 
       case ActionTypes.ADMIN_CHANGE_USER_DISPLAYED: {
         this.currentUser = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERSEARCH_CHANGE: {
+        this.userQuery = action.value
+        this.filterUsers(this.userQuery).then().catch()
         this.emit('change')
         break
       }

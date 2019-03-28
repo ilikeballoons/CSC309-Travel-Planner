@@ -165,4 +165,10 @@ const deleteUser = user => {
   users.splice(users.indexOf(user), 1)
 }
 
-export { users, recommendations, currencies, updateUser, deleteUser }
+const filterUsers = query => {
+  return users.filter(u => {
+    return u.username.toLowerCase().includes(query.toLowerCase()) | u.fullName.toLowerCase().includes(query.toLowerCase())
+  })
+}
+
+export { users, recommendations, currencies, updateUser, deleteUser, filterUsers }

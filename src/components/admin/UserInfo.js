@@ -28,8 +28,11 @@ const styles = theme => ({
 class UserInfo extends React.Component {
   constructor () {
     super()
-    const { editUser } = AdminStore.getState()
-    this.state = editUser
+    const { editUser, editModeOn } = AdminStore.getState()
+    this.state = {
+      editUser,
+      editModeOn
+    }
   }
 
   componentDidMount () {
@@ -41,8 +44,8 @@ class UserInfo extends React.Component {
   }
 
   updateState = () => {
-    const { editUser } = AdminStore.getState()
-    this.setState(editUser)
+    const { editUser, editModeOn } = AdminStore.getState()
+    this.setState({editUser, editModeOn})
   }
 
   updateBirthday = date => AdminActions.editUserBirthday(date)
@@ -52,7 +55,8 @@ class UserInfo extends React.Component {
 
   render () {
     const { classes } = this.props
-    const { birthday, location, currency, misc, editModeOn } = this.state
+    const { editUser, editModeOn } = this.state
+    const { birthday, location, currency, misc } = editUser
     return (
       <div className={classes.infoLayout}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>

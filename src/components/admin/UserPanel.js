@@ -47,7 +47,7 @@ class UserPanel extends React.Component {
   constructor () {
     super()
     this.state = {
-      editUser: {},
+      editModeOn: false,
       userDisplayed: {}
     }
   }
@@ -61,15 +61,15 @@ class UserPanel extends React.Component {
   }
 
   updateState = () => {
-    const { editUser, userDisplayed } = AdminStore.getState()
-    this.setState({ editUser, userDisplayed })
+    const { editModeOn, userDisplayed } = AdminStore.getState()
+    this.setState({ editModeOn, userDisplayed })
   }
 
   render () {
     const { classes } = this.props
-    const { editUser, userDisplayed } = this.state
-    const editButtonText = editUser.editModeOn ? 'Save' : 'Edit user information'
-    const editButtonAction = editUser.editModeOn ? () => AdminActions.editModeCancel() : () => AdminActions.editModeOn()
+    const { editModeOn, userDisplayed } = this.state
+    const editButtonText = editModeOn ? 'Save' : 'Edit user information'
+    const editButtonAction = editModeOn ? () => AdminActions.editModeCancel() : () => AdminActions.editModeOn()
     return (
       <div className={classes.viewUser}>
         <div className={classes.userHeader}>

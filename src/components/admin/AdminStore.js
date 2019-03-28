@@ -14,6 +14,8 @@ class AdminStore extends EventEmitter {
       password: '',
       retype: ''
     }
+    this.editModeOn = false
+    this.editModeSave = false
     this.editUser = {
       birthday: '1991-11-11',
       location: 'Florida, USA',
@@ -21,9 +23,7 @@ class AdminStore extends EventEmitter {
         value: 'USD',
         label: '$'
       },
-      misc: '',
-      save: false,
-      editModeOn: false
+      misc: ''
     }
     this.deleteUser = {
       open: false,
@@ -38,6 +38,7 @@ class AdminStore extends EventEmitter {
       userDisplayed: this.allUsers.filter(user => user.username === this.userDisplayed)[0],
       changePW: this.changePW,
       editUser: this.editUser,
+      editModeOn: this.editModeOn,
       deleteUser: this.deleteUser
     }
   }
@@ -94,15 +95,15 @@ class AdminStore extends EventEmitter {
       }
 
       case ActionTypes.ADMIN_EDIT_USER_ON: {
-        this.editUser.editModeOn = true
-        this.editUser.save = false
+        this.editModeOn = true
+        this.editModeSave = false
         this.emit('change')
         break
       }
 
       case ActionTypes.ADMIN_EDIT_USER_CANCEL: {
-        this.editUser.editModeOn = false
-        this.editUser.save = true
+        this.editModeOn = false
+        this.editModeSave = true
         this.emit('change')
         break
       }

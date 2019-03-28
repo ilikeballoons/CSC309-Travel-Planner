@@ -23,7 +23,11 @@ const users = [
     location: 'Toronto, ON',
     birthday: Date.now(),
     profilePicture: defaultProfilePicture,
-    description: 'This is a description. I am awesome.'
+    description: 'This is a description. I am awesome.',
+    currency: {
+      value: 'USD',
+      label: '$'
+    }
   },
   {
     username: 'admin',
@@ -33,8 +37,11 @@ const users = [
     location: 'Toronto, ON',
     birthday: Date.now(),
     profilePicture: defaultProfilePicture,
-    description: 'This is a description. I am awesome.'
-
+    description: 'This is a description. I am awesome.',
+    currency: {
+      value: 'USD',
+      label: '$'
+    }
   }
 ]
 

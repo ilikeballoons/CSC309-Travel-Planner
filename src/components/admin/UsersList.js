@@ -44,11 +44,13 @@ class UsersList extends React.Component {
   render () {
     const { classes } = this.props
     const { allUsers } = this.state
+
     return (
       <div className={classes.usersList}>
         <List dense>
           {allUsers.map(user => (
-            <ListItem key={user.username} button>
+            <ListItem key={user.username} button
+              onClick={() => AdminActions.changeUserDisplayed(user.username)}>
               <ListItemAvatar>
                 <Avatar
                   src={user.profilePicture}

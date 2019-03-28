@@ -117,6 +117,13 @@ const AdminActions = {
     })
   },
 
+  changeUserDisplayed (username) {
+    dispatcher.dispatch({
+      type: ActionTypes.ADMIN_CHANGE_USER_DISPLAYED,
+      value: username
+    })
+  },
+
   userSearchChange (query) {
     dispatcher.dispatch({
       type: ActionTypes.USERSEARCH_CHANGE,

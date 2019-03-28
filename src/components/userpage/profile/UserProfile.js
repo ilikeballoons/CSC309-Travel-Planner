@@ -14,7 +14,6 @@ import ResetPWButton from './ResetPWButton'
 import DeleteAccountButton from './DeleteAccountButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
 import ProfilePictureDialog from './ProfilePictureDialog'
-import AppStore from '../../AppStore'
 import UserProfileActions from './UserProfileActions'
 import UserProfileStore from './UserProfileStore'
 import SearchAppBar from '../../appbar/SearchAppBar'
@@ -63,27 +62,19 @@ const styles = theme => ({
 class UserProfile extends React.Component {
   constructor () {
     super()
-    this.state = {
-      user: AppStore.getState().user,
-      ...UserProfileStore.getState()
-    }
+    this.state = UserProfileStore.getState()
   }
 
   componentDidMount () {
-    AppStore.on('change', this.updateState)
     UserProfileStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
-    AppStore.removeListener('change', this.updateState)
     UserProfileStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
-    this.setState({
-      user: AppStore.getState().user,
-      ...UserProfileStore.getState()
-    })
+    this.setState(UserProfileStore.getState())
   }
 
   render () {

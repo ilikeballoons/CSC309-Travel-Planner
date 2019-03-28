@@ -9,13 +9,15 @@ class UserProfileStore extends EventEmitter {
     this.deleteDialogOpen = false
     this.showEditProfilePictureButton = false
     this.showProfilePictureDialog = false
+    this.user = null
   }
 
   getState () {
     return {
       deleteDialogOpen: this.deleteDialogOpen,
       showEditProfilePictureButton: this.showEditProfilePictureButton,
-      showProfilePictureDialog: this.showProfilePictureDialog
+      showProfilePictureDialog: this.showProfilePictureDialog,
+      user: this.user
     }
   }
 
@@ -35,6 +37,21 @@ class UserProfileStore extends EventEmitter {
 
       case ActionTypes.USERPROFILE_TOGGLE_PROFILE_PICTURE_DIALOG: {
         this.showProfilePictureDialog = !this.showProfilePictureDialog
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS: {
+        const { birthday, location, description, fullName, privilege, username } = action.value // profilePicture
+        this.user = {
+          birthday: new Date(birthday),
+          location,
+          description,
+          fullName,
+          privilege,
+          username
+          // profilePicture
+        }
         this.emit('change')
         break
       }

@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles'
 
 import Preferences from './preferences/Preferences'
 import Recommendations from './recommendations/Recommendations'
-import RecommendationsActions from './recommendations/RecommendationsActions'
 import Itinerary from './itinerary/Itinerary'
 import SearchAppBar from '../appbar/SearchAppBar'
 
@@ -20,9 +19,6 @@ const styles = theme => ({
 })
 
 class UserPage extends React.Component {
-  componentDidMount () {
-    // RecommendationsActions.startLoad()
-  }
   render () {
     const { classes } = this.props
     return (

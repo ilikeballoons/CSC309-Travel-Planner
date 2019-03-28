@@ -109,7 +109,7 @@ const SearchAppBarActions = {
         switch (res.status) {
           case 200: {
             type = ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS
-            value = { username: res.username, privilege: res.privilege }
+            value = { ...res }
             break
           }
           case 404: {
@@ -128,7 +128,7 @@ const SearchAppBarActions = {
       })
   },
 
-  signinDialogSigninSuccess () {
+  signinDialogSigninSuccess () { // TODO: remove this
     dispatcher.dispatch({
       type: ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS
     })

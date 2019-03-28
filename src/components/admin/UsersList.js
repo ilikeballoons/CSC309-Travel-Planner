@@ -55,8 +55,8 @@ class UsersList extends React.Component {
                   src={require('../../images/avatar/avatar.png')}
                 />
               </ListItemAvatar>
-              <ListItemText primary={`Firstnames Lastnames`}
-                secondary='@uniqueuserid'
+              <ListItemText primary={user.fullName}
+                secondary={user.username}
               />
             </ListItem>
           ))}

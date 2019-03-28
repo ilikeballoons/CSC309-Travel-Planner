@@ -47,7 +47,8 @@ class UserPanel extends React.Component {
   constructor () {
     super()
     this.state = {
-      editModeOn: false
+      editUser: {},
+      userDisplayed: {}
     }
   }
 
@@ -60,28 +61,28 @@ class UserPanel extends React.Component {
   }
 
   updateState = () => {
-    const { editModeOn } = AdminStore.getState().editUser
-    this.setState({ editModeOn})
+    const { editUser, userDisplayed } = AdminStore.getState()
+    this.setState({ editUser, userDisplayed })
   }
 
   render () {
     const { classes } = this.props
-    const { editModeOn } = this.state
-    const editButtonText = editModeOn ? 'Save' : 'Edit user information'
-    const editButtonAction = editModeOn ? () => AdminActions.editModeCancel() : () => AdminActions.editModeOn()
+    const { editUser, userDisplayed } = this.state
+    const editButtonText = editUser.editModeOn ? 'Save' : 'Edit user information'
+    const editButtonAction = editUser.editModeOn ? () => AdminActions.editModeCancel() : () => AdminActions.editModeOn()
     return (
       <div className={classes.viewUser}>
         <div className={classes.userHeader}>
-          <Avatar alt='kyle_quinlivan'
-            src={require('../../images/avatar/kyle_quinlivan.png')}
+          <Avatar alt={userDisplayed.fullName}
+            src={userDisplayed.profilePicture}
             className={classes.userAvatar}
           />
           <div className={classes.userHeaderText}>
             <Typography variant='h5' gutterBottom>
-              FirstName, LastName
+              {userDisplayed.fullName}
             </Typography>
             <Typography variant='subtitle1' gutterBottom>
-              @uniqueuserid
+              username: {userDisplayed.username}
             </Typography>
             <Typography variant='subtitle1'>
               Password: <u>******</u>

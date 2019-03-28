@@ -7,7 +7,7 @@ class AdminStore extends EventEmitter {
     super()
     this.userQuery = ''
     this.allUsers = []
-    this.userDisplayed = '@kquinlivan'
+    this.userDisplayed = 0
     this.changePW = {
       open: false,
       submit: false,
@@ -35,7 +35,7 @@ class AdminStore extends EventEmitter {
     return {
       allUsers: this.allUsers,
       userQuery: this.userQuery,
-      userDisplayed: this.userDisplayed,
+      userDisplayed: this.allUsers[this.userDisplayed],
       changePW: this.changePW,
       editUser: this.editUser,
       deleteUser: this.deleteUser
@@ -94,6 +94,7 @@ class AdminStore extends EventEmitter {
       }
 
       case ActionTypes.ADMIN_EDIT_USER_ON: {
+        console.log('IS EDITTING')
         this.editUser.editModeOn = true
         this.editUser.save = false
         this.emit('change')
@@ -101,6 +102,7 @@ class AdminStore extends EventEmitter {
       }
 
       case ActionTypes.ADMIN_EDIT_USER_CANCEL: {
+        console.log('"Is Cancelling Edit"')
         this.editUser.editModeOn = false
         this.editUser.save = true
         this.emit('change')

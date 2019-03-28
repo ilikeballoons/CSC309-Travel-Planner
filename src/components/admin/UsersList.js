@@ -39,7 +39,6 @@ class UsersList extends React.Component {
   updateState = () => {
     const { allUsers } = AdminStore.getState()
     this.setState({ allUsers })
-    console.log(this.state.allUsers)
   }
 
   render () {
@@ -52,7 +51,7 @@ class UsersList extends React.Component {
             <ListItem key={user.username} button>
               <ListItemAvatar>
                 <Avatar
-                  src={require('../../images/avatar/avatar.png')}
+                  src={user.profilePicture}
                 />
               </ListItemAvatar>
               <ListItemText primary={user.fullName}

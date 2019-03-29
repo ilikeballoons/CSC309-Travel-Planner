@@ -13,8 +13,6 @@ import { DatePicker, MuiPickersUtilsProvider  } from 'material-ui-pickers';
 
 import SearchAppBarStore from './SearchAppBarStore'
 import SearchAppBarActions from './SearchAppBarActions'
-import { findWithAttribute } from '../../utils/Utils'
-import { users } from '../../utils/Fixtures'
 import defaultProfilePicture from './../../images/defaultProfilePicture.png'
 
 const styles = {
@@ -46,16 +44,14 @@ class CreateAccountDialog extends React.Component {
   updateState = () => this.setState(SearchAppBarStore.getState().createAccount)
   handleChange = field => event =>  SearchAppBarActions.createAccountChange({ [field]: event.target.value })
   handleDateChange = date => SearchAppBarActions.createAccountChange({ birthday: date })
-  confirmValidPassword = () => this.state.password.length >= 6
+  confirmValidPassword = () => this.state.password.length >= 4
   confirmPasswordMatch = () => this.state.password === this.state.password2
   confirmValidUsername = () => this.state.username.length >= 4
-  confirmValidFullname = () => this.state.fullName.length >= 4
-  confirmUsername = () => isNaN(findWithAttribute(users, 'username', this.state.username))
+  confirmValidFullname = () => this.state.fullName
   confirmValidBirthday = () => this.state.birthday
 
   validate = () => {
     return this.confirmValidUsername()
-    && this.confirmUsername()
     && this.confirmValidFullname()
     && this.confirmValidPassword()
     && this.confirmPasswordMatch()
@@ -65,7 +61,6 @@ class CreateAccountDialog extends React.Component {
   submit = () => {
     SearchAppBarActions.clickSubmit()
     if (this.validate()) {
-      SearchAppBarActions.createAccountClose()
       SearchAppBarActions.createAccountSubmit({
         username: this.state.username,
         password: this.state.password,
@@ -78,7 +73,7 @@ class CreateAccountDialog extends React.Component {
   }
 
   render () {
-    const { hasClickedSubmit, open } = this.state
+    const { hasClickedSubmit, open, duplicate } = this.state
     const { classes } = this.props
     return (
       <Dialog
@@ -94,7 +89,7 @@ class CreateAccountDialog extends React.Component {
             Fill in your personal details to create an account.
           </DialogContentText>
           <form className={this.props.classes.form}>
-            {hasClickedSubmit && !this.confirmUsername() && <span className={classes.red}>Username taken</span>}
+            {hasClickedSubmit && !duplicate && <span className={classes.red}>Username taken</span>}
             {hasClickedSubmit && !this.confirmValidUsername() && <span className={classes.red}>Usernames must be at least 4 characters.</span>}
             <TextField
               value={this.state.username}

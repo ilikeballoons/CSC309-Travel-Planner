@@ -15,6 +15,7 @@ class RecommendationsStore extends EventEmitter {
     super()
     this.recommendations = []
     this.loading = true
+    this.loadRecommendations()
     this.fetchedRecommendations = 0
   }
 
@@ -153,6 +154,33 @@ class RecommendationsStore extends EventEmitter {
 			 })
   }
 
+  loadRecommendations = () => {
+    // this.getRecommendationsFromFoursquare()
+    this.getRecommendationsFromTestFile()
+    .then((venues) => {
+      Promise.all(venues.map(venue => (
+        // this.getVenueDetailsFromFoursquare(venue.id)
+        this.getVenueDetailsFromTestFiles(venue.id)
+      )))
+      .then(detailedVenues => {
+        const formattedVenues = detailedVenues.map(venue => ({
+            title: venue.name || 'Name Not Found',
+            address: venue.location.address || 'Address Not Found',
+            category: this.getVenueParentCategory(venue),
+            price: (venue.price && venue.price.tier) || 0,
+            description: venue.description || 'No Description Found',
+            opens: (venue.hours && venue.hours.timeframes.filter(frame => frame.includesToday)[0].open[0].renderedTime.split('–')[0]) || '0000', // vomit
+            closes: (venue.hours && venue.hours.timeframes.filter(frame => frame.includesToday)[0].open[0].renderedTime.split('–')[1]) || '0000',
+            image: `${venue.bestPhoto.prefix}width300${venue.bestPhoto.suffix}`,
+            pluralName: venue.categories[0].pluralName || 'No Category Found',
+        }))
+        this.recommendations = formattedVenues
+        this.loading = false
+        this.emit('change')
+      })
+    })
+    .catch((err) => console.log (err)) // TODO: SOMETHING BETTER WITH ERRORS
+  }
 
   handleActions (action) {
     switch (action.type) {

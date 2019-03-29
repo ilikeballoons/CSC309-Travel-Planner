@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Avatar from '@material-ui/core/Avatar'
 import SentimentVeryDissatisfied from '@material-ui/icons/SentimentVeryDissatisfied'
 
-import UserProfileStore from './UserProfileStore'
+// import UserProfileStore from './UserProfileStore'
 import UserProfileActions from './UserProfileActions'
 
 const styles = theme => ({

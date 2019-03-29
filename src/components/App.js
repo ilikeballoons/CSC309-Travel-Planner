@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
-import AppStore from './AppStore'
+// import AppStore from './AppStore'
+import SearchAppBarStore from './appbar/SearchAppBarStore'
 import LoginStates from '../utils/LoginStates'
 import Landing from './landing/Landing'
 import Admin from './admin/Admin'
@@ -12,23 +13,23 @@ import WithDragDropContext from '../utils/WithDragDropContext'
 class App extends Component {
   constructor (props) {
     super(props)
-    this.state = { user: null }
+    this.state = { username: null }
   }
 
   componentDidMount () {
-    AppStore.on('change', this.updateState)
+    SearchAppBarStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
-    AppStore.removeListener('change', this.updateState)
+    SearchAppBarStore.removeListener('change', this.updateState)
   }
 
-  updateState = () => this.setState(AppStore.getState())
+  updateState = () => this.setState(SearchAppBarStore.getState().login)
 
   render () {
-    const loggedIn = this.state.loggedInState === LoginStates.loggedIn
-    const username = this.state.user && this.state.user.username
-    const admin = username === 'admin' && loggedIn
+    const { username, loggedInState, privilege } = this.state
+    const loggedIn = loggedInState === LoginStates.loggedIn
+    const admin = privilege === 1
     return (
         <div className='App' style={{'minHeight': '100vh'}}>
           <Switch>

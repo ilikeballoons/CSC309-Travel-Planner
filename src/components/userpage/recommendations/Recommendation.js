@@ -64,12 +64,13 @@ const collect = (connect, monitor) => ({
 })
 
 class Recommendation extends React.Component {
-constructor () {
-  super()
-  this.state = { expanded: false }
-}
 
-  toggleInfo = () => this.setState(state => ({expanded: !state.expanded}))
+  constructor () {
+    super()
+    this.state = { expanded: false }
+  }
+
+  toggleInfo = () => this.setState({ expanded: this.state.expanded })
   handleRemove = () => UserActions.removeRecommendation(this.props.data.id)
 
   render () {

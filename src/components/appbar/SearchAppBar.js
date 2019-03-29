@@ -12,14 +12,15 @@ import { Redirect } from 'react-router-dom'
 
 import SearchAppBarStore from './SearchAppBarStore'
 import PreferencesStore from '../userpage/preferences/PreferencesStore'
-import AppStore from '../AppStore'
 import SearchAppBarActions from './SearchAppBarActions'
 import PreferencesActions from '../userpage/preferences/PreferencesActions'
 import SignInButton from './SignInButton'
 import CreateAccountButton from './CreateAccountButton'
 import UserProfileButton from './UserProfileButton'
+import ConfirmAccountCreateSnackbar from './ConfirmAccountCreateSnackbar'
 import ItineraryButton from './ItineraryButton'
 import AutoComplete from './AutoComplete'
+import LoginStates from '../../utils/LoginStates'
 
 const styles = theme => ({
   root: {
@@ -86,20 +87,18 @@ class SearchAppBar extends React.Component {
   constructor (props) {
     super(props)
     this.classes = props.classes
-    this.state = Object.assign({}, AppStore.getState(), PreferencesStore.getState().open, SearchAppBarStore.getState())
+    this.state = Object.assign({}, PreferencesStore.getState().open, SearchAppBarStore.getState())
   }
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
     PreferencesStore.on('change', this.updateState)
-    AppStore.on('change', this.updateState)
 
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
     PreferencesStore.removeListener('change', this.updateState)
-    AppStore.removeListener('change', this.updateState)
   }
 
   handleChange = event => {
@@ -113,21 +112,23 @@ class SearchAppBar extends React.Component {
   }
 
   toggleDrawer = () => {
-    const { open, loggedInState } = this.state
-    loggedInState === 'loggedIn'&& (open ? PreferencesActions.close() : PreferencesActions.open())
+    const { open, login } = this.state
+    login.loggedInState === LoginStates.loggedIn && (open ? PreferencesActions.close() : PreferencesActions.open())
   }
 
   updateState = () => {
-    const { loggedInState, searchQuery, open, user} = Object.assign({}, AppStore.getState(), SearchAppBarStore.getState(), PreferencesStore.getState())
-    this.setState({ loggedInState, searchQuery, open, user })
+    const { login, searchQuery, open, createAccount } = Object.assign({}, SearchAppBarStore.getState(), PreferencesStore.getState())
+    const { snackbarOpen } = createAccount
+    this.setState({ login, searchQuery, open, snackbarOpen })
   }
 
   render () {
     const { classes, page } = this.props
-    const { loggedInState, open, user, userProfile } = this.state
-    const isLoggedIn = loggedInState === 'loggedIn'
-    if (page === 'userPage' && userProfile.open) return <Redirect to={`/${user.username}/profile`} push />
-    if (page === 'userProfile' && !userProfile.open) return <Redirect to={`/${user.username}`} push />
+    const { login, open, userProfile, snackbarOpen } = this.state
+    const { username, loggedInState } = login
+    const isLoggedIn = loggedInState === LoginStates.loggedIn
+    if (page === 'userPage' && userProfile.open) return <Redirect to={`/${username}/profile`} push />
+    if (page === 'userProfile' && !userProfile.open) return <Redirect to={`/${username}`} push />
     return (
       <div className={classes.root}>
         <AppBar position='static'>
@@ -165,6 +166,7 @@ class SearchAppBar extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
+        <ConfirmAccountCreateSnackbar open={snackbarOpen} />
       </div>
     )
   }

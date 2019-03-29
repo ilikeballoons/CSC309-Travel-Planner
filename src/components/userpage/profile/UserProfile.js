@@ -12,9 +12,10 @@ import { withStyles } from '@material-ui/core/styles'
 
 import ResetPWButton from './ResetPWButton'
 import DeleteAccountButton from './DeleteAccountButton'
+import SubmitButton from './SubmitButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
 import ProfilePictureDialog from './ProfilePictureDialog'
-import AppStore from '../../AppStore'
+import ConfirmSnackbar from './ConfirmSnackbar'
 import UserProfileActions from './UserProfileActions'
 import UserProfileStore from './UserProfileStore'
 import SearchAppBar from '../../appbar/SearchAppBar'
@@ -63,32 +64,24 @@ const styles = theme => ({
 class UserProfile extends React.Component {
   constructor () {
     super()
-    this.state = {
-      user: AppStore.getState().user,
-      ...UserProfileStore.getState()
-    }
+    this.state = UserProfileStore.getState()
   }
 
   componentDidMount () {
-    AppStore.on('change', this.updateState)
     UserProfileStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
-    AppStore.removeListener('change', this.updateState)
     UserProfileStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
-    this.setState({
-      user: AppStore.getState().user,
-      ...UserProfileStore.getState()
-    })
+    this.setState(UserProfileStore.getState())
   }
 
   render () {
     const { classes } = this.props
-    const { user, showEditProfilePictureButton, showProfilePictureDialog, deleteDialogOpen } = this.state
+    const { user, showEditProfilePictureButton, showProfilePictureDialog, deleteDialogOpen, snackbarOpen } = this.state
 
     return (
       <div className={classes.root}>
@@ -96,7 +89,7 @@ class UserProfile extends React.Component {
         <div className={classes.header}>
           <div className={classes.avatarContainer}>
             <Avatar alt='profile_pic'
-              src={user.profilePicture}
+              src={user.profilePicture ? user.profilePicture : require('../../../images/avatar/avatar.png')}
               className={classes.avatar}
               onMouseEnter={() => UserProfileActions.toggleEditProfilePictureButton()}
               onMouseLeave={() => UserProfileActions.toggleEditProfilePictureButton()}
@@ -200,10 +193,12 @@ class UserProfile extends React.Component {
           <div className={classes.actions}>
             <DeleteAccountButton />
             <ResetPWButton />
+            <SubmitButton user={user} />
           </div>
         </div>
         <ConfirmDeleteDialog open={deleteDialogOpen}/>
         <ProfilePictureDialog open={showProfilePictureDialog} picture={user.profilePicture} />
+        <ConfirmSnackbar open={snackbarOpen} />
       </div>
     )
   }

@@ -17,7 +17,7 @@ const getUser = (user) => {
 
 const getAllUsers = () => {
   return fetch(`/users`)
-    .then((res) => res)
+    .then((res) => res.json())
 }
 
 const patchUser = (user) => {

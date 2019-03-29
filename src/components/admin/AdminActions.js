@@ -116,10 +116,10 @@ const AdminActions = {
   startLoad () {
     getAllUsers().then((res) => {
       dispatcher.dispatch({
-        type: ActionTypes.ADMIN_USER_LOAD
+        type: ActionTypes.ADMIN_USER_LOAD,
+        value: res
       })
       // dispatcher.waitFor([searchappbarStore.dispatcherToken])
-      console.log('logging in')
     }).catch((err) => {
       console.log(err)
     })

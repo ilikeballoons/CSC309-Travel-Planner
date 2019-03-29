@@ -180,11 +180,7 @@ class AdminStore extends EventEmitter {
       }
 
       case ActionTypes.ADMIN_USER_LOAD: {
-        // this.getUsersFromFile().then((result) => {
-        //   this.emit('change')
-        // }).catch((err) => {
-        //   console.log(err)
-        // })
+        this.allUsers = action.value
         this.emit('change')
         break
       }

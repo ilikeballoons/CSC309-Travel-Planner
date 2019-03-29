@@ -1,7 +1,6 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
-import { getAllUsers } from '../../utils/ServerMethods'
-import searchappbarStore from '../appbar/SearchAppBarStore'
+import { getAllUsers, patchUser, getUser } from '../../utils/ServerMethods'
 
 const AdminActions = {
   clickSubmit () {
@@ -73,10 +72,18 @@ const AdminActions = {
     })
   },
 
-  editModeCancel () {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_EDIT_USER_CANCEL
+  editModeCancel (user) {//TODO: current working on
+    // get the current user
+    getUser(user)
+    .then((res) => {
+      patchUser(user)
     })
+    .then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.ADMIN_EDIT_USER_CANCEL
+      })
+    })
+    .catch((error) => console.log(error))
   },
 
   editModeSave () {

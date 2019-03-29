@@ -69,7 +69,7 @@ class UserPanel extends React.Component {
     const { classes } = this.props
     const { editModeOn, currentUser } = this.state
     const editButtonText = editModeOn ? 'Save' : 'Edit user information'
-    const editButtonAction = editModeOn ? () => AdminActions.editModeCancel() : () => AdminActions.editModeOn()
+    const editButtonAction = editModeOn ? () => AdminActions.editModeCancel(currentUser) : () => AdminActions.editModeOn()
     return (
       <div className={classes.viewUser}>
         <div className={classes.userHeader}>

@@ -120,10 +120,13 @@ class AdminStore extends EventEmitter {
         break
       }
 
+      // TODO: this was called once clicked on save
       case ActionTypes.ADMIN_EDIT_USER_CANCEL: {
         this.editModeOn = false
         this.editModeSave = true
-        this.editUser().then((r) => {}).catch((e) => console.log(e))
+
+        // this.editUser().then((r) => {}).catch((e) => console.log(e)) //TODO: change this funciton calling the backend method, editUser is also in this file
+        
         this.emit('change')
         break
       }

@@ -12,7 +12,7 @@ const postUser = (user) => {
 
 const getUser = (user) => {
   return fetch(`/users/${user.username}/${user.password}`)
-    .then((res) => res)
+    .then((res) => res.json())
 }
 
 const getAllUsers = () => {

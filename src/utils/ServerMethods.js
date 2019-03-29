@@ -30,7 +30,9 @@ const patchUser = (user) => {
     }
   })
     .then((res) => res.json()) // TODO: improve
-    .then((res) => res)
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 const login = (user) => {

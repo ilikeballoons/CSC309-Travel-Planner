@@ -27,7 +27,8 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   location: {
-    type: String
+    type: String,
+    default: "Toronto, ON, Canada"
   },
   description: {
     type: String

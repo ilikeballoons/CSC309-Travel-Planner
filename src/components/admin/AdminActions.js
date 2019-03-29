@@ -47,7 +47,7 @@ const AdminActions = {
     })
   },
 
-  deleteUserDialogOpen () {
+  deleteUserDialogOpen () {//TODO: 
     dispatcher.dispatch({
       type: ActionTypes.ADMIN_DELETE_DIALOG_OPEN
     })
@@ -72,11 +72,13 @@ const AdminActions = {
     })
   },
 
-  editModeCancel (user) {//TODO: current working on
+  editModeCancel (user) {//TODO: 
     // get the current user
     getUser(user)
     .then((res) => {
-      patchUser(user)
+      console.log("-----", res)
+      console.log("++++", res.value)
+      patchUser(res.value)
     })
     .then((res) => {
       dispatcher.dispatch({

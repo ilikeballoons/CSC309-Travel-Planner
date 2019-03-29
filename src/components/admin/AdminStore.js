@@ -174,6 +174,7 @@ class AdminStore extends EventEmitter {
           this.getUsersFromFile()
         }).then(reload => {
           console.log('Reloaded')
+          this.emit('change')
         }).catch(error => {
           console.log('Logging from inside: ', error)
         })

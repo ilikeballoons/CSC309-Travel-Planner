@@ -1,5 +1,7 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
+import { getAllUsers } from '../../utils/ServerMethods'
+import searchappbarStore from '../appbar/SearchAppBarStore'
 
 const AdminActions = {
   clickSubmit () {
@@ -105,9 +107,18 @@ const AdminActions = {
   },
 
   startLoad () {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_USER_LOAD
+    getAllUsers().then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.ADMIN_USER_LOAD
+      })
+      // dispatcher.waitFor([searchappbarStore.dispatcherToken])
+      console.log('logging in')
+    }).catch((err) => {
+      console.log(err)
     })
+    // dispatcher.dispatch({
+    //   type: ActionTypes.ADMIN_USER_LOAD
+    // })
   },
 
   changeUserDisplayed (user) {

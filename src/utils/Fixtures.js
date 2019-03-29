@@ -23,7 +23,11 @@ const users = [
     location: 'Toronto, ON',
     birthday: Date.now(),
     profilePicture: defaultProfilePicture,
-    description: 'This is a description. I am awesome.'
+    description: 'This is a description. I am awesome.',
+    currency: {
+      value: 'USD',
+      label: '$'
+    }
   },
   {
     username: 'admin',
@@ -33,8 +37,11 @@ const users = [
     location: 'Toronto, ON',
     birthday: Date.now(),
     profilePicture: defaultProfilePicture,
-    description: 'This is a description. I am awesome.'
-
+    description: 'This is a description. I am awesome.',
+    currency: {
+      value: 'USD',
+      label: '$'
+    }
   }
 ]
 
@@ -149,4 +156,19 @@ const currencies = [
   }
 ]
 
-export { users, recommendations, currencies }
+const updateUser = (user) => {
+  const i = users.indexOf(users.filter((u) => u.username === user.username)[0])
+  users[i] = user
+}
+
+const deleteUser = user => {
+  users.splice(users.indexOf(user), 1)
+}
+
+const filterUsers = query => {
+  return users.filter(u => {
+    return u.username.toLowerCase().includes(query.toLowerCase()) | u.fullName.toLowerCase().includes(query.toLowerCase())
+  })
+}
+
+export { users, recommendations, currencies, updateUser, deleteUser, filterUsers }

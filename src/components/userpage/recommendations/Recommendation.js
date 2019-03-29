@@ -64,6 +64,7 @@ const collect = (connect, monitor) => ({
 })
 
 class Recommendation extends React.Component {
+
   constructor () {
     super()
     this.state = { expanded: false }

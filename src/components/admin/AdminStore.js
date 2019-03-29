@@ -128,12 +128,6 @@ class AdminStore extends EventEmitter {
         break
       }
 
-      case ActionTypes.ADMIN_EDIT_USER_CURRENCY: {
-        this.currentUser.currency = action.value
-        this.emit('change')
-        break
-      }
-
       case ActionTypes.ADMIN_EDIT_USER_MISC: {
         this.currentUser.description = action.value
         this.emit('change')

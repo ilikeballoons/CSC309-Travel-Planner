@@ -97,13 +97,6 @@ const AdminActions = {
     })
   },
 
-  editUserCurrency (currency) {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_EDIT_USER_CURRENCY,
-      value: currency
-    })
-  },
-
   editUserMisc (misc) {
     dispatcher.dispatch({
       type: ActionTypes.ADMIN_EDIT_USER_MISC,

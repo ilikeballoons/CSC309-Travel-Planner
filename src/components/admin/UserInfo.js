@@ -7,7 +7,6 @@ import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 
 import AdminStore from './AdminStore'
 import AdminActions from './AdminActions'
-import { currencies } from '../../utils/Fixtures.js'
 
 const styles = theme => ({
   infoLayout: {
@@ -50,13 +49,12 @@ class UserInfo extends React.Component {
 
   updateBirthday = date => AdminActions.editUserBirthday(date)
   updateLocation = event => AdminActions.editUserLocation(event.target.value)
-  updateCurrency = event => AdminActions.editUserCurrency(currencies.filter(option => option.value === event.target.value)[0])
   updateMisc = event => AdminActions.editUserMisc(event.target.value)
 
   render () {
     const { classes } = this.props
     const { currentUser, editModeOn } = this.state
-    const { birthday, location, currency, description } = currentUser
+    const { birthday, location, description } = currentUser
     return (
       <div className={classes.infoLayout}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -82,27 +80,6 @@ class UserInfo extends React.Component {
           margin='normal'
           onChange={this.updateLocation}
         />
-        <TextField
-          disabled={!editModeOn}
-          select
-          label='Currency'
-          className={classes.textField}
-          value={currency.value}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu
-            }
-          }}
-          onChange={this.updateCurrency}
-          margin='normal'
-        >
-          {currencies.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.value}
-            </MenuItem>
-          ))
-          }
-        </TextField>
         <TextField
           disabled={!editModeOn}
           multiline

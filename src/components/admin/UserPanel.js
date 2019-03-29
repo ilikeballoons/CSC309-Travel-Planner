@@ -47,7 +47,8 @@ class UserPanel extends React.Component {
   constructor () {
     super()
     this.state = {
-      editModeOn: false
+      editModeOn: false,
+      currentUser: {}
     }
   }
 
@@ -60,28 +61,28 @@ class UserPanel extends React.Component {
   }
 
   updateState = () => {
-    const { editModeOn } = AdminStore.getState().editUser
-    this.setState({ editModeOn})
+    const { editModeOn, currentUser } = AdminStore.getState()
+    this.setState({ editModeOn, currentUser })
   }
 
   render () {
     const { classes } = this.props
-    const { editModeOn } = this.state
+    const { editModeOn, currentUser } = this.state
     const editButtonText = editModeOn ? 'Save' : 'Edit user information'
     const editButtonAction = editModeOn ? () => AdminActions.editModeCancel() : () => AdminActions.editModeOn()
     return (
       <div className={classes.viewUser}>
         <div className={classes.userHeader}>
-          <Avatar alt='kyle_quinlivan'
-            src={require('../../images/avatar/kyle_quinlivan.png')}
+          <Avatar alt={currentUser.fullName}
+            src={currentUser.profilePicture}
             className={classes.userAvatar}
           />
           <div className={classes.userHeaderText}>
             <Typography variant='h5' gutterBottom>
-              FirstName, LastName
+              {currentUser.fullName}
             </Typography>
             <Typography variant='subtitle1' gutterBottom>
-              @uniqueuserid
+              username: {currentUser.username}
             </Typography>
             <Typography variant='subtitle1'>
               Password: <u>******</u>

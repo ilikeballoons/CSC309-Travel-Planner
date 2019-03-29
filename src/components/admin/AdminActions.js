@@ -111,6 +111,19 @@ const AdminActions = {
     })
   },
 
+  startLoad () {
+    dispatcher.dispatch({
+      type: ActionTypes.ADMIN_USER_LOAD
+    })
+  },
+
+  changeUserDisplayed (user) {
+    dispatcher.dispatch({
+      type: ActionTypes.ADMIN_CHANGE_USER_DISPLAYED,
+      value: user
+    })
+  },
+
   userSearchChange (query) {
     dispatcher.dispatch({
       type: ActionTypes.USERSEARCH_CHANGE,

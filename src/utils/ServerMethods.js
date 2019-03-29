@@ -15,6 +15,11 @@ const getUser = (user) => {
     .then((res) => res)
 }
 
+const getAllUsers = () => {
+  return fetch(`/users`)
+    .then((res) => res)
+}
+
 const patchUser = (user) => {
   return fetch('/users', {
     method: 'PATCH',
@@ -50,4 +55,4 @@ const logout = () => {
     .then((res) => res.status)
 }
 
-export { postUser, getUser, login, logout, patchUser }
+export { postUser, getUser, login, logout, patchUser, getAllUsers }

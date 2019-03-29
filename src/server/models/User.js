@@ -31,11 +31,13 @@ const UserSchema = new mongoose.Schema({
     default: "Toronto, ON, Canada"
   },
   description: {
-    type: String
+    type: String,
+    default: "Hello World"
   },
   profilePicture: {
     contentType: String,
-    data: Buffer
+    data: Buffer,
+    default: ""
   }
 })
 

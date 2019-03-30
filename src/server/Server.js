@@ -61,6 +61,23 @@ app.get('/users', (req, res) => {
     .catch((error) => res.status(500).send(error))
 })
 
+// get users by username or fullName
+app.get('/users/:name', (req, res) => {
+  const name = req.params.name
+  console.log('Received name: ' + name)
+  User.find({
+    $or: [
+      { 'username': { $regex: new RegExp(name, 'i') } },
+      { 'fullName': { $regex: new RegExp(name, 'i') } }
+    ]
+  })
+    .then((users) => {
+      if (!users) res.status(404).send()
+      res.send(users)
+    })
+    .catch((error) => res.status(500).send(error))
+})
+
 app.get('/users/:username/:password', (req, res) => {
   User.findByUsernamePassword(req.params)
     .then((user) => {

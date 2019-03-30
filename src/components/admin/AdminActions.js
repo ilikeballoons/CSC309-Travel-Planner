@@ -1,6 +1,6 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
-import { getAllUsers, patchUser, getUser } from '../../utils/ServerMethods'
+import { getAllUsers, patchUser, getUser, getUsersByName } from '../../utils/ServerMethods'
 
 const AdminActions = {
   clickSubmit () {
@@ -47,7 +47,7 @@ const AdminActions = {
     })
   },
 
-  deleteUserDialogOpen () {//TODO: 
+  deleteUserDialogOpen () {//TODO:
     dispatcher.dispatch({
       type: ActionTypes.ADMIN_DELETE_DIALOG_OPEN
     })
@@ -72,20 +72,17 @@ const AdminActions = {
     })
   },
 
-  editModeCancel (user) {//TODO: 
+  editModeCancel (user) { //TODO:
     // get the current user
-    getUser(user)
-    .then((res) => {
-      console.log("-----", res)
-      console.log("++++", res.value)
+    getUser(user).then((res) => {
+      console.log('-----', res)
+      console.log('++++', res.value)
       patchUser(res.value)
-    })
-    .then((res) => {
+    }).then((res) => {
       dispatcher.dispatch({
         type: ActionTypes.ADMIN_EDIT_USER_CANCEL
       })
-    })
-    .catch((error) => console.log(error))
+    }).catch((error) => console.log(error))
   },
 
   editModeSave () {
@@ -138,9 +135,16 @@ const AdminActions = {
   },
 
   userSearchChange (query) {
-    dispatcher.dispatch({
-      type: ActionTypes.USERSEARCH_CHANGE,
-      value: query
+    getUsersByName(query).then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.USERSEARCH_CHANGE,
+        value: {
+          query,
+          res
+        }
+      })
+    }).catch((error) => {
+      console.log(error)
     })
   },
 

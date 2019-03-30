@@ -126,7 +126,7 @@ class AdminStore extends EventEmitter {
         this.editModeSave = true
 
         // this.editUser().then((r) => {}).catch((e) => console.log(e)) //TODO: change this funciton calling the backend method, editUser is also in this file
-        
+
         this.emit('change')
         break
       }
@@ -192,8 +192,8 @@ class AdminStore extends EventEmitter {
       }
 
       case ActionTypes.USERSEARCH_CHANGE: {
-        this.userQuery = action.value
-        this.filterUsers(this.userQuery).then().catch()
+        this.userQuery = action.value.query
+        this.allUsers = action.value.res
         this.emit('change')
         break
       }

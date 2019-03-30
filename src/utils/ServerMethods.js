@@ -18,6 +18,13 @@ const getUser = (user) => {
 const getAllUsers = () => {
   return fetch(`/users`)
     .then((res) => res.json())
+    .catch((error) => console.log(error))
+}
+
+const getUsersByName = (queryString) => {
+  return fetch(`/users/${queryString}`)
+    .then((res) => res.json())
+    .catch((error) => console.log(error))
 }
 
 const patchUser = (user) => {
@@ -57,4 +64,4 @@ const logout = () => {
     .then((res) => res.status)
 }
 
-export { postUser, getUser, login, logout, patchUser, getAllUsers }
+export { postUser, getUser, login, logout, patchUser, getAllUsers, getUsersByName }

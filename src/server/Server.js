@@ -64,7 +64,6 @@ app.get('/users', (req, res) => {
 // get users by username or fullName
 app.get('/users/:name', (req, res) => {
   const name = req.params.name
-  console.log('Received name: ' + name)
   User.find({
     $or: [
       { 'username': { $regex: new RegExp(name, 'i') } },

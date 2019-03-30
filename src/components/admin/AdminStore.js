@@ -5,6 +5,8 @@ import ActionTypes from '../../utils/ActionTypes'
 class AdminStore extends EventEmitter {
   constructor () {
     super()
+    this.dispatcherToken = undefined
+
     this.userQuery = ''
 
     this.allUsers = []
@@ -192,8 +194,7 @@ class AdminStore extends EventEmitter {
       }
 
       case ActionTypes.USERSEARCH_CHANGE: {
-        this.userQuery = action.value.query
-        this.allUsers = action.value.res
+        this.userQuery = action.value
         this.emit('change')
         break
       }
@@ -204,5 +205,5 @@ class AdminStore extends EventEmitter {
 }
 
 const adminStore = new AdminStore()
-dispatcher.register(adminStore.handleActions.bind(adminStore))
+adminStore.dispatcherToken = dispatcher.register(adminStore.handleActions.bind(adminStore))
 export default adminStore

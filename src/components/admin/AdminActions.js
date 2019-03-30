@@ -2,6 +2,8 @@ import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
 import { getAllUsers, patchUser, getUser, getUsersByName } from '../../utils/ServerMethods'
 
+import AdminStore from './AdminStore'
+
 const AdminActions = {
   clickSubmit () {
     dispatcher.dispatch({
@@ -135,13 +137,14 @@ const AdminActions = {
   },
 
   userSearchChange (query) {
+    dispatcher.dispatch({
+      type: ActionTypes.USERSEARCH_CHANGE,
+      value: query
+    })
     getUsersByName(query).then((res) => {
       dispatcher.dispatch({
-        type: ActionTypes.USERSEARCH_CHANGE,
-        value: {
-          query,
-          res
-        }
+        type: ActionTypes.ADMIN_USER_LOAD,
+        value: res
       })
     }).catch((error) => {
       console.log(error)

@@ -96,7 +96,7 @@ app.patch('/users', authenticate, (req, res) => {
   }
   const { username, fullName, birthday, location, description, profilePicture } = req.body
   const properties = { username, fullName, birthday, location, description, profilePicture }
-  User.findByIdAndUpdate(id, { $set: properties }, { new: true })
+  User.findByIdAndUpdate(req.body._id, { $set: properties }, { new: true })
     .then((user) => {
       if (!user) res.status(404).send()
       else res.send(user)

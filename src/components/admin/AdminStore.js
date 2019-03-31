@@ -5,6 +5,8 @@ import ActionTypes from '../../utils/ActionTypes'
 class AdminStore extends EventEmitter {
   constructor () {
     super()
+    this.dispatcherToken = undefined
+
     this.userQuery = ''
 
     this.allUsers = []
@@ -126,7 +128,7 @@ class AdminStore extends EventEmitter {
         this.editModeSave = true
 
         // this.editUser().then((r) => {}).catch((e) => console.log(e)) //TODO: change this funciton calling the backend method, editUser is also in this file
-        
+
         this.emit('change')
         break
       }
@@ -193,7 +195,6 @@ class AdminStore extends EventEmitter {
 
       case ActionTypes.USERSEARCH_CHANGE: {
         this.userQuery = action.value
-        this.filterUsers(this.userQuery).then().catch()
         this.emit('change')
         break
       }
@@ -204,5 +205,5 @@ class AdminStore extends EventEmitter {
 }
 
 const adminStore = new AdminStore()
-dispatcher.register(adminStore.handleActions.bind(adminStore))
+adminStore.dispatcherToken = dispatcher.register(adminStore.handleActions.bind(adminStore))
 export default adminStore

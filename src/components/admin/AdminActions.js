@@ -1,6 +1,8 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
-import { getAllUsers, patchUser, getUser } from '../../utils/ServerMethods'
+import { getAllUsers, patchUser, getUser, getUsersByName } from '../../utils/ServerMethods'
+
+import AdminStore from './AdminStore'
 
 const AdminActions = {
   clickSubmit () {
@@ -47,7 +49,7 @@ const AdminActions = {
     })
   },
 
-  deleteUserDialogOpen () {//TODO: 
+  deleteUserDialogOpen () {//TODO:
     dispatcher.dispatch({
       type: ActionTypes.ADMIN_DELETE_DIALOG_OPEN
     })
@@ -78,8 +80,7 @@ const AdminActions = {
       dispatcher.dispatch({
         type: ActionTypes.ADMIN_EDIT_USER_CANCEL
       })
-    })
-    .catch((error) => console.log(error))
+    }).catch((error) => console.log(error))
   },
 
   editModeSave () {
@@ -135,6 +136,14 @@ const AdminActions = {
     dispatcher.dispatch({
       type: ActionTypes.USERSEARCH_CHANGE,
       value: query
+    })
+    getUsersByName(query).then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.ADMIN_USER_LOAD,
+        value: res
+      })
+    }).catch((error) => {
+      console.log(error)
     })
   },
 

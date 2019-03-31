@@ -82,7 +82,7 @@ class UserPanel extends React.Component {
               {currentUser.fullName}
             </Typography>
             <Typography variant='subtitle1' gutterBottom>
-              username: {currentUser.username}
+              Username: {currentUser.username}
             </Typography>
             <Typography variant='subtitle1'>
               Password: <u>******</u>

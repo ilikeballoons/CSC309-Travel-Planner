@@ -106,8 +106,6 @@ app.patch('/users', authenticate, (req, res) => {
 
 app.delete('/users', (req, res) => {
   const id = req.body._id
-  console.log('username is: ' + req.body.username)
-  console.log(id)
   if (!ObjectID.isValid(id)) {
     return res.status(404).send()
   }

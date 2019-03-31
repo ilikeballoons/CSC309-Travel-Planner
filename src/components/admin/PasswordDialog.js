@@ -21,7 +21,8 @@ const styles = theme => ({
 class PasswordDialog extends React.Component {
   constructor () {
     super()
-    this.state=AdminStore.getState().changePW
+    const { changePW, currentUser } = AdminStore.getState()
+    this.state = { changePW, currentUser }
   }
 
   componentDidMount () {
@@ -33,30 +34,28 @@ class PasswordDialog extends React.Component {
   }
 
   updateState = () => {
-    this.setState(AdminStore.getState().changePW)
+    const { changePW, currentUser } = AdminStore.getState()
+    this.setState({ changePW, currentUser })
   }
 
   handlePassword = event => AdminActions.changePWPassword(event.target.value)
   handleRetype = event => AdminActions.changePWRetype(event.target.value)
-  confirmValidPassword = () => this.state.password.length >= 6
-  confirmPasswordMatch = () => this.state.password === this.state.retype
+  confirmValidPassword = () => this.state.changePW.password.length >= 6
+  confirmPasswordMatch = () => this.state.changePW.password === this.state.changePW.retype
 
   submit = () => {
     AdminActions.changePWClickSubmit()
     if(this.confirmValidPassword() && this.confirmPasswordMatch()){
         AdminActions.changePWDialogClose()
-        AdminActions.changePWSubmit({
-          open: this.state.open,
-          submit: this.state.submit,
-          password: this.state.password,
-          retype: this.state.retype
-        })
+        const user = this.state.currentUser
+        user.password = this.state.changePW.password
+        AdminActions.changePWSubmit(user)
     }
   }
 
   render () {
     const { classes } = this.props
-    const { open, submit, password, retype } = this.state
+    const { open, submit, password, retype } = this.state.changePW
     return (
       <Dialog
         open={open}

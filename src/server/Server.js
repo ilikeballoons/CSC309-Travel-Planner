@@ -94,8 +94,8 @@ app.patch('/users', authenticate, (req, res) => {
   if (!ObjectID.isValid(id)) {
     return res.status(404).send()
   }
-  const { username, fullName, birthday, location, description, profilePicture } = req.body
-  const properties = { username, fullName, birthday, location, description, profilePicture }
+  const { username, fullName, password, birthday, location, description, profilePicture } = req.body
+  const properties = { username, fullName, password, birthday, location, description, profilePicture }
   User.findByIdAndUpdate(req.body._id, { $set: properties }, { new: true })
     .then((user) => {
       if (!user) res.status(404).send()
@@ -104,7 +104,7 @@ app.patch('/users', authenticate, (req, res) => {
     .catch((error) => res.status(500).send(error))
 })
 
-app.delete('/users', (req, res) => {
+app.delete('/users', authenticate, (req, res) => {
   const id = req.body._id
   if (!ObjectID.isValid(id)) {
     return res.status(404).send()

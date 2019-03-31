@@ -38,40 +38,6 @@ class AdminStore extends EventEmitter {
     }
   }
 
-  getUsersFromFile () {
-    return new Promise((resolve, reject) => {
-      const fixture = require('../../utils/Fixtures.js')
-      this.allUsers = fixture.users
-      this.currentUser = this.allUsers[0]
-      resolve()
-    })
-  }
-
-  editUser () {
-    return new Promise((resolve, reject) => {
-      const fixture = require('../../utils/Fixtures.js')
-      fixture.updateUser(this.currentUser)
-      resolve()
-    })
-  }
-
-  deleteUserExecute () {
-    return new Promise((resolve, reject) => {
-      const fixture = require('../../utils/Fixtures.js')
-      fixture.deleteUser(this.currentUser)
-      this.deleteUser.delete = false
-      resolve()
-    })
-  }
-
-  filterUsers (query) {
-    return new Promise((resolve, reject) => {
-      const fixture = require('../../utils/Fixtures.js')
-      this.allUsers = fixture.filterUsers(query)
-      resolve()
-    })
-  }
-
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.ADMIN_CHANGE_PW_OPEN: {
@@ -98,7 +64,13 @@ class AdminStore extends EventEmitter {
       }
 
       case ActionTypes.ADMIN_CHANGE_PW_SUBMIT: {
-        this.changePW = action.value
+        this.changePW = {
+          open: false,
+          submit: false,
+          password: '',
+          retype: ''
+        }
+        this.currentUser = action.value
         this.emit('change')
         break
       }
@@ -126,9 +98,6 @@ class AdminStore extends EventEmitter {
       case ActionTypes.ADMIN_EDIT_USER_CANCEL: {
         this.editModeOn = false
         this.editModeSave = true
-
-        // this.editUser().then((r) => {}).catch((e) => console.log(e)) //TODO: change this funciton calling the backend method, editUser is also in this file
-
         this.emit('change')
         break
       }

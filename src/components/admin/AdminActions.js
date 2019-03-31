@@ -27,10 +27,13 @@ const AdminActions = {
     })
   },
 
-  changePWSubmit (formData) {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_CHANGE_PW_SUBMIT
-    })
+  changePWSubmit (user) {
+    patchUser(user).then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.ADMIN_CHANGE_PW_SUBMIT,
+        value: user
+      })
+    }).catch((err) => console.log(err))
   },
 
   changePWPassword (password) {

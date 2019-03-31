@@ -30,19 +30,24 @@ class UsersSearch extends React.Component {
     super()
     const { userQuery } = AdminStore.getState()
     this.state = { userQuery }
+    this._isMounted = false
   }
 
   componentDidMount () {
     AdminStore.on('change', this.updateState)
+    this._isMounted = true
   }
 
   componentWillUnmount () {
+    this._isMounted = false
     AdminStore.on('change', this.updateState)
   }
 
   updateState = () => {
-    const { userQuery } = AdminStore.getState()
-    this.setState({userQuery})
+    if (this._isMounted) {
+      const { userQuery } = AdminStore.getState()
+      this.setState({userQuery})
+    }
   }
 
   updateQuery = event => AdminActions.userSearchChange(event.target.value)

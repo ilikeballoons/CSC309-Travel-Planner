@@ -169,20 +169,13 @@ class AdminStore extends EventEmitter {
           open: false,
           delete: true
         }
-        this.deleteUserExecute().then(r => {
-          this.getUsersFromFile()
-        }).then(reload => {
-          console.log('Reloaded')
-          this.emit('change')
-        }).catch(error => {
-          console.log('Logging from inside: ', error)
-        })
         this.emit('change')
         break
       }
 
       case ActionTypes.ADMIN_USER_LOAD: {
         this.allUsers = action.value
+        this.currentUser = this.allUsers[0]
         this.emit('change')
         break
       }

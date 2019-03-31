@@ -43,6 +43,21 @@ const patchUser = (user) => {
     })
 }
 
+const deleteUser = (user) => {
+  return fetch('/users', {
+    method: 'DELETE',
+    body: JSON.stringify(user),
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((res) => res.json()) // TODO: improve
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
 const login = (user) => {
   // console.log(user);
   return fetch(`/users/login`, {
@@ -65,4 +80,4 @@ const logout = () => {
     .then((res) => res.status)
 }
 
-export { postUser, getUser, login, logout, patchUser, getAllUsers, getUsersByName }
+export { postUser, getUser, login, logout, patchUser, getAllUsers, getUsersByName, deleteUser }

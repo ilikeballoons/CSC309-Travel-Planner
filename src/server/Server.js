@@ -104,6 +104,22 @@ app.patch('/users', authenticate, (req, res) => {
     .catch((error) => res.status(500).send(error))
 })
 
+app.delete('/users', (req, res) => {
+  const id = req.body._id
+  console.log('username is: ' + req.body.username)
+  console.log(id)
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send()
+  }
+
+  User.findByIdAndDelete(id)
+    .then((user) => {
+      if (!user) res.status(404).send()
+      else res.send(user)
+    })
+    .catch((error) => res.status(500).send(error))
+})
+
 // Login routes
 app.post('/users/login', (req, res) => {
   const { username, password } = req.body

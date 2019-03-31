@@ -72,14 +72,8 @@ const AdminActions = {
     })
   },
 
-  editModeCancel (user) {//TODO: 
-    // get the current user
-    getUser(user)
-    .then((res) => {
-      console.log("-----", res)
-      console.log("++++", res.value)
-      patchUser(res.value)
-    })
+  editModeCancel (user) {
+    patchUser(user) //user is the one with all info
     .then((res) => {
       dispatcher.dispatch({
         type: ActionTypes.ADMIN_EDIT_USER_CANCEL

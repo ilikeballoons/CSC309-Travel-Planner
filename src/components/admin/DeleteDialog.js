@@ -13,7 +13,7 @@ class DeleteDialog extends React.Component {
   constructor () {
     super()
     const { currentUser, deleteUser } = AdminStore.getState()
-    this.state= { currentUser, deleteUser }
+    this.state = { currentUser, deleteUser }
   }
 
   componentDidMount () {

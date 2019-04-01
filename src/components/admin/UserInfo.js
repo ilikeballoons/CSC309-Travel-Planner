@@ -31,24 +31,19 @@ class UserInfo extends React.Component {
       currentUser,
       editModeOn
     }
-    this._isMounted = false
   }
 
   componentDidMount () {
     AdminStore.on('change', this.updateState)
-    this._isMounted = true
   }
 
   componentWillUnmount () {
-    this._isMounted = false
-    AdminStore.on('change', this.updateState)
+    AdminStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
-    if (this._isMounted) {
-      const { currentUser, editModeOn } = AdminStore.getState()
-      this.setState({currentUser, editModeOn})
-    }
+    const { currentUser, editModeOn } = AdminStore.getState()
+    this.setState({currentUser, editModeOn})
   }
 
   updateBirthday = date => AdminActions.editUserBirthday(date)

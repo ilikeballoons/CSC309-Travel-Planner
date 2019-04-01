@@ -50,24 +50,19 @@ class UserPanel extends React.Component {
       editModeOn: false,
       currentUser: {}
     }
-    this._isMounted = false
   }
 
   componentDidMount () {
     AdminStore.on('change', this.updateState)
-    this._isMounted = true
   }
 
   componentWillUnmount () {
-  this._isMounted = false
-    AdminStore.on('change', this.updateState)
+    AdminStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
-    if (this._isMounted) {
-      const { editModeOn, currentUser } = AdminStore.getState()
-      this.setState({ editModeOn, currentUser })
-    }
+    const { editModeOn, currentUser } = AdminStore.getState()
+    this.setState({ editModeOn, currentUser })
   }
 
   render () {

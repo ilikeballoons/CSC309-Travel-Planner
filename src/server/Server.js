@@ -112,7 +112,7 @@ app.delete('/users', authenticate, (req, res) => {
 
   User.findByIdAndDelete(id)
     .then((user) => {
-      if (!user) res.status(404).send()
+      if (!user) res.status(400).send()
       else res.send(user)
     })
     .catch((error) => res.status(500).send(error))

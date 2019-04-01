@@ -6,7 +6,6 @@ import ActionTypes from '../../utils/ActionTypes'
 class SearchAppBarStore extends EventEmitter {
   constructor () {
     super()
-    this.dispatcherToken = undefined
     this.searchQuery = ''
     this.travelDate = new Date()
     this.login = {

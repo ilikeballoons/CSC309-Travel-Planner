@@ -5,8 +5,6 @@ import ActionTypes from '../../utils/ActionTypes'
 class AdminStore extends EventEmitter {
   constructor () {
     super()
-    this.dispatcherToken = undefined
-
     this.userQuery = ''
 
     this.allUsers = []

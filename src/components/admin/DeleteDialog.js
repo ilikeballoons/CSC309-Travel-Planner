@@ -42,7 +42,7 @@ class DeleteDialog extends React.Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => AdminActions.deleteUserDialogCancel()} color='primary'>
+            <Button onClick={() => AdminActions.deleteUserDialogCancel()} color='secondary'>
               Cancel
             </Button>
             <Button onClick={() => AdminActions.deleteUserDialogSubmit(currentUser)} color='secondary'>

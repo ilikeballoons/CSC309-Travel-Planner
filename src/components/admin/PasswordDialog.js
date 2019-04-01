@@ -45,7 +45,7 @@ class PasswordDialog extends React.Component {
 
   submit = () => {
     AdminActions.changePWClickSubmit()
-    if(this.confirmValidPassword() && this.confirmPasswordMatch()){
+    if (this.confirmValidPassword() && this.confirmPasswordMatch()){
         AdminActions.changePWDialogClose()
         const user = this.state.currentUser
         user.password = this.state.changePW.password

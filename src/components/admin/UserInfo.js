@@ -88,7 +88,7 @@ class UserInfo extends React.Component {
           disabled={!editModeOn}
           multiline
           label='Miscellaneous'
-          value={description ? description : ""}
+          value={description || ""}
           className={classes.textField}
           margin='normal'
           onChange={this.updateMisc}

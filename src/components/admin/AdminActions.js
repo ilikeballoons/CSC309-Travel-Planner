@@ -82,19 +82,13 @@ const AdminActions = {
     })
   },
 
-  editModeCancel (user) {
+  editModeSave (user) {
     patchUser(user) // user is the one with all info
       .then((res) => {
         dispatcher.dispatch({
-          type: ActionTypes.ADMIN_EDIT_USER_CANCEL
+          type: ActionTypes.ADMIN_EDIT_USER_SAVE
         })
       }).catch((error) => console.log(error))
-  },
-
-  editModeSave () {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_EDIT_USER_SAVE
-    })
   },
 
   editUserBirthday (birthday) {

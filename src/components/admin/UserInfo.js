@@ -79,7 +79,7 @@ class UserInfo extends React.Component {
         <TextField
           disabled={!editModeOn}
           label='Location'
-          value={location ? location : ""}
+          value={location || ""}
           className={classes.textField}
           margin='normal'
           onChange={this.updateLocation}

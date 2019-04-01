@@ -40,7 +40,7 @@ class PasswordDialog extends React.Component {
 
   handlePassword = event => AdminActions.changePWPassword(event.target.value)
   handleRetype = event => AdminActions.changePWRetype(event.target.value)
-  confirmValidPassword = () => this.state.changePW.password.length >= 6
+  confirmValidPassword = () => this.state.changePW.password.length >= 4
   confirmPasswordMatch = () => this.state.changePW.password === this.state.changePW.retype
 
   submit = () => {

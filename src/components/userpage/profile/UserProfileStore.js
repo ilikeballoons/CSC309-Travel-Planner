@@ -1,6 +1,5 @@
 import { EventEmitter } from 'events'
 import dispatcher from '../../../utils/Dispatcher'
-
 import ActionTypes from '../../../utils/ActionTypes'
 
 class UserProfileStore extends EventEmitter {
@@ -9,9 +8,11 @@ class UserProfileStore extends EventEmitter {
     this.deleteDialogOpen = false
     this.showEditProfilePictureButton = false
     this.showProfilePictureDialog = false
+    this.renameItineraryDialog = { open: false }
     this.snackbarOpen = false
     this.user = null
     this.newUser = null
+    this.expandedPanel = null
   }
 
   getState () {
@@ -20,7 +21,9 @@ class UserProfileStore extends EventEmitter {
       snackbarOpen: this.snackbarOpen,
       showEditProfilePictureButton: this.showEditProfilePictureButton,
       showProfilePictureDialog: this.showProfilePictureDialog,
-      user: this.newUser
+      renameItineraryDialog: this.renameItineraryDialog,
+      user: this.newUser,
+      expandedPanel: this.expandedPanel
     }
   }
 
@@ -29,6 +32,14 @@ class UserProfileStore extends EventEmitter {
       case ActionTypes.USERPROFILE_EDIT: {
         const key = Object.keys(action.value)[0]
         this.newUser[key] = action.value[key]
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_EXPAND_PANEL: {
+        this.expandedPanel = this.expandedPanel === action.value
+          ? null
+          : action.value
         this.emit('change')
         break
       }
@@ -58,17 +69,82 @@ class UserProfileStore extends EventEmitter {
       }
 
       case ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS: {
-        const { birthday, location, description, fullName, privilege, username } = action.value // profilePicture
+        const { birthday, location, description, fullName, privilege, username, itineraries } = action.value // profilePicture
         this.user = {
           birthday: new Date(birthday),
           location,
           description,
           fullName,
           privilege,
-          username
+          username,
+          itineraries
           // profilePicture
         }
-        this.newUser = this.user
+        this.newUser = {
+          birthday: new Date(birthday),
+          location,
+          description,
+          fullName,
+          privilege,
+          username,
+          itineraries
+          // profilePicture
+        }
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_TOGGLE_RENAME_ITINERARY_DIALOG: {
+        if (!action.value) {
+          this.renameItineraryDialog.open = false
+          delete this.renameItineraryDialog.id
+        } else {
+          this.renameItineraryDialog.open = true
+          this.renameItineraryDialog.id = action.value
+        }
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_ITINERARY_NAME_CHANGE: {
+        this.newUser.itineraries = this.user.itineraries.map((itinerary) => {
+          if (itinerary._id === action.value.id) {
+            const res = JSON.parse(JSON.stringify(itinerary))
+            res.name = action.value.name
+            return res
+          }
+          return itinerary
+        })
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_ITINERARY_RENAME_CANCEL: {
+        this.newUser.itineraries = [...this.user.itineraries] // clone the array
+        this.renameItineraryDialog = {
+          open: false,
+          id: null
+        }
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_ITINERARY_RENAME_CONFIRM: {
+        this.user.itineraries = [...this.newUser.itineraries]
+        this.renameItineraryDialog = {
+          open: false,
+          id: null
+        }
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.UPDATE_USER: {
+        delete action.value.status
+        delete action.value.__v
+        delete action.value._id
+        this.user = action.value
+        this.newUser = action.value
         this.emit('change')
         break
       }

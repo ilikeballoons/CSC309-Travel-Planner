@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 
-import UserProfileActions from './UserProfileActions'
+import UserProfileActions from '../UserProfileActions'
 
 const styles = theme => ({
   root: {
@@ -10,19 +10,19 @@ const styles = theme => ({
   }
 })
 
-class SubmitButton extends React.Component {
+class RenameItineraryButton extends React.Component {
   render () {
-    const { classes, user } = this.props
+    const { classes, id } = this.props
     return (
       <Button
         variant='contained'
         color='primary'
         className={classes.root}
-        onClick={() => UserProfileActions.submit(user)}>
-        Submit
+        onClick={() => UserProfileActions.toggleRenameItineraryDialog(id)}>
+        Rename
       </Button>
     )
   }
 }
 
-export default withStyles(styles)(SubmitButton)
+export default withStyles(styles)(RenameItineraryButton)

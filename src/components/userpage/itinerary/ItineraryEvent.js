@@ -6,7 +6,7 @@ import Popover from '@material-ui/core/Popover'
 import InfoIcon from '@material-ui/icons/Info'
 
 import { findWithAttribute } from '../../../utils/Utils'
-import UserActions from '../UserActions'
+import ItineraryActions from './ItineraryActions'
 import ItineraryStore from './ItineraryStore'
 import ItineraryEventInfo from './ItineraryEventInfo'
 import Icons from '../../../utils/Icons'
@@ -61,11 +61,11 @@ class ItineraryEvent extends React.Component {
     }
   }
 
-  handleClick = (e) => UserActions.infoOpen({
+  handleClick = (e) => ItineraryActions.infoOpen({
     anchorEl: e.currentTarget,
     id: this.props.id
   })
-  handleClose = () => UserActions.infoClose({
+  handleClose = () => ItineraryActions.infoClose({
     anchorEl: null,
     id: this.props.id
   })

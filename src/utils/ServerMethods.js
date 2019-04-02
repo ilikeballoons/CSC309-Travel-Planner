@@ -1,5 +1,5 @@
 const postUser = (user) => {
-  return fetch ('/users', {
+  return fetch('/users', {
     method: 'POST',
     body: JSON.stringify(user),
     headers: {
@@ -7,12 +7,47 @@ const postUser = (user) => {
       'Content-Type': 'application/json'
     }
   })
-    .then((res) => res.status)
+    .then((res) => {
+      if (!res.ok) return Promise.reject(res.statusText)
+      return Promise.resolve(res.status)
+    })
+}
+
+const deleteItinerary = (id) => {
+  return fetch(`/users/itineraries/${id}`, {
+    method: 'DELETE'
+  })
+    .then((res) => res.json()) // new user, itinerary that was removed
+}
+
+const patchItinerary = (id, name, events) => {
+  return fetch(`/users/itineraries/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ name, events }),
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((res) => res.json())
+}
+
+const postItinerary = (itinerary) => {
+  return fetch('/users/itineraries', {
+    method: 'POST',
+    body: JSON.stringify({ itinerary }),
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((res) => res.json())
+    .then((res) => ({ itinerary: res.itineraries[res.itineraries.length - 1], length: res.itineraries.length - 1, user: res })) // return last itinerary (most recently saved itinerary)
 }
 
 const getUser = (user) => {
   return fetch(`/users/${user.username}/${user.password}`)
-    .then((res) => res)
+    .then((res) => res.json())
 }
 
 const patchUser = (user) => {
@@ -24,12 +59,10 @@ const patchUser = (user) => {
       'Content-Type': 'application/json'
     }
   })
-    .then((res) => res.json()) // TODO: improve
-    .then((res) => res)
+    .then((res) => res.json())
 }
 
 const login = (user) => {
-  // console.log(user);
   return fetch(`/users/login`, {
     method: 'POST',
     body: JSON.stringify(user),
@@ -42,7 +75,7 @@ const login = (user) => {
       res.json()
         .then((json) => ({ status: res.status, ...json }))
     ))
-    .catch((err) => err)
+    //.catch((err) => err)
 }
 
 const logout = () => {
@@ -50,4 +83,4 @@ const logout = () => {
     .then((res) => res.status)
 }
 
-export { postUser, getUser, login, logout, patchUser }
+export { postUser, getUser, login, logout, patchUser, postItinerary, deleteItinerary, patchItinerary }

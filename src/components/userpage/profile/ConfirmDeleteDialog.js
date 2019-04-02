@@ -50,7 +50,6 @@ class ConfirmDeleteDialog extends React.Component {
           <SentimentVeryDissatisfied />
         </Avatar>
         <DialogTitle
-          id='signinDialogTitle'
           className={classes.title}>
           Delete Account
         </DialogTitle>

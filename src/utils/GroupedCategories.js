@@ -6676,8 +6676,8 @@ const groupedCategories = [
   },
   {
     "id": "4d4b7105d754a06375d81259",
-    "name": "Professional & Other Places",
-    "pluralName": "Professional & Other Places",
+    "name": "Professional Places",
+    "pluralName": "Professional Places",
     "shortName": "Professional",
     "icon": {
       "prefix": "https://ss3.4sqi.net/img/categories_v2/building/default_",

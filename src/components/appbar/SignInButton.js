@@ -13,17 +13,19 @@ export default class SignInButton extends React.Component {
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
+    this._isMounted = true
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
+    this._isMounted = false
   }
 
   getButtonText = (status) => status === LoginStates.loggedIn
       ? 'Sign out'
       : 'Sign in'
 
-  updateState = () => this.setState({ buttonText: this.getButtonText(SearchAppBarStore.getState().login.loggedInState) })
+  updateState = () => this._isMounted && this.setState({ buttonText: this.getButtonText(SearchAppBarStore.getState().login.loggedInState) })
   render () {
     const { buttonText } = this.state
     return (

@@ -29,7 +29,7 @@ const authenticate = (req, res, next) => {
   if (req.session.userid) {
     User.findById(req.session.userid)
       .then((user) => {
-        if (!user) return Promise.reject()
+        if (!user) res.status(404).send()
         req.user = user
         next()
       })
@@ -46,7 +46,7 @@ app.post('/users', (req, res) => {
   user.save()
     .then((result) => res.status(201).send(result))
     .catch((error) => {
-      if (error.message === `User ${user.username} already exists.`) res.status(409).send()
+      if (error.message === '409') res.status(409).send()
       else res.status(500).send(error)
     })
 })
@@ -68,7 +68,7 @@ app.get('/users/:username/:password', (req, res) => {
       res.send(user)
     })
     .catch((error) => {
-      if (error.message === '403 Invalid Password') res.status(403).send()
+      if (error.message.includes('403')) res.status(403).send()
       else res.status(500).send(error)
     })
 })
@@ -88,6 +88,47 @@ app.patch('/users', authenticate, (req, res) => {
     .catch((error) => res.status(500).send(error))
 })
 
+app.post('/users/itineraries', authenticate, (req, res) => {
+  const id = req.user._id
+  if (!ObjectID.isValid(id)) res.status(404).send()
+  const { events, date, location, name } = req.body.itinerary
+  User.findByIdAndUpdate(id, { $push: { itineraries: { events, date, location, name } } }, { new: true })
+    .then((user) => res.send(user))
+    .catch((error) => res.status(500).send(error))
+})
+
+app.delete('/users/itineraries/:id', authenticate, (req, res) => {
+  const userId = req.user._id
+  const itineraryId = req.params.id
+  if (!ObjectID.isValid(itineraryId)) {
+    return res.status(404).send()
+  }
+
+  User.findByIdAndUpdate(userId, { $pull: { itineraries: { _id: itineraryId } } }, { new: true })
+    .then((user) => res.send(user))
+    .catch((error) => res.status(500).send(error))
+})
+
+app.patch('/users/itineraries/:id', authenticate, (req, res) => {
+  const userId = req.user._id
+  const itineraryId = req.params.id
+  if (!ObjectID.isValid(itineraryId)) {
+    return res.status(404).send()
+  }
+  const update = {
+    'itineraries.$.events': req.body.events,
+    'itineraries.$.name': req.body.name
+  }
+  !req.body.events && delete update['itineraries.$.events']
+  !req.body.name && delete update['itineraries.$.name']
+  User.findOneAndUpdate({ '_id': userId, 'itineraries._id': itineraryId }, { $set: update }, { new: true })
+    .then((user) => {
+      !user && res.status(404).send()
+      res.send(user)
+    })
+    .catch((error) => res.status(500).send(error))
+})
+
 // Login routes
 app.post('/users/login', (req, res) => {
   const { username, password } = req.body
@@ -98,8 +139,8 @@ app.post('/users/login', (req, res) => {
       res.send(user) // TODO: check
     })
     .catch((error) => {
-      if (error.message === `404 user ${username} not found.`) res.status(404).send()
-      else if (error.message === `403 Invalid Password`) res.status(403).send()
+      if (error.message.includes('404')) res.status(404).send(error)
+      else if (error.message.includes('403')) res.status(403).send(error)
       else res.status(500).send()
     })
 })

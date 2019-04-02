@@ -46,15 +46,17 @@ class SigninDialog extends React.Component {
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
+    this._isMounted = true
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
+    this._isMounted = false
   }
 
   updateState = () => {
     const { signin, login } = SearchAppBarStore.getState()
-    this.setState({ signin, login })
+    this._isMounted && this.setState({ signin, login })
   }
 
   updateUsername = event => SearchAppBarActions.signinDialogEmailChange(event.target.value)

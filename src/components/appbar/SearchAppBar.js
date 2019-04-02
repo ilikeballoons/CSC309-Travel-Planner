@@ -87,18 +87,19 @@ class SearchAppBar extends React.Component {
   constructor (props) {
     super(props)
     this.classes = props.classes
-    this.state = Object.assign({}, PreferencesStore.getState().open, SearchAppBarStore.getState())
+    this.state = Object.assign({}, { open: true }, SearchAppBarStore.getState())
   }
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
     PreferencesStore.on('change', this.updateState)
-
+    this._isMounted = true
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
     PreferencesStore.removeListener('change', this.updateState)
+    this._isMounted = false
   }
 
   handleChange = event => {
@@ -119,7 +120,7 @@ class SearchAppBar extends React.Component {
   updateState = () => {
     const { login, searchQuery, open, createAccount } = Object.assign({}, SearchAppBarStore.getState(), PreferencesStore.getState())
     const { snackbarOpen } = createAccount
-    this.setState({ login, searchQuery, open, snackbarOpen })
+    this._isMounted && this.setState({ login, searchQuery, open, snackbarOpen })
   }
 
   render () {

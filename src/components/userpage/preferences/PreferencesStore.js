@@ -7,7 +7,7 @@ import groupedCategories from '../../../utils/GroupedCategories'
 class PreferencesStore extends EventEmitter {
   constructor () {
     super()
-    this.open = false
+    this.open = true
     const { result, toggled } = this.parseCategories(groupedCategories)
     this.preferences = result
     this.toggled = toggled

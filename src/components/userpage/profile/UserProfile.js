@@ -5,10 +5,10 @@ import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
 import Divider from '@material-ui/core/Divider'
 import TextField from '@material-ui/core/TextField'
+import { withStyles } from '@material-ui/core/styles'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import { format } from 'date-fns'
-import { withStyles } from '@material-ui/core/styles'
 
 import ResetPWButton from './ResetPWButton'
 import DeleteAccountButton from './DeleteAccountButton'
@@ -19,7 +19,8 @@ import ConfirmSnackbar from './ConfirmSnackbar'
 import UserProfileActions from './UserProfileActions'
 import UserProfileStore from './UserProfileStore'
 import SearchAppBar from '../../appbar/SearchAppBar'
-// import { currencies } from './../../../utils/Fixtures.js'
+import ItinerariesDisplay from './itineraries/ItinerariesDisplay'
+import RenameItineraryDialog from './itineraries/RenameItineraryDialog'
 
 const styles = theme => ({
   header: {
@@ -81,8 +82,17 @@ class UserProfile extends React.Component {
 
   render () {
     const { classes } = this.props
-    const { user, showEditProfilePictureButton, showProfilePictureDialog, deleteDialogOpen, snackbarOpen } = this.state
-
+    const {
+      user,
+      showEditProfilePictureButton,
+      showProfilePictureDialog,
+      renameItineraryDialog,
+      deleteDialogOpen,
+      snackbarOpen,
+      expandedPanel
+    } = this.state
+    const { itineraries } = user
+    const selectedItinerary = itineraries.filter((it) => it._id === renameItineraryDialog.id)[0]
     return (
       <div className={classes.root}>
         <SearchAppBar page='userProfile'/>
@@ -111,7 +121,7 @@ class UserProfile extends React.Component {
               {`@${user.username}`}
             </Typography>
             <Typography variant='subtitle1'>
-              {`Birthday: ${format(user.birthday, 'MMMM do yyyy')}`}
+              {`Birthday: ${format(new Date(user.birthday), 'MMMM do yyyy')}`}
             </Typography>
             <Typography variant='subtitle1'>
               {`${user.location}`}
@@ -145,35 +155,6 @@ class UserProfile extends React.Component {
               className={classes.textField}
             />
           </MuiPickersUtilsProvider>
-          {/*<TextField
-            disabled={!editModeOn}
-            label='Location'
-            value={location}
-            className={classes.textField}
-            margin='normal'
-            onChange={this.updateLocation}
-          />*/}
-        {/*  <TextField
-            disabled={!editModeOn}
-            select
-            label='Currency'
-            className={classes.textField}
-            value={currency.value}
-            SelectProps={{
-              MenuProps: {
-                className: classes.menu
-              }
-            }}
-            onChange={this.updateCurrency}
-            margin='normal'
-          >
-            {currencies.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.value}
-              </MenuItem>
-            ))
-            }
-          </TextField>*/}
           <TextField
             multiline
             label='Location'
@@ -190,6 +171,7 @@ class UserProfile extends React.Component {
             margin='normal'
             onChange={(event) => UserProfileActions.editDescription(event.target.value)}
           />
+          <ItinerariesDisplay itineraries={itineraries} expanded={expandedPanel}/>
           <div className={classes.actions}>
             <DeleteAccountButton />
             <ResetPWButton />
@@ -198,6 +180,7 @@ class UserProfile extends React.Component {
         </div>
         <ConfirmDeleteDialog open={deleteDialogOpen}/>
         <ProfilePictureDialog open={showProfilePictureDialog} picture={user.profilePicture} />
+        <RenameItineraryDialog open={renameItineraryDialog.open} itinerary={selectedItinerary} />
         <ConfirmSnackbar open={snackbarOpen} />
       </div>
     )

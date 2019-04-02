@@ -2,6 +2,13 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 // const validator = require('validator')
 
+const ItinerarySchema = new mongoose.Schema({
+  date: Date,
+  location: String,
+  name: String,
+  events: Array
+})
+
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -35,7 +42,8 @@ const UserSchema = new mongoose.Schema({
   profilePicture: {
     contentType: String,
     data: Buffer
-  }
+  },
+  itineraries: [ItinerarySchema]
 })
 
 UserSchema.statics.findByUsernamePassword = function (username, password) {
@@ -46,7 +54,7 @@ UserSchema.statics.findByUsernamePassword = function (username, password) {
       return new Promise((resolve, reject) => {
         bcrypt.compare(password, user.password, (error, result) => {
           result && resolve(user)
-          reject(Error('403 Invalid Password'))
+          reject(Error('403 Invalid Password' + error))
         })
       })
     })
@@ -66,7 +74,7 @@ UserSchema.pre('save', function (next) {
   return User.findOne({ username: user.username })
     .then((user) => {
       if (!user) next()
-      next(Error(`User ${user.username} already exists.`))
+      return Promise.reject(Error('409'))
     })
 })
 

@@ -32,6 +32,7 @@ class SearchAppBarStore extends EventEmitter {
     this.userProfile = {
       open: false
     }
+    // this.user = null
   }
 
   getState () {
@@ -41,7 +42,8 @@ class SearchAppBarStore extends EventEmitter {
       signin: this.signin,
       travelDate: this.travelDate,
       userProfile: this.userProfile,
-      login: this.login
+      login: this.login,
+      // user: this.user
     }
   }
 
@@ -133,6 +135,10 @@ class SearchAppBarStore extends EventEmitter {
           username: action.value.username,
           privilege: action.value.privilege
         }
+        // this.user = action.value
+        // delete this.user.status
+        // delete this.user.__v
+        // delete this.user._id
         this.emit('change')
         break
       }
@@ -203,6 +209,21 @@ class SearchAppBarStore extends EventEmitter {
         this.emit('change')
         break
       }
+
+      // case ActionTypes.ITINERARY_SAVE_SUCCESS: {
+      //   this.user.itineraries.push(action.value)
+      //   this.emit('change')
+      //   break
+      // }
+      //
+      // case ActionTypes.UPDATE_USER: {
+      //   this.user = action.value
+      //   delete this.user.status
+      //   delete this.user.__v
+      //   delete this.user._id
+      //   this.emit('change')
+      //   break
+      // }
 
       default:
     }

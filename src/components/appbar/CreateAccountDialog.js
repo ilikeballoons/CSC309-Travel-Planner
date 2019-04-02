@@ -35,13 +35,15 @@ class CreateAccountDialog extends React.Component {
 
   componentDidMount () {
     SearchAppBarStore.on('change', this.updateState)
+    this._isMounted = true
   }
 
   componentWillUnmount () {
     SearchAppBarStore.removeListener('change', this.updateState)
+    this._isMounted = false
   }
 
-  updateState = () => this.setState(SearchAppBarStore.getState().createAccount)
+  updateState = () => this._isMounted && this.setState(SearchAppBarStore.getState().createAccount)
   handleChange = field => event =>  SearchAppBarActions.createAccountChange({ [field]: event.target.value })
   handleDateChange = date => SearchAppBarActions.createAccountChange({ birthday: date })
   confirmValidPassword = () => this.state.password.length >= 4
@@ -89,7 +91,7 @@ class CreateAccountDialog extends React.Component {
             Fill in your personal details to create an account.
           </DialogContentText>
           <form className={this.props.classes.form}>
-            {hasClickedSubmit && !duplicate && <span className={classes.red}>Username taken</span>}
+            {hasClickedSubmit && duplicate && <span className={classes.red}>Username taken</span>}
             {hasClickedSubmit && !this.confirmValidUsername() && <span className={classes.red}>Usernames must be at least 4 characters.</span>}
             <TextField
               value={this.state.username}

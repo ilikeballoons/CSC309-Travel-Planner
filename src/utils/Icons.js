@@ -18,7 +18,7 @@ export default {
   'Food': <LocalDining />,
   'Nightlife Spots': <Brightness3 />,
   'Outdoors & Recreation': <NaturePeople />,
-  'Professional & Other Places': <Business />,
+  'Professional Places': <Business />,
   'Residences': <Home />,
   'Shops & Services': <ShoppingCart />,
   'Travel & Transport': <Map />

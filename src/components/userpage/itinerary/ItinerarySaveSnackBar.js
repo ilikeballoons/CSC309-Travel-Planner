@@ -4,7 +4,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 
-import UserProfileActions from './UserProfileActions'
+import UserProfileActions from '../profile/UserProfileActions'
 
 const styles = theme => ({
   close: {
@@ -12,9 +12,9 @@ const styles = theme => ({
   }
 })
 
-class ConfirmSnackbar extends React.Component {
+class ItinerarySaveSnackBar extends React.Component {
   render () {
-    const { classes, open } = this.props
+    const { classes, open, message } = this.props
     return (
       <Snackbar
         anchorOrigin={{
@@ -23,14 +23,14 @@ class ConfirmSnackbar extends React.Component {
         }}
         open={open}
         autoHideDuration={6000}
-        onClose={() => UserProfileActions.closeConfirmSnackbar()}
-        message={<span>Changes saved!</span>}
+        onClose={() => UserProfileActions.closeSaveSnackbar()}
+        message={<span>{message}</span>}
         action={
           <IconButton
             key='close'
             color='inherit'
             className={classes.close}
-            onClick={() => UserProfileActions.closeConfirmSnackbar()}
+            onClick={() => UserProfileActions.closeSaveSnackbar()}
           >
             <CloseIcon />
           </IconButton>
@@ -40,4 +40,4 @@ class ConfirmSnackbar extends React.Component {
   }
 }
 
-export default withStyles(styles)(ConfirmSnackbar)
+export default withStyles(styles)(ItinerarySaveSnackBar)

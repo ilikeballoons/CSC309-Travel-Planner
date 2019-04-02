@@ -46,13 +46,9 @@ const SearchAppBarActions = {
           })
         }
       })
-      .catch((error) => {
-        if (error === 409) {
-          dispatcher.dispatch({
-            type: ActionTypes.CREATE_ACCOUNT_DUPLICATE_ACCOUNT
-          })
-        }
-      })
+      .catch(() => dispatcher.dispatch({
+        type: ActionTypes.CREATE_ACCOUNT_DUPLICATE_ACCOUNT
+      }))
 
     //   })
     // dispatcher.dispatch({
@@ -112,11 +108,14 @@ const SearchAppBarActions = {
     login(credentials)
       .then((res) => {
         let type, value
-        console.log (res)
         switch (res.status) {
           case 200: {
             type = ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS
             value = { ...res }
+            dispatcher.dispatch({
+              type: ActionTypes.UPDATE_USER,
+              value: res
+            })
             break
           }
           case 404: {
@@ -133,12 +132,6 @@ const SearchAppBarActions = {
         }
         dispatcher.dispatch({ type, value })
       })
-  },
-
-  signinDialogSigninSuccess () { // TODO: remove this
-    dispatcher.dispatch({
-      type: ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS
-    })
   },
 
   signOut () {

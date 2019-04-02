@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 
-import UserProfileActions from './UserProfileActions'
+import ItineraryActions from './ItineraryActions'
 
 const styles = theme => ({
   root: {
@@ -10,19 +10,19 @@ const styles = theme => ({
   }
 })
 
-class SubmitButton extends React.Component {
+class ClearItineraryButton extends React.Component {
   render () {
-    const { classes, user } = this.props
+    const { classes, itinerary } = this.props
     return (
       <Button
         variant='contained'
-        color='primary'
+        color='secondary'
         className={classes.root}
-        onClick={() => UserProfileActions.submit(user)}>
-        Submit
+        onClick={() => ItineraryActions.clearItinerary()}>
+        Clear
       </Button>
     )
   }
 }
 
-export default withStyles(styles)(SubmitButton)
+export default withStyles(styles)(ClearItineraryButton)

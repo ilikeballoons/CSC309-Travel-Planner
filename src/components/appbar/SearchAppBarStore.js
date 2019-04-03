@@ -212,5 +212,5 @@ class SearchAppBarStore extends EventEmitter {
 }
 
 const searchappbarStore = new SearchAppBarStore()
-dispatcher.register(searchappbarStore.handleActions.bind(searchappbarStore))
+searchappbarStore.dispatcherToken = dispatcher.register(searchappbarStore.handleActions.bind(searchappbarStore))
 export default searchappbarStore

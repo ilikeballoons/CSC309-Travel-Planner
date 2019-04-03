@@ -1,6 +1,6 @@
 import dispatcher from '../../../utils/Dispatcher'
 import ActionTypes from '../../../utils/ActionTypes'
-import { patchUser, deleteItinerary, patchItinerary } from '../../../utils/ServerMethods'
+import { deleteItinerary, patchItinerary, getAllUsers, patchUser, getUsersByName, deleteUser } from '../../../utils/ServerMethods'
 
 const UserProfileActions = {
   editBirthday (birthday) {
@@ -165,6 +165,58 @@ const UserProfileActions = {
       })
       .catch((error) => console.log(error))
     // Can be various error codes based on invalid input in the fields, or a success
+  },
+
+  changePWDialogOpen () {
+    dispatcher.dispatch({
+      type: ActionTypes.USER_CHANGE_PW_OPEN
+    })
+  },
+  clickSubmit () {
+    dispatcher.dispatch({
+      type: ActionTypes.USER_CHANGE_PW_CLICK_SUBMIT
+    })
+  },
+
+  changePWDialogOpen () {
+    dispatcher.dispatch({
+      type: ActionTypes.USER_CHANGE_PW_OPEN
+    })
+  },
+
+  changePWDialogClose () {
+    dispatcher.dispatch({
+      type: ActionTypes.USER_CHANGE_PW_CANCEL
+    })
+  },
+
+  changePWClickSubmit () {
+    dispatcher.dispatch({
+      type: ActionTypes.USER_CHANGE_PW_CLICK_SUBMIT
+    })
+  },
+
+  changePWSubmit (user) {
+    patchUser(user).then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.USER_CHANGE_PW_SUBMIT,
+        value: user
+      })
+    }).catch((err) => console.log(err))
+  },
+
+  changePWPassword (password) {
+    dispatcher.dispatch({
+      type: ActionTypes.USER_CHANGE_PW_PASSWORD,
+      value: password
+    })
+  },
+
+  changePWRetype (retype) {
+    dispatcher.dispatch({
+      type: ActionTypes.USER_CHANGE_PW_RETYPE,
+      value: retype
+    })
   }
 }
 

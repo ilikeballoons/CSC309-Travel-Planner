@@ -18,7 +18,7 @@ class SubmitButton extends React.Component {
         variant='contained'
         color='primary'
         className={classes.root}
-        onClick={() => UserProfileActions.submit(user)}>
+        onClick={() => {UserProfileActions.submit(user)}}>
         Submit
       </Button>
     )

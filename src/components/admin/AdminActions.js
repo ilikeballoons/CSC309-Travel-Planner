@@ -1,5 +1,6 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
+import { getAllUsers, patchUser, getUsersByName, deleteUser } from '../../utils/ServerMethods'
 
 const AdminActions = {
   clickSubmit () {
@@ -26,10 +27,13 @@ const AdminActions = {
     })
   },
 
-  changePWSubmit (formData) {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_CHANGE_PW_SUBMIT
-    })
+  changePWSubmit (user) {
+    patchUser(user).then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.ADMIN_CHANGE_PW_SUBMIT,
+        value: user
+      })
+    }).catch((err) => console.log(err))
   },
 
   changePWPassword (password) {
@@ -58,11 +62,18 @@ const AdminActions = {
     })
   },
 
-  deleteUserDialogSubmit (user) {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_DELETE_DIALOG_SUBMIT,
-      value: user
-    })
+  deleteUserDialogSubmit (user) { // WORKING
+    deleteUser(user).then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.ADMIN_DELETE_DIALOG_SUBMIT
+      })
+      getAllUsers().then((result) => {
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_USER_LOAD,
+          value: result
+        })
+      }).catch((error) => console.log(error))
+    }).catch((err) => console.log(err))
   },
 
   editModeOn () {
@@ -71,16 +82,13 @@ const AdminActions = {
     })
   },
 
-  editModeCancel () {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_EDIT_USER_CANCEL
-    })
-  },
-
-  editModeSave () {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_EDIT_USER_SAVE
-    })
+  editModeSave (user) {
+    patchUser(user) // user is the one with all info
+      .then((res) => {
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_EDIT_USER_SAVE
+        })
+      }).catch((error) => console.log(error))
   },
 
   editUserBirthday (birthday) {
@@ -97,13 +105,6 @@ const AdminActions = {
     })
   },
 
-  editUserCurrency (currency) {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_EDIT_USER_CURRENCY,
-      value: currency
-    })
-  },
-
   editUserMisc (misc) {
     dispatcher.dispatch({
       type: ActionTypes.ADMIN_EDIT_USER_MISC,
@@ -112,9 +113,18 @@ const AdminActions = {
   },
 
   startLoad () {
-    dispatcher.dispatch({
-      type: ActionTypes.ADMIN_USER_LOAD
+    getAllUsers().then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.ADMIN_USER_LOAD,
+        value: res
+      })
+      // dispatcher.waitFor([searchappbarStore.dispatcherToken])
+    }).catch((err) => {
+      console.log(err)
     })
+    // dispatcher.dispatch({
+    //   type: ActionTypes.ADMIN_USER_LOAD
+    // })
   },
 
   changeUserDisplayed (user) {
@@ -128,6 +138,14 @@ const AdminActions = {
     dispatcher.dispatch({
       type: ActionTypes.USERSEARCH_CHANGE,
       value: query
+    })
+    getUsersByName(query).then((res) => {
+      dispatcher.dispatch({
+        type: ActionTypes.ADMIN_USER_LOAD,
+        value: res
+      })
+    }).catch((error) => {
+      console.log(error)
     })
   },
 

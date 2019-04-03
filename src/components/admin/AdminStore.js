@@ -36,40 +36,6 @@ class AdminStore extends EventEmitter {
     }
   }
 
-  getUsersFromFile () {
-    return new Promise((resolve, reject) => {
-      const fixture = require('../../utils/Fixtures.js')
-      this.allUsers = fixture.users
-      this.currentUser = this.allUsers[0]
-      resolve()
-    })
-  }
-
-  editUser () {
-    return new Promise((resolve, reject) => {
-      const fixture = require('../../utils/Fixtures.js')
-      fixture.updateUser(this.currentUser)
-      resolve()
-    })
-  }
-
-  deleteUserExecute () {
-    return new Promise((resolve, reject) => {
-      const fixture = require('../../utils/Fixtures.js')
-      fixture.deleteUser(this.currentUser)
-      this.deleteUser.delete = false
-      resolve()
-    })
-  }
-
-  filterUsers (query) {
-    return new Promise((resolve, reject) => {
-      const fixture = require('../../utils/Fixtures.js')
-      this.allUsers = fixture.filterUsers(query)
-      resolve()
-    })
-  }
-
   handleActions (action) {
     switch (action.type) {
       case ActionTypes.ADMIN_CHANGE_PW_OPEN: {
@@ -96,7 +62,13 @@ class AdminStore extends EventEmitter {
       }
 
       case ActionTypes.ADMIN_CHANGE_PW_SUBMIT: {
-        this.changePW = action.value
+        this.changePW = {
+          open: false,
+          submit: false,
+          password: '',
+          retype: ''
+        }
+        this.currentUser = action.value
         this.emit('change')
         break
       }
@@ -120,16 +92,10 @@ class AdminStore extends EventEmitter {
         break
       }
 
-      case ActionTypes.ADMIN_EDIT_USER_CANCEL: {
+      // TODO: this was called once clicked on save
+      case ActionTypes.ADMIN_EDIT_USER_SAVE: {
         this.editModeOn = false
         this.editModeSave = true
-        this.editUser().then((r) => {}).catch((e) => console.log(e))
-        this.emit('change')
-        break
-      }
-
-      case ActionTypes.ADMIN_EDIT_USER_CURRENCY: {
-        this.currentUser.currency = action.value
         this.emit('change')
         break
       }
@@ -170,24 +136,14 @@ class AdminStore extends EventEmitter {
           open: false,
           delete: true
         }
-        this.deleteUserExecute().then(r => {
-          this.getUsersFromFile()
-        }).then(reload => {
-          console.log('Reloaded')
-          this.emit('change')
-        }).catch(error => {
-          console.log('Logging from inside: ', error)
-        })
         this.emit('change')
         break
       }
 
       case ActionTypes.ADMIN_USER_LOAD: {
-        this.getUsersFromFile().then((result) => {
-          this.emit('change')
-        }).catch((err) => {
-          console.log(err)
-        })
+        this.allUsers = action.value
+        this.currentUser = this.allUsers[0]
+        this.emit('change')
         break
       }
 
@@ -199,7 +155,6 @@ class AdminStore extends EventEmitter {
 
       case ActionTypes.USERSEARCH_CHANGE: {
         this.userQuery = action.value
-        this.filterUsers(this.userQuery).then().catch()
         this.emit('change')
         break
       }
@@ -210,5 +165,5 @@ class AdminStore extends EventEmitter {
 }
 
 const adminStore = new AdminStore()
-dispatcher.register(adminStore.handleActions.bind(adminStore))
+adminStore.dispatcherToken = dispatcher.register(adminStore.handleActions.bind(adminStore))
 export default adminStore

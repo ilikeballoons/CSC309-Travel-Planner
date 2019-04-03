@@ -12,7 +12,8 @@ import AdminStore from './AdminStore'
 class DeleteDialog extends React.Component {
   constructor () {
     super()
-    this.state=AdminStore.getState().deleteUser
+    const { currentUser, deleteUser } = AdminStore.getState()
+    this.state = { currentUser, deleteUser }
   }
 
   componentDidMount () {
@@ -24,13 +25,15 @@ class DeleteDialog extends React.Component {
   }
 
   updateState = () => {
-    this.setState(AdminStore.getState().deleteUser)
+    const { currentUser, deleteUser } = AdminStore.getState()
+    this.setState({ currentUser, deleteUser })
   }
 
   render () {
+    const { currentUser, deleteUser } = this.state
     return (
         <Dialog
-          open={this.state.open}
+          open={deleteUser.open}
           onClose={() => AdminActions.deleteUserDialogCancel()} >
           <DialogTitle>Delete User</DialogTitle>
           <DialogContent>
@@ -42,7 +45,7 @@ class DeleteDialog extends React.Component {
             <Button onClick={() => AdminActions.deleteUserDialogCancel()} color='primary'>
               Cancel
             </Button>
-            <Button onClick={() => AdminActions.deleteUserDialogSubmit()} color='secondary'>
+            <Button onClick={() => AdminActions.deleteUserDialogSubmit(currentUser)} color='secondary'>
               Delete
             </Button>
           </DialogActions>

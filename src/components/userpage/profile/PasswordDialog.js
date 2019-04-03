@@ -9,8 +9,8 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-import AdminStore from './AdminStore'
-import AdminActions from './AdminActions'
+import UserProfileStore from './UserProfileStore'
+import UserProfileActions from './UserProfileActions'
 
 const styles = theme => ({
   red: {
@@ -21,35 +21,35 @@ const styles = theme => ({
 class PasswordDialog extends React.Component {
   constructor () {
     super()
-    const { changePW, currentUser } = AdminStore.getState()
-    this.state = { changePW, currentUser }
+    const { changePW, user } = UserProfileStore.getState()
+    this.state = { changePW, user }
   }
 
   componentDidMount () {
-    AdminStore.on('change', this.updateState)
+    UserProfileStore.on('change', this.updateState)
   }
 
   componentWillUnmount () {
-    AdminStore.removeListener('change', this.updateState)
+    UserProfileStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
-    const { changePW, currentUser } = AdminStore.getState()
-    this.setState({ changePW, currentUser })
+    const { changePW, user } = UserProfileStore.getState()
+    this.setState({ changePW, user })
   }
 
-  handlePassword = event => AdminActions.changePWPassword(event.target.value)
-  handleRetype = event => AdminActions.changePWRetype(event.target.value)
+  handlePassword = event => UserProfileActions.changePWPassword(event.target.value)
+  handleRetype = event => UserProfileActions.changePWRetype(event.target.value)
   confirmValidPassword = () => this.state.changePW.password.length >= 4
   confirmPasswordMatch = () => this.state.changePW.password === this.state.changePW.retype
 
   submit = () => {
-    AdminActions.changePWClickSubmit()
+    UserProfileActions.changePWClickSubmit()
     if (this.confirmValidPassword() && this.confirmPasswordMatch()){
-        AdminActions.changePWDialogClose()
-        const user = this.state.currentUser
+        UserProfileActions.changePWDialogClose()
+        const user = this.state.user
         user.password = this.state.changePW.password
-        AdminActions.changePWSubmit(user)
+        UserProfileActions.changePWSubmit(user)
     }
   }
 
@@ -59,7 +59,7 @@ class PasswordDialog extends React.Component {
     return (
       <Dialog
         open={open}
-        onClose={() => AdminActions.changePWDialogClose()}>
+        onClose={() => UserProfileActions.changePWDialogClose()}>
         <DialogTitle>Reset Password</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -89,7 +89,7 @@ class PasswordDialog extends React.Component {
         </DialogContent>
         <DialogActions>
           <Button color='primary'
-            onClick={() => AdminActions.changePWDialogClose()}>
+            onClick={() => UserProfileActions.changePWDialogClose()}>
             Cancel
           </Button>
           <Button color='secondary'

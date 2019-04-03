@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import UserPassword from './UserPassword.js'
 import UserInfo from './UserInfo.js'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -40,6 +39,9 @@ const styles = theme => ({
   },
   userBtn: {
     margin: [[0, 5]]
+  },
+  resetBtn: {
+    padding: 0
   }
 })
 
@@ -57,7 +59,7 @@ class UserPanel extends React.Component {
   }
 
   componentWillUnmount () {
-    AdminStore.on('change', this.updateState)
+    AdminStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {
@@ -69,7 +71,7 @@ class UserPanel extends React.Component {
     const { classes } = this.props
     const { editModeOn, currentUser } = this.state
     const editButtonText = editModeOn ? 'Save' : 'Edit user information'
-    const editButtonAction = editModeOn ? () => AdminActions.editModeCancel() : () => AdminActions.editModeOn()
+    const editButtonAction = editModeOn ? () => AdminActions.editModeSave(currentUser) : () => AdminActions.editModeOn()
     return (
       <div className={classes.viewUser}>
         <div className={classes.userHeader}>
@@ -82,12 +84,13 @@ class UserPanel extends React.Component {
               {currentUser.fullName}
             </Typography>
             <Typography variant='subtitle1' gutterBottom>
-              username: {currentUser.username}
+              Username: {currentUser.username}
             </Typography>
-            <Typography variant='subtitle1'>
-              Password: <u>******</u>
-              <UserPassword />
-            </Typography>
+            <Button
+              color='primary' className = {classes.resetBtn}
+              onClick={() => AdminActions.changePWDialogOpen()}>
+              Reset Password
+            </Button>
           </div>
         </div>
         <Divider />

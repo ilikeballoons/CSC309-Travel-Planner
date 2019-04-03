@@ -37,7 +37,7 @@ class UsersSearch extends React.Component {
   }
 
   componentWillUnmount () {
-    AdminStore.on('change', this.updateState)
+    AdminStore.removeListener('change', this.updateState)
   }
 
   updateState = () => {

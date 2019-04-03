@@ -34,13 +34,16 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   location: {
-    type: String
+    type: String,
+    default: "Toronto, ON, Canada"
   },
   description: {
-    type: String
+    type: String,
+    default: "Hello World"
   },
   profilePicture: {
     contentType: String,
+
     data: Buffer
   },
   itineraries: [ItinerarySchema]
@@ -65,8 +68,9 @@ UserSchema.pre('save', function (next) {
   if (user.isModified('password')) {
     user.password = bcrypt.hashSync(user.password, 10)
     next()
+  } else {
+      next()
   }
-  next()
 })
 
 UserSchema.pre('save', function (next) {
@@ -77,6 +81,16 @@ UserSchema.pre('save', function (next) {
       return Promise.reject(Error('409'))
     })
 })
+
+
+UserSchema.pre('findOneAndUpdate', function(next){
+  // findOneAndUpdate and findByIdAndUpdate, will fire this hook
+
+  // middleware: encrypt the password
+  const user = this
+  user._update.$set.password = bcrypt.hashSync(user._update.$set.password, 10)
+  next()
+});
 
 const User = mongoose.model('User', UserSchema)
 module.exports = { User }

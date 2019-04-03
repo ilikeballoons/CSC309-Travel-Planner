@@ -61,6 +61,22 @@ app.get('/users', (req, res) => {
     .catch((error) => res.status(500).send(error))
 })
 
+// get users by username or fullName
+app.get('/users/:name', (req, res) => {
+  const name = req.params.name
+  User.find({
+    $or: [
+      { 'username': { $regex: new RegExp(name, 'i') } },
+      { 'fullName': { $regex: new RegExp(name, 'i') } }
+    ]
+  })
+    .then((users) => {
+      if (!users) res.status(404).send()
+      res.send(users)
+    })
+    .catch((error) => res.status(500).send(error))
+})
+
 app.get('/users/:username/:password', (req, res) => {
   User.findByUsernamePassword(req.params)
     .then((user) => {
@@ -78,11 +94,28 @@ app.patch('/users', authenticate, (req, res) => {
   if (!ObjectID.isValid(id)) {
     return res.status(404).send()
   }
-  const { username, fullName, birthday, location, description, profilePicture } = req.body
-  const properties = { username, fullName, birthday, location, description, profilePicture }
-  User.findByIdAndUpdate(id, { $set: properties }, { new: true })
+
+  const { username, fullName, password, birthday, location, description, profilePicture } = req.body
+  const properties = { username, fullName, password, birthday, location, description, profilePicture }
+
+  // should use req.body._id instead of id here
+  User.findByIdAndUpdate((req.body._id || id), { $set: properties }, { new: true })
     .then((user) => {
       if (!user) res.status(404).send()
+      else res.send(user)
+    })
+    .catch((error) => {console.log("returned error: ", error); res.status(500).send(error)}) // FIXME: 
+})
+
+app.delete('/users', authenticate, (req, res) => {
+  const id = req.body._id
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send()
+  }
+
+  User.findByIdAndDelete(id)
+    .then((user) => {
+      if (!user) res.status(400).send()
       else res.send(user)
     })
     .catch((error) => res.status(500).send(error))

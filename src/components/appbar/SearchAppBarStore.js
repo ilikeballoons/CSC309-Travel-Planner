@@ -2,6 +2,7 @@ import { EventEmitter } from 'events'
 import dispatcher from '../../utils/Dispatcher'
 import LoginStates from '../../utils/LoginStates'
 import ActionTypes from '../../utils/ActionTypes'
+import defaultProfilePicture from './../../images/defaultProfilePicture.png'
 
 class SearchAppBarStore extends EventEmitter {
   constructor () {
@@ -25,9 +26,11 @@ class SearchAppBarStore extends EventEmitter {
       password2: '',
       birthday: null,
       fullName: '',
+      profilePicture: defaultProfilePicture,
       hasClickedSubmit: false,
       duplicate: false,
-      snackbarOpen: false
+      snackbarOpen: false,
+      profilePictureOpen: false
     }
     this.userProfile = {
       open: false
@@ -64,7 +67,9 @@ class SearchAppBarStore extends EventEmitter {
           fullName: '',
           hasClickedSubmit: false,
           duplicate: false,
-          snackbarOpen: this.createAccount.snackbarOpen
+          snackbarOpen: this.createAccount.snackbarOpen,
+          profilePictureOpen: false,
+          profilePicture: defaultProfilePicture
         }
         this.emit('change')
         break
@@ -91,6 +96,24 @@ class SearchAppBarStore extends EventEmitter {
 
       case ActionTypes.CREATE_ACCOUNT_CONFIRM_TOGGLE: {
         this.createAccount.snackbarOpen = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.CREATE_ACCOUNT_PROFILE_PICTURE_TOGGLE: {
+        this.createAccount.profilePictureOpen = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.CREATE_ACCOUNT_PROFILE_PICTURE_SELECT: {
+        this.createAccount.profilePicture = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.CREATE_ACCOUNT_PROFILE_PICTURE_CANCEL: {
+        this.createAccount.profilePicture = defaultProfilePicture
         this.emit('change')
         break
       }

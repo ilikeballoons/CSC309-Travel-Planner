@@ -42,9 +42,7 @@ const UserSchema = new mongoose.Schema({
     default: "Hello World"
   },
   profilePicture: {
-    contentType: String,
-
-    data: Buffer
+    type: String
   },
   itineraries: [ItinerarySchema]
 })

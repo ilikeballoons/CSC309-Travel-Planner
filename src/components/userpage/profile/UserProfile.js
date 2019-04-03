@@ -16,13 +16,13 @@ import PasswordDialog from './PasswordDialog.js'
 import DeleteAccountButton from './DeleteAccountButton'
 import SubmitButton from './SubmitButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
-import ProfilePictureDialog from './ProfilePictureDialog'
 import ConfirmSnackbar from './ConfirmSnackbar'
 import UserProfileActions from './UserProfileActions'
 import UserProfileStore from './UserProfileStore'
 import SearchAppBar from '../../appbar/SearchAppBar'
 import ItinerariesDisplay from './itineraries/ItinerariesDisplay'
 import RenameItineraryDialog from './itineraries/RenameItineraryDialog'
+import ProfilePicChooser from '../../appbar/ProfilePicChooser'
 
 const styles = theme => ({
   header: {
@@ -99,19 +99,18 @@ class UserProfile extends React.Component {
       <div className={classes.root}>
         <SearchAppBar page='userProfile'/>
         <div className={classes.header}>
-          <div className={classes.avatarContainer}>
+          <div
+            className={classes.avatarContainer}
+            onMouseEnter={() => UserProfileActions.toggleEditProfilePictureButton(true)}
+            onMouseLeave={() => UserProfileActions.toggleEditProfilePictureButton(false)} >
             <Avatar alt='profile_pic'
               src={user.profilePicture ? user.profilePicture : require('../../../images/avatar/avatar.png')}
-              className={classes.avatar}
-              onMouseEnter={() => UserProfileActions.toggleEditProfilePictureButton()}
-              onMouseLeave={() => UserProfileActions.toggleEditProfilePictureButton()}
-            >
-            </Avatar>
+              className={classes.avatar} />
               {showEditProfilePictureButton &&
               <IconButton
                 className={classes.editButton}
                 color='secondary'
-                onClick={() => UserProfileActions.toggleEditProfilePictureDialog()}>
+                onClick={() => UserProfileActions.toggleEditProfilePictureDialog(true)}>
                 <EditIcon />
               </IconButton>}
           </div>
@@ -185,7 +184,7 @@ class UserProfile extends React.Component {
           </div>
         </div>
         <ConfirmDeleteDialog open={deleteDialogOpen}/>
-        <ProfilePictureDialog open={showProfilePictureDialog} picture={user.profilePicture} />
+        <ProfilePicChooser open={showProfilePictureDialog} page='profile' />
         <RenameItineraryDialog open={renameItineraryDialog.open} itinerary={selectedItinerary} />
         <ConfirmSnackbar open={snackbarOpen} />
         <PasswordDialog />

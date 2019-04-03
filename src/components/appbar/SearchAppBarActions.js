@@ -155,6 +155,34 @@ const SearchAppBarActions = {
     dispatcher.dispatch({
       type: ActionTypes.APPBAR_USER_PROFILE_CLOSE
     })
+  },
+
+  toggleProfilePictureChooser (value) {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_PROFILE_PICTURE_TOGGLE,
+      value
+    })
+  },
+
+  profilePictureSelect (value) {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_PROFILE_PICTURE_SELECT,
+      value
+    })
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_PROFILE_PICTURE_TOGGLE,
+      value: false
+    })
+  },
+
+  profilePictureCancel () {
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_PROFILE_PICTURE_CANCEL
+    })
+    dispatcher.dispatch({
+      type: ActionTypes.CREATE_ACCOUNT_PROFILE_PICTURE_TOGGLE,
+      value: false
+    })
   }
 }
 

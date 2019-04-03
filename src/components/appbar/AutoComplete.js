@@ -141,7 +141,7 @@ class AutoComplete extends React.Component {
     super(props)
     this.state = {
       suggestions: [],
-      searchQuery: this.props.searchQuery,
+      searchQuery: this.props.searchQuery || '',
     }
   }
 

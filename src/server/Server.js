@@ -41,8 +41,8 @@ const authenticate = (req, res, next) => {
 
 /* ========== ROUTES ========== */
 app.post('/users', (req, res) => {
-  const { username, password, privilege, fullName, birthday, location, description } = req.body
-  const user = new User({ username, password, privilege, fullName, birthday, location, description })
+  const { username, password, privilege, fullName, birthday, location, description, profilePicture } = req.body
+  const user = new User({ username, password, privilege, fullName, birthday, location, description, profilePicture })
   user.save()
     .then((result) => res.status(201).send(result))
     .catch((error) => {
@@ -169,7 +169,7 @@ app.post('/users/login', (req, res) => {
     .then((user) => {
       req.session.userid = user._id
       req.session.username = user.username
-      res.send(user) // TODO: check
+      res.send(user)
     })
     .catch((error) => {
       if (error.message.includes('404')) res.status(404).send(error)

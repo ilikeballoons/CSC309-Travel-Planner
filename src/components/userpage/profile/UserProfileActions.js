@@ -32,10 +32,13 @@ const UserProfileActions = {
   },
 
   editProfilePicture (profilePicture) { // not implemented currently
-    console.log(profilePicture); // TODO: save the picture to DB
     dispatcher.dispatch({
       type: ActionTypes.USERPROFILE_EDIT,
       value: { profilePicture }
+    })
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_TOGGLE_PROFILE_PICTURE_DIALOG,
+      value: false
     })
   },
 
@@ -46,15 +49,27 @@ const UserProfileActions = {
     })
   },
 
-  toggleEditProfilePictureButton () {
+  toggleEditProfilePictureButton (value) {
     dispatcher.dispatch({
-      type: ActionTypes.USERPROFILE_TOGGLE_EDIT_PROFILE_PICTURE_BUTTON
+      type: ActionTypes.USERPROFILE_TOGGLE_EDIT_PROFILE_PICTURE_BUTTON,
+      value
     })
   },
 
-  toggleEditProfilePictureDialog () {
+  toggleEditProfilePictureDialog (value) {
     dispatcher.dispatch({
-      type: ActionTypes.USERPROFILE_TOGGLE_PROFILE_PICTURE_DIALOG
+      type: ActionTypes.USERPROFILE_TOGGLE_PROFILE_PICTURE_DIALOG,
+      value
+    })
+  },
+
+  cancelProfilePictureDialog () {
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_CANCEL_PROFILE_PICTURE
+    })
+    dispatcher.dispatch({
+      type: ActionTypes.USERPROFILE_TOGGLE_PROFILE_PICTURE_DIALOG,
+      value: false
     })
   },
 

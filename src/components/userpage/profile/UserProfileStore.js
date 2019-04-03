@@ -104,13 +104,19 @@ class UserProfileStore extends EventEmitter {
       }
 
       case ActionTypes.USERPROFILE_TOGGLE_EDIT_PROFILE_PICTURE_BUTTON: {
-        this.showEditProfilePictureButton = !this.showEditProfilePictureButton
+        this.showEditProfilePictureButton = action.value
         this.emit('change')
         break
       }
 
       case ActionTypes.USERPROFILE_TOGGLE_PROFILE_PICTURE_DIALOG: {
-        this.showProfilePictureDialog = !this.showProfilePictureDialog
+        this.showProfilePictureDialog = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USERPROFILE_CANCEL_PROFILE_PICTURE: {
+        this.newUser.profilePicture = this.user.profilePicture
         this.emit('change')
         break
       }
@@ -122,7 +128,7 @@ class UserProfileStore extends EventEmitter {
       }
 
       case ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS: {
-        const { birthday, location, description, fullName, privilege, username, itineraries } = action.value // profilePicture
+        const { birthday, location, description, fullName, privilege, username, itineraries, profilePicture } = action.value
         this.user = {
           birthday: new Date(birthday),
           location,
@@ -130,8 +136,8 @@ class UserProfileStore extends EventEmitter {
           fullName,
           privilege,
           username,
-          itineraries
-          // profilePicture
+          itineraries,
+          profilePicture
         }
         this.newUser = {
           birthday: new Date(birthday),
@@ -140,8 +146,8 @@ class UserProfileStore extends EventEmitter {
           fullName,
           privilege,
           username,
-          itineraries
-          // profilePicture
+          itineraries,
+          profilePicture
         }
         this.emit('change')
         break

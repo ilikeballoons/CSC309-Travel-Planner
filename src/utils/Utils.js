@@ -18,4 +18,25 @@ const foursquare = {
   // client_secret: 'VGCF3ZIC2UVIHDRVMI5EWYMKGHWNTTIE4GDBDT2KQDASRBMQ'
 }
 
-export { findWithAttribute, toTitleCase, foursquare }
+const profilePictures = {
+  prefix: 'https://i.imgur.com/',
+  links: [
+    'uIZEE5b',
+    '3MhRlC6',
+    'JECLlly',
+    '4z4y4Nn',
+    'P4pK1j2',
+    'WCfhEOP',
+    'dlORaRy',
+    'eNh4WVM',
+    'qH9eRc2',
+    'EK0lBUp',
+    'TZjY6im',
+    'Vz2QtkD',
+    'Jy3jf6U',
+    'nPWXfwP',
+    'XNN8Gv2'
+  ]
+}
+
+export { findWithAttribute, toTitleCase, foursquare, profilePictures }

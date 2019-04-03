@@ -59,7 +59,6 @@ const deleteUser = (user) => {
 }
 
 const login = (user) => {
-  // console.log(user);
   return fetch(`/users/login`, {
     method: 'POST',
     body: JSON.stringify(user),

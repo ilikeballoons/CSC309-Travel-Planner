@@ -112,7 +112,6 @@ const SearchAppBarActions = {
     login(credentials)
       .then((res) => {
         let type, value
-        console.log (res)
         switch (res.status) {
           case 200: {
             type = ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS

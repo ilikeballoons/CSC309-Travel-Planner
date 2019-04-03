@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
@@ -10,7 +11,8 @@ import DateFnsUtils from '@date-io/date-fns'
 import { format } from 'date-fns'
 import { withStyles } from '@material-ui/core/styles'
 
-import ResetPWButton from './ResetPWButton'
+// import ResetPWButton from './ResetPWButton'
+import PasswordDialog from './PasswordDialog.js'
 import DeleteAccountButton from './DeleteAccountButton'
 import SubmitButton from './SubmitButton'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
@@ -192,13 +194,18 @@ class UserProfile extends React.Component {
           />
           <div className={classes.actions}>
             <DeleteAccountButton />
-            <ResetPWButton />
             <SubmitButton user={user} />
+            <Button
+              color='primary' className = {classes.resetBtn}
+              onClick={() => UserProfileActions.changePWDialogOpen()}>
+              Reset Password*
+            </Button>
           </div>
         </div>
         <ConfirmDeleteDialog open={deleteDialogOpen}/>
         <ProfilePictureDialog open={showProfilePictureDialog} picture={user.profilePicture} />
         <ConfirmSnackbar open={snackbarOpen} />
+        <PasswordDialog />
       </div>
     )
   }

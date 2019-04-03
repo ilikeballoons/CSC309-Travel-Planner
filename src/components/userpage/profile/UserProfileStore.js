@@ -12,6 +12,13 @@ class UserProfileStore extends EventEmitter {
     this.snackbarOpen = false
     this.user = null
     this.newUser = null
+
+    this.changePW = {
+      open: false,
+      submit: false,
+      password: '',
+      retype: ''
+    }
   }
 
   getState () {
@@ -20,12 +27,58 @@ class UserProfileStore extends EventEmitter {
       snackbarOpen: this.snackbarOpen,
       showEditProfilePictureButton: this.showEditProfilePictureButton,
       showProfilePictureDialog: this.showProfilePictureDialog,
+      changePW: this.changePW,
       user: this.newUser
     }
   }
 
   handleActions (action) {
     switch (action.type) {
+      case ActionTypes.USER_CHANGE_PW_OPEN: {
+        this.changePW.open = true
+        this.emit('change')
+        break
+      }
+      case ActionTypes.USER_CHANGE_PW_CANCEL: {
+        this.changePW = {
+          open: false,
+          submit: false,
+          password: '',
+          retype: ''
+        }
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USER_CHANGE_PW_CLICK_SUBMIT: {
+        this.changePW.submit = true
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USER_CHANGE_PW_SUBMIT: {
+        this.changePW = {
+          open: false,
+          submit: false,
+          password: '',
+          retype: ''
+        }
+        this.currentUser = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USER_CHANGE_PW_PASSWORD: {
+        this.changePW.password = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.USER_CHANGE_PW_RETYPE: {
+        this.changePW.retype = action.value
+        this.emit('change')
+        break
+      }
       case ActionTypes.USERPROFILE_EDIT: {
         const key = Object.keys(action.value)[0]
         this.newUser[key] = action.value[key]

@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
+import UserProfileActions from './UserProfileActions'
 
 const styles = theme => ({
   root: {
@@ -12,7 +13,8 @@ class ResetPWButton extends React.Component {
   render () {
     const { classes } = this.props
     return (
-      <Button variant='contained' color='primary' className={classes.root}>
+      <Button variant='contained' color='primary' className={classes.root}
+        onClick={() => UserProfileActions.changePWDialogOpen()}>
         Reset Password
       </Button>
     )

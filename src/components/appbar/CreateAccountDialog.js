@@ -29,8 +29,7 @@ const styles = {
 class CreateAccountDialog extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
-    Object.assign(this.state, SearchAppBarStore.getState().createAccount)
+    this.state = SearchAppBarStore.getState().createAccount
   }
 
   componentDidMount () {

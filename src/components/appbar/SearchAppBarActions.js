@@ -1,6 +1,7 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
 import { postUser, login, logout } from '../../utils/ServerMethods'
+import RecommendationActions from '../userpage/recommendations/RecommendationActions'
 
 const SearchAppBarActions = {
   clickSubmit () {
@@ -71,11 +72,12 @@ const SearchAppBarActions = {
     })
   },
 
-  searchbarSearch (query) {
+  searchbarSearch (searchQuery, travelDate) {
     dispatcher.dispatch({
       type: ActionTypes.SEARCHBAR_SEARCH,
-      value: query
+      value: searchQuery
     })
+    RecommendationActions.startLoad(searchQuery, travelDate)
   },
 
   signinDialogOpen () {
@@ -104,8 +106,8 @@ const SearchAppBarActions = {
     })
   },
 
-  signinDialogSigninStart (credentials) {
-    login(credentials)
+  signinDialogSigninStart ({ username, password, travelDate, searchQuery }) {
+    login({ username, password })
       .then((res) => {
         let type, value
         switch (res.status) {
@@ -116,6 +118,7 @@ const SearchAppBarActions = {
               type: ActionTypes.UPDATE_USER,
               value: res
             })
+            RecommendationActions.startLoad(searchQuery, travelDate)
             break
           }
           case 404: {

@@ -1,13 +1,12 @@
 import React from 'react'
 import shortid from 'shortid'
-
 import GridList from '@material-ui/core/GridList'
 import { withStyles } from '@material-ui/core/styles'
 
 import Recommendation from './Recommendation'
+import RecommendationActions from './RecommendationActions'
 import RecommendationsStore from './RecommendationsStore'
 import PreferencesStore from '../preferences/PreferencesStore'
-
 
 const styles = theme => ({
   root: {
@@ -31,7 +30,10 @@ const styles = theme => ({
 class Recommendations extends React.Component {
   constructor () {
     super()
-    this.state = RecommendationsStore.getState()
+    this.state = {
+      loading: true,
+      recommendations: []
+    }
   }
 
   componentDidMount () {
@@ -56,8 +58,6 @@ class Recommendations extends React.Component {
     return recommendations.filter(rec => preferences[rec.category.category][rec.category.subcategory])
   }
 
-
-
   render () {
     const { classes } = this.props
     const { loading=false } = this.state
@@ -70,7 +70,7 @@ class Recommendations extends React.Component {
           cellHeight={359}
           className={classes.gridList}
           spacing={10}>
-          {this.filterRecommendations().map((venue) => {
+	         { this.filterRecommendations().map((venue) => {
             const short = shortid.generate()
             venue.id = short
             return <Recommendation data={venue} key={short} />

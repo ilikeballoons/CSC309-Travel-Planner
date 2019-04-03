@@ -25,7 +25,6 @@ import LoginStates from '../../utils/LoginStates'
 const styles = theme => ({
   root: {
     width: '100%',
-    zIndex: 1300
   },
   grow: {
     flexGrow: 1
@@ -87,7 +86,7 @@ class SearchAppBar extends React.Component {
   constructor (props) {
     super(props)
     this.classes = props.classes
-    this.state = Object.assign({}, { open: true }, SearchAppBarStore.getState())
+    this.state = { open: true, ...SearchAppBarStore.getState() } // prefererences will be open by default
   }
 
   componentDidMount () {
@@ -102,31 +101,19 @@ class SearchAppBar extends React.Component {
     this._isMounted = false
   }
 
-  handleChange = event => {
-    SearchAppBarActions.searchbarChange(event.target.value)
-  }
-
-  handleSubmit = event => {
-    if ((event.keyCode && event.keyCode === 13) || event.type === 'click') {
-      SearchAppBarActions.searchbarSearch(this.state.searchQuery)
-    }
-  }
-
   toggleDrawer = () => {
     const { open, login } = this.state
     login.loggedInState === LoginStates.loggedIn && (open ? PreferencesActions.close() : PreferencesActions.open())
   }
 
   updateState = () => {
-    const { login, searchQuery, open, createAccount } = Object.assign({}, SearchAppBarStore.getState(), PreferencesStore.getState())
-    const { snackbarOpen } = createAccount
-    this._isMounted && this.setState({ login, searchQuery, open, snackbarOpen })
+    const { login, searchQuery, open, createAccount: { snackbarOpen }, travelDate } = {...SearchAppBarStore.getState(), ...PreferencesStore.getState()}
+    this._isMounted && this.setState({ login, searchQuery, open, snackbarOpen, travelDate })
   }
 
   render () {
     const { classes, page } = this.props
-    const { login, open, userProfile, snackbarOpen } = this.state
-    const { username, loggedInState } = login
+    const { login: { username, loggedInState }, open, userProfile, snackbarOpen, searchQuery, travelDate } = this.state
     const isLoggedIn = loggedInState === LoginStates.loggedIn
     if (page === 'userPage' && userProfile.open) return <Redirect to={`/${username}/profile`} push />
     if (page === 'userProfile' && !userProfile.open) return <Redirect to={`/${username}`} push />
@@ -134,13 +121,13 @@ class SearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
-            {isLoggedIn && page === 'userPage' ?
-              <IconButton
-                onClick={this.toggleDrawer}
-                className={classes.menuButton}
-                color='inherit'>
-                {open ? <ChevronLeftIcon /> : <MenuIcon />}
-              </IconButton>
+            {isLoggedIn && page === 'userPage'
+              ? <IconButton
+                  onClick={this.toggleDrawer}
+                  className={classes.menuButton}
+                  color='inherit'>
+                  {open ? <ChevronLeftIcon /> : <MenuIcon />}
+                </IconButton>
               : <IconButton
                 className={classes.menuButton}
                 color='inherit'>
@@ -151,7 +138,7 @@ class SearchAppBar extends React.Component {
             </Typography>
             {page === 'userPage'
               ? <div className={classes.grow}>
-                  <AutoComplete page='userpage'/>
+                  <AutoComplete page={page} searchQuery={searchQuery} travelDate={travelDate} />
                 </div>
               : <div className={classes.grow} />
             }

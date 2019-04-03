@@ -24,7 +24,7 @@ const styles = theme => ({
   },
   suggestionsContainerOpen: {
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 1201,
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0
@@ -69,7 +69,7 @@ const styles = theme => ({
   }
 })
 
-const suggestions = cities.map( suggestion => ({
+const suggestions = cities.map((suggestion) => ({
       value: `${suggestion.name}, ${suggestion.country}`,
       label: `${suggestion.name}, ${suggestion.country}`
   })
@@ -137,28 +137,12 @@ const getSuggestionValue = (suggestion) => {
 }
 
 class AutoComplete extends React.Component {
-  constructor () {
-    super()
-    const { searchQuery } = SearchAppBarStore.getState()
+  constructor (props) {
+    super(props)
     this.state = {
-      searchQuery: searchQuery,
-      suggestions: []
+      suggestions: [],
+      searchQuery: this.props.searchQuery,
     }
-  }
-
-  componentDidMount () {
-    SearchAppBarStore.on('change', this.updateState)
-    this._isMounted = true
-  }
-
-  componentWillUnmount () {
-    SearchAppBarStore.removeListener('change', this.updateState)
-    this._isMounted = false
-  }
-
-  updateState = () => {
-    const { searchQuery } = SearchAppBarStore.getState()
-    this._isMounted && this.setState({ searchQuery })
   }
 
   handleSuggestionsFetchRequested = ({ value }) => {
@@ -174,36 +158,27 @@ class AutoComplete extends React.Component {
   }
 
   onSuggestionSelected = (event, { suggestionValue }) => {
-    SearchAppBarActions.searchbarSearch(suggestionValue)
-  }
-
-  onSuggestionHighlighted = ({ suggestion }) => {
-    suggestion && SearchAppBarActions.searchbarChange(getSuggestionValue(suggestion))
+    this.setState({ searchQuery: suggestionValue })
+    this.props.page === 'landing'
+    ? SearchAppBarActions.signinDialogOpen()
+    : SearchAppBarActions.searchbarSearch(suggestionValue, this.props.travelDate)
   }
 
   shouldRenderSuggestions = (value) => value.trim().length > 2
 
   handleChange = event => {
-    SearchAppBarActions.searchbarChange(event.target.value)
+    this.setState({ searchQuery: event.target.value })
   }
 
-  handleSubmit = event => {
-    if ((event.keyCode && event.keyCode === 13) || event.type === 'click') {
-      this.props.page === 'landing'
-      ? SearchAppBarActions.signinDialogOpen()
-      : SearchAppBarActions.searchbarSearch(this.state.searchQuery)
-    }
-  }
-
-  render() {
+  render () {
     const { classes, page } = this.props
+    const { searchQuery } = this.state
     const autosuggestProps = { // built in props for the autosuggest component
       renderInputComponent,
       suggestions: this.state.suggestions,
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
       onSuggestionSelected: this.onSuggestionSelected,
-      onSuggestionHighlighted: this.onSuggestionHighlighted,
       shouldRenderSuggestions: this.shouldRenderSuggestions,
       focusInputOnSuggestionClick: false,
       getSuggestionValue,
@@ -217,9 +192,8 @@ class AutoComplete extends React.Component {
           inputProps={{
             classes,
             placeholder: 'Which city do you want to visit?',
-            value: this.state.searchQuery,
+            value: searchQuery,
             onChange: this.handleChange,
-            onKeyDown: this.handleSubmit,
             page
           }}
           theme={{

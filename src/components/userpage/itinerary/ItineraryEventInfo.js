@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 
 import ItineraryActions from './ItineraryActions'
-import UserActions from '../UserActions'
+import RecommendationActions from '../recommendations/RecommendationActions'
 
 const styles = theme => ({
   card: {
@@ -20,10 +20,11 @@ const styles = theme => ({
     color: theme.palette.secondary.main
   }
 })
+
 class ItineraryEventInfo extends React.Component {
   handleClick = () => {
     ItineraryActions.removeEvent(this.props.id)
-    UserActions.addRecommendation(this.props.data)
+    RecommendationActions.addRecommendation(this.props.data)
   }
 
   render () {

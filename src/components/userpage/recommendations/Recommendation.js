@@ -13,14 +13,13 @@ import InfoIcon from '@material-ui/icons/Info'
 import Collapse from '@material-ui/core/Collapse';
 import Typography from '@material-ui/core/Typography'
 
-import UserActions from '../UserActions'
+import RecommendationActions from './RecommendationActions'
 
 const styles = theme => ({
   root: {
     borderRadius: theme.shape.borderRadius,
     cursor: 'move',
     width: 450,
-    //height: 359,
     marginBottom: 20
   },
   titleBar: {
@@ -65,13 +64,13 @@ const collect = (connect, monitor) => ({
 
 class Recommendation extends React.Component {
 
-  constructor () {
+ constructor () {
     super()
     this.state = { expanded: false }
   }
 
-  toggleInfo = () => this.setState({ expanded: this.state.expanded })
-  handleRemove = () => UserActions.removeRecommendation(this.props.data.id)
+  toggleInfo = () => this.setState(state => ({expanded: !state.expanded}))
+  handleRemove = () => RecommendationActions.removeRecommendation(this.props.data.id)
 
   render () {
     const { classes, data } = this.props

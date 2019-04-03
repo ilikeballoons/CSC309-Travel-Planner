@@ -8,7 +8,7 @@ import SearchAppBarActions from './SearchAppBarActions'
 export default class SignInButton extends React.Component {
   constructor () {
     super()
-    this.state = { buttonText: this.getButtonText(SearchAppBarStore.getState().login.loggedInState)}
+    this.state = { buttonText: this.getButtonText(SearchAppBarStore.getState().login.loggedInState) }
   }
 
   componentDidMount () {
@@ -26,6 +26,7 @@ export default class SignInButton extends React.Component {
       : 'Sign in'
 
   updateState = () => this._isMounted && this.setState({ buttonText: this.getButtonText(SearchAppBarStore.getState().login.loggedInState) })
+
   render () {
     const { buttonText } = this.state
     return (

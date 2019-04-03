@@ -40,7 +40,7 @@ const styles = theme => ({
 class SigninDialog extends React.Component {
   constructor (props) {
     super(props)
-    const { signin, login } = SearchAppBarStore.getState()
+    const { signin, login, travelDate, searchQuery } = SearchAppBarStore.getState()
     this.state = { signin, login }
   }
 
@@ -55,8 +55,8 @@ class SigninDialog extends React.Component {
   }
 
   updateState = () => {
-    const { signin, login } = SearchAppBarStore.getState()
-    this._isMounted && this.setState({ signin, login })
+    const { signin, login, travelDate, searchQuery } = SearchAppBarStore.getState()
+    this._isMounted && this.setState({ signin, login, travelDate, searchQuery })
   }
 
   updateUsername = event => SearchAppBarActions.signinDialogEmailChange(event.target.value)
@@ -72,10 +72,9 @@ class SigninDialog extends React.Component {
   validate = () => this.state.signin.username && this.state.signin.password
 
   doLogin = () => {
-    SearchAppBarActions.signinDialogSigninStart({
-      username: this.state.signin.username,
-      password: this.state.signin.password
-    })
+    const { signin: { username, password }, travelDate, searchQuery } = this.state
+
+    SearchAppBarActions.signinDialogSigninStart({ username, password, travelDate, searchQuery })
   }
 
   render () {

@@ -3,6 +3,13 @@ import ActionTypes from '../../../utils/ActionTypes'
 import { postItinerary, patchItinerary } from '../../../utils/ServerMethods'
 
 const ItineraryActions = {
+  addEvent (event) {
+    dispatcher.dispatch({
+      type: ActionTypes.ITINERARY_EVENT_ADD,
+      value: event
+    })
+  },
+
   changeItineraryName (name) {
     dispatcher.dispatch({
       type: ActionTypes.ITINERARY_NAME_CHANGE,

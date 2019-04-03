@@ -3,34 +3,7 @@ import ActionTypes from '../../utils/ActionTypes'
 import { getUser } from '../../utils/ServerMethods'
 
 const UserActions = {
-  addEvent (event) {
-    dispatcher.dispatch({
-      type: ActionTypes.ITINERARY_EVENT_ADD,
-      value: event
-    })
-  },
-  
-  startLoad () {
-    dispatcher.dispatch({
-      type: ActionTypes.RECOMMENDATIONS_LOAD
-    })
-  },
-
-  addRecommendation (event) {
-    dispatcher.dispatch({
-      type: ActionTypes.RECOMMENDATION_ADD,
-      value: event
-    })
-  },
-
-  removeRecommendation (id) {
-    dispatcher.dispatch({
-      type: ActionTypes.RECOMMENDATION_REMOVE,
-      value: id
-    })
-  },
-
-  updateUser (user) {
+  updateUser (user) { // will delete this and the whole file after admin branch merge
     getUser(user)
       .then((user) => {
         dispatcher.dispatch({

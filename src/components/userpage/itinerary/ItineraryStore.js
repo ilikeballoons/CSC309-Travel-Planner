@@ -124,6 +124,18 @@ class ItineraryStore extends EventEmitter {
         break
       }
 
+      case ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS: {
+        this.location = action.value.location
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.SEARCHBAR_SEARCH: {
+        this.location = action.value
+        this.emit('change')
+        break
+      }
+
       default:
     }
   }

@@ -30,7 +30,7 @@ class UserProfileStore extends EventEmitter {
       showProfilePictureDialog: this.showProfilePictureDialog,
       renameItineraryDialog: this.renameItineraryDialog,
       user: this.newUser,
-      expandedPanel: this.expandedPanel
+      expandedPanel: this.expandedPanel,
       changePW: this.changePW
     }
   }

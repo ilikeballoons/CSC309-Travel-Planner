@@ -30,7 +30,6 @@ class App extends Component {
     const { username, loggedInState, privilege } = this.state
     const loggedIn = loggedInState === LoginStates.loggedIn
     const admin = (privilege === 1)
-    console.log("admin", admin)
     return (
         <div className='App' style={{'minHeight': '100vh'}}>
           <Switch>

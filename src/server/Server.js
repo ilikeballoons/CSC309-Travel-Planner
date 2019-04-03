@@ -94,9 +94,12 @@ app.patch('/users', authenticate, (req, res) => {
   if (!ObjectID.isValid(id)) {
     return res.status(404).send()
   }
+
   const { username, fullName, password, birthday, location, description, profilePicture } = req.body
   const properties = { username, fullName, password, birthday, location, description, profilePicture }
-  User.findByIdAndUpdate(req.body._id, { $set: properties }, { new: true })
+
+  // should use req.body._id instead of id here
+  User.findByIdAndUpdate((req.body._id || id), { $set: properties }, { new: true })
     .then((user) => {
       if (!user) res.status(404).send()
       else {console.log(user); res.send(user)}

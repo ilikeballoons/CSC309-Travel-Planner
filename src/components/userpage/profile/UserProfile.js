@@ -196,7 +196,7 @@ class UserProfile extends React.Component {
             <DeleteAccountButton />
             <SubmitButton user={user} />
             <Button
-              color='primary' className = {classes.resetBtn}
+              color='primary'
               onClick={() => UserProfileActions.changePWDialogOpen()}>
               Reset Password*
             </Button>

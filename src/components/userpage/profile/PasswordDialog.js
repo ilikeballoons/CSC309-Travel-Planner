@@ -21,8 +21,8 @@ const styles = theme => ({
 class PasswordDialog extends React.Component {
   constructor () {
     super()
-    const { changePW, currentUser } = UserProfileStore.getState()
-    this.state = { changePW, currentUser }
+    const { changePW, user } = UserProfileStore.getState()
+    this.state = { changePW, user }
   }
 
   componentDidMount () {
@@ -34,8 +34,8 @@ class PasswordDialog extends React.Component {
   }
 
   updateState = () => {
-    const { changePW, currentUser } = UserProfileStore.getState()
-    this.setState({ changePW, currentUser })
+    const { changePW, user } = UserProfileStore.getState()
+    this.setState({ changePW, user })
   }
 
   handlePassword = event => UserProfileActions.changePWPassword(event.target.value)
@@ -47,7 +47,7 @@ class PasswordDialog extends React.Component {
     UserProfileActions.changePWClickSubmit()
     if (this.confirmValidPassword() && this.confirmPasswordMatch()){
         UserProfileActions.changePWDialogClose()
-        const user = this.state.currentUser
+        const user = this.state.user
         user.password = this.state.changePW.password
         UserProfileActions.changePWSubmit(user)
     }

@@ -28,6 +28,7 @@ const AdminActions = {
   },
 
   changePWSubmit (user) {
+    console.log("@@@!!!", user)
     patchUser(user).then((res) => {
       dispatcher.dispatch({
         type: ActionTypes.ADMIN_CHANGE_PW_SUBMIT,

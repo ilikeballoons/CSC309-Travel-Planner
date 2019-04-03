@@ -10,8 +10,7 @@ class UserProfileStore extends EventEmitter {
     this.showEditProfilePictureButton = false
     this.showProfilePictureDialog = false
     this.snackbarOpen = false
-    this.user = null
-    this.newUser = null
+    this.user = {}
 
     this.changePW = {
       open: false,
@@ -23,12 +22,13 @@ class UserProfileStore extends EventEmitter {
 
   getState () {
     return {
+      // user: this.user,
       deleteDialogOpen: this.deleteDialogOpen,
       snackbarOpen: this.snackbarOpen,
       showEditProfilePictureButton: this.showEditProfilePictureButton,
       showProfilePictureDialog: this.showProfilePictureDialog,
       changePW: this.changePW,
-      user: this.newUser
+      user: this.user
     }
   }
 
@@ -63,7 +63,7 @@ class UserProfileStore extends EventEmitter {
           password: '',
           retype: ''
         }
-        this.currentUser = action.value
+        this.user = action.value
         this.emit('change')
         break
       }
@@ -81,7 +81,7 @@ class UserProfileStore extends EventEmitter {
       }
       case ActionTypes.USERPROFILE_EDIT: {
         const key = Object.keys(action.value)[0]
-        this.newUser[key] = action.value[key]
+        this.user[key] = action.value[key]
         this.emit('change')
         break
       }
@@ -121,7 +121,7 @@ class UserProfileStore extends EventEmitter {
           username
           // profilePicture
         }
-        this.newUser = this.user
+        this.user = this.user
         this.emit('change')
         break
       }

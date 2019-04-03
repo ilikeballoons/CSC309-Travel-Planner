@@ -13,13 +13,12 @@ const styles = theme => ({
 class SubmitButton extends React.Component {
   render () {
     const { classes, user } = this.props
-    console.log(user);
     return (
       <Button
         variant='contained'
         color='primary'
         className={classes.root}
-        onClick={() => UserProfileActions.submit(user)}>
+        onClick={() => {UserProfileActions.submit(user)}}>
         Submit
       </Button>
     )

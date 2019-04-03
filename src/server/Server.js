@@ -99,9 +99,9 @@ app.patch('/users', authenticate, (req, res) => {
   User.findByIdAndUpdate(req.body._id, { $set: properties }, { new: true })
     .then((user) => {
       if (!user) res.status(404).send()
-      else res.send(user)
+      else {console.log(user); res.send(user)}
     })
-    .catch((error) => res.status(500).send(error))
+    .catch((error) => {console.log("returned error: ", error); res.status(500).send(error)}) // FIXME: 
 })
 
 app.delete('/users', authenticate, (req, res) => {

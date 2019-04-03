@@ -29,21 +29,19 @@ class App extends Component {
   render () {
     const { username, loggedInState, privilege } = this.state
     const loggedIn = loggedInState === LoginStates.loggedIn
-    const admin = privilege === 1
+    const admin = (privilege === 1)
+    console.log("admin", admin)
     return (
         <div className='App' style={{'minHeight': '100vh'}}>
           <Switch>
             <Route exact path='/' render={() => (
               !loggedIn
               ? (<Landing />)
-              : (<Redirect to={`/${username}`} />)
+              : loggedIn && admin
+                ? (<Admin />)
+                : (<Redirect to={`/${username}`} />)
             )} />
             {!loggedIn && <Redirect to={'/'} />}
-            <Route path='/admin' render={() => (
-              admin
-              ? (<Admin />)
-              : (<Redirect to={'/'} />)
-            )} />
             <Route exact path={`/${username}`} component={() => <UserPage />} />
             <Route path={`/${username}/profile`} render={() => <UserProfile />} />
           </Switch>

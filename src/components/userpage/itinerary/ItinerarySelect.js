@@ -61,7 +61,7 @@ class ItinerarySelect extends React.Component {
             <option value='-1'>New</option>
             {itineraries.map((itinerary, index) => (
               <option value={index} key={index}>
-                {`${itinerary.name}: ${format(new Date(itinerary.date), 'd/M/yyyy')}`}
+                {`${itinerary.name}:\u00A0\u00A0\u00A0\u00A0${itinerary.location}\u00A0\u00A0\u00A0\u00A0${format(new Date(itinerary.date), 'd/M/yyyy')}`} {/* \u00A0 is a breaking space */}
               </option>)
             )}
           </Select>

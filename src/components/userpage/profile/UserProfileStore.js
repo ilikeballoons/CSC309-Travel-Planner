@@ -23,13 +23,12 @@ class UserProfileStore extends EventEmitter {
 
   getState () {
     return {
-      // user: this.user,
+      user: this.user,
       deleteDialogOpen: this.deleteDialogOpen,
       snackbarOpen: this.snackbarOpen,
       showEditProfilePictureButton: this.showEditProfilePictureButton,
       showProfilePictureDialog: this.showProfilePictureDialog,
       renameItineraryDialog: this.renameItineraryDialog,
-      user: this.newUser,
       expandedPanel: this.expandedPanel,
       changePW: this.changePW
     }

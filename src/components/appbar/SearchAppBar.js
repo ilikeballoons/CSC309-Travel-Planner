@@ -146,7 +146,7 @@ class SearchAppBar extends React.Component {
               <div className={classes.grow} />
               {isLoggedIn
                 ? page === 'userProfile'
-                  ? <ItineraryButton />
+                  ? <ItineraryButton searchQuery={searchQuery} travelDate={travelDate}/>
                   : <UserProfileButton />
                 : <CreateAccountButton />}
               <div className={classes.grow} />

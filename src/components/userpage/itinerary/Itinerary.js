@@ -89,7 +89,7 @@ class Itinerary extends React.Component {
               }}
             />
           <div className={classes.buttonContainer}>
-            <ClearItineraryButton />
+            <ClearItineraryButton itinerary={{events}} />
             <SaveItineraryButton itinerary={{events, name, id, location: itineraryLocation }} open={saveSnackbarOpen} isNew={selected === -1} />
           </div>
           </ListItem>

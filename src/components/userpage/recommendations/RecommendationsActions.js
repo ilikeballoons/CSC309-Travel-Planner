@@ -4,7 +4,6 @@ import ActionTypes from '../../../utils/ActionTypes'
 import traverse from 'traverse'
 import { foursquare } from '../../../utils/Utils'
 import groupedCategories from '../../../utils/GroupedCategories'
-import RecommendationsStore from './RecommendationsStore'
 
 const RecommendationsActions = {
   startLoad (city, date) {

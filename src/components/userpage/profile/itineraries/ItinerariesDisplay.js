@@ -17,9 +17,15 @@ import RenameItineraryButton from './RenameItineraryButton'
 
 const styles = theme => ({
   root: {
-    maxHeight: 650,
+    display: 'flex',
+    width: '75%',
+    padding: 20
+  },
+  list: {
     display: 'flex',
     flexFlow: 'column wrap',
+    maxHeight: 650,
+    width: '100%',
     alignContent: 'baseline'
   },
   itemRoot: {
@@ -110,9 +116,11 @@ class ItinerariesDisplay extends React.Component {
   render () {
     const { classes, itineraries } = this.props
     return (
-      <List className={classes.root}>
-        {itineraries && itineraries.map((itinerary) => this.getItineraryComponent(itinerary))}
-      </List>
+      <div className={classes.root}>
+        <List className={classes.list}>
+          {itineraries && itineraries.map((itinerary) => this.getItineraryComponent(itinerary))}
+        </List>
+      </div>
     )
   }
 }

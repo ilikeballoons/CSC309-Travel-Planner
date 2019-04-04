@@ -97,7 +97,7 @@ class UserProfileStore extends EventEmitter {
       }
 
       case ActionTypes.USERPROFILE_TOGGLE_DELETE_ACCOUNT_DIALOG: {
-        this.deleteDialogOpen = !this.deleteDialogOpen
+        this.deleteDialogOpen = action.value
         this.emit('change')
         break
       }

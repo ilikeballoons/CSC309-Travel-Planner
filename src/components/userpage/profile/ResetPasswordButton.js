@@ -10,19 +10,19 @@ const styles = theme => ({
   }
 })
 
-class DeleteAccountButton extends React.Component {
+class ResetPasswordButton extends React.Component {
   render () {
     const { classes } = this.props
     return (
       <Button
         variant='contained'
-        color='secondary'
+        color='default'
         className={classes.root}
-        onClick={() => UserProfileActions.toggleDeleteAccountDialog(true)}>
-        Delete Account
+        onClick={() => { UserProfileActions.changePWDialogOpen() }}>
+        Reset Password
       </Button>
     )
   }
 }
 
-export default withStyles(styles)(DeleteAccountButton)
+export default withStyles(styles)(ResetPasswordButton)

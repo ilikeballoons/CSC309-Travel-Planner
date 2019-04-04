@@ -40,7 +40,7 @@ class ConfirmDeleteDialog extends React.Component {
     return (
       <Dialog
         open={open}
-        onClose={() => UserProfileActions.toggleDeleteAccountDialog()}
+        onClose={() => UserProfileActions.toggleDeleteAccountDialog(false)}
         className={classes.root}
         TransitionProps={{
           in: open,
@@ -59,7 +59,7 @@ class ConfirmDeleteDialog extends React.Component {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant='contained' color='default' onClick={() => UserProfileActions.toggleDeleteAccountDialog()}>
+          <Button variant='contained' color='default' onClick={() => UserProfileActions.toggleDeleteAccountDialog(false)}>
             Cancel
           </Button>
           <Button variant='contained' color='secondary' onClick={() => UserProfileActions.deleteAccount()}>

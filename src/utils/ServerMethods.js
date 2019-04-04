@@ -81,7 +81,7 @@ const patchUser = (user) => {
 const deleteUser = (user) => {
   return fetch('/users', {
     method: 'DELETE',
-    body: JSON.stringify(user),
+    body: (user && JSON.stringify(user)) || null,
     headers: {
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/json'

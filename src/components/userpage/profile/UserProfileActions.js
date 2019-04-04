@@ -73,9 +73,10 @@ const UserProfileActions = {
     })
   },
 
-  toggleDeleteAccountDialog () {
+  toggleDeleteAccountDialog (value) {
     dispatcher.dispatch({
-      type: ActionTypes.USERPROFILE_TOGGLE_DELETE_ACCOUNT_DIALOG
+      type: ActionTypes.USERPROFILE_TOGGLE_DELETE_ACCOUNT_DIALOG,
+      value
     })
   },
 
@@ -100,10 +101,14 @@ const UserProfileActions = {
     })
   },
 
-  deleteAccount () { // TODO: this will be an object id, but for now it just deletes whatever user is logged in
-    dispatcher.dispatch({
-      type: ActionTypes.USERPROFILE_DELETE_ACCOUNT
-    })
+  deleteAccount () {
+    deleteUser()
+      .then((json) => {
+        console.log(json)
+        dispatcher.dispatch({
+          type: ActionTypes.USERPROFILE_DELETE_ACCOUNT
+        })
+      })
   },
 
   changeItineraryName (id, name) {

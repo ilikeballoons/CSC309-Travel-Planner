@@ -94,11 +94,10 @@ app.patch('/users', authenticate, (req, res) => {
   if (!ObjectID.isValid(id)) {
     return res.status(404).send()
   }
-  
-  const { username, fullName, password, birthday, location, description, profilePicture } = req.body
 
-  const properties = { username, fullName, birthday, location, description, profilePicture }
-  password && (properties.password = User.encryptPassword(password))
+  const { username, fullName, password, birthday, location, description, profilePicture } = req.body
+  const properties = { username, fullName, password, birthday, location, description, profilePicture }
+
   // should use req.body._id instead of id here
   User.findByIdAndUpdate((req.body._id || id), { $set: properties }, { new: true })
     .then((user) => {

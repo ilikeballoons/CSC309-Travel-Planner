@@ -80,7 +80,15 @@ UserSchema.pre('save', function (next) {
     })
 })
 
-UserSchema.statics.encryptPassword = (password) => bcrypt.hashSync(password, 10)
+
+UserSchema.pre('findOneAndUpdate', function(next){
+  // findOneAndUpdate and findByIdAndUpdate, will fire this hook
+
+  // middleware: encrypt the password
+  const user = this
+  user._update.$set.password = bcrypt.hashSync(user._update.$set.password, 10)
+  next()
+});
 
 const User = mongoose.model('User', UserSchema)
 module.exports = { User }

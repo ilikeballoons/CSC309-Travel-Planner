@@ -22,10 +22,10 @@ const styles = theme => ({
 class UsersList extends React.Component {
   constructor () {
     super()
+    const { allUsers } = AdminStore.getState()
     this.state = {
-      allUsers : []
+      allUsers
     }
-    AdminActions.startLoad()
   }
 
   componentDidMount () {

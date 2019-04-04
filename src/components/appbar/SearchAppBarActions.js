@@ -2,6 +2,7 @@ import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
 import { postUser, login, logout } from '../../utils/ServerMethods'
 import RecommendationsActions from '../userpage/recommendations/RecommendationsActions'
+import AdminActions from '../admin/AdminActions'
 
 const SearchAppBarActions = {
   clickSubmit () {
@@ -109,31 +110,50 @@ const SearchAppBarActions = {
   signinDialogSigninStart ({ username, password, travelDate, searchQuery }) {
     login({ username, password })
       .then((res) => {
-        let type, value
         switch (res.status) {
           case 200: {
-            type = ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS
-            value = { ...res }
-            dispatcher.dispatch({
-              type: ActionTypes.UPDATE_USER,
-              value: res
-            })
-            RecommendationsActions.startLoad(searchQuery, travelDate)
+            const isAdmin = res.privilege === 1
+            if (isAdmin) {
+              dispatcher.dispatch({
+                type: ActionTypes.UPDATE_USER,
+                value: res
+              })
+              AdminActions.startLoad()
+                .then(() => {
+                  dispatcher.dispatch({
+                    type: ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS,
+                    value: { ...res }
+                  })
+                })
+            } else {
+              dispatcher.dispatch({
+                type: ActionTypes.UPDATE_USER,
+                value: res
+              })
+              dispatcher.dispatch({
+                type: ActionTypes.SIGNIN_DIALOG_SIGNIN_SUCCESS,
+                value: { ...res }
+              })
+              RecommendationsActions.startLoad(searchQuery, travelDate)
+            }
             break
           }
           case 404: {
-            type = ActionTypes.SIGNIN_DIALOG_USERNAME_NOT_FOUND
+            dispatcher.dispatch({
+              type: ActionTypes.SIGNIN_DIALOG_USERNAME_NOT_FOUND
+            })
             break
           }
           case 403: {
-            type = ActionTypes.SIGNIN_DIALOG_INVALID_PASSWORD
+            dispatcher.dispatch({
+              type: ActionTypes.SIGNIN_DIALOG_INVALID_PASSWORD
+            })
             break
           }
           default: {
             console.log('internal server error' + res.status)
           }
         }
-        dispatcher.dispatch({ type, value })
       })
   },
 

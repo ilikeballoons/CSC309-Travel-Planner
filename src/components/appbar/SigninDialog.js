@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField'
 
 import SearchAppBarStore from './SearchAppBarStore'
 import SearchAppBarActions from './SearchAppBarActions'
-import LoginStates from '../../utils/LoginStates'
+import { LoginStates } from '../../utils/Utils'
 
 const styles = theme => ({
   root: {

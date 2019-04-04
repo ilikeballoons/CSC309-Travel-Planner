@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import DeleteDialog from './DeleteDialog.js'
 import PasswordDialog from './PasswordDialog.js'
+import AdminSnackbar from './AdminSnackbar'
 import UsersList from './UsersList.js'
 import UserPanel from './UserPanel.js'
 import UsersSearch from './UsersSearch.js'
@@ -51,6 +52,7 @@ class Admin extends React.Component {
           <UserPanel />
           <PasswordDialog />
           <DeleteDialog />
+          <AdminSnackbar />
         </Paper>
       </div>
     )

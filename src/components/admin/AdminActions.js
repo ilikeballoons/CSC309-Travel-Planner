@@ -28,12 +28,23 @@ const AdminActions = {
   },
 
   changePWSubmit (user) {
-    patchUser(user).then((res) => {
-      dispatcher.dispatch({
-        type: ActionTypes.ADMIN_CHANGE_PW_SUBMIT,
-        value: user
+    patchUser(user)
+      .then((res) => {
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_CHANGE_PW_SUBMIT,
+          value: user
+        })
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_TOGGLE_SNACKBAR,
+          value: { open: true, message: `Password changed!` }
+        })
       })
-    }).catch((err) => console.log(err))
+      .catch((err) => {
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_TOGGLE_SNACKBAR,
+          value: { open: true, message: `Changes not saved! ${err}` }
+        })
+      })
   },
 
   changePWPassword (password) {
@@ -63,17 +74,29 @@ const AdminActions = {
   },
 
   deleteUserDialogSubmit (user) { // WORKING
-    deleteUser(user).then((res) => {
-      dispatcher.dispatch({
-        type: ActionTypes.ADMIN_DELETE_DIALOG_SUBMIT
-      })
-      getAllUsers().then((result) => {
+    deleteUser(user)
+      .then((res) => {
         dispatcher.dispatch({
-          type: ActionTypes.ADMIN_USER_LOAD,
-          value: result
+          type: ActionTypes.ADMIN_DELETE_DIALOG_SUBMIT
         })
-      }).catch((error) => console.log(error))
-    }).catch((err) => console.log(err))
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_TOGGLE_SNACKBAR,
+          value: { open: true, message: `${res.username} was deleted!` }
+        })
+        getAllUsers()
+          .then((result) => {
+            dispatcher.dispatch({
+              type: ActionTypes.ADMIN_USER_LOAD,
+              value: result
+            })
+          })
+      })
+      .catch((err) => {
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_TOGGLE_SNACKBAR,
+          value: { open: true, message: `Changes not saved! ${err}` }
+        })
+      })
   },
 
   editModeOn () {
@@ -88,7 +111,16 @@ const AdminActions = {
         dispatcher.dispatch({
           type: ActionTypes.ADMIN_EDIT_USER_SAVE
         })
-      }).catch((error) => console.log(error))
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_TOGGLE_SNACKBAR,
+          value: { open: true, message: 'Changes saved!' }
+        })
+      }).catch((error) => {
+        dispatcher.dispatch({
+          type: ActionTypes.ADMIN_TOGGLE_SNACKBAR,
+          value: { open: true, message: `Changes not saved! ${error}` }
+        })
+      })
   },
 
   editUserBirthday (birthday) {
@@ -112,12 +144,39 @@ const AdminActions = {
     })
   },
 
+  editUserFullName (fullName) {
+    dispatcher.dispatch({
+      type: ActionTypes.ADMIN_EDIT_USER_FULLNAME,
+      value: fullName
+    })
+  },
+
+  editUserProfilePicture (img) {
+    dispatcher.dispatch({
+      type: ActionTypes.ADMIN_PROFILE_PIC_DIALOG_OPEN,
+      value: false
+    })
+    dispatcher.dispatch({
+      type: ActionTypes.ADMIN_EDIT_USER_PROFILE_PICTURE,
+      value: img
+    })
+  },
+
+  toggleEditProfilePictureDialog (value) {
+    dispatcher.dispatch({
+      type: ActionTypes.ADMIN_PROFILE_PIC_DIALOG_OPEN,
+      value
+    })
+  },
+
   startLoad () {
-    getAllUsers().then((res) => {
+    return getAllUsers().then((res) => {
+      console.log (res)
       dispatcher.dispatch({
         type: ActionTypes.ADMIN_USER_LOAD,
         value: res
       })
+      return Promise.resolve()
       // dispatcher.waitFor([searchappbarStore.dispatcherToken])
     }).catch((err) => {
       console.log(err)
@@ -153,6 +212,13 @@ const AdminActions = {
     dispatcher.dispatch({
       type: ActionTypes.USERSEARCH_SEARCH,
       value: query
+    })
+  },
+
+  toggleSnackbar (value) {
+    dispatcher.dispatch({
+      type: ActionTypes.ADMIN_TOGGLE_SNACKBAR,
+      value
     })
   }
 }

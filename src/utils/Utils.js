@@ -18,6 +18,13 @@ const foursquare = {
   // client_secret: 'VGCF3ZIC2UVIHDRVMI5EWYMKGHWNTTIE4GDBDT2KQDASRBMQ'
 }
 
+const LoginStates = {
+  noInput: 'noInput',
+  usernameNotFound: 'usernameNotFound',
+  incorrectPassword: 'incorrectPassword',
+  loggedIn: 'loggedIn'
+}
+
 const profilePictures = {
   prefix: 'https://i.imgur.com/',
   links: [
@@ -39,4 +46,4 @@ const profilePictures = {
   ]
 }
 
-export { findWithAttribute, toTitleCase, foursquare, profilePictures }
+export { findWithAttribute, toTitleCase, foursquare, profilePictures, LoginStates }

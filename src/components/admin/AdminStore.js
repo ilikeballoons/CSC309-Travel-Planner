@@ -6,11 +6,13 @@ class AdminStore extends EventEmitter {
   constructor () {
     super()
     this.userQuery = ''
-
     this.allUsers = []
     this.currentUser = {}
     this.editModeOn = false
     this.editModeSave = false
+    this.profilePictureDialogOpen = false
+    this.snackbarOpen = false
+    this.snackbarMessage = ''
 
     this.changePW = {
       open: false,
@@ -32,7 +34,10 @@ class AdminStore extends EventEmitter {
       currentUser: this.currentUser,
       editModeOn: this.editModeOn,
       changePW: this.changePW,
-      deleteUser: this.deleteUser
+      deleteUser: this.deleteUser,
+      profilePictureDialogOpen: this.profilePictureDialogOpen,
+      snackbarOpen: this.snackbarOpen,
+      snackbarMessage: this.snackbarMessage
     }
   }
 
@@ -118,6 +123,24 @@ class AdminStore extends EventEmitter {
         break
       }
 
+      case ActionTypes.ADMIN_EDIT_USER_PROFILE_PICTURE: {
+        this.currentUser.profilePicture = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.ADMIN_EDIT_USER_FULLNAMEE: {
+        this.currentUser.fullName = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.ADMIN_PROFILE_PIC_DIALOG_OPEN: {
+        this.profilePictureDialogOpen = action.value
+        this.emit('change')
+        break
+      }
+
       case ActionTypes.ADMIN_DELETE_DIALOG_OPEN: {
         this.deleteUser.open = true
         this.emit('change')
@@ -149,12 +172,20 @@ class AdminStore extends EventEmitter {
 
       case ActionTypes.ADMIN_CHANGE_USER_DISPLAYED: {
         this.currentUser = action.value
+        this.editModeOn = false
         this.emit('change')
         break
       }
 
       case ActionTypes.USERSEARCH_CHANGE: {
         this.userQuery = action.value
+        this.emit('change')
+        break
+      }
+
+      case ActionTypes.ADMIN_TOGGLE_SNACKBAR: {
+        this.snackbarOpen = action.value.open
+        this.snackbarMessage = action.value.message || ''
         this.emit('change')
         break
       }

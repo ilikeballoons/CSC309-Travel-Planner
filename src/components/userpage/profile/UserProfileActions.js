@@ -104,7 +104,6 @@ const UserProfileActions = {
   deleteAccount () {
     deleteUser()
       .then((json) => {
-        console.log(json)
         dispatcher.dispatch({
           type: ActionTypes.USERPROFILE_DELETE_ACCOUNT
         })

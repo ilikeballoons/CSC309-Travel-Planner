@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 
 // import AppStore from './AppStore'
 import SearchAppBarStore from './appbar/SearchAppBarStore'
-import LoginStates from '../utils/LoginStates'
+import { LoginStates } from '../utils/Utils'
 import Landing from './landing/Landing'
 import Admin from './admin/Admin'
 import UserPage from './userpage/UserPage'

@@ -8,6 +8,8 @@ import { withStyles } from '@material-ui/core/styles'
 
 import AdminActions from './AdminActions'
 import AdminStore from './AdminStore'
+import ProfilePicChooser from '../appbar/ProfilePicChooser'
+
 
 const styles = theme => ({
   viewUser: {
@@ -48,9 +50,11 @@ const styles = theme => ({
 class UserPanel extends React.Component {
   constructor () {
     super()
+    const { editModeOn, currentUser, profilePictureDialogOpen } = AdminStore.getState()
     this.state = {
-      editModeOn: false,
-      currentUser: {}
+      editModeOn,
+      currentUser,
+      profilePictureDialogOpen
     }
   }
 
@@ -63,13 +67,13 @@ class UserPanel extends React.Component {
   }
 
   updateState = () => {
-    const { editModeOn, currentUser } = AdminStore.getState()
-    this.setState({ editModeOn, currentUser })
+    const { editModeOn, currentUser, profilePictureDialogOpen } = AdminStore.getState()
+    this.setState({ editModeOn, currentUser, profilePictureDialogOpen })
   }
 
   render () {
     const { classes } = this.props
-    const { editModeOn, currentUser } = this.state
+    const { editModeOn, currentUser, profilePictureDialogOpen } = this.state
     const editButtonText = editModeOn ? 'Save' : 'Edit user information'
     const editButtonAction = editModeOn ? () => AdminActions.editModeSave(currentUser) : () => AdminActions.editModeOn()
     return (
@@ -78,6 +82,7 @@ class UserPanel extends React.Component {
           <Avatar alt={currentUser.fullName}
             src={currentUser.profilePicture}
             className={classes.userAvatar}
+            onClick={() => editModeOn && AdminActions.toggleEditProfilePictureDialog(true)}
           />
           <div className={classes.userHeaderText}>
             <Typography variant='h5' gutterBottom>
@@ -111,6 +116,7 @@ class UserPanel extends React.Component {
             Delete User
           </Button>
         </div>
+        <ProfilePicChooser page='admin' open={profilePictureDialogOpen} />
       </div>
     )
   }

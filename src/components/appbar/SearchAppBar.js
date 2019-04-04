@@ -20,7 +20,7 @@ import UserProfileButton from './UserProfileButton'
 import ConfirmAccountCreateSnackbar from './ConfirmAccountCreateSnackbar'
 import ItineraryButton from './ItineraryButton'
 import AutoComplete from './AutoComplete'
-import LoginStates from '../../utils/LoginStates'
+import { LoginStates } from '../../utils/Utils'
 
 const styles = theme => ({
   root: {
@@ -138,7 +138,7 @@ class SearchAppBar extends React.Component {
             </Typography>
             {page === 'userPage'
               ? <div className={classes.grow}>
-                  <AutoComplete page={page} searchQuery={searchQuery} travelDate={travelDate} />
+                  <AutoComplete page='userPage' searchQuery={searchQuery} travelDate={travelDate} />
                 </div>
               : <div className={classes.grow} />
             }

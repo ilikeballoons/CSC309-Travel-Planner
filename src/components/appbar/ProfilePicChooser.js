@@ -14,6 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { profilePictures } from '../../utils/Utils'
 import SearchAppBarActions from './SearchAppBarActions'
 import UserProfileActions from '../userpage/profile/UserProfileActions'
+import AdminActions from '../admin/AdminActions'
 
 const styles = theme => ({
   root: {
@@ -31,8 +32,10 @@ const styles = theme => ({
 
 class ProfilePicChooser extends React.Component {
   handleSelect (event, page) {
-    page === 'register' && SearchAppBarActions.profilePictureSelect(event.target.getAttribute('src'))
-    page === 'profile' && UserProfileActions.editProfilePicture(event.target.getAttribute('src'))
+    const img = event.target.getAttribute('src')
+    page === 'register' && SearchAppBarActions.profilePictureSelect(img)
+    page === 'profile' && UserProfileActions.editProfilePicture(img)
+    page === 'admin' && AdminActions.editUserProfilePicture(img)
   }
 
   render () {
@@ -44,6 +47,7 @@ class ProfilePicChooser extends React.Component {
         onClose={() => {
           page === 'register' && SearchAppBarActions.toggleProfilePictureChooser(false)
           page === 'profile' && UserProfileActions.toggleEditProfilePictureDialog(false)
+          page === 'admin' && AdminActions.toggleEditProfilePictureDialog(false)
         }}
         TransitionProps={{
           in: open,
@@ -65,6 +69,8 @@ class ProfilePicChooser extends React.Component {
             onClick={() => {
               page === 'register' && SearchAppBarActions.profilePictureCancel()
               page === 'profile' && UserProfileActions.cancelProfilePictureDialog()
+              page === 'admin' && AdminActions.toggleEditProfilePictureDialog(false)
+
             }}
             color='secondary'>
             Cancel

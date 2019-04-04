@@ -14,6 +14,8 @@ import cities from 'cities.json'
 
 import SearchAppBarActions from './SearchAppBarActions'
 import SearchAppBarStore from './SearchAppBarStore'
+import AdminActions from '../admin/AdminActions'
+import UserProfileActions from '../userpage/profile/UserProfileActions'
 
 const styles = theme => ({
   root: {
@@ -60,11 +62,21 @@ const styles = theme => ({
     color: 'inherit',
     width: '100%'
   },
+  inputRootDisabled: {
+    color: 'rgba(0, 0, 0, 0.38)'
+  },
   inputInput: {
     paddingTop: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
     paddingLeft: theme.spacing.unit * 10,
+    width: '100%',
+  },
+  noPaddingInput: {
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: 0,
     width: '100%',
   }
 })
@@ -76,18 +88,20 @@ const suggestions = cities.map((suggestion) => ({
 )
 
 const renderInputComponent = (inputProps) => {
-  const { classes, value, handleSubmit, ...other } = inputProps;
+  const { classes, value, handleSubmit, page, disabled, ...other } = inputProps;
+  const noPadding = page === 'admin' || page === 'userProfile'
   return (
     <div className={classes.search}>
+      {!noPadding &&
       <div className={classes.searchIcon}>
         <IconButton component={() => <SearchIcon />} />
-      </div>
+      </div>}
       <InputBase
         fullWidth
         value={value}
         classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput
+          root: disabled ? classes.inputRootDisabled : classes.inputRoot,
+          input: noPadding ? classes.noPaddingInput : classes.inputInput
         }}
         {...other}
       />
@@ -159,9 +173,11 @@ class AutoComplete extends React.Component {
 
   onSuggestionSelected = (event, { suggestionValue }) => {
     this.setState({ searchQuery: suggestionValue })
-    this.props.page === 'landing'
-    ? SearchAppBarActions.signinDialogOpen()
-    : SearchAppBarActions.searchbarSearch(suggestionValue, this.props.travelDate)
+    const { page } = this.props
+    page === 'landing' && SearchAppBarActions.signinDialogOpen()
+    page === 'admin' && AdminActions.editUserLocation(suggestionValue)
+    page === 'userPage' && SearchAppBarActions.searchbarSearch(suggestionValue, this.props.travelDate)
+    page === 'userProfile' && UserProfileActions.editLocation(suggestionValue)
   }
 
   shouldRenderSuggestions = (value) => value.trim().length > 2
@@ -171,8 +187,8 @@ class AutoComplete extends React.Component {
   }
 
   render () {
-    const { classes, page } = this.props
-    const { searchQuery } = this.state
+    const { classes, page, disabled } = this.props
+    const value = this.state.searchQuery
     const autosuggestProps = { // built in props for the autosuggest component
       renderInputComponent,
       suggestions: this.state.suggestions,
@@ -192,9 +208,10 @@ class AutoComplete extends React.Component {
           inputProps={{
             classes,
             placeholder: 'Which city do you want to visit?',
-            value: searchQuery,
+            value,
             onChange: this.handleChange,
-            page
+            page,
+            disabled
           }}
           theme={{
             container: classes.container,

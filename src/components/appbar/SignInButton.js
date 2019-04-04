@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 
-import LoginStates from '../../utils/LoginStates'
+import { LoginStates } from '../../utils/Utils'
 import SearchAppBarStore from './SearchAppBarStore'
 import SearchAppBarActions from './SearchAppBarActions'
 

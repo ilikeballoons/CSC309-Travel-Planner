@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events'
 import dispatcher from '../../utils/Dispatcher'
-import LoginStates from '../../utils/LoginStates'
+import { LoginStates } from '../../utils/Utils'
 import ActionTypes from '../../utils/ActionTypes'
 import defaultProfilePicture from './../../images/defaultProfilePicture.png'
 

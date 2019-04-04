@@ -1,7 +1,7 @@
 import dispatcher from '../../utils/Dispatcher'
 import ActionTypes from '../../utils/ActionTypes'
 import { postUser, login, logout } from '../../utils/ServerMethods'
-import RecommendationActions from '../userpage/recommendations/RecommendationActions'
+import RecommendationsActions from '../userpage/recommendations/RecommendationsActions'
 
 const SearchAppBarActions = {
   clickSubmit () {
@@ -77,7 +77,7 @@ const SearchAppBarActions = {
       type: ActionTypes.SEARCHBAR_SEARCH,
       value: searchQuery
     })
-    RecommendationActions.startLoad(searchQuery, travelDate)
+    RecommendationsActions.startLoad(searchQuery, travelDate)
   },
 
   signinDialogOpen () {
@@ -118,7 +118,7 @@ const SearchAppBarActions = {
               type: ActionTypes.UPDATE_USER,
               value: res
             })
-            RecommendationActions.startLoad(searchQuery, travelDate)
+            RecommendationsActions.startLoad(searchQuery, travelDate)
             break
           }
           case 404: {

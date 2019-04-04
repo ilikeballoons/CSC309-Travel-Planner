@@ -6,7 +6,7 @@ import { foursquare } from '../../../utils/Utils'
 import groupedCategories from '../../../utils/GroupedCategories'
 import RecommendationsStore from './RecommendationsStore'
 
-const RecommendationActions = {
+const RecommendationsActions = {
   startLoad (city, date) {
     this.city = city
     this.date = new Date(date).getDay()
@@ -30,10 +30,10 @@ const RecommendationActions = {
     })
   },
   removeRecommendation (title, fetchedRecommendations) {
-    RecommendationActions.getOneRecommendationFromFoursquare(fetchedRecommendations)
+    RecommendationsActions.getOneRecommendationFromFoursquare(fetchedRecommendations)
       .then(venues => (
-        // RecommendationActions.formatVenues(venues))) // For release
-        RecommendationActions.formatVenuesBasic(venues)))// For testing
+        // RecommendationsActions.formatVenues(venues))) // For release
+        RecommendationsActions.formatVenuesBasic(venues)))// For testing
       .then((formattedVenues) => (
         dispatcher.dispatch({
           type: ActionTypes.RECOMMENDATION_REMOVE,
@@ -160,4 +160,4 @@ const RecommendationActions = {
   }
 }
 
-export default RecommendationActions
+export default RecommendationsActions

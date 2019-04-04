@@ -3,7 +3,7 @@ import ActionTypes from '../../../utils/ActionTypes'
 import { postItinerary, patchItinerary } from '../../../utils/ServerMethods'
 
 import RecommendationsStore from '../recommendations/RecommendationsStore'
-import RecommendationActions from '../recommendations/RecommendationActions'
+import RecommendationsActions from '../recommendations/RecommendationsActions'
 import ItineraryStore from './ItineraryStore'
 
 const ItineraryActions = {
@@ -59,7 +59,7 @@ const ItineraryActions = {
     const recs = value.rec.recommendations.map(r => r.title)
     await Promise.all(eventsCopy.map(async (existingEvent) => {
       if (recs.includes(existingEvent.data.title)) {
-        await RecommendationActions.removeRecommendation(existingEvent.data.title, value.rec.fetchedRecommendations)
+        await RecommendationsActions.removeRecommendation(existingEvent.data.title, value.rec.fetchedRecommendations)
       }
     }))
   },

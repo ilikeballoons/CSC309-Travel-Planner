@@ -13,7 +13,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import Collapse from '@material-ui/core/Collapse';
 import Typography from '@material-ui/core/Typography'
 
-import RecommendationActions from './RecommendationActions'
+import RecommendationsActions from './RecommendationsActions'
 import RecommendationsStore from './RecommendationsStore'
 
 const styles = theme => ({
@@ -73,7 +73,7 @@ class Recommendation extends React.Component {
   toggleInfo = () => this.setState(state => ({expanded: !state.expanded}))
   handleRemove = (() => {
     const { fetchedRecommendations } = RecommendationsStore.getState()
-    RecommendationActions.removeRecommendation(this.props.data.title, fetchedRecommendations)
+    RecommendationsActions.removeRecommendation(this.props.data.title, fetchedRecommendations)
   })
 
   render () {

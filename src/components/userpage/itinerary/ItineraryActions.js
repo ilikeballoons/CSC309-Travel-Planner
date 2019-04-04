@@ -2,6 +2,10 @@ import dispatcher from '../../../utils/Dispatcher'
 import ActionTypes from '../../../utils/ActionTypes'
 import { postItinerary, patchItinerary } from '../../../utils/ServerMethods'
 
+import RecommendationsStore from '../recommendations/RecommendationsStore'
+import RecommendationActions from '../recommendations/RecommendationActions'
+import ItineraryStore from './ItineraryStore'
+
 const ItineraryActions = {
   addEvent (event) {
     dispatcher.dispatch({
@@ -17,9 +21,17 @@ const ItineraryActions = {
     })
   },
 
-  clearItinerary () {
-    dispatcher.dispatch({
-      type: ActionTypes.ITINERARY_CLEAR
+  clearItinerary (events, recommendations) {
+    const eventsCopy = events.slice()
+    const recs = recommendations.map(r => r.title)
+    eventsCopy.forEach((existingEvent) => {
+      this.removeEvent(existingEvent.id)
+      if (!recs.includes(existingEvent.data.title)) {
+        dispatcher.dispatch({
+          type: ActionTypes.RECOMMENDATION_ADD,
+          value: existingEvent.data
+        })
+      }
     })
   },
 
@@ -37,11 +49,19 @@ const ItineraryActions = {
     })
   },
 
-  loadItinerary (itinerary) {
+  async loadItinerary (value) {
     dispatcher.dispatch({
       type: ActionTypes.ITINERARY_LOAD,
-      value: itinerary
+      value
     })
+
+    const eventsCopy = value.itinerary.events.slice()
+    const recs = value.rec.recommendations.map(r => r.title)
+    await Promise.all(eventsCopy.map(async (existingEvent) => {
+      if (recs.includes(existingEvent.data.title)) {
+        await RecommendationActions.removeRecommendation(existingEvent.data.title, value.rec.fetchedRecommendations)
+      }
+    }))
   },
 
   patchItineraryChanges (id, name, events) {

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
 import Typography from '@material-ui/core/Typography'
 import RecommendationActions from '../recommendations/RecommendationActions'
+import RecommendationsStore from '../recommendations/RecommendationsStore'
 import ItineraryEvent from './ItineraryEvent'
 import ItineraryStore from './ItineraryStore'
 import ItineraryActions from './ItineraryActions'
@@ -17,8 +18,9 @@ const hourTarget = {
       id: data.id
     })
     const { existingEvent } = ItineraryStore.getState()
+    const { fetchedRecommendations } = RecommendationsStore.getState()
     existingEvent && RecommendationActions.addRecommendation(existingEvent) // Adds a replaced event back to Recommendations from Itinerary
-    RecommendationActions.removeRecommendation(data.id)
+    RecommendationActions.removeRecommendation(data.title, fetchedRecommendations)
   }
 }
 

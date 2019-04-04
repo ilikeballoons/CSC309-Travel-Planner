@@ -14,6 +14,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Typography from '@material-ui/core/Typography'
 
 import RecommendationActions from './RecommendationActions'
+import RecommendationsStore from './RecommendationsStore'
 
 const styles = theme => ({
   root: {
@@ -70,7 +71,10 @@ class Recommendation extends React.Component {
   }
 
   toggleInfo = () => this.setState(state => ({expanded: !state.expanded}))
-  handleRemove = () => RecommendationActions.removeRecommendation(this.props.data.id)
+  handleRemove = (() => {
+    const { fetchedRecommendations } = RecommendationsStore.getState()
+    RecommendationActions.removeRecommendation(this.props.data.title, fetchedRecommendations)
+  })
 
   render () {
     const { classes, data } = this.props

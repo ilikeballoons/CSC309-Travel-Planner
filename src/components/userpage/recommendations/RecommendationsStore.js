@@ -29,7 +29,7 @@ class RecommendationsStore extends EventEmitter {
       }
 
       case ActionTypes.RECOMMENDATION_REMOVE: {
-        const existingRecommendationIndex = findWithAttribute(this.recommendations, 'id', action.value.id)
+        const existingRecommendationIndex = findWithAttribute(this.recommendations, 'title', action.value.title)
         if (!isNaN(existingRecommendationIndex)) {
           this.recommendations.splice(existingRecommendationIndex, 1)
           // Maintain at least 10 viewable recommendations

@@ -1,0 +1,36 @@
+SETUP instructions and CREDENTIALS:
+
+1) Clone the project repo
+2) In a terminal, cd to the team38 folder
+2) In a terminal, run "npm install" to get necessary packages
+3) In a terminal, run "npm start" to build and open the app
+[NOTE: if a browser window doesn't automatically open up, please copy the URL in the terminal and paste to a new browser window]
+
+USER CREDENTIAL:
+Username: user
+Password: user
+
+ADMIN CREDENTIAL:
+Username: admin
+Password: admin
+
+///////////////////////////////////////////////
+FEATURES - LANDING:
+
+
+FEATURES - USER PAGE:
+- The user can view recommended activities according to their city & date choices.
+- These recommendations can also be filtered through the preference drawer on the left of the screen.
+- The user can drag these recommendations into a daily itinerary to plan their day.
+- The user can save, modify, and delete itineraries for each city/date combination.
+- The user can also view and modify their profile information and itineraries through a separate user profile screen.
+- The user can also change which city to find recommendations for, as well as sign out and return to the landing.
+
+FEATURES - ADMIN:
+- A list of all users will be loaded in the left panel, displaying their username (unique) and full name.
+- The admin can search for any user by their username and/or full name by typing into the search bar. The list of users will be updated by finding the matching users from the database.
+- The admin can click on any user they choose from the list view and the details for said user will be displayed on the details panel on the right panel.
+- The admin can reset password for any user by clicking the 'Reset Password button'. The new password will be encrypted and saved to the database upon save.
+- The admin can edit the details of any user by clicking the 'Edit User Information' button. Any changes will be updated in the database after hitting the 'Save' button.
+- The admin can delete any user by clicking on the 'Delete User' button and confirming 'Delete' on the dialog. Said user will be deleted and removed from the list of all users.
+- The admin can log out to the landing page and all changes made during their session will be retained.
